@@ -1,0 +1,77 @@
+import { Search, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
+const helpCategories = [
+  "Getting Started",
+  "Payment and Subscriptions",
+  "Account Management",
+  "Playing Content",
+  "Frequently Asked Questions",
+]
+
+const helpQuestions = [
+  "How Do I Login to the platform",
+  "What kind of content is available in the platform",
+  "How do I get the most relevant content",
+  "Frequently Asked Questions",
+]
+
+export default function HelpCenter() {
+  return (
+    <main className="flex-1 p-6 md:p-8 ml-0 md:ml-0">
+      <div className="max-w-6xl mx-auto">
+        {/* Search Bar */}
+        <div className="mb-8">
+          <div className="relative max-w-2xl">
+            <Input
+              type="text"
+              placeholder="Search for a help topic"
+              className="pl-4 pr-12 py-3 text-lg bg-[#ffffff] border-[#d9d9d9] rounded-full focus:border-[#c62676] focus:ring-[#c62676]"
+            />
+            <Button
+              size="icon"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent hover:bg-[#e5e5e5] text-[#696969]"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Help Center Title */}
+        <h1 className="text-4xl md:text-5xl font-bold text-[#2c2c2c] mb-12">Help Center</h1>
+
+        {/* Help Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Left Column - Categories */}
+          <div className="space-y-4">
+            {helpCategories.map((category, index) => (
+              <Button
+                key={index}
+                variant="default"
+                className="w-full justify-between text-left p-6 h-auto bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff] rounded-lg"
+              >
+                <span className="text-lg font-medium">{category}</span>
+                <ChevronRight className="h-5 w-5 ml-2 flex-shrink-0" />
+              </Button>
+            ))}
+          </div>
+
+          {/* Right Column - Questions */}
+          <div className="space-y-4">
+            {helpQuestions.map((question, index) => (
+              <Button
+                key={index}
+                variant="outline"
+                className="w-full justify-between text-left p-6 h-auto bg-[#ffffff] hover:bg-[#f2f2f2] text-[#2c2c2c] border-[#e5e5e5] rounded-lg"
+              >
+                <span className="text-lg font-medium">{question}</span>
+                <ChevronRight className="h-5 w-5 ml-2 flex-shrink-0 text-[#696969]" />
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </main>
+  )
+}

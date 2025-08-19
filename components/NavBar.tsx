@@ -140,10 +140,13 @@ const NavBar = () => {
                 </IconButton>
               </div>
 
-              <Avatar className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
-                <AvatarImage src="logos/user-profile-illustration.png" />
-                <AvatarFallback>U</AvatarFallback>
-              </Avatar>
+              <Link href={"/profile"}>
+
+                  <Avatar className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
+                    <AvatarImage src="logos/user-profile-illustration.png" />
+                    <AvatarFallback>U</AvatarFallback>
+                  </Avatar>
+              </Link>
             </div>
           </div>
         </nav>

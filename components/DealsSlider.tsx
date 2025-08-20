@@ -63,7 +63,7 @@ const DealsSlider = () => {
           ].map((item, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5"
+              className="bg-white rounded-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5 flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 min-w-0 flex-1">
@@ -81,22 +81,24 @@ const DealsSlider = () => {
                 </span>
               </div>
               
-              <p className="text-sm sm:text-base md:text-lg py-2 border-t-2 border-b-2 border-gray-300 font-normal text-[#2C2C2C] text-left mb-3 capitalize line-clamp-2">
+              <p className="text-sm sm:text-base md:text-lg py-2 border-t-2 border-b-2 border-gray-300 font-normal text-[#2C2C2C] text-left mb-3 capitalize line-clamp-2 flex-grow">
                 {item.subtitle}
               </p>
               
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-sm sm:text-base md:text-lg font-normal text-gray-500 line-through">
-                  Ksh {item.price}
-                </span>
-                <span className="text-lg sm:text-xl md:text-2xl text-[#2C2C2C] font-extrabold">
-                  Ksh {item.discount}
-                </span>
+              <div className="mt-auto">
+                <div className="flex items-center space-x-2 mb-4">
+                  <span className="text-sm sm:text-base md:text-lg font-normal text-gray-500">
+                    Ksh {item.price}
+                  </span>
+                  <span className="text-lg sm:text-xl md:text-2xl text-[#2C2C2C] font-extrabold mb-2">
+                    Ksh {item.discount}
+                  </span>
+                </div>
+                
+                <Button className="w-full bg-[#C62676] hover:bg-[#a91e62] text-sm sm:text-base md:text-lg font-semibold text-white rounded-full capitalize py-4 sm:py-5 md:py-6 transition-colors">
+                  {item.buttonText}
+                </Button>
               </div>
-              
-              <Button className="w-full bg-[#C62676] hover:bg-[#a91e62] text-sm sm:text-base md:text-lg font-semibold text-white rounded-full capitalize py-4 sm:py-5 md:py-6 transition-colors">
-                {item.buttonText}
-              </Button>
             </div>
           ))}
         </div>

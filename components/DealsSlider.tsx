@@ -4,7 +4,7 @@ const DealsSlider = () => {
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center min-w-max px-4">
+        <div className="flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 text-center min-w-max">
           {[
             {
               logo: "/logos/bazeLg.png",

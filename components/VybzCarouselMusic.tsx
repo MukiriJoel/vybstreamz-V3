@@ -30,13 +30,16 @@ export interface ICarousel {
   backgroundImage?: string;
 }
 
+interface VybzCarouselMusicProps {
+  slides?: ICarousel[];
+  delay?: number;
+}
+
 const VybzCarouselMusic = ({
   slides = [],
   delay = 8000,
-}: {
-  slides: ICarousel[];
-  delay?: number;
-}) => {
+}:VybzCarouselMusicProps) => {
+  
   const sliderRef = useRef<Slider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -159,7 +162,7 @@ const VybzCarouselMusic = ({
                   backgroundImage: `url(${slide.backgroundImage})`,
                 }}
               >
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-black/50"></div>
               </div>
 
               {/* Content Overlay */}

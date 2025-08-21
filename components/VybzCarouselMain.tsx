@@ -11,6 +11,7 @@ import React from "react";
 // ✅ Required slick styles
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import VybzCarouselPodCast from "./VybzCarouselPodcast";
 
 export interface ICarousel {
   id: number;
@@ -23,17 +24,19 @@ export interface ICarousel {
   backgroundImage?: string;
 }
 
+interface VybzCarouselMainProps {
+  slides?: ICarousel[];
+  delay?: number;
+}
+
+
 const VybzCarouselMain = ({
   slides = [],
   delay = 8000,
-}: {
-  slides: ICarousel[];
-  delay?: number;
-}) => {
+}: VybzCarouselMainProps) => {
+
   const sliderRef = useRef<Slider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  
 
 
   // Default slide if no slides provided

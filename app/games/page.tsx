@@ -10,8 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { HiArrowLeft, HiArrowRight, HiOutlineSpeakerXMark } from "react-icons/hi2";
 import { MdArrowForward, MdChevronLeft, MdChevronRight, MdOutlineVideocam } from "react-icons/md";
-import VybzCarouselMain from "@/components/VybzCarouselMain";
 import GamesSlider from "@/components/GamesSlider";
+import VybzCarouselMusic from "@/components/VybzCarouselMusic";
 
 export default function GamesPage() {
 
@@ -19,7 +19,7 @@ export default function GamesPage() {
     <div className="bg-[#f2f2f2]">
       {/* Main Content */}
       <main className="">
-        <VybzCarouselMain/>
+        <VybzCarouselMusic/>
 
         <div className="p-8 max-w-8xl mx-auto">
 

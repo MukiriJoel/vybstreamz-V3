@@ -155,7 +155,7 @@ const NavBar = () => {
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed top-0 inset-0 bg-black bg-opacity-20 z-40 md:hidden"
+          className="fixed top-0 inset-o bg-opacity-20/40 z-40 md:hidden"
           onClick={closeMobileMenu}
         />
       )}

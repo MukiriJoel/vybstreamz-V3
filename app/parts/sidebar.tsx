@@ -5,14 +5,15 @@ import { User, Settings, Bell, MessageSquare, HelpCircle, LogOut, Menu, X } from
 import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../context/AuthContext'
+import Link from "next/link"
 
 const menuItems = [
-  { icon: User, label: "My Profile", active: true },
-  { icon: Settings, label: "Settings", active: false },
-  { icon: Bell, label: "Notifications", active: false },
-  { icon: MessageSquare, label: "Feedback and Rating", active: false },
-  { icon: HelpCircle, label: "Help & Support", active: false },
-  { icon: LogOut, label: "Logout", active: false },
+  { icon: User, label: "My Profile", active: true,link:"/profile" },
+  { icon: Settings, label: "Settings", active: false,link:"/settings" },
+  { icon: Bell, label: "Notifications", active: false,link:"/notifications" },
+  { icon: MessageSquare, label: "Feedback and Rating", active: false,link:"/feedback" },
+  { icon: HelpCircle, label: "Help & Support", active: false, link:"/help" },
+  { icon: LogOut, label: "Logout", active: false,link:"/logout" },
 ]
 
 export default function Sidebar() {
@@ -64,26 +65,27 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={`
-        fixed top-30 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40
+        fixed top-30 left-0 h-full= border-r border-[#E5E5E5] w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-40
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
         lg:translate-x-0 lg:static lg:shadow-none
       `}
       >
-        <div className="p-6 pt-20 lg:pt-40">
+        <div className="p-6">
           <nav className="space-y-2">
                 {menuItems.map((item, index) => (
-                    <button
+                    <Link
+                    href={item.link}
                     key={index}
                     onClick={item.label === "Logout" ? handleLogoutClick : undefined}
                     className={`
-                        w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors
+                        w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors cursor-pointer
                         ${item.active ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
                         ${item.label === "Logout" ? "hover:bg-red-50 hover:text-red-600" : ""}
                     `}
                     >
                     <item.icon className="h-5 w-5" />
                     <span className="font-medium">{item.label}</span>
-                    </button>
+                    </Link>
                 ))}
             </nav>
         </div>

@@ -5,11 +5,11 @@ import Footer from "@/components/Footer"
 
 export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[#f2f2f2] w-full w-max-full overflow-x-hidden">
 
       <div className="flex pt-20 ">
         <Sidebar />
-        <main className="flex-1 lg:ml-64">
+        <main className="flex-1 ">
           <ProfileContent />
         </main>
       

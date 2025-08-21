@@ -6,6 +6,7 @@ import { SlickSettings } from "@/types/slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState } from "react";
+import CarouselDots from "./CarouselDots";
 
 export interface ICarousel {
   id: number;
@@ -20,7 +21,7 @@ interface AdSliderProps {
 
 const AdSlider = ({
   slides = [],
-  delay = 5000,
+  delay = 4000,
 }:AdSliderProps) =>{
 
     const sliderRef = useRef<Slider>(null);
@@ -90,22 +91,8 @@ const AdSlider = ({
                                     />
                                 
                             </div>
-                            <div className="flex items-center justify-center mt-1 ">
-                                <div className="flex space-x-2 mt-5 justify-center mx-auto">
-                                    {slides.map((_, dotIndex) => (
-                                        <button
-                                        key={dotIndex}
-                                        onClick={() => goToSlide(dotIndex)}
-                                        className={`w-3 h-3 rounded-full ${
-                                            dotIndex === activeIndex
-                                            ? "bg-[#C62676]"
-                                            : "bg-gray-300 hover:bg-[#C62676]"
-                                        }`}
-                                        />
-                                    ))}
-                                    
-                                </div>
-
+                            <div className="flex items-center justify-center mt-1">
+                                <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
                             </div>
                         </div>
                     ))}

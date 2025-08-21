@@ -14,6 +14,7 @@ import { SlickSettings } from "@/types/slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState } from "react";
+import CarouselDots from "./CarouselDots";
 
 export interface ICarousel {
   id: number;
@@ -37,7 +38,7 @@ interface VybzCarouselMusicProps {
 
 const VybzCarouselMusic = ({
   slides = [],
-  delay = 8000,
+  delay = 4000,
 }:VybzCarouselMusicProps) => {
   
   const sliderRef = useRef<Slider>(null);
@@ -255,20 +256,8 @@ const VybzCarouselMusic = ({
                     <span className="text-white text-sm font-medium">2:45</span>
                   </div>
 
-                   {/* Dots Navigation */}
-                    <div className="flex items-center justify-center gap-4 mx-auto md:pr-10">
-                      {slides.map((_, dotIndex) => (
-                        <button
-                          key={dotIndex}
-                          onClick={() => goToSlide(dotIndex)}
-                          className={`w-3 h-3 rounded-full ${
-                            dotIndex === activeIndex
-                              ? "bg-[#C62676]"
-                              : "bg-gray-300 hover:bg-[#C62676]"
-                          }`}
-                        />
-                      ))}
-                    </div>
+                  {/* Dots Navigation */}
+                  <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
                 </div>
               </div>
             </div>

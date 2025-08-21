@@ -12,6 +12,7 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import VybzCarouselPodCast from "./VybzCarouselPodcast";
+import CarouselDots from "./CarouselDots";
 
 export interface ICarousel {
   id: number;
@@ -32,7 +33,7 @@ interface VybzCarouselMainProps {
 
 const VybzCarouselMain = ({
   slides = [],
-  delay = 8000,
+  delay = 4000,
 }: VybzCarouselMainProps) => {
 
   const sliderRef = useRef<Slider>(null);
@@ -174,7 +175,7 @@ const VybzCarouselMain = ({
 
               {/* Action Buttons */}
               <div className="flex gap-4 justify-between flex-wrap">
-                <div className="flex gap-4 mx-auto md:mx-0">
+                <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
                   <Button className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer">
                     Subscribe
                   </Button>
@@ -189,19 +190,7 @@ const VybzCarouselMain = ({
 
                 <div className="flex items-center gap-4 mx-auto md:mx-0 md:pr-10">
                   {/* Custom dots */}
-                  <div className="flex space-x-2">
-                    {slides.map((_, dotIndex) => (
-                      <button
-                        key={dotIndex}
-                        onClick={() => goToSlide(dotIndex)}
-                        className={`w-3 h-3 rounded-full ${
-                          dotIndex === activeIndex
-                            ? "bg-[#C62676]"
-                            : "bg-gray-300 hover:bg-[#C62676]"
-                        }`}
-                      />
-                    ))}
-                  </div>
+                  <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
                   <Button
                     variant="ghost"
                     size="icon"

@@ -1,0 +1,147 @@
+"use client"
+import Slider from "react-slick";
+import { SlickSettings } from "@/types/slick";
+
+// ✅ Required slick styles
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useRef, useState } from "react";
+
+export interface ICarousel {
+  id: number;
+  image: string;
+}
+
+interface AdSliderProps {
+  slides?: ICarousel[];
+  delay?: number;
+}
+
+
+const AdSlider = ({
+  slides = [],
+  delay = 8000,
+}:AdSliderProps) =>{
+
+    const sliderRef = useRef<Slider>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+     // Default slide if no slides provided
+    const defaultSlide: ICarousel = {
+    id: 1,
+    image: "/images/safAd.png",
+    };
+
+    slides = [
+        {
+        id: 1,
+        image: "/images/safAd.png",
+        
+        },
+        {
+        id: 2,
+        image: "/images/bestNetflix.png",
+        
+        },
+        {
+        id: 3,
+        image: "/images/safAd.png",
+        
+        },
+    ];
+
+    const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
+
+    const settings: SlickSettings = {
+        dots: false,
+        fade: true,
+        infinite: true,
+        autoplay: slidesToRender.length > 1,
+        autoplaySpeed: delay,
+        pauseOnHover: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        // afterChange: (i: number) => setActiveIndex(i),
+    };
+
+    const goToSlide = (i: number) => {
+        console.log("slide", i);
+        sliderRef.current?.slickGoTo(i);
+    };
+
+    return(
+        <>
+            
+                <Slider  {...settings}
+                    ref={sliderRef}
+                    beforeChange={(_, next) => setActiveIndex(next)}
+                    className="adSlider"
+                    >
+                    
+                    {slidesToRender.map((slide, index) => (
+                        <div className="relative p-4" key={slide.id}>
+                            <div className="h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 bg-gradient-to-r rounded-2xl overflow-hidden shadow-xl">
+                                {/* Image Container */}
+                                
+                                    <img
+                                    src={slide.image}
+                                    alt="Advertisement"
+                                    className="w-full h-full object-cover"
+                                    />
+                                
+                            </div>
+                            <div className="flex items-center justify-center mt-1 ">
+                                <div className="flex space-x-2 mt-5 justify-center mx-auto">
+                                    {slides.map((_, dotIndex) => (
+                                        <button
+                                        key={dotIndex}
+                                        onClick={() => goToSlide(dotIndex)}
+                                        className={`w-3 h-3 rounded-full ${
+                                            dotIndex === activeIndex
+                                            ? "bg-[#C62676]"
+                                            : "bg-gray-300 hover:bg-[#C62676]"
+                                        }`}
+                                        />
+                                    ))}
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    ))}
+                    
+                </Slider>  
+
+                <style jsx global>{`
+
+                  @media(max-width:768px){
+                    .adSlider .slick-list{
+                      height:50vh
+                    }
+                    .adSlider .slick-track{
+                        height:50vh
+                    }
+                  }
+
+                  @media(min-width:768px) and (max-width:1280px){
+                    .adSlider .slick-list{
+                      height:70vh
+                    }
+                    .adSlider .slick-track{
+                        height:70vh
+                    }
+                  }
+                
+                .dot {
+                  transition: background-color 0.2s ease-in-out;
+                }
+          
+          `}</style>
+           
+        </>
+    )
+}
+
+export default AdSlider;

@@ -9,6 +9,7 @@ import MusicSlider from "@/components/MusicSlider";
 import VideoSlider from "@/components/VideoSlider";
 import { title } from "process";
 import DealsSlider from "@/components/DealsSlider";
+import AdSlider from "@/components/AdSlider";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -169,25 +170,7 @@ export default function Home() {
             </section>
 
             {/*AD slider */}
-            <div className="relative w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 bg-gradient-to-r rounded-2xl overflow-hidden shadow-2xl">
-              {/* Image Container */}
-              <div className="absolute inset-0 ">
-                <img
-                  src="/images/safAd.png"
-                  alt="Advertisement"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="flex items-center justify-center mb-4">
-              <div className="flex space-x-2 mt-5 pr-10">
-                <div className="w-3 h-3 bg-[#C62676] rounded-full"></div>
-                <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-                <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-              </div>
-
-              {/*end slider */}
-            </div>
+           <AdSlider/>
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">

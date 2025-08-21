@@ -50,7 +50,7 @@ const VybzCarouselMain = ({
 
   slides = [
   {
-    id: 2,
+    id: 1,
     title: "Squid Game 3",
     description: "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
     category: "Game",
@@ -60,7 +60,7 @@ const VybzCarouselMain = ({
     platformLogo: "/logos/netflix.png"
   },
   {
-    id: 3,
+    id: 2,
     title: "Mofaya",
     description: "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
     category: "Movie",

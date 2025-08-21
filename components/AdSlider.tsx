@@ -20,7 +20,7 @@ interface AdSliderProps {
 
 const AdSlider = ({
   slides = [],
-  delay = 8000,
+  delay = 5000,
 }:AdSliderProps) =>{
 
     const sliderRef = useRef<Slider>(null);
@@ -40,14 +40,12 @@ const AdSlider = ({
         },
         {
         id: 2,
-        image: "/images/bestNetflix.png",
+        image: "/images/safAd2.png",
         
-        },
-        {
-        id: 3,
-        image: "/images/safAd.png",
-        
-        },
+        },{
+          id: 3,
+          image: "/images/safAd3.png",
+        }
     ];
 
     const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
@@ -77,11 +75,11 @@ const AdSlider = ({
                 <Slider  {...settings}
                     ref={sliderRef}
                     beforeChange={(_, next) => setActiveIndex(next)}
-                    className="adSlider"
+                    className="adSlider pt-3"
                     >
                     
                     {slidesToRender.map((slide, index) => (
-                        <div className="relative p-4" key={slide.id}>
+                        <div className="relative " key={slide.id}>
                             <div className="h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 bg-gradient-to-r rounded-2xl overflow-hidden shadow-xl">
                                 {/* Image Container */}
                                 

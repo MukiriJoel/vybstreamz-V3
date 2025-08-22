@@ -61,11 +61,9 @@
 import RatingDisplay from "./RatingDisplay";
 
 const VideoSlider = () => {
-
-  const genres=["drama","suspense","romance"];
   return (
     <>
-      <div className="overflow-x-auto scrollbar-hide md:py-12 py-10 ">
+      <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
         <div className="flex gap-3 md:gap-4 text-center min-w-max px-4">
           {[
             {
@@ -73,47 +71,53 @@ const VideoSlider = () => {
               description: "The journey of a couple towards their wedding, in their planning they...",
               image: "/images/vid4.png",
               partner: "/logos/showmax.png",
-              genres:["drama","suspense","romance"]
+              genres:["drama","suspense","romance"],
+              rating:"4"
             },
             {
               title: "Wyfie",
               description: "A thrilling drama that explores relationships and modern love.",
               image: "/images/vid6.png",
               partner: "/logos/showmax.png",
-              genres:["comedy","drama"]
+              genres:["comedy","drama"],
+              rating:"5"
             },
             {
               title: "Jacob's Daughter",
               description: "A compelling story of family, tradition, and breaking boundaries.",
               image: "/images/vid1.png",
               partner: "/logos/showmax.png",
-              genres:["drama","romance"]
+              genres:["drama","romance"],
+              rating:"3"
             },
             {
               title: "Awinja's Perfect Wedding",
               description: "Comedy meets romance in this heartwarming wedding story.",
               image: "/images/vid5.png",
               partner: "/logos/bazeLg.png",
-              genres:["comedy","romance"]
+              genres:["comedy","romance"],
+              rating:"5"
             },
             {
               title: "Hoje",
               description: "An emotional journey through life's unexpected turns.",
               image: "/images/vid2.png",
               partner: "/logos/bazeLg.png",
-              genres:["action","drama","crime"]
+              genres:["action","drama","crime"],
+              rating:"2"
             },
             {
               title: "Moukoko",
               description: "Adventure and discovery in this captivating tale.",
               image: "/images/vid3.png",
               partner: "/logos/bazeLg.png",
-              genres:["action","drama"]
+              genres:["action","drama"],
+              rating:"5"
             },
           ].map((item, index) => (
             <div 
               key={index} 
-              className="group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-50"
+              className="pt-8 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
               <div className="relative">
@@ -129,7 +133,7 @@ const VideoSlider = () => {
                 </div>
 
                 {/* Hover Overlay */}
-                <div className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'}   md:group-hover:-translate-y-8 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
+                <div className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                           <img src={item.image} className="w-full h-[200%] object-cover"/>
                   </div>
@@ -157,7 +161,7 @@ const VideoSlider = () => {
                         ))}
                       </div>
                       <div className="py-1">
-                        <RatingDisplay rating={4}/>
+                        <RatingDisplay rating={item.rating as any}/>
                       </div>
                       <p className="!text-sm !md:text-sm text-[#000000] !font-normal line-clamp-2 leading-[120%]">
                         {item.description}
@@ -199,7 +203,7 @@ const VideoSlider = () => {
         </div>
       </div>
 
-      {/* Add these styles to your CSS file or use a style tag */}
+    
       <style jsx>{`
         .line-clamp-3 {
           display: -webkit-box;

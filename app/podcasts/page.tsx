@@ -169,7 +169,7 @@ const PodcastPlayer: React.FC = () => {
         <div className="p-8 max-w-8xl mx-auto">
           {/* Episodes Section */}
 
-          <div className="bg-white rounded-lg p-6 mb-8">
+          <div className="bg-white rounded-lg p-6 ">
             <h3 className="text-[14px] !font-extrabold text-[#4D4D4D] mb-6">
               Episodes
             </h3>
@@ -214,8 +214,8 @@ const PodcastPlayer: React.FC = () => {
           </div>
 
           {/* Partners Section */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-10">
+          <div className="pt-2">
+            <div className="flex items-center justify-between mb-4">
               <h3 className="text-[24px] text-[#1A1A1A] font-bold">Partners</h3>
               <Button
                 variant="ghost"
@@ -231,8 +231,8 @@ const PodcastPlayer: React.FC = () => {
           </div>
 
           {/* Trending Section */}
-          <div className="mb-8 pt-10">
-            <div className="flex items-center justify-between mb-3">
+          <div className=" pt-10">
+            <div className="flex items-center justify-between ">
               <h3 className="text-[24px] text-[#1A1A1A] font-bold">
                 Trending
               </h3>
@@ -248,8 +248,8 @@ const PodcastPlayer: React.FC = () => {
           </div>
 
           {/* albums Section */}
-          <div className="mb-8 pt-1">
-            <div className="flex items-center justify-between mb-3">
+          <div className=" pt-1">
+            <div className="flex items-center justify-between ">
               <h3 className="text-[24px] text-[#1A1A1A] font-bold">Digital Skills</h3>
               <Button
                 variant="ghost"

@@ -30,8 +30,8 @@ export default function Home() {
 
           <div className="p-8 max-w-8xl mx-auto">
             {/* Partners Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
+            <div className="">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">Partners</h3>
                 <Button
                   variant="ghost"
@@ -47,8 +47,8 @@ export default function Home() {
             {/* Best Deals Section */}
 
             {/* Trending Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
+            <div className="">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black capitalize">
                   Recently Updated
                 </h3>
@@ -64,8 +64,8 @@ export default function Home() {
             </div>
 
             {/* Recommended For You Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
+            <div className="">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">Kids</h3>
                 <Button
                   variant="ghost"
@@ -79,8 +79,8 @@ export default function Home() {
             </div>
 
             {/* Trending Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
+            <div className="">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">Business</h3>
                 <Button
                   variant="ghost"
@@ -94,8 +94,8 @@ export default function Home() {
             </div>
 
             {/* Recommended For You Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
+            <div className="">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">
                   Digital Skills
                 </h3>
@@ -111,8 +111,8 @@ export default function Home() {
             </div>
 
             {/* Trending Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-3">
+            <div className="">
+              <div className="flex items-center justify-between ">
                 <h3 className="text-2xl font-bold text-black">Trending</h3>
                 <Button
                   variant="ghost"
@@ -126,8 +126,8 @@ export default function Home() {
             </div>
 
             {/* Recommended For You Section */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-6">
+            <div className="">
+              <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">
                   Recommended For You
                 </h3>

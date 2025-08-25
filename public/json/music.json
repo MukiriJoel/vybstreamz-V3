@@ -1,0 +1,51 @@
+ [
+            {
+              "id":1,
+              "title": "Disko",
+              "subtitle": "Kodong Klan",
+              "description":"The journey of a couple towards their wedding, in their planning they...",
+              "image": "/images/kodong.png",
+              "partner": "/logos/spotify.png"
+            },
+            {
+              "id":2,
+              "title": "Medicine",
+              "subtitle": "Bensoul",
+              "description":"The journey of a couple towards their wedding, in their planning they...",
+              "image": "/images/bensoul.png",
+              "partner": "/logos/spotify.png"
+            },
+            {
+              "id":3,
+              "title": "Sianda",
+              "subtitle": "Savara",
+              "description":"The journey of a couple towards their wedding, in their planning they...",
+              "image": "/images/savara.png",
+              "partner": "/logos/spotify.png"
+            },
+            {
+              "id":4,
+              "title": "Rada",
+              "subtitle": "Kagwe",
+              "image": "/images/kagwe.png",
+              "description":"The journey of a couple towards their wedding, in their planning they...",
+              "partner": "/logos/spotify.png"
+            },
+            {
+              "id":5,
+              "title": "OTD",
+              "subtitle": "Njerae",
+              "description":"The journey of a couple towards their wedding, in their planning they...",
+              "image": "/images/njerae.png",
+              "partner": "/logos/spotify.png"
+            },
+            {
+              "id":6,
+              "title": "A Side Of Me",
+              "subtitle": "Nikita Kering'",
+              "description":"The journey of a couple towards their wedding, in their planning they...",
+              "image": "/images/nikita.png",
+              "partner": "/logos/spotify.png"
+            }
+          ]
+        

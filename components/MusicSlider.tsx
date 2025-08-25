@@ -1,10 +1,22 @@
+"use client"
+import { useRouter } from "next/navigation";
+
 const MusicSlider = () => {
+
+  const Router=useRouter();
+
+  const handleArtistClick = (id:any) =>{
+    console.log("artist",id)
+    Router.push(`/artist/${id}`)
+  }
+
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
-        <div className="flex gap-3 md:gap-4 text-center min-w-max px-4">
+        <div className="flex gap-3 md:gap-4 text-center min-w-max">
           {[
             {
+              id:1,
               title: "Disko",
               subtitle: "Kodong Klan",
               description:"The journey of a couple towards their wedding, in their planning they...",
@@ -12,6 +24,7 @@ const MusicSlider = () => {
               partner: "/logos/spotify.png",
             },
             {
+              id:2,
               title: "Medicine",
               subtitle: "Bensoul",
               description:"The journey of a couple towards their wedding, in their planning they...",
@@ -19,6 +32,7 @@ const MusicSlider = () => {
               partner: "/logos/spotify.png",
             },
             {
+              id:3,
               title: "Sianda",
               subtitle: "Savara",
               description:"The journey of a couple towards their wedding, in their planning they...",
@@ -26,6 +40,7 @@ const MusicSlider = () => {
               partner: "/logos/spotify.png",
             },
             {
+              id:4,
               title: "Rada",
               subtitle: "Kagwe",
               image: "/images/kagwe.png",
@@ -33,6 +48,7 @@ const MusicSlider = () => {
               partner: "/logos/spotify.png",
             },
             {
+              id:5,
               title: "OTD",
               subtitle: "Njerae",
               description:"The journey of a couple towards their wedding, in their planning they...",
@@ -40,6 +56,7 @@ const MusicSlider = () => {
               partner: "/logos/spotify.png",
             },
             {
+              id:6,
               title: "A Side Of Me",
               subtitle: "Nikita Kering'",
               description:"The journey of a couple towards their wedding, in their planning they...",
@@ -96,7 +113,7 @@ const MusicSlider = () => {
                       <h3 className="font-extrabold text-sm md:text-lg text-[#000000] mb-1 leading-tight capitalize">
                         {item.title}
                       </h3>
-                      <p className="!text-sm !md:text-sm text-[#000000] !font-normal line-clamp-2 leading-[120%] capitalize">
+                      <p onClick={()=>handleArtistClick(item.id as any)} className="!text-sm !md:text-sm text-[#000000] !font-normal line-clamp-2 leading-[120%] capitalize">
                         {item.subtitle}
                       </p>
                       {/* genres */}
@@ -143,9 +160,12 @@ const MusicSlider = () => {
               </div>
 
               {/* Title (shown when not hovering) */}
-              <h4 className="font-semibold text-[#2C2C2C] text-xs sm:text-sm md:text-base lg:text-lg capitalize max-w-24 sm:max-w-28 md:max-w-32 lg:max-w-40 md:group-hover:opacity-0 transition-opacity duration-300">
+              <p className="font-semibold text-left text-[#2C2C2C] text-xl sm:text-sm md:text-xl lg:text-xl capitalize max-w-24 sm:max-w-28 md:max-w-32 lg:max-w-40 md:group-hover:opacity-0 transition-opacity duration-300">
                 {item.title}
-              </h4>
+              </p>
+              <p onClick={()=>handleArtistClick(item.id as any)} className="!text-sm text-left !md:text-sm text-[#000000] !font-normal line-clamp-2 leading-[120%] capitalize md:max-w-32 lg:max-w-40 md:group-hover:opacity-0 transition-opacity duration-300">
+                    {item.subtitle}
+              </p>
             </div>
           ))}
         </div>

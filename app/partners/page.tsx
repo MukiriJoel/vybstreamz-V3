@@ -41,31 +41,37 @@ export default function PartnersPage() {
           title="Video Partners"
           partners={[
             {
+              id:1,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:2,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:3,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
             },
             {
+              id:4,
               name: "StarTimes",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "startimes",
             },
             {
+              id:5,
               name: "YouTube",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "youtube",
             },
             {
+              id:6,
               name: "GoTv",
               description: "Your account gives you access to live Gotv content and community",
               logo: "gotv",
@@ -78,31 +84,37 @@ export default function PartnersPage() {
           title="Music Partners"
           partners={[
             {
+              id:1,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:2,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:3,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
             },
             {
+              id:4,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:5,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:6,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
@@ -115,31 +127,37 @@ export default function PartnersPage() {
           title="Games Partners"
           partners={[
             {
+              id:1,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:2,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:3,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
             },
             {
+              id:4,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:5,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:6,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
@@ -152,31 +170,37 @@ export default function PartnersPage() {
           title="Education Partners"
           partners={[
             {
+              id:1,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:2,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:3,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
             },
             {
+              id:4,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:5,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:6,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
@@ -189,16 +213,37 @@ export default function PartnersPage() {
           title="Podcast Partners"
           partners={[
             {
+              id:1,
               name: "Baze",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "baze",
             },
             {
+              id:2,
               name: "Hulu",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "hulu",
             },
             {
+              id:3,
+              name: "Netflix",
+              description: "The journey of a couple towards their wedding, in their planning they...",
+              logo: "netflix",
+            },
+            {
+              id:4,
+              name: "Baze",
+              description: "The journey of a couple towards their wedding, in their planning they...",
+              logo: "baze",
+            },
+            {
+              id:5,
+              name: "Hulu",
+              description: "The journey of a couple towards their wedding, in their planning they...",
+              logo: "hulu",
+            },
+            {
+              id:6,
               name: "Netflix",
               description: "The journey of a couple towards their wedding, in their planning they...",
               logo: "netflix",
@@ -212,6 +257,7 @@ export default function PartnersPage() {
 }
 
 interface Partner {
+  id:number,
   name: string
   description: string
   logo: string

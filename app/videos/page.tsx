@@ -111,7 +111,7 @@ export default function Home() {
                   </h2>
                 </div>
 
-                <Button className="bg-[#c62676] hover:bg-[#a91e63] text-white px-8 py-3 rounded-full font-medium">
+                <Button className="cursor-pointer bg-[#c62676] hover:bg-[#a91e63] text-white px-8 py-3 rounded-full font-medium">
                   Visit Site
                 </Button>
               </div>

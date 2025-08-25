@@ -19,7 +19,7 @@ const Page = () => {
             <main className="w-full min-h-screen">
                 <PartnerDetails id={id}/>
             </main>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
         
     );

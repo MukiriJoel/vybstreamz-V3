@@ -42,7 +42,8 @@ const defaultPartner: Partner = {
 
 export default function PartnerDetails({id}:{id:number}) {
 
-    const [activeTab, setActiveTab] = useState("Videos")
+    const [activeTab, setActiveTab] = useState("Videos");
+    const [isSubscribed, setIsSubscribed] = useState(true)
     const tabs = ["Videos", "Music", "Games", "Education", "Podcast"]
 
     const  partners  = usePartners();
@@ -73,94 +74,121 @@ export default function PartnerDetails({id}:{id:number}) {
             <div className="flex rounded-4xl h-57vh md:h-[65vh] p-0">
               <img src={partnerDetails?.image} className="w-full rounded-4xl object-cover" alt=''/>
             </div>
-
-            <div className="flex mt-10 items-center">
-                <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
-                    <img
-                        src={partnerDetails?.logo}
-                        className="object-cover w-full h-full"
-                    />
+            {isSubscribed?
+                <div className="flex mt-10 items-center">
+                    <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
+                        <img
+                            src={partnerDetails?.logo}
+                            className="object-cover w-full h-full"
+                        />
+                    </div>
+                    <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] leading-[100%] ">{partnerDetails?.name}</h2>
                 </div>
-                <h2 className="ml-8 text-4xl font-semibold text-[#2C2C2C] leading-[100%] ">{partnerDetails?.name}</h2>
+            :
+            <div className="flex justify-between">
+                <div className="flex mt-10 items-center">
+                    <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
+                        <img
+                            src={partnerDetails?.logo}
+                            className="object-cover w-full h-full"
+                        />
+                    </div>
+                    <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] leading-[100%] ">{partnerDetails?.name}</h2>
+                </div>
+                <div className="flex items-center mt-10">
+                    <Button className="cursor-pointer bg-[#c62676] hover:bg-[#a91e63] text-white text-xl px-12 py-6 rounded-full font-medium">
+                    Visit Site
+                    </Button>
+                </div>
+
             </div>
+
+        }
+            
          
 
           </div>
         )}
         
-        
-        <div className="p-8 max-w-8xl mx-auto">
-          {/* Episodes Section */}
-          {/* Partners Section */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold capitalize">explore plans</h3>
-              <Button
-                variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
+        {isSubscribed ?
+            <div className="p-8 max-w-8xl mx-auto">
+            {/* Episodes Section */}
+            {/* Partners Section */}
+            <div className="mb-8">
+                <div className="flex items-center justify-between mb-3">
+                <h3 className="text-[24px] text-[#1A1A1A] font-bold capitalize">explore plans</h3>
+                <Button
+                    variant="ghost"
+                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                >
+                    View More
+                    <MdArrowForward className="!w-[36px] !h-[36px]" />
+                </Button>
+                </div>
+
+                {/* Horizontal scrollable container */}
+                <PlansSlider/>
             </div>
 
-            {/* Horizontal scrollable container */}
-            <PlansSlider/>
-          </div>
-
-            {/* TABS */}
-            <div className="bg-[#f2f2f2] mb-8 pt-8">
-                    <nav className="flex space-x-8 overflow-x-auto scrollbar-hide">
-                    {tabs.map((tab) => (
-                        <button
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                        className={`
-                            py-3 px-1 border-b-3 cursor-pointer font-semibold text-lg md:text-xl lg:text-xl whitespace-nowrap transition-colors
-                            ${
-                            activeTab === tab
-                                ? "border-[#c62676] text-[#c62676]"
-                                : "border-transparent text-[#000000 ] hover:text-[#2c2c2c] hover:border-[#cccccc]"
-                            }
-                        `}
-                        >
-                        {tab}
-                        </button>
-                    ))}
-                    </nav>
+                {/* TABS */}
+                <div className="bg-[#f2f2f2] mb-8 pt-8">
+                        <nav className="flex space-x-8 overflow-x-auto scrollbar-hide">
+                        {tabs.map((tab) => (
+                            <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`
+                                py-3 px-1 border-b-3 cursor-pointer font-semibold text-lg md:text-xl lg:text-xl whitespace-nowrap transition-colors
+                                ${
+                                activeTab === tab
+                                    ? "border-[#c62676] text-[#c62676]"
+                                    : "border-transparent text-[#000000 ] hover:text-[#2c2c2c] hover:border-[#cccccc]"
+                                }
+                            `}
+                            >
+                            {tab}
+                            </button>
+                        ))}
+                        </nav>
+                </div>
+                {activeTab === "Videos" && (
+                    <div className="p-0">
+                        <VideoSlider/>
+                        <VideoSlider/>
+                    </div>
+                )}
+                {activeTab === "Music" && (
+                    <div className="p-0">
+                        <MusicSlider/>
+                        <MusicSlider/>
+                    </div>
+                )}
+                {activeTab === "Games" && (
+                    <div className="p-0">
+                        <GamesSlider/>
+                        <GamesSlider/>
+                    </div>
+                )}
+                {activeTab === "Education" && (
+                    <div className="p-0">
+                        <EducationSlider/>
+                        <EducationSlider/>
+                    </div>
+                )}
+                {activeTab === "Podcast" && (
+                    <div className="p-0">
+                        <PodcastSlider/>
+                        <PodcastSlider/>
+                    </div>
+                )}
+            
             </div>
-             {activeTab === "Videos" && (
-                <div className="p-0">
-                    <VideoSlider/>
-                    <VideoSlider/>
-                </div>
-             )}
-             {activeTab === "Music" && (
-                <div className="p-0">
-                    <MusicSlider/>
-                    <MusicSlider/>
-                </div>
-             )}
-             {activeTab === "Games" && (
-                <div className="p-0">
-                    <GamesSlider/>
-                    <GamesSlider/>
-                </div>
-             )}
-             {activeTab === "Education" && (
-                <div className="p-0">
-                    <EducationSlider/>
-                    <EducationSlider/>
-                </div>
-             )}
-              {activeTab === "Podcast" && (
-                <div className="p-0">
-                    <PodcastSlider/>
-                    <PodcastSlider/>
-                </div>
-             )}
-           
-        </div>
+        :
+            <div className="p-8 max-w-8xl mx-auto">
+                <VideoSlider/>
+            </div>
+    }
+       
       </main>
     </div>
   );

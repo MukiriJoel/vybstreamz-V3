@@ -114,6 +114,54 @@ const VideoSlider = () => {
               genres:["action","drama"],
               rating:"5"
             },
+            {
+              title: "Take Me Home",
+              description: "The journey of a couple towards their wedding, in their planning they...",
+              image: "/images/vid4.png",
+              partner: "/logos/showmax.png",
+              genres:["drama","suspense","romance"],
+              rating:"4"
+            },
+            {
+              title: "Wyfie",
+              description: "A thrilling drama that explores relationships and modern love.",
+              image: "/images/vid6.png",
+              partner: "/logos/showmax.png",
+              genres:["comedy","drama"],
+              rating:"5"
+            },
+            {
+              title: "Jacob's Daughter",
+              description: "A compelling story of family, tradition, and breaking boundaries.",
+              image: "/images/vid1.png",
+              partner: "/logos/showmax.png",
+              genres:["drama","romance"],
+              rating:"3"
+            },
+            {
+              title: "Awinja's Perfect Wedding",
+              description: "Comedy meets romance in this heartwarming wedding story.",
+              image: "/images/vid5.png",
+              partner: "/logos/bazeLg.png",
+              genres:["comedy","romance"],
+              rating:"5"
+            },
+            {
+              title: "Hoje",
+              description: "An emotional journey through life's unexpected turns.",
+              image: "/images/vid2.png",
+              partner: "/logos/bazeLg.png",
+              genres:["action","drama","crime"],
+              rating:"2"
+            },
+            {
+              title: "Moukoko",
+              description: "Adventure and discovery in this captivating tale.",
+              image: "/images/vid3.png",
+              partner: "/logos/bazeLg.png",
+              genres:["action","drama"],
+              rating:"5"
+            }
           ].map((item, index) => (
             <div 
               key={index} 

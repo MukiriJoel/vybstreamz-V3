@@ -61,8 +61,8 @@ if(music){
           {/* Hero Section */}
         {artistDetails && (
           <div className="px-8 pt-8 mt-10">
-            <div className="flex rounded-4xl h-[70vh] p-0">
-              <img src={artistDetails?.image} className="w-full rounded-4xl object-cover" alt=''/>
+            <div className="flex rounded-4xl h-[70vh] p-0 overflow-hidden">
+              <img src={artistDetails?.image} className="w-full h-full object-cover" alt=''/>
             </div>
 
             <h2 className="text-4xl font-semibold text-[#2C2C2C] mb-3 mt-4">{artistDetails?.title}</h2>
@@ -129,7 +129,5 @@ if(music){
     </div>
   );
 }
-function useEffect(arg0: () => void, arg1: never[]) {
-  throw new Error("Function not implemented.");
-}
+
 

@@ -86,7 +86,7 @@ const NavBarMini = () => {
         isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2]'
       }`}>
         <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">
-          <div className="flex justify-between h-[100px]">
+          <div className="flex justify-between lg:justify-between lg:pl-12 lg:ml-12 h-[100px] overflow-hidden">
             {/* Logo */}
             <div className="flex items-center lg:hidden">
               <Link href={"/"}>
@@ -101,7 +101,7 @@ const NavBarMini = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8 text-[12px]">
+            <div className="hidden md:flex lg:pr-20 items-center space-x-8 text-[12px]">
               {navItems.map((item, i) => (
                 <Link 
                   key={i} 

@@ -260,7 +260,7 @@ export default function Sidebar() {
 
       {/* Logout Confirmation Modal */}
       {showLogoutModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-96 mx-4">
             <div className="text-center">
               <h3 className="text-xl font-semibold text-pink-600 mb-4">

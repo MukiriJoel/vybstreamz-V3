@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import VybzCarouselMain from "@/components/VybzCarouselMain";
 import { MdArrowForward } from "react-icons/md";
@@ -10,10 +11,19 @@ import VideoSlider from "@/components/VideoSlider";
 import { title } from "process";
 import DealsSlider from "@/components/DealsSlider";
 import AdSlider from "@/components/AdSlider";
+import { useRouter } from "next/navigation";
+import PartnerHighlight from "@/components/PartnerHighlight";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function Home() {
+   const Router=useRouter();
+    
+     const onHandleClick = () =>{
+     
+      Router.push(`/viewMore/`)
+  }
+
   return (
     <>
       <div className="bg-[#f2f2f2]">
@@ -27,7 +37,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-black">Partners</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -45,7 +55,7 @@ export default function Home() {
                 </h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -60,7 +70,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-black">Trending</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -80,7 +90,7 @@ export default function Home() {
                 </h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -89,33 +99,9 @@ export default function Home() {
               <VideoSlider />
             </section>
 
-            {/* Header Section */}
-            <div className="mb-0">
-              {/* Netflix Partner Card */}
-              <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-[#1a1a1a] mb-6">
-                  Partner Highlight
-                </h1>
-              </div>
-              <div className="flex justify-between">
-                <div className="flex items-center gap-4 mb-3">
-                  {/* Netflix Logo */}
-                  <div className="rounded-xl flex items-center justify-center">
-                    <img
-                      src="/logos/netflix.png"
-                      className="w-[50px] h-[50px] "
-                    />
-                  </div>
-                  <h2 className="text-xl font-semibold text-[#1a1a1a]">
-                    Netflix
-                  </h2>
-                </div>
-
-                <Button className="cursor-pointer bg-[#c62676] hover:bg-[#a91e63] text-white px-8 py-3 rounded-full font-medium">
-                  Visit Site
-                </Button>
-              </div>
-            </div>
+            {/* partner highligh Section */}
+            
+            
 
             {/* Netflix Content Banner */}
             <div className="relative w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
@@ -128,17 +114,7 @@ export default function Home() {
                 />
               </div>
 
-              {/* Overlay Content */}
-              {/* <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <div className="text-center">
-                  <h2 className="text-white text-4xl md:text-6xl font-bold mb-2">
-                    BEST COMEDIES ON
-                  </h2>
-                  <h2 className="text-red-500 text-4xl md:text-6xl font-bold">
-                    NETFLIX
-                  </h2>
-                </div>
-              </div> */}
+            
             </div>
 
             {/* Recommended For You Section */}
@@ -147,7 +123,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-black">Listen</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -163,7 +139,7 @@ export default function Home() {
 
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -181,7 +157,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-black">Learn</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -195,7 +171,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-black">Tune In</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium"
+                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />

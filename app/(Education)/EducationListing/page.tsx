@@ -9,6 +9,7 @@ import Footer from "../../parts/footer";
 export default function Home() {
 
     const contentTabs = ["E-Book", "Audio Book"]
+    
   return (
     <>
       

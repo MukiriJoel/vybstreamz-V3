@@ -15,6 +15,7 @@ import PartnersSlider from "@/components/PartnersSlider";
 import MusicSlider from "@/components/MusicSlider"; 
 import { useState } from "react";
 import { useMusic } from "@/hooks/useMusic";
+import { useRouter } from "next/navigation";
 
 interface Artist {
   id: number;
@@ -36,22 +37,29 @@ const defaultArtist: Artist = {
 
 export default function ArtistDetails({id}:{id:number}) {
 
-const  music  = useMusic();
+  const Router=useRouter();
+    
+     const onHandleClick = () =>{
+     
+      Router.push(`/viewMore/`)
+    }
 
-let artistDetails:Artist=defaultArtist;
+    const  music  = useMusic();
 
-if(music){
+    let artistDetails:Artist=defaultArtist;
 
-  const musicArr=music.music;
-  
+    if(music){
 
-  const findById=(id:number, array: Artist[])=> {
-     return array.find((item: Artist) =>item && item.id == id);
-  }
+      const musicArr=music.music;
+      
 
-  (artistDetails as any)=findById(id,musicArr)
+      const findById=(id:number, array: Artist[])=> {
+        return array.find((item: Artist) =>item && item.id == id);
+      }
 
-}
+      (artistDetails as any)=findById(id,musicArr)
+
+    }
 
 
   return (
@@ -83,6 +91,7 @@ if(music){
               <Button
                 variant="ghost"
                 className="text-[#1A1A1A] text-[16px] !font-medium"
+                onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -102,6 +111,7 @@ if(music){
               <Button
                 variant="ghost"
                 className="text-[#1A1A1A] text-[16px] !font-medium"
+                onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -117,6 +127,7 @@ if(music){
               <Button
                 variant="ghost"
                 className="text-[#1A1A1A] text-[16px] !font-medium"
+                onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />

@@ -1,0 +1,44 @@
+[
+{
+    "id":1,
+    "name": "Baze",
+    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "logo": "/logos/bazeLg.png",
+    "image": "/images/bazePoster.png"
+},
+{
+    "id":2,
+    "name": "Hulu",
+    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "logo": "/logos/hulu.png",
+    "image": "/images/bazePoster.png"
+},
+{
+    "id":3,
+    "name": "Netflix",
+    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "logo": "/logos/netflixLg.png",
+    "image": "/images/netflixGames.png"
+},
+{
+    "id":4,
+    "name": "StarTimes",
+    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "logo": "/logos/startimes.png",
+    "image": "/images/netflixGames.png"
+},
+{
+    "id":5,
+    "name": "YouTube",
+    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "logo": "/logos/youtube.png",
+    "image":  "/images/netflixGames.png"
+},
+{
+    "id":6,
+    "name": "GoTv",
+    "description": "Your account gives you access to live Gotv content and community",
+    "logo": "/logos/gotv.png",
+    "image": "/images/netflixGames.png"
+}
+]

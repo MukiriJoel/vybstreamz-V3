@@ -1,7 +1,7 @@
 const CarouselDots = ({slides, goToSlide,activeIndex}: any) =>{
     return (
         <>
-            <div className="flex space-x-2 pt-2 my-auto justify-center mx-auto">
+            <div className="flex space-x-2 pt-2 my-auto">
                 {slides.map((_:any, dotIndex:any) => (
                     <button
                         key={dotIndex}

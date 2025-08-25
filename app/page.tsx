@@ -8,7 +8,7 @@ function AppHome() {
     const router = useRouter();
 
     useEffect(() => {
-        router.replace('/videos');
+        router.replace('/home');
     }, []);
 
     return (

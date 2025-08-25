@@ -37,7 +37,7 @@ export default function Home() {
             </section>
 
             {/* Best Deals Section */}
-            {/* <section className=" py-4">
+            <section className=" py-4">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-black flex items-center">
                   Best Deals
@@ -52,7 +52,7 @@ export default function Home() {
                 </Button>
               </div>
               <DealsSlider/>
-            </section> */}
+            </section>
 
             {/* Trending Section */}
             <section className="">
@@ -90,8 +90,8 @@ export default function Home() {
             </section>
 
             {/* Header Section */}
-            {/* <div className="mb-0">
-            
+            <div className="mb-0">
+              {/* Netflix Partner Card */}
               <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold text-[#1a1a1a] mb-6">
                   Partner Highlight
@@ -99,7 +99,7 @@ export default function Home() {
               </div>
               <div className="flex justify-between">
                 <div className="flex items-center gap-4 mb-3">
-                
+                  {/* Netflix Logo */}
                   <div className="rounded-xl flex items-center justify-center">
                     <img
                       src="/logos/netflix.png"
@@ -117,9 +117,9 @@ export default function Home() {
               </div>
             </div>
 
-        
+            {/* Netflix Content Banner */}
             <div className="relative w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
-              
+              {/* Background Image Placeholder */}
               <div className="absolute inset-0 rounded-xl shadow-2xl">
                 <img
                   src="/images/bestNetflix.png"
@@ -128,7 +128,18 @@ export default function Home() {
                 />
               </div>
 
-            </div> */}
+              {/* Overlay Content */}
+              {/* <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-center">
+                  <h2 className="text-white text-4xl md:text-6xl font-bold mb-2">
+                    BEST COMEDIES ON
+                  </h2>
+                  <h2 className="text-red-500 text-4xl md:text-6xl font-bold">
+                    NETFLIX
+                  </h2>
+                </div>
+              </div> */}
+            </div>
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
@@ -142,11 +153,11 @@ export default function Home() {
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
                 </Button>
               </div>
-              <VideoSlider />
+              <MusicSlider />
             </section>
 
             {/* Trending Section */}
-            {/* <section className="py-4">
+            <section className="py-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">Play</h3>
 
@@ -159,15 +170,15 @@ export default function Home() {
                 </Button>
               </div>
               <GamesSlider />
-            </section> */}
+            </section>
 
             {/*AD slider */}
-           {/* <AdSlider/> */}
+           <AdSlider/>
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black">Comedy</h3>
+                <h3 className="text-2xl font-bold text-black">Learn</h3>
                 <Button
                   variant="ghost"
                   className="text-[#1A1A1A] text-[16px] !font-medium"
@@ -176,10 +187,10 @@ export default function Home() {
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
                 </Button>
               </div>
-              <VideoSlider />
+              <EducationSlider />
             </section>
             {/* Recommended For You Section */}
-            {/* <section className=" py-4  ">
+            <section className=" py-4  ">
               <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-black">Tune In</h3>
                 <Button
@@ -191,7 +202,7 @@ export default function Home() {
                 </Button>
               </div>
               <PodcastSlider />
-            </section> */}
+            </section>
           </div>
         </main>
       </div>

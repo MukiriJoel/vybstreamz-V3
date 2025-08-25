@@ -52,7 +52,7 @@ const NavBar = () => {
       const isInMusicPlayer = scrollY < viewportHeight - 150;
       
       // You can also check for specific routes that have dark backgrounds
-      const isDarkRoute = pathname === '/music' || pathname === '/games' || pathname === '/videos' || pathname === '/podcasts' || pathname === '/education';
+      const isDarkRoute = pathname === '/music' || pathname === '/games' || pathname === '/videos' || pathname === '/podcasts' || pathname === '/education' || pathname === '/home';
       
       setIsDarkBackground(isInMusicPlayer && isDarkRoute);
     };

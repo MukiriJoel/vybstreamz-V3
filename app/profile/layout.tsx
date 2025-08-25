@@ -3,6 +3,7 @@ import React, {ReactNode} from 'react';
 import Head from 'next/head';
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import NavBarMini from '@/components/NavBarMini';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -18,8 +19,8 @@ const ProfileLayout = ({children}: AuthLayoutProps) => {
                 <title>Profile</title>
                 <meta name="description" content="Authentication page"/>
             </Head>
-            <header className="w-full">
-                <NavBar/>
+            <header className="w-full flex justify-end">
+                <NavBarMini/>
             </header>
             <main className="w-full max-w-full mx-auto bg-[#f2f2f2] min-h-[100vh]">
                 {children}

@@ -8,15 +8,6 @@ import { Bell, Search, ShoppingCart, X, TriangleAlert } from "lucide-react"
 export default function NotificationsPage() {
   const [showSubscriptionAlert, setShowSubscriptionAlert] = useState(true)
 
-//   const sidebarItems = [
-//     { label: "My Profile", active: false },
-//     { label: "Settings", active: false },
-//     { label: "Notifications", active: true },
-//     { label: "Feedback and Rating", active: false },
-//     { label: "Help & Support", active: false },
-//     { label: "Logout", active: false },
-//   ]
-
   const notifications = [
     {
       id: 1,

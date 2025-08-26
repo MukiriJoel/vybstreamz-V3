@@ -46,6 +46,48 @@ const PodcastSlider = () =>{
                     image: "/images/pod3.png",
                     partner:"/logos/spotify.png"
                   },
+                  {
+                    title: "97s podcast",
+                    subtitle: "Kodong Klan",
+                    description:"The journey of a couple towards their wedding, in their planning they...",
+                    image: "/images/pod1.png",
+                    partner:"/logos/spotify.png"
+                  },
+                  {
+                    title: "africa listen up",
+                    subtitle: "Bensoul",
+                    description:"The journey of a couple towards their wedding, in their planning they...",
+                    image: "/images/bensoul.png",
+                    partner:"/logos/spotify.png"
+                  },
+                  {
+                    title: "kenyan life podcast",
+                    subtitle: "Savara",
+                    description:"The journey of a couple towards their wedding, in their planning they...",
+                    image: "/images/pod2.png",
+                    partner:"/logos/spotify.png"
+                  },
+                  {
+                    title: "true crime",
+                    subtitle: "Kagwe",
+                    description:"The journey of a couple towards their wedding, in their planning they...",
+                    image: "/images/pod4.png",
+                    partner:"/logos/spotify.png"
+                  },
+                  {
+                    title: "sandwich podcast",
+                    subtitle: "Njerae",
+                    description:"The journey of a couple towards their wedding, in their planning they...",
+                    image: "/images/podcastThumb.png",
+                    partner:"/logos/spotify.png"
+                  },
+                  {
+                    title: "3 truths no lies",
+                    subtitle: "Nikita Kering'",
+                    description:"The journey of a couple towards their wedding, in their planning they...",
+                    image: "/images/pod3.png",
+                    partner:"/logos/spotify.png"
+                  },
                 ].map((item, index) => (
                   // <div key={index} className="text-center flex-shrink-0 relative">
                   //   <img

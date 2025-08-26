@@ -54,6 +54,55 @@ const GamesSlider = () => {
                 "The journey of a couple towards their wedding, in their planning they...",
               genres: ["action", "3d"],
             },
+             {
+              title: "Fortnite",
+              image: "/images/fortnite.png",
+              partner: "/logos/vuclip.png",
+              description:
+                "The journey of a couple towards their wedding, in their planning they...",
+              genres: ["shooter", "action", "1st person"],
+            },
+            {
+              title: "Among Us",
+              image: "/images/amongUs.png",
+              partner: "/logos/vuclip.png",
+              description:
+                "The journey of a couple towards their wedding, in their planning they...",
+              genres: ["rpg", "action"],
+            },
+            {
+              title: "Far Cry 4",
+              image: "/images/farcry.png",
+              partner: "/logos/vuclip.png",
+              description:
+                "The journey of a couple towards their wedding, in their planning they...",
+              genres: ["horror", "1st person"],
+            },
+            {
+              title: "once upon a fime",
+              image: "/images/once.png",
+              partner: "/logos/vuclip.png",
+              description:
+                "The journey of a couple towards their wedding, in their planning they...",
+              genres: ["adventure", "family"],
+            },
+            {
+              title: "super mario galaxy",
+              image: "/images/mario.png",
+              partner: "/logos/vuclip.png",
+              description:
+                "The journey of a couple towards their wedding, in their planning they...",
+              genres: ["adventure", "family"],
+            },
+            {
+              title: "Squid Game 3",
+              image: "/images/squid.png",
+              partner: "/logos/vuclip.png",
+              description:
+                "The journey of a couple towards their wedding, in their planning they...",
+              genres: ["action", "3d"],
+            },
+            
           ].map((item, index) => (
             <div
               key={index}

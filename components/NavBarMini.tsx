@@ -9,11 +9,13 @@ import Image from "next/image";
 import { MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "react-icons/md";
 import { IconButton } from "@mui/material";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const NavBarMini = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const pathname = usePathname();
+  const router=useRouter();
 
   const navItems = [
     {
@@ -41,6 +43,11 @@ const NavBarMini = () => {
       link: "/partners"
     },
   ]
+
+  const goToNotifications = () =>{
+    router.push("/profile/notifications")
+  }
+
 
   // Dynamic background detection
   useEffect(() => {
@@ -134,7 +141,7 @@ const NavBarMini = () => {
               </IconButton>
 
               <div className="relative">
-                <IconButton>
+                <IconButton onClick={()=>goToNotifications()}>
                   <span className="absolute -top-[2px] -right-[2px] h-3 w-3 bg-red-500 rounded-full z-10"></span>
                   <MdOutlineNotifications className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`} />
                 </IconButton>

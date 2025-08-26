@@ -4,7 +4,7 @@ import { FaPlayCircle } from "react-icons/fa";
 
 const Billboard = () => {
     const youtubeVideoId = "RARtsWwvxAk"; // Extract ID from your YouTube URL
-    
+    const youtubeEmbedUrl = "https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeVideoId}&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&fs=0&disablekb=1&enablejsapi=1&origin=${window.location.origin}";
     return(
         <div className="relative h-[56.25vw]">
             <iframe
@@ -14,7 +14,7 @@ const Billboard = () => {
                     object-cover
                     brightness-[60%]
                 "
-                src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeVideoId}&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0&fs=0&disablekb=1&autohide=1&start=0&end=0`}
+                src={youtubeEmbedUrl}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

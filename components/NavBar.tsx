@@ -57,7 +57,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
       const isInMusicPlayer = scrollY < viewportHeight - 150;
       
       // You can also check for specific routes that have dark backgrounds
-      const isDarkRoute = pathname === '/music' || pathname === '/games' || pathname === '/videos' || pathname === '/podcasts' || pathname === '/education' || pathname === '/home' || pathname === '/education/educationListing' || pathname === '/planselection';
+      const isDarkRoute = pathname === '/music' || pathname === '/games' || pathname.includes('/videos')  || pathname === '/podcasts' || pathname === '/education' || pathname === '/home' || pathname === '/education/educationListing' || pathname === '/planselection';
       
       setIsDarkBackground(isInMusicPlayer && isDarkRoute);
     };
@@ -118,7 +118,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
                 <Link 
                   key={i} 
                   href={item.link} 
-                  className={` ${hoverTextColor} text-gray-700 font-medium capitalize transition-colors duration-200 ${
+                  className={` ${hoverTextColor} ${textColor} font-medium capitalize transition-colors duration-200 ${
                     pathname.includes(item.link) && "!text-[#C62676]"
                   }`}
                 >

@@ -9,12 +9,13 @@ import RatingsComponent from "@/components/ratings-section"
 
 export default function MusicPlayer({ 
   audioSrc = "/podcast.mp3", 
-  bannerImage = "/sandwich2.jpg",
-  albumImage = "/sandwich.jpeg",
+  bannerImage = "/images/sandwich2.jpg",
+  albumImage = "/images/sandwich.jpeg",
   title = "Disko",
   artist = "Kodong Klan",
   albumInfo = "Album • 1hr 45min • 10 Songs • Hiphop",
-  description = "Join us for an insightful discussion about the latest trends in technology, innovation, and digital transformation. This episode explores how emerging technologies are reshaping industries and creating new opportunities for growth and development."
+  description = "Join us for an insightful discussion about the latest trends in technology, innovation, and digital transformation. This episode explores how emerging technologies are reshaping industries and creating new opportunities for growth and development.",
+  id=""
 }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [showControls, setShowControls] = useState(true)

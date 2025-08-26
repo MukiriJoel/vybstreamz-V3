@@ -9,6 +9,10 @@ const MusicSlider = () => {
     console.log("artist",id)
     Router.push(`/music/artist/${id}`)
   }
+  
+  const onMusicClick = (id:any) =>{
+    Router.push(`music/${id}`)
+  }
 
   return (
     <>
@@ -117,11 +121,12 @@ const MusicSlider = () => {
               className="pt-8 md:py-12 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
-              <div className="relative">
+              <div className="relative" >
                 <img
                   src={item.image || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
+                  onClick={()=>onMusicClick(item.id)}
                 />
 
                 {/* Partner Logo */}
@@ -158,7 +163,7 @@ const MusicSlider = () => {
                         <span className="text-xs text-gray-500 uppercase tracking-wide">Original</span>
                       </div> */}
 
-                      <h3 className="font-extrabold text-sm md:text-lg text-[#000000] mb-1 leading-tight capitalize">
+                      <h3 onClick={()=>onMusicClick(item.id)} className="font-extrabold text-sm md:text-lg text-[#000000] mb-1 leading-tight capitalize">
                         {item.title}
                       </h3>
                       <p onClick={()=>handleArtistClick(item.id as any)} className="!text-sm !md:text-sm text-[#000000] !font-normal line-clamp-2 leading-[120%] capitalize">
@@ -192,7 +197,7 @@ const MusicSlider = () => {
                             />
                           </div>
                         </div>
-                        <button className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
+                        <button onClick={()=>onMusicClick(item.id)} className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
                           <svg
                             className="w-5 h-5 fill-current"
                             viewBox="0 0 24 24"

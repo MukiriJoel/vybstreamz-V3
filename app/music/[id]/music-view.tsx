@@ -5,10 +5,14 @@ import { useState, useEffect, useRef } from "react"
 import { FaChevronDown } from "react-icons/fa"
 import { Search, ShoppingBag, Bell, ChevronLeft, ChevronRight, Bookmark } from "lucide-react"
 import RatingsComponent from "@/components/ratings-section"
+import { MdArrowForward, MdOutlineVideocam } from "react-icons/md"
+import ReviewsSection from "@/components/reviews-section"
+import MusicSlider from "@/components/MusicSlider"
+import { useRouter } from "next/navigation"
 
 
 export default function MusicPlayer({ 
-  audioSrc = "/podcast.mp3", 
+  audioSrc = "/audio/podcast.mp3", 
   bannerImage = "/images/sandwich2.jpg",
   albumImage = "/images/sandwich.jpeg",
   title = "Disko",
@@ -278,6 +282,13 @@ export default function MusicPlayer({
     }, 300)
   }
 
+  const Router=useRouter();
+  
+    const onHandleClick = () =>{
+       
+        Router.push(`/viewMore/`)
+    }
+
   return (
     <>
     <div 
@@ -305,7 +316,7 @@ export default function MusicPlayer({
       <img 
         src={bannerImage} 
         alt="Album/Podcast Banner" 
-        className={`object-contain ${
+        className={`object-cover ${
           isFullscreen ? 'w-screen h-screen' : 'w-full h-full'
         }`}
       />
@@ -365,14 +376,18 @@ export default function MusicPlayer({
 
       {/* Right Side - Switch to Video Button */}
       <div 
-        className={`absolute right-4 md:right-16 top-8 transition-opacity duration-300 ${
+        className={`absolute right-4 md:right-16 top-1/2 transition-opacity duration-300 ${
           showContent ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <Button className="bg-gray-800/80 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
+        {/* <Button className="bg-gray-800/80 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
           <div className="w-4 h-4 border border-white"></div>
           <span>Switch To Video</span>
-        </Button>
+        </Button> */}
+        <Button className="bg-[#2C2C2C] hover:bg-white/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
+                              <MdOutlineVideocam className="mr-1" />
+                              Switch To Video
+                            </Button>
       </div>
 
       {/* Music/Podcast Player Controls */}
@@ -503,47 +518,59 @@ export default function MusicPlayer({
       </Button>
     </div>
 
-    <RatingsComponent />
-
-    {/* Similar Content Section */}
-    <section className="px-6 py-8 bg-white pl-20">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-black">Similar Podcasts</h3>
-        <button className="text-black hover:text-[#ff007b] transition-colors flex items-center">
-          View More
-          <FaChevronDown className="w-4 h-4 ml-1" />
-        </button>
-      </div>
-      <div className="flex space-x-4 overflow-x-auto pb-4 gap-0 scrollbar-hide">
-        {[
-          { title: "Tech Innovators", category: "Technology" },
-          { title: "Business Insights", category: "Business" },
-          { title: "Creative Minds", category: "Arts" },
-          { title: "Health & Wellness", category: "Lifestyle" },
-          { title: "The Future Cast", category: "Science" },
-          { title: "Story Telling", category: "Entertainment" },
-          { title: "Daily Motivation", category: "Self-Help" },
-          { title: "Global Perspectives", category: "News" },
-        ].map((item, index) => (
-          <div key={index} className="flex-shrink-0 w-60 bg-white rounded-lg overflow-hidden shadow-sm">
-            <div className="relative">
-              <div className="w-full h-32 bg-gray-300 flex items-center justify-center">
-                <span className="text-gray-600">{item.title}</span>
-              </div>
-              <div className="absolute bottom-2 left-2">
-                <div className="w-6 h-6 bg-[#3bad49] rounded-full flex items-center justify-center">
-                  <Play className="w-3 h-3 text-white fill-white" />
+       {/* Trending Section */}
+        <main className="bg-[#f2f2f2]">
+          <section className="px-6 pb-3 pt-8 px-8">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-black">Similar Videos</h3>
+              <Button
+                variant="ghost"
+                className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+              >
+                View More
+                <MdArrowForward className="!w-[36px] !h-[36px]" />
+              </Button>
+            </div>
+            {/* <div className="flex space-x-4 overflow-x-auto pb-4 gap-0 scrollbar-hide">
+              {[
+                { title: "Jacob's Daughter", category: "Drama" },
+                { title: "Kaka Chainizee", category: "Comedy" },
+                { title: "Msingi Pack", category: "Action" },
+                { title: "Alusa why are ...", category: "Comedy" },
+                { title: "Asphalt 9", category: "Gaming" },
+                { title: "Awinja's Perfect ...", category: "Comedy" },
+                { title: "Awinja's Perfect ...", category: "Comedy" },
+                { title: "Awinja's Perfect ...", category: "Comedy" },
+              ].map((item, index) => (
+                <div key={index} className="flex-shrink-0 w-60 bg-white rounded-lg overflow-hidden shadow-sm">
+                  <div className="relative">
+                    <img
+                      src={`/young-people-steps.png`}
+                      alt={item.title}
+                      className="w-full h-50 object-cover"
+                    />
+                    <div className="absolute bottom-2 left-2">
+                      <div className="w-6 h-6 bg-[#3bad49] rounded-full flex items-center justify-center">
+                        <Play className="w-3 h-3 text-white fill-white" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-3">
+                    <h4 className="font-medium text-black text-sm mb-1">{item.title}</h4>
+                    <p className="text-xs text-[#696969]">{item.category}</p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="p-3">
-              <h4 className="font-medium text-black text-sm mb-1">{item.title}</h4>
-              <p className="text-xs text-[#696969]">{item.category}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+              ))}
+            </div> */}
+            <MusicSlider/>
+          </section>
+          <section>
+              <RatingsComponent />
+          </section>
+          <section>
+            <ReviewsSection/>
+          </section>
+        </main>
     </>
   )
 }

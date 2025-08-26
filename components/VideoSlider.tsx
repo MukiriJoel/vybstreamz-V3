@@ -1,14 +1,21 @@
 "use client"
-
+import { useRouter } from "next/navigation";
 import RatingDisplay from "./RatingDisplay";
 
 const VideoSlider = () => {
+  const router=useRouter();
+
+  const onClickVideo = (id:any) =>{
+    router.push(`/videos/${id}`)
+  }
+
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
-        <div className="flex gap-3 md:gap-4 text-center min-w-max px-4">
+        <div className="flex gap-3 md:gap-4 text-center min-w-max">
           {[
             {
+              id:1,
               title: "Take Me Home",
               description: "The journey of a couple towards their wedding, in their planning they...",
               image: "/images/vid4.png",
@@ -17,6 +24,7 @@ const VideoSlider = () => {
               rating:"4"
             },
             {
+              id:2,
               title: "Wyfie",
               description: "A thrilling drama that explores relationships and modern love.",
               image: "/images/vid6.png",
@@ -25,6 +33,7 @@ const VideoSlider = () => {
               rating:"5"
             },
             {
+               id:3,
               title: "Jacob's Daughter",
               description: "A compelling story of family, tradition, and breaking boundaries.",
               image: "/images/vid1.png",
@@ -33,6 +42,7 @@ const VideoSlider = () => {
               rating:"3"
             },
             {
+               id:4,
               title: "Awinja's Perfect Wedding",
               description: "Comedy meets romance in this heartwarming wedding story.",
               image: "/images/vid5.png",
@@ -41,14 +51,15 @@ const VideoSlider = () => {
               rating:"5"
             },
             {
+               id:5,
               title: "Hoje",
               description: "An emotional journey through life's unexpected turns.",
               image: "/images/vid2.png",
               partner: "/logos/bazeLg.png",
               genres:["action","drama","crime"],
               rating:"2"
-            },
-            {
+            },{
+              id:6,
               title: "Moukoko",
               description: "Adventure and discovery in this captivating tale.",
               image: "/images/vid3.png",
@@ -57,6 +68,7 @@ const VideoSlider = () => {
               rating:"5"
             },
             {
+               id:7,
               title: "Take Me Home",
               description: "The journey of a couple towards their wedding, in their planning they...",
               image: "/images/vid4.png",
@@ -65,6 +77,7 @@ const VideoSlider = () => {
               rating:"4"
             },
             {
+               id:8,
               title: "Wyfie",
               description: "A thrilling drama that explores relationships and modern love.",
               image: "/images/vid6.png",
@@ -73,6 +86,7 @@ const VideoSlider = () => {
               rating:"5"
             },
             {
+               id:9,
               title: "Jacob's Daughter",
               description: "A compelling story of family, tradition, and breaking boundaries.",
               image: "/images/vid1.png",
@@ -81,6 +95,7 @@ const VideoSlider = () => {
               rating:"3"
             },
             {
+               id:10,
               title: "Awinja's Perfect Wedding",
               description: "Comedy meets romance in this heartwarming wedding story.",
               image: "/images/vid5.png",
@@ -89,6 +104,7 @@ const VideoSlider = () => {
               rating:"5"
             },
             {
+               id:11,
               title: "Hoje",
               description: "An emotional journey through life's unexpected turns.",
               image: "/images/vid2.png",
@@ -97,6 +113,7 @@ const VideoSlider = () => {
               rating:"2"
             },
             {
+               id:12,
               title: "Moukoko",
               description: "Adventure and discovery in this captivating tale.",
               image: "/images/vid3.png",
@@ -108,6 +125,7 @@ const VideoSlider = () => {
             <div 
               key={index} 
               className="pt-8 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
+            onClick={()=>onClickVideo(item.id)}
             >
               {/* Main Image Container */}
               <div className="relative">
@@ -123,7 +141,7 @@ const VideoSlider = () => {
                 </div>
 
                 {/* Hover Overlay */}
-                <div className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
+                <div onClick={()=>onClickVideo(item.id)} className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                           <img src={item.image} className="w-full h-[200%] object-cover"/>
                   </div>
@@ -170,7 +188,7 @@ const VideoSlider = () => {
                             />
                           </div>  
                         </div>
-                      <button className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
+                      <button onClick={()=>onClickVideo(item.id)} className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
                         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>

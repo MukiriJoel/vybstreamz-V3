@@ -13,6 +13,7 @@ import DealsSlider from "@/components/DealsSlider";
 import AdSlider from "@/components/AdSlider";
 import { useRouter } from "next/navigation";
 import PartnerHighlight from "@/components/PartnerHighlight";
+import Billboard from "@/components/billboard";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -29,7 +30,7 @@ export default function Home() {
       <div className="bg-[#f2f2f2]">
         {/* Hero Section */}
         <main className="">
-          <VybzCarouselMain />
+          <Billboard/>
           <div className="p-8 max-w-8xl mx-auto">
             {/* Partners Section */}
             <section className="">

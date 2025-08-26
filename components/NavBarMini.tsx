@@ -10,7 +10,7 @@ import { MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "r
 import { IconButton } from "@mui/material";
 import { usePathname } from "next/navigation";
 
-const NavBar = () => {
+const NavBarMini = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const pathname = usePathname();
@@ -82,13 +82,13 @@ const NavBar = () => {
 
   return (
     <>
-      <header className={`fixed w-full z-50 transition-all duration-300 ${
+      <header className={`fixed w-full lg:w-[calc(100%-256px)] z-50 transition-all duration-300 ${
         isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2]'
       }`}>
         <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">
-          <div className="flex justify-between h-[100px]">
+          <div className="flex justify-between lg:justify-between lg:pl-12 lg:ml-12 h-[100px] overflow-hidden">
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center lg:hidden">
               <Link href={"/"}>
                 <Image 
                   src={"/logos/VybeStreams.png"} 
@@ -101,7 +101,7 @@ const NavBar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8 text-[12px]">
+            <div className="hidden md:flex lg:pr-20 items-center space-x-8 text-[12px]">
               {navItems.map((item, i) => (
                 <Link 
                   key={i} 
@@ -203,4 +203,4 @@ const NavBar = () => {
   )
 };
 
-export default NavBar;
+export default NavBarMini;

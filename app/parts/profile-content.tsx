@@ -6,6 +6,8 @@ import { IconButton } from "@mui/material"
 import { MdArrowForward, MdArrowLeft, MdArrowRight, MdOutlineChevronRight, MdOutlineEdit } from "react-icons/md"
 import VideoSlider from "@/components/VideoSlider"
 import MusicSlider from "@/components/MusicSlider"
+import { useAuth } from "../context/AuthContext"
+import { useRouter } from "next/navigation"
 
 const subscriptions = [
   {
@@ -42,8 +44,25 @@ const subscriptions = [
 
 export default function ProfileContent() {
   const [activeTab, setActiveTab] = useState("Subscriptions")
+  const [showUnsubscribeModal, setShowUnsubscribeModal] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
+  const router = useRouter()
 
   const tabs = ["Account", "My Favorites", "Subscriptions"]
+
+  const handleReturn = () =>{
+    setShowUnsubscribeModal(false);
+  }
+
+  const handleAccept = () =>{
+    setShowUnsubscribeModal(false);
+    logout();
+    router.push('/');
+  }
+
+  const onUnsubscribeClick = () =>{
+    setShowUnsubscribeModal(true)
+  }
 
   return (
     <div className="py-4 ">
@@ -51,7 +70,7 @@ export default function ProfileContent() {
       <div className="bg-white flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-8 py-6 ">
         <div className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0">
           <img src="/logos/user-profile-illustration.png" alt="Profile" className="w-full h-full object-cover" />
-          <div className="imgOverlay absolute w-40 h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[120px] sm:inset-y-[130px] md:inset-y-[130px] ">
+          <div className="imgOverlay absolute w-40 h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[191px] sm:inset-y-[200px] lg:inset-y-[129px] ">
               <IconButton>
                 <MdOutlineEdit className="text-white w-15 h-15"/>
                 </IconButton>
@@ -133,7 +152,8 @@ export default function ProfileContent() {
                       {subscription.showAction && (
                         <Button
                           variant="outline"
-                          className="border-[#2C2C2C] text-[#2c2c2c] text-base hover:bg-[#f2f2f2] bg-transparent rounded-sm"
+                          className="cursor-pointer border-[#2C2C2C] text-[#2c2c2c] text-base hover:bg-[#f2f2f2] bg-transparent rounded-sm"
+                          onClick={()=>onUnsubscribeClick()}
                         >
                           Unsubscribe
                         </Button>
@@ -143,6 +163,37 @@ export default function ProfileContent() {
                 ))}
               </tbody>
             </table>
+
+             {/* Logout Confirmation Modal */}
+              {showUnsubscribeModal && (
+                <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
+                  <div className="bg-white rounded-lg p-6 w-100 mx-4">
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold text-pink-600 mb-4">
+                        Unsubscribe from Plan
+                      </h3>
+                      <p className="text-gray-600 mb-6">
+                        Are you sure you want to unsubscribe from this plan. You will lose access to premium content if you unsubscribe
+                      </p>
+                      
+                      <div className="flex gap-4 justify-center">
+                        <button
+                          onClick={()=>handleReturn()}
+                          className="cursor-pointer px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                        >
+                          No, Go back
+                        </button>
+                        <button
+                          onClick={()=>handleAccept()}
+                          className="cursor-pointer px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+                        >
+                          Unsubscribe
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
           </div>
 
           {/* Mobile Cards */}
@@ -183,7 +234,8 @@ export default function ProfileContent() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="border-[#cccccc] text-[#2c2c2c] hover:bg-[#f2f2f2] bg-transparent"
+                      className="cursor-pointer border-[#cccccc] text-[#2c2c2c] hover:bg-[#f2f2f2] bg-transparent"
+                      onClick={()=>onUnsubscribeClick()}
                     >
                       Unsubscribe
                     </Button>
@@ -244,7 +296,7 @@ export default function ProfileContent() {
                                 <div className="text-sm text-[#2C2C2C] mt-1">Change Password</div>
                             </div>
                             <svg className="w-5 h-5 text-[#2C2C2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </div>
                     </div>

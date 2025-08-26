@@ -15,43 +15,54 @@ import PartnersSlider from "@/components/PartnersSlider";
 import MusicSlider from "@/components/MusicSlider"; 
 import { useState } from "react";
 import { useMusic } from "@/hooks/useMusic";
+import { useRouter } from "next/navigation";
+import { useBooks } from "@/hooks/useBooks";
 
-interface Artist {
+interface Author {
   id: number;
   title: string;
   subtitle: string;
   description: string;
   image: string;
   partner: string;
+  backgroundImage: string;
 }
 
-const defaultArtist: Artist = {
+const defaultAuthor: Author = {
   id: 0,
   title: 'Unknown Artist',
   subtitle: 'Unknown',
   description: 'No description available',
   image: '/default-image.png',
-  partner: '/logos/default.png'
+  partner: '/logos/default.png',
+  backgroundImage:"/images/robert.png"
 };
 
-export default function ArtistDetails({id}:{id:number}) {
+export default function AuthorDetails({id}:{id:number}) {
 
-const  music  = useMusic();
+  const Router=useRouter();
+    
+     const onHandleClick = () =>{
+     
+      Router.push(`/viewMore/`)
+    }
 
-let artistDetails:Artist=defaultArtist;
+    const  books  = useBooks();
 
-if(music){
+    let authorDetails:Author=defaultAuthor;
 
-  const musicArr=music.music;
-  
+    if(books){
 
-  const findById=(id:number, array: Artist[])=> {
-     return array.find((item: Artist) =>item && item.id == id);
-  }
+      const booksArr=books.books;
+      
 
-  (artistDetails as any)=findById(id,musicArr)
+      const findById=(id:number, array: Author[])=> {
+        return array.find((item: Author) =>item && item.id == id);
+      }
 
-}
+      (authorDetails as any)=findById(id,booksArr)
+
+    }
 
 
   return (
@@ -59,15 +70,15 @@ if(music){
       {/* Main Content */}
       <main className="pt-12">
           {/* Hero Section */}
-        {artistDetails && (
+        {authorDetails && (
           <div className="px-8 pt-8 mt-10">
             <div className="flex rounded-4xl h-[70vh] p-0 overflow-hidden">
-              <img src={artistDetails?.image} className="w-full h-full object-cover" alt=''/>
+              <img src={authorDetails?.backgroundImage} className="w-full h-full object-cover" alt=''/>
             </div>
 
-            <h2 className="text-4xl font-semibold text-[#2C2C2C] mb-3 mt-4">{artistDetails?.title}</h2>
-            <p className="text-[#2C2C2C] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
-            {artistDetails?.description}
+            <h2 className="text-4xl font-semibold text-[#2C2C2C] mb-3 mt-4 capitalize">{authorDetails?.subtitle}</h2>
+            <p className="capitalize text-[#2C2C2C] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
+            {authorDetails?.subtitle}
             </p>
 
           </div>
@@ -83,6 +94,7 @@ if(music){
               <Button
                 variant="ghost"
                 className="text-[#1A1A1A] text-[16px] !font-medium"
+                onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -102,6 +114,7 @@ if(music){
               <Button
                 variant="ghost"
                 className="text-[#1A1A1A] text-[16px] !font-medium"
+                onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -117,6 +130,7 @@ if(music){
               <Button
                 variant="ghost"
                 className="text-[#1A1A1A] text-[16px] !font-medium"
+                onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />

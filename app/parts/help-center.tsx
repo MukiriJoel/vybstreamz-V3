@@ -1,6 +1,9 @@
+"use client"
+
 import { Search, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
 
 const helpCategories = [
   "Getting Started",
@@ -10,14 +13,42 @@ const helpCategories = [
   "Frequently Asked Questions",
 ]
 
-const helpQuestions = [
-  "How Do I Login to the platform",
-  "What kind of content is available in the platform",
-  "How do I get the most relevant content",
-  "Frequently Asked Questions",
-]
+const helpContent = {
+  "Getting Started": [
+    "How Do I Login to the platform",
+    "What kind of content is available in the platform",
+    "How do I get the most relevant content",
+    "Setting up your profile",
+  ],
+  "Payment and Subscriptions": [
+    "How to manage your subscription",
+    "Payment methods and billing",
+    "Subscription plans and pricing",
+    "Canceling your subscription",
+  ],
+  "Account Management": [
+    "Updating your profile information",
+    "Changing your password",
+    "Managing notification preferences",
+    "Deleting your account",
+  ],
+  "Playing Content": [
+    "How to play videos",
+    "Audio quality settings",
+    "Creating playlists",
+    "Download content for offline viewing",
+  ],
+  "Frequently Asked Questions": [
+    "Common technical issues",
+    "Account troubleshooting",
+    "Content availability",
+    "Contact support",
+  ],
+}
 
 export default function HelpCenter() {
+  const [selectedCategory, setSelectedCategory] = useState("Getting Started")
+
   return (
     <main className="flex-1 p-6 md:p-8 ml-0 md:ml-0">
       <div className="max-w-6xl mx-auto">
@@ -49,7 +80,12 @@ export default function HelpCenter() {
               <Button
                 key={index}
                 variant="default"
-                className="w-full justify-between text-left p-6 h-auto bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff] rounded-lg"
+                onClick={() => setSelectedCategory(category)}
+                className={`w-full justify-between text-left p-6 h-auto rounded-lg transition-colors ${
+                  selectedCategory === category
+                    ? "bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff]"
+                    : "bg-[#f8f8f8] hover:bg-[#e5e5e5] text-[#2c2c2c] border border-[#e5e5e5]"
+                }`}
               >
                 <span className="text-lg font-medium">{category}</span>
                 <ChevronRight className="h-5 w-5 ml-2 flex-shrink-0" />
@@ -57,9 +93,9 @@ export default function HelpCenter() {
             ))}
           </div>
 
-          {/* Right Column - Questions */}
+          {/* Right Column - Questions for Selected Category */}
           <div className="space-y-4">
-            {helpQuestions.map((question, index) => (
+            {helpContent[selectedCategory]?.map((question, index) => (
               <Button
                 key={index}
                 variant="outline"

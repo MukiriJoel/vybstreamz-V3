@@ -32,72 +32,76 @@ export interface ICarousel {
   backgroundImage?: string;
 }
 
-interface VybzCarouselPodcastProps {
+interface VybzCarouselEducationProps {
   slides?: ICarousel[];
   delay?: number;
+  tabs?: any;
+  activeTab?: any;
 }
 
-const VybzCarouselPodCast = ({
+const VybzCarouselEducation = ({
   slides = [],
   delay = 4000,
-}: VybzCarouselPodcastProps) => {
+  tabs =[],
+  activeTab = ''
+}: VybzCarouselEducationProps) => {
   const sliderRef = useRef<Slider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  
 
   // Default slide if no slides provided
   const defaultSlide: ICarousel = {
     id: 1,
-    title: "disko",
-    subtitle: "Kodong Klan",
+    title: "rich dad poor dad",
+    subtitle: "robert kiyosaki",
     duration: "1hr 45min",
-    category: "Album",
+    category: "Book",
     tracks: "10",
-    genre: "Hiphop",
+    genre: "1 issue",
     streamingPlatform: "Spotify",
-    platformLogo: "/logos/spotify.png",
-    backgroundImage: "/images/albumCover.png",
+    platformLogo: "/logos/showmax.png",
+    cover:"/images/robertSm.png",
+    backgroundImage: "/images/robert.png",
   };
 
   slides = [
     {
       id: 1,
-      title: "sandwich podcast",
-      subtitle: "sandwich podcast",
-      duration: "1hr 45min",
-      category: "Podcast",
-      tracks: "10",
-      genre: "Hiphop",
-      streamingPlatform: "Spotify",
-      platformLogo: "/logos/spotify.png",
-      cover:"/images/podcastThumb.png",
-      backgroundImage: "/images/sandwich2.jpg",
+      title: "rich dad poor dad",
+    subtitle: "robert kiyosaki",
+    duration: "1hr 45min",
+    category: "Book",
+    tracks: "10",
+    genre: "1 issue",
+    streamingPlatform: "Spotify",
+    platformLogo: "/logos/showmax.png",
+    cover:"/images/robertSm.png",
+    backgroundImage: "/images/robert.png",
     },
     {
       id: 2,
-      title: "true crime kenya",
-      subtitle: "various",
-      duration: "1hr 45min",
-      category: "Album",
-      tracks: "10",
-      genre: "Hiphop",
-      streamingPlatform: "Spotify",
-      platformLogo: "/logos/spotify.png",
-      cover:"/images/pod4.png",
-      backgroundImage: "/images/sandwich2.jpg",
+      title: "rich dad poor dad",
+    subtitle: "robert kiyosaki",
+    duration: "1hr 45min",
+    category: "Book",
+    tracks: "10",
+    genre: "1 issue",
+    streamingPlatform: "Spotify",
+    platformLogo: "/logos/showmax.png",
+    cover:"/images/robertSm.png",
+    backgroundImage: "/images/robert.png",
     },
     {
       id: 3,
-      title: "3 truths",
-      subtitle: "various",
-      duration: "1hr 45min",
-      category: "Album",
-      tracks: "10 songs",
-      genre: "Hiphop",
-      streamingPlatform: "Spotify",
-      platformLogo: "/logos/spotify.png",
-      cover:"/images/pod3.png",
-      backgroundImage: "/images/sandwich2.jpg",
+      title: "rich dad poor dad",
+    subtitle: "robert kiyosaki",
+    duration: "1hr 45min",
+    category: "Book",
+    tracks: "10",
+    genre: "1 issue",
+    streamingPlatform: "Spotify",
+    platformLogo: "/logos/showmax.png",
+    cover:"/images/robertSm.png",
+    backgroundImage: "/images/robert.png",
     },
   ];
 
@@ -213,10 +217,10 @@ const VybzCarouselPodCast = ({
                         <div className="flex flex-col flex-wrap items-end gap-4">
                           {/* Audio/Video Controls */}
                           <div className="flex items-center gap-3">
-                            <Button className="bg-[#2C2C2C] hover:bg-white/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
+                            {/* <Button className="bg-[#2C2C2C] hover:bg-white/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
                               <MdOutlineVideocam className="mr-1" />
                               Switch To Video
-                            </Button>
+                            </Button> */}
                             <Button
                               variant="ghost"
                               size="icon"
@@ -247,7 +251,8 @@ const VybzCarouselPodCast = ({
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="flex items-center gap-4 mt-3 mb-4">
+                  {activeTab==="Audio Book"?
+                    <div className="flex items-center gap-4 mt-3 mb-4">
                     <span className="text-white text-sm font-medium">1:25</span>
                     <div className="flex-1 bg-white/20 rounded-full h-1.5 relative cursor-pointer">
                       <div className="bg-[#C62676] h-1.5 rounded-full w-1/3 relative">
@@ -256,10 +261,14 @@ const VybzCarouselPodCast = ({
                     </div>
                     <span className="text-white text-sm font-medium">2:45</span>
                   </div>
+                  :
+                  <></>  
+                }
+                  
 
                    {/* Dots Navigation */}
                     <div className="flex items-center justify-center gap-4 mx-auto md:pr-10">
-                      <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
+                      {/* <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/> */}
                     </div>
                 </div>
               </div>
@@ -288,4 +297,4 @@ const VybzCarouselPodCast = ({
   );
 };
 
-export default VybzCarouselPodCast;
+export default VybzCarouselEducation;

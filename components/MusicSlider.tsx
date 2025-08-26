@@ -7,7 +7,7 @@ const MusicSlider = () => {
 
   const handleArtistClick = (id:any) =>{
     console.log("artist",id)
-    Router.push(`/artist/${id}`)
+    Router.push(`/music/artist/${id}`)
   }
 
   return (

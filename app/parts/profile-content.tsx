@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { IconButton } from "@mui/material"
-import { MdArrowForward, MdArrowLeft, MdArrowRight, MdOutlineChevronRight, MdOutlineEdit } from "react-icons/md"
+import { MdArrowForward, MdArrowLeft, MdArrowRight, MdOutlineChevronRight, MdOutlineEdit, MdAdd, MdClose } from "react-icons/md"
 import VideoSlider from "@/components/VideoSlider"
 import MusicSlider from "@/components/MusicSlider"
 import { useAuth } from "../context/AuthContext"
@@ -50,6 +50,34 @@ export default function ProfileContent() {
 
   const tabs = ["Account", "My Favorites", "Subscriptions"]
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log('File selected:', file.name);
+      // Handle file upload logic here
+      closePopup();
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      console.log('File dropped:', files[0].name);
+      // Handle dropped file here
+      closePopup();
+    }
+  };
+
   const handleReturn = () =>{
     setShowUnsubscribeModal(false);
   }
@@ -68,7 +96,7 @@ export default function ProfileContent() {
     <div className="py-4 ">
       {/* Profile Header */}
       <div className="bg-white flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-8 py-6 ">
-        <div className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0">
+        <div onClick={openPopup} className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0">
           <img src="/logos/user-profile-illustration.png" alt="Profile" className="w-full h-full object-cover" />
           <div className="imgOverlay absolute w-40 h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[191px] sm:inset-y-[200px] lg:inset-y-[129px] ">
               <IconButton>
@@ -103,6 +131,66 @@ export default function ProfileContent() {
         </div>
       </div>
 
+
+           {/* Popup Modal */}
+      {isPopupOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Backdrop with blur effect */}
+          <div 
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onClick={closePopup}
+          />
+          
+          {/* Popup Content */}
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8">
+            {/* Close Button */}
+            <button 
+              onClick={closePopup}
+              className="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <MdClose className="w-6 h-6 text-gray-500" />
+            </button>
+
+            {/* Upload Area */}
+            <div 
+              className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-pink-400 transition-colors"
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+            >
+              {/* Upload Icon */}
+              <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-lg flex items-center justify-center">
+                <div className="relative">
+                  <div className="w-10 h-12 bg-gray-400 rounded-sm"></div>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-gray-400 rounded-full flex items-center justify-center">
+                    <MdAdd className="w-3 h-3 text-white" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Upload Text */}
+              <h3 className="text-lg font-medium text-pink-500 mb-2">
+                Drag and drop your image here
+              </h3>
+              <p className="text-gray-500 mb-6">
+                Or browse files in your computer
+              </p>
+
+              {/* Upload Button */}
+              <label className="block">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleFileUpload}
+                  className="hidden"
+                />
+                <span className="inline-block w-full bg-pink-500 hover:bg-pink-600 text-white font-medium py-3 px-6 rounded-lg cursor-pointer transition-colors">
+                  Upload
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      )}
       
 
       {/* Subscriptions Content */}

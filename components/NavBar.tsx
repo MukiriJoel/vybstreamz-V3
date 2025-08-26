@@ -10,7 +10,7 @@ import { MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "r
 import { IconButton } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 
-const NavBar = () => {
+const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const pathname = usePathname();
@@ -57,7 +57,7 @@ const NavBar = () => {
       const isInMusicPlayer = scrollY < viewportHeight - 150;
       
       // You can also check for specific routes that have dark backgrounds
-      const isDarkRoute = pathname === '/music' || pathname === '/games' || pathname.includes('/videos') || pathname === '/podcasts' || pathname === '/education' || pathname === '/home' || pathname === '/education/educationListing';
+      const isDarkRoute = pathname === '/music' || pathname === '/games' || pathname === '/videos' || pathname === '/podcasts' || pathname === '/education' || pathname === '/home' || pathname === '/education/educationListing' || pathname === '/planselection';
       
       setIsDarkBackground(isInMusicPlayer && isDarkRoute);
     };
@@ -79,6 +79,13 @@ const NavBar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const getPositionClass = () => {
+        if (isSticky) {
+            return 'sticky z-50';
+        }
+        return position === 'fixed' ? 'fixed top-0 z-[100]' : 'relative';
+    };
+
   // Dynamic text colors based on background
   const textColor = isDarkBackground ? 'text-white' : 'text-gray-700';
   const hoverTextColor = isDarkBackground ? 'hover:text-gray-200' : 'hover:text-gray-900';
@@ -87,7 +94,7 @@ const NavBar = () => {
 
   return (
     <>
-      <header className={`fixed w-full z-50 transition-all duration-300 ${
+      <header className={`w-full transition-all duration-300 ${getPositionClass()} ${
         isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2]'
       }`}>
         <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">
@@ -111,7 +118,7 @@ const NavBar = () => {
                 <Link 
                   key={i} 
                   href={item.link} 
-                  className={`${textColor} ${hoverTextColor} font-medium capitalize transition-colors duration-200 ${
+                  className={` ${hoverTextColor} text-gray-700 font-medium capitalize transition-colors duration-200 ${
                     pathname.includes(item.link) && "!text-[#C62676]"
                   }`}
                 >
@@ -131,17 +138,17 @@ const NavBar = () => {
 
               {/* Search icon */}
               <IconButton>
-                <MdOutlineSearch className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`} />
+                <MdOutlineSearch className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] text-[#000000] transition-colors duration-300`} />
               </IconButton>
               
               <IconButton>
-                <MdOutlineShoppingBag className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`} />
+                <MdOutlineShoppingBag className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] text-[#000000] transition-colors duration-300`} />
               </IconButton>
 
               <div className="relative">
                 <IconButton onClick={()=>goToNotifications()}>
                   <span className="absolute -top-[2px] -right-[2px] h-3 w-3 bg-red-500 rounded-full z-10"></span>
-                  <MdOutlineNotifications className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`} />
+                  <MdOutlineNotifications className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] text-[#000000] transition-colors duration-300`} />
                 </IconButton>
               </div>
 

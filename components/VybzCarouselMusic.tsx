@@ -257,7 +257,10 @@ const VybzCarouselMusic = ({
                   </div>
 
                   {/* Dots Navigation */}
-                  <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
+                  <div className="flex items-center justify-center gap-4 mx-auto md:pr-10">
+                      <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
+                  </div>
+                 
                 </div>
               </div>
             </div>

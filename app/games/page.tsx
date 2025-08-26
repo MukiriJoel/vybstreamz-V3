@@ -12,6 +12,7 @@ import { HiArrowLeft, HiArrowRight, HiOutlineSpeakerXMark } from "react-icons/hi
 import { MdArrowForward, MdChevronLeft, MdChevronRight, MdOutlineVideocam } from "react-icons/md";
 import GamesSlider from "@/components/GamesSlider";
 import VybzCarouselMusic from "@/components/VybzCarouselMusic";
+import VybzCarouselMain from "@/components/VybzCarouselMain";
 
 export default function GamesPage() {
 
@@ -19,7 +20,7 @@ export default function GamesPage() {
     <div className="bg-[#f2f2f2]">
       {/* Main Content */}
       <main className="">
-        <VybzCarouselMusic/>
+        <VybzCarouselMain/>
 
         <div className="p-8 max-w-8xl mx-auto">
 

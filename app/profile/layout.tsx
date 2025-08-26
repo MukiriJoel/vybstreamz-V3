@@ -24,7 +24,11 @@ const ProfileLayout = ({children}: AuthLayoutProps) => {
             </header>
             <main className="w-full max-w-full mx-auto bg-[#f2f2f2] min-h-[100vh]">
                 {children}
+                  
             </main>
+            <div className='w-screen lg:w-[calc(95vw-256px)] mx-auto bg-[#f2f2f2] flex-1 lg:ml-64 pt-5 lg:pt-19.5"'>
+               <Footer/>
+            </div>
     
         </div>
     );

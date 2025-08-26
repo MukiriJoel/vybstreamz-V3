@@ -144,17 +144,17 @@
 import { useState } from "react"
 import { User, Settings, Bell, MessageSquare, HelpCircle, LogOut, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useAuth } from '../context/AuthContext'
 import Link from "next/link";
 import Image from "next/image";
 
 const menuItems = [
   { icon: User, label: "My Profile", active: true, link: "/profile" },
-  { icon: Settings, label: "Settings", active: false, link: "/settings" },
-  { icon: Bell, label: "Notifications", active: false, link: "/notifications" },
-  { icon: MessageSquare, label: "Feedback", active: false, link: "/feedback" },
-  { icon: HelpCircle, label: "Help", active: false, link: "/help" },
+  { icon: Settings, label: "Settings", active: false, link: "/profile/settings" },
+  { icon: Bell, label: "Notifications", active: false, link: "/profile/notifications" },
+  { icon: MessageSquare, label: "Feedback", active: false, link: "/profile/feedback" },
+  { icon: HelpCircle, label: "Help", active: false, link: "/profile/help" },
   { icon: LogOut, label: "Logout", active: false, link: "/logout" },
 ]
 
@@ -163,7 +163,9 @@ export default function Sidebar() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [currentPage, setCurrentPage] = useState('profile');
   const router = useRouter()
-  const { isLoggedIn, logout } = useAuth()
+  const { isLoggedIn, logout } = useAuth();
+  const pathname = usePathname();
+
 
   const handleLogoutClick = (e:any) => {
     e.preventDefault();
@@ -179,6 +181,11 @@ export default function Sidebar() {
   const handleCancelLogout = () => {
     setShowLogoutModal(false);
   };
+
+  // const handleNavigation = (label:any) =>{
+  //   const Router=useRouter();
+  //   Router.push(`/profile/${label}`);
+  // }
 
   return (
     <>
@@ -207,7 +214,7 @@ export default function Sidebar() {
                 onClick={item.label === "Logout" ? handleLogoutClick : undefined}
                 className={`
                   flex flex-col items-center justify-center min-w-[80px] px-3 py-2 rounded-lg text-center transition-colors cursor-pointer mx-1
-                  ${item.active ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
+                  ${pathname === item.link ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
                   ${item.label === "Logout" ? "hover:bg-red-50 hover:text-red-600" : ""}
                 `}
               >
@@ -246,7 +253,7 @@ export default function Sidebar() {
                 onClick={item.label === "Logout" ? handleLogoutClick : undefined}
                 className={`
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors cursor-pointer
-                  ${item.active ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
+                  ${pathname === item.link ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
                   ${item.label === "Logout" ? "hover:bg-red-50 hover:text-red-600" : ""}
                 `}
               >
@@ -261,7 +268,7 @@ export default function Sidebar() {
       {/* Logout Confirmation Modal */}
       {showLogoutModal && (
         <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-96 mx-4">
+          <div className="bg-white rounded-lg p-6 w-100 mx-4">
             <div className="text-center">
               <h3 className="text-xl font-semibold text-pink-600 mb-4">
                 You are about to log out !

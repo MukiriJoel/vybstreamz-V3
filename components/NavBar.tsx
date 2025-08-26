@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -9,10 +9,16 @@ import Image from "next/image";
 import { MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "react-icons/md";
 import { IconButton } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
+import { text } from "stream/consumers";
+import { FaTimes } from "react-icons/fa";
+import { useAuth } from "@/app/context/AuthContext";
 
 const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const { isLoggedIn } = useAuth()
   const pathname = usePathname();
   const router=useRouter();
 
@@ -46,6 +52,24 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   const goToNotifications = () =>{
     router.push("/profile/notifications")
   }
+
+   const toggleSearchBar = useCallback(() => {
+          setShowSearchBar((current) => !current)
+          if (showSearchBar) {
+              setSearchQuery("")
+          }
+      }, [showSearchBar])
+  
+      const handleSearchSubmit = (e:any) => {
+          e.preventDefault()
+          if (searchQuery.trim()) {
+              console.log("Searching for:", searchQuery)
+          }
+    }
+
+    const handleShoppingBagClick = () => {
+        router.push('/payment')
+    }
 
   // Dynamic background detection
   useEffect(() => {
@@ -92,6 +116,12 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   const iconColor = isDarkBackground ? 'text-white' : 'text-[#000000]';
   const menuIconColor = isDarkBackground ? 'text-white' : 'text-[#000000]';
 
+  const onSearchEnter = (e:any) =>{
+    const searchValue=e.target.value
+    setSearchQuery(searchValue);
+    router.push(`/search/`)
+  }
+
   return (
     <>
       <header className={`w-full transition-all duration-300 ${getPositionClass()} ${
@@ -137,18 +167,47 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
               </div>
 
               {/* Search icon */}
-              <IconButton>
-                <MdOutlineSearch className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] text-[#000000] transition-colors duration-300`} />
-              </IconButton>
+                {/* Search functionality */}
+                                  {showSearchBar ? (
+                                      <form onSubmit={handleSearchSubmit} className="flex items-center gap-2">
+                                          <input
+                                              type="text"
+                                              value={searchQuery}
+                                              onChange={(e) => onSearchEnter(e)}
+                                              onKeyDown={(e) => {
+                                                if (e.key === 'Enter' && !e.shiftKey) {
+                                                  e.preventDefault(); // Prevent new line
+                                                  onSearchEnter(e);
+                                                }}}
+                                              placeholder="Search..."
+                                              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-black bg-white"
+                                              autoFocus
+                                          />
+                                          {/* <button type="submit" className={`${textColor} ${hoverTextColor}`}>
+                                              <MdOutlineSearch className="transition" />
+                                          </button> */}
+                                          <button type="button" onClick={toggleSearchBar} className={`${iconColor} ${hoverTextColor} cursor-pointer`}>
+                                              <FaTimes className="transition" />
+                                          </button>
+                                      </form>
+                                  ) : (
+                                      // <div onClick={toggleSearchBar} className={`${iconColor} ${hoverColor} cursor-pointer transition`}>
+                                      //     <FaSearch className="transition" />
+                                      // </div>
+                                        <IconButton>
+                                          <MdOutlineSearch onClick={toggleSearchBar} className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
+                                        </IconButton>
+                                  )}
+            
               
-              <IconButton>
-                <MdOutlineShoppingBag className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] text-[#000000] transition-colors duration-300`} />
+              <IconButton onClick={handleShoppingBagClick}>
+                <MdOutlineShoppingBag className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
               </IconButton>
 
               <div className="relative">
                 <IconButton onClick={()=>goToNotifications()}>
                   <span className="absolute -top-[2px] -right-[2px] h-3 w-3 bg-red-500 rounded-full z-10"></span>
-                  <MdOutlineNotifications className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] text-[#000000] transition-colors duration-300`} />
+                  <MdOutlineNotifications className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
                 </IconButton>
               </div>
 

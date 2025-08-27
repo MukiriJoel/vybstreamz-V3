@@ -69,7 +69,7 @@ export default function SettingsPage() {
                 <button
                   key={themeOption}
                   onClick={() => setTheme(themeOption)}
-                  className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full text-left px-4 py-3 rounded-lg transition-colors ${
                     theme === themeOption
                       ? "bg-[#c62676] text-white"
                       : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -219,7 +219,7 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <button
                   onClick={() => setSelectedOption("appTheme")}
-                  className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "appTheme"
                       ? "bg-[#c62676] text-white"
                       : "bg-[#F2F2F2] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -234,7 +234,7 @@ export default function SettingsPage() {
 
                 <button
                   onClick={() => setSelectedOption("notifications")}
-                  className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "notifications"
                       ? "bg-[#c62676] text-white"
                       : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -264,7 +264,7 @@ export default function SettingsPage() {
 
                 <button
                   onClick={() => setSelectedOption("accountDeletion")}
-                  className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+                  className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "accountDeletion"
                       ? "bg-[#c62676] text-white"
                       : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"

@@ -5,7 +5,7 @@ import { ArrowLeft, Eye, EyeOff, Check, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from "@/lib/context/AuthContext"
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 

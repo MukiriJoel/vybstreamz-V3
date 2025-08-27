@@ -147,12 +147,12 @@ export default function HomePage() {
               </div>
 
             {/* Payment Options */}
-             <div className="flex lg:gap-5 gap-2 md:gap-3 pb-6 overflow-hidden">
+             <div className="flex lg:gap-5 gap-4 md:gap-4 pb-6 overflow-hidden">
               
               {paymentMethods.map((method) => (
                 <div 
                 key={method.id}
-                className={`bg-[#E5E5E5] rounded-lg md:px-6 py-4 px-1 border-2 hover:border-pink-500 cursor-pointer ${
+                className={`bg-[#E5E5E5] rounded-lg md:px-6 py-4 px-2 border-2 hover:border-pink-500 cursor-pointer ${
                   selectedMethod === method.id 
                     ? 'border-pink-500 bg-pink-50 shadow-md' 
                     : 'border-gray-300'

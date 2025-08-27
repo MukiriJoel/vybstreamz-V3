@@ -75,7 +75,7 @@ export default function PreferencePage() {
               key={`${genre}-${index}`}
               onClick={() => toggleGenre(genre)}
               className={`
-                px-6 py-3 rounded-full text-sm sm:text-base font-medium
+                cursor-pointer px-6 py-3 rounded-full text-sm sm:text-base font-medium
                 transition-all duration-200 ease-in-out
                 hover:scale-105 active:scale-95
                 ${

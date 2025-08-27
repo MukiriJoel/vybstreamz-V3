@@ -107,7 +107,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
         if (isSticky) {
             return 'sticky z-50';
         }
-        return position === 'fixed' ? 'fixed top-0 z-[100]' : 'relative';
+        return position === 'fixed' ? 'fixed top-0 z-[50]' : 'relative';
     };
 
   // Dynamic text colors based on background
@@ -124,7 +124,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
 
   return (
     <>
-      <header className={`w-full transition-all z-50 duration-300 ${getPositionClass()} ${
+      <header className={`w-full transition-all  duration-300 ${getPositionClass()} ${
         isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2] dark:bg-[#141414]'
       }`}>
         <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">

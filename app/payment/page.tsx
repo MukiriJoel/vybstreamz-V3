@@ -10,9 +10,14 @@ import { IoIosCloseCircleOutline } from "react-icons/io"
 import { IconButton } from "@mui/material"
 import { useRouter } from "next/navigation"
 import { MdOutlineChevronRight } from "react-icons/md"
+import OtpInput from "@/components/OtpInput"
 
 export default function HomePage() {
    const [selectedMethod, setSelectedMethod] = useState(null);
+   const [showOtpModal, setShowOtpModal] = useState(false);
+   const [showPaymentModal, setShowPaymentModal] = useState(false);
+   const router=useRouter();
+
    const paymentMethods = [
     {
       id: 1,
@@ -76,9 +81,30 @@ export default function HomePage() {
       logo: "netflix",
     }
   ];
-   const Router=useRouter();
+
+ 
   const onHandleClick=(partner:any)=>{
-    Router.push(`/partners/${partner.id}`)
+    router.push(`/partners/${partner.id}`)
+  }
+
+  const onPayClick = () =>{
+    setShowOtpModal(true);
+  }
+
+  const handleVerify = () =>{
+     setShowPaymentModal(true)
+  }
+
+  const handleExplore = () =>{
+    router.push('/preference')
+  }
+
+  const handleGoToContent = () =>{
+    router.push('/home')
+  }
+
+  const handleResend = () =>{
+    setShowOtpModal(false)
   }
 
   const getLogoSrc = (logo: string) => {
@@ -153,7 +179,7 @@ export default function HomePage() {
               </div>
 
               {/* Pay Button */}
-              <Button className="w-full bg-[#c62676] hover:bg-[#b3246a] text-white py-6 text-lg font-semibold mt-6">
+              <Button onClick={()=>onPayClick()} className="cursor-pointer w-full bg-[#c62676] hover:bg-[#b3246a] text-white py-6 text-lg font-semibold mt-6">
                 Pay
               </Button>
             </div>
@@ -212,34 +238,96 @@ export default function HomePage() {
           </div>
 
          
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 
-        {partners.map((partner, index) => (
-          <div
-            key={index}
-            className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-6 hover:shadow-md transition-shadow min-h-[135px]"
-            onClick={()=>onHandleClick(partner)}
-          >
-            <div className="flex items-start space-x-4">
-              <div className="w-[97px] h-[97px] shadow-sm rounded-[20px] flex-shrink-0">
-                <img
-                  src={getLogoSrc(partner.logo) || "/placeholder.svg"}
-                  alt={`${partner.name} logo`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 
+              {partners.map((partner, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-6 hover:shadow-md transition-shadow min-h-[135px]"
+                  onClick={()=>onHandleClick(partner)}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className="w-[97px] h-[97px] shadow-sm rounded-[20px] flex-shrink-0">
+                      <img
+                        src={getLogoSrc(partner.logo) || "/placeholder.svg"}
+                        alt={`${partner.name} logo`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
 
-              <div className="flex-1 min-w-0">
-                <h4 className="text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
-                  {partner.name}
-                </h4>
-                <p className="text-sm font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
-                  {partner.description}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
+                        {partner.name}
+                      </h4>
+                      <p className="text-sm font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                        {partner.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+
+               {showOtpModal && (
+                <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
+                  <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-100 mx-4">
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold text-pink-600 mb-4">
+                        Verify Phone Number
+                      </h3>
+                      <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">
+                        Please enter the OTP code sent to 07******54
+                      </p>
+                      <OtpInput/>
+                      
+                      <div className="gap-4 justify-center">
+                        <button
+                          onClick={ ()=>handleVerify()}
+                          className="w-full cursor-pointer px-6 py-2 bg-[#C62676] text-white rounded-lg hover:bg-pink-600 transition-colors"
+                        >
+                          Verify
+                        </button>
+                        <button
+                          onClick={()=>handleResend()}
+                          className="w-full cursor-pointer mt-2 px-6 py-2 bg-transparent text-[#2C2C2C] dark:text-white rounded-lg hover:bg-gray-600 transition-colors"
+                        >
+                          Resend
+                        </button>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+                {showPaymentModal && (
+                <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
+            <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-100 mx-4">
+              <div className="text-center">
+                <div className="flex justify-center">
+                  <img src={"/logos/submit.png"}/>
+                </div>
+                <p className="py-3 text-[#C62676] font-bold !text-2xl">Payment Confirmed</p>
+                <p className="text-[#333333] dark:text-white mb-6 font-semibold">
+                  Payment received successfully. Go to your content to watch or explore more content to watch 
                 </p>
+                <div className="flex gap-4 justify-center">
+                        <button
+                          onClick={()=>handleExplore()}
+                          className="cursor-pointer px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                        >
+                          Explore More
+                        </button>
+                        <button
+                          onClick={()=>handleGoToContent()}
+                          className="cursor-pointer px-6 py-2 bg-[#C62676] text-white rounded-lg hover:bg-pink-700 transition-colors"
+                        >
+                          Go To Content
+                        </button>
+                  </div>
               </div>
             </div>
           </div>
-        ))}
-            </div>
+              )}
          
         </div>
       </div>

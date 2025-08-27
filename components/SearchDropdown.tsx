@@ -5,8 +5,8 @@ const SearchDropdown = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [filteredResults, setFilteredResults] = useState([]);
-  const inputRef = useRef(null);
-  const dropdownRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Sample search data
   const searchData = [

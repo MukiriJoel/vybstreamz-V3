@@ -12,7 +12,7 @@ function ToggleSwitch({ enabled, onChange }) {
       }`}
     >
       <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+        className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-[#2C2C2C] transition-transform ${
           enabled ? 'translate-x-6' : 'translate-x-1'
         }`}
       />
@@ -57,30 +57,30 @@ export default function SettingsContent() {
       
 
       {/* Notifications Panel */}
-      <div className="w-80 bg-[#ffffff] border-l border-[#e5e5e5] p-8">
-        <h2 className="text-xl font-bold text-[#2c2c2c] mb-8">Notifications</h2>
+      <div className="w-80 bg-[#ffffff] border-l border-[#e5e5e5] dark:border-[#333333] p-8">
+        <h2 className="text-xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-8">Notifications</h2>
 
         <div className="space-y-8">
           {/* Email Notifications */}
           <div>
-            <h3 className="font-semibold text-[#2c2c2c] mb-4">Email</h3>
+            <h3 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">Email</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Recommended Content</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">Recommended Content</span>
                 <ToggleSwitch 
                   enabled={notifications.email.recommendedContent}
                   onChange={() => toggleNotification('email', 'recommendedContent')}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">New Releases</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">New Releases</span>
                 <ToggleSwitch 
                   enabled={notifications.email.newReleases}
                   onChange={() => toggleNotification('email', 'newReleases')}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Payment Issues</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">Payment Issues</span>
                 <ToggleSwitch 
                   enabled={notifications.email.paymentIssues}
                   onChange={() => toggleNotification('email', 'paymentIssues')}
@@ -91,24 +91,24 @@ export default function SettingsContent() {
 
           {/* SMS Notifications */}
           <div>
-            <h3 className="font-semibold text-[#2c2c2c] mb-4">SMS</h3>
+            <h3 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">SMS</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Recommended Content</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">Recommended Content</span>
                 <ToggleSwitch 
                   enabled={notifications.sms.recommendedContent}
                   onChange={() => toggleNotification('sms', 'recommendedContent')}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">New Releases</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">New Releases</span>
                 <ToggleSwitch 
                   enabled={notifications.sms.newReleases}
                   onChange={() => toggleNotification('sms', 'newReleases')}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Payment Issues</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">Payment Issues</span>
                 <ToggleSwitch 
                   enabled={notifications.sms.paymentIssues}
                   onChange={() => toggleNotification('sms', 'paymentIssues')}
@@ -119,24 +119,24 @@ export default function SettingsContent() {
 
           {/* App Notifications */}
           <div>
-            <h3 className="font-semibold text-[#2c2c2c] mb-4">App</h3>
+            <h3 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">App</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Recommended Content</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">Recommended Content</span>
                 <ToggleSwitch 
                   enabled={notifications.app.recommendedContent}
                   onChange={() => toggleNotification('app', 'recommendedContent')}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">New Releases</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">New Releases</span>
                 <ToggleSwitch 
                   enabled={notifications.app.newReleases}
                   onChange={() => toggleNotification('app', 'newReleases')}
                 />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Payment Issues</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF]">Payment Issues</span>
                 <ToggleSwitch 
                   enabled={notifications.app.paymentIssues}
                   onChange={() => toggleNotification('app', 'paymentIssues')}

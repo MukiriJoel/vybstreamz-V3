@@ -82,15 +82,15 @@ const NavBarMini = () => {
   };
 
   // Dynamic text colors based on background
-  const textColor = isDarkBackground ? 'text-white' : 'text-gray-700';
-  const hoverTextColor = isDarkBackground ? 'hover:text-gray-200' : 'hover:text-gray-900';
-  const iconColor = isDarkBackground ? 'text-white' : 'text-[#000000]';
-  const menuIconColor = isDarkBackground ? 'text-white' : 'text-[#000000]';
+  const textColor = isDarkBackground ? 'text-white' : 'text-[#2C2C2C] dark:text-[#FFFFFF]';
+  const hoverTextColor = isDarkBackground ? 'hover:text-gray-200' : 'hover:text-gray-900 dark:text-[#FFFFFF]';
+  const iconColor = isDarkBackground ? 'text-white' : 'text-black dark:text-white';
+  const menuIconColor = isDarkBackground ? 'text-white' : 'text-black dark:text-white';
 
   return (
     <>
       <header className={`fixed w-full lg:w-[calc(100%-256px)] z-50 transition-all duration-300 ${
-        isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2]'
+        isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2] dark:bg-[#2C2C2C]'
       }`}>
         <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">
           <div className="flex justify-between lg:justify-between lg:pl-12 lg:ml-12 h-[100px] overflow-hidden">
@@ -168,11 +168,11 @@ const NavBarMini = () => {
       )}
 
       {/* Mobile Sidebar */}
-      <div className={`fixed top-0 left-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
+      <div className={`fixed top-0 left-0 h-full w-80 bg-white dark:bg-[#2C2C2C] shadow-lg transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-[#2C2C2C] ">
           <Link href={"/"} onClick={closeMobileMenu}>
             <Image 
               src={"/logos/VybeStreams.png"} 
@@ -183,7 +183,7 @@ const NavBarMini = () => {
             />
           </Link>
           <IconButton onClick={closeMobileMenu}>
-            <X className="h-[24px] w-[24px] text-[#000000]" />
+            <X className="h-[24px] w-[24px] text-black dark:text-white" />
           </IconButton>
         </div>
 
@@ -197,7 +197,7 @@ const NavBarMini = () => {
               className={`flex items-center justify-between py-4 font-medium capitalize text-lg border-b border-gray-100 last:border-b-0 transition-colors duration-200 ${
                 pathname.includes(item.link) 
                   ? 'text-[#C62676]' 
-                  : 'text-gray-700 hover:text-gray-900'
+                  : 'text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900 dark:text-[#FFFFFF]'
               }`}
             >
               {item.name}

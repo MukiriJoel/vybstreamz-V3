@@ -6,7 +6,7 @@ const PartnerHighlight = () =>{
                          <div className="mb-0">
               {/* Netflix Partner Card */}
               <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-[#1a1a1a] mb-6">
+                <h1 className="text-2xl font-bold text-[#333333] dark:text-white mb-6">
                   Partner Highlight
                 </h1>
               </div>
@@ -19,7 +19,7 @@ const PartnerHighlight = () =>{
                       className="w-[50px] h-[50px] "
                     />
                   </div>
-                  <h2 className="text-xl font-semibold text-[#1a1a1a]">
+                  <h2 className="text-xl font-semibold text-[#333333] dark:text-white">
                     Netflix
                   </h2>
                 </div>

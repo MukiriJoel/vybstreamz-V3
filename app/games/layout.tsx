@@ -20,7 +20,7 @@ const GamesLayout = ({children}: AuthLayoutProps) => {
             <header className="w-full">
                 <NavBar/>
             </header>
-            <main className="w-full mx-auto bg-[#f2f2f2] min-h-[100vh]">
+            <main className="w-full mx-auto bg-[#F2F2F2] dark:bg-[#141414] min-h-[100vh]">
                 {children}
             </main>
        

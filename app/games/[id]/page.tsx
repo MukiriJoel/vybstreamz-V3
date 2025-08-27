@@ -12,7 +12,7 @@ const Page = () => {
     const id: any = params.id;
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#f2f2f2] dark:bg-[#121212]">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#F2F2F2] dark:bg-[#141414] dark:bg-[#121212]">
             <header className="w-full">
                 <NavBar/>
             </header>

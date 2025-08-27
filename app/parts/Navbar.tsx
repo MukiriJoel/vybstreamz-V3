@@ -62,9 +62,9 @@ const Navbar = ({ isDarkBackground = true }) => {
     }
     
     // Dynamic color classes based on background
-    const textColor = isDarkBackground ? 'text-white' : 'text-black';
-    const iconColor = isDarkBackground ? 'text-white' : 'text-black';
-    const hoverColor = isDarkBackground ? 'hover:text-gray-300' : 'hover:text-gray-600';
+    const textColor = isDarkBackground ? 'text-white' : 'text-black dark:text-white';
+    const iconColor = isDarkBackground ? 'text-white' : 'text-black dark:text-white';
+    const hoverColor = isDarkBackground ? 'hover:text-gray-300' : 'hover:text-[#2C2C2C]';
     
     return (
         <nav className="w-full fixed z-40">
@@ -117,7 +117,7 @@ const Navbar = ({ isDarkBackground = true }) => {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search..."
-                                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-black bg-white"
+                                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-black dark:text-white bg-white dark:bg-[#2C2C2C]"
                                 autoFocus
                             />
                             <button type="submit" className={`${iconColor} ${hoverColor}`}>

@@ -36,10 +36,10 @@ export default function VerifyEmail() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] px-6 py-8">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-6 py-8">
       {/* Header */}
       <div className="flex items-center justify-between mb-16">
-        <ArrowLeft className="w-6 h-6 text-[#2c2c2c]" />
+        <ArrowLeft className="w-6 h-6 text-[#2C2C2C] text-[#FFFFFF] line-clamp-3dark:text-[#FFFFFF]" />
         <div className="text-2xl font-bold">
           <span className="text-[#e16026]">Vybe</span>
           <span className="text-[#c62676]">Streams</span>
@@ -48,9 +48,9 @@ export default function VerifyEmail() {
 
       {/* Main Content */}
       <div className="max-w-sm mx-auto">
-        <h1 className="text-3xl font-bold text-[#2c2c2c] mb-4">Verify Email</h1>
+        <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">Verify Email</h1>
 
-        <p className="text-[#2c2c2c] mb-12 leading-relaxed">
+        <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-12 leading-relaxed">
           Please enter the verification code sent to your email address
         </p>
 
@@ -77,9 +77,9 @@ export default function VerifyEmail() {
 
         {/* Additional Options */}
         <div className="text-center space-y-4">
-          <button className="text-[#2c2c2c] underline">Resend Code</button>
+          <button className="text-[#2C2C2C] dark:text-[#FFFFFF] underline">Resend Code</button>
 
-          <p className="text-[#2c2c2c]">Or verify via phone number</p>
+          <p className="text-[#2C2C2C] dark:text-[#FFFFFF]">Or verify via phone number</p>
         </div>
       </div>
     </div>

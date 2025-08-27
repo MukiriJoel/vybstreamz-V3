@@ -31,7 +31,7 @@ export default function VybStreamzPage() {
   }
 
   return (
-    <div className="min-h-screen w-screen lg:w-[calc(95vw-256px)] bg-[#f2f2f2]  pt-8">
+    <div className="min-h-screen w-screen lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-8">
       {/* Header */}
     
       <div className="flex">
@@ -39,13 +39,13 @@ export default function VybStreamzPage() {
         {/* Main Content */}
         <main className="flex-1 p-6 lg:p-8 mx-auto">
           <div className="">
-            <h1 className="text-2xl font-bold text-[#2c2c2c] mb-8">Help Us Improve</h1>
+            <h1 className="text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-8">Help Us Improve</h1>
 
-            <div className="p-6  bg-[#f2f2f2]">
+            <div className="p-6  bg-[#F2F2F2] dark:bg-[#141414]">
               <div className="space-y-6">
                 {/* Feedback Type */}
                 <div className="max-w-2xl">
-                  <label className="block text-[#2c2c2c] font-bold mb-3">Type of Feedback</label>
+                  <label className="block text-[#2C2C2C] dark:text-[#FFFFFF] font-bold mb-3">Type of Feedback</label>
                   <Select value={feedbackType} onValueChange={setFeedbackType}>
                     <SelectTrigger className="w-full bg-[#ffffff] border-[#d9d9d9]">
                       <SelectValue />
@@ -60,7 +60,7 @@ export default function VybStreamzPage() {
 
                 {/* Rating */}
                 <div>
-                  <label className="block text-[#2c2c2c] font-bold mb-4">
+                  <label className="block text-[#2C2C2C] dark:text-[#FFFFFF] font-bold mb-4">
                     How would you rate the content you have seen on Vyb Streamz
                   </label>
                   <div className="flex gap-4 justify-center lg:justify-start flex-wrap">
@@ -88,7 +88,7 @@ export default function VybStreamzPage() {
 
                 {/* Feedback Text */}
                 <div>
-                  <label className="block text-[#2c2c2c] font-bold mb-3">Tell us more about your experience</label>
+                  <label className="block text-[#2C2C2C] dark:text-[#FFFFFF] font-bold mb-3">Tell us more about your experience</label>
                   <Textarea
                     placeholder="Type your feedback here"
                     value={feedback}
@@ -110,13 +110,13 @@ export default function VybStreamzPage() {
         {/* submitt Modal */}
         {showSubmitModal && (
           <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-100 mx-4">
+            <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-100 mx-4">
               <div className="text-center">
                 <div className="flex justify-center">
                   <img src={"/logos/submit.png"}/>
                 </div>
                 <p className="py-3 text-[#C62676] font-bold !text-2xl">Submitted</p>
-                <p className="text-[#333333] mb-6 font-semibold">
+                <p className="text-[#333333] dark:text-white mb-6 font-semibold">
                 Thank you for your suggestion. Your input helps us make Vyb Streamz better for everyone. Stay tuned!
                 </p>
                 

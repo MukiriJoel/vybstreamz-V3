@@ -55,7 +55,7 @@ export default function PartnersPage() {
     },
   ];
   return (
-    <div className="bg-[#f2f2f2]">
+    <div className="bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Main Content */}
       <main className="">
         {/* Hero Section */}
@@ -121,12 +121,12 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
   };
 
   return (
-    <section className="p-8 border-gray-200">
+    <section className="p-8 border-gray-200 dark:border-[#2C2C2C] ">
       <div className="flex items-center justify-between mb-6 pt-6  border-t-2">
-        <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-[#FFFFFF]">{title}</h3>
         <Button
           variant="ghost"
-          className="text-gray-900 hover:text-gray-900 cursor-pointer"
+          className="text-gray-900 dark:text-[#FFFFFF] hover:text-gray-900 dark:text-[#FFFFFF] cursor-pointer"
         >
           View More
           <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -137,7 +137,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
         {partners.map((partner, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl p-6 hover:shadow-md transition-shadow min-h-[135px]"
+            className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-6 hover:shadow-md transition-shadow min-h-[135px]"
             onClick={()=>onHandleClick(partner)}
           >
             <div className="flex items-start space-x-4">
@@ -150,10 +150,10 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h4 className="text-3xl font-semibold text-gray-900 mb-2">
+                <h4 className="text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
                   {partner.name}
                 </h4>
-                <p className="text-sm font-normal text-gray-600 line-clamp-3">
+                <p className="text-sm font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                   {partner.description}
                 </p>
               </div>

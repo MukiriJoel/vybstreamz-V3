@@ -45,8 +45,8 @@ const Billboard = () => {
                 <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
                     <button 
                         className="
-                            bg-white
-                            text-black
+                            bg-white dark:bg-[#2C2C2C]
+                            text-black dark:text-white
                             rounded-md
                             py-1 md:py-2
                             px-2 md:px-4
@@ -65,7 +65,7 @@ const Billboard = () => {
                     </button>
                     <button 
                         className="
-                            bg-white/30
+                            bg-white dark:bg-[#2C2C2C]/30
                             text-white
                             rounded-md
                             py-1 md:py-2

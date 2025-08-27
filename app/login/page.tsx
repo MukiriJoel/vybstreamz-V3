@@ -35,14 +35,14 @@ export default function CreateAccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] flex flex-col">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
       {/* Header */}
       
       {/* Back button and logo */}
       <div className="flex items-center justify-between p-6">
         <button 
           onClick={() => router.push('/')}
-          className="flex items-center text-gray-600 hover:text-gray-900"
+          className="flex items-center text-[#2C2C2C] dark:text-[#FFFFFF]hover:text-gray-900 dark:text-[#FFFFFF]"
         >
           <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -55,7 +55,7 @@ export default function CreateAccountPage() {
       </div>
 
     <div className="flex items-center justify-center min-h-[80vh]">
-        {/* <div className="flex bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full"> */}
+        {/* <div className="flex bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full"> */}
                 <div className="w-1/2 bg-gradient-to-br from-yellow-200 to-purple-300 p-8 flex flex-col justify-center">
                         <div className="text-center">
                         <h2 className="text-2xl font-bold mb-4">showmax ORIGINAL</h2>
@@ -79,7 +79,7 @@ export default function CreateAccountPage() {
         <div className="w-full max-w-md space-y-6">
           {/* Title Section */}
           <div className="text-center md:text-left">
-            <h1 className="text-2xl md:text-3xl font-bold text-[#333333] mb-2">Create Account</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-[#333333] dark:text-white mb-2">Create Account</h1>
             <p className="text-[#999999] text-sm md:text-base">
               Create your account and dive into non-stop entertainment made for you
             </p>
@@ -89,7 +89,7 @@ export default function CreateAccountPage() {
           <div className="space-y-4">
                 {/* Phone Number Section */}
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-[#333333]">
+                        <label className="text-sm font-medium text-[#333333] dark:text-white">
                         Country <span className="ml-16">Phone Number*</span>
                         </label>
                         <div className="flex gap-2">
@@ -112,7 +112,7 @@ export default function CreateAccountPage() {
 
             {/* Email Section */}
             <div className="space-y-2">
-                <label className="text-sm font-medium text-[#333333]">Email Address (Optional)</label>
+                <label className="text-sm font-medium text-[#333333] dark:text-white">Email Address (Optional)</label>
                 <Input
                 type="email"
                 className="border-[#cccccc] focus:border-[#c62676] focus:ring-[#c62676]"
@@ -121,7 +121,7 @@ export default function CreateAccountPage() {
 
             {/* Password Section */}
             <div className="space-y-2">
-                <label className="text-sm font-medium text-[#333333]">Password</label>
+                <label className="text-sm font-medium text-[#333333] dark:text-white">Password</label>
                 <div className="relative">
                 <Input
                     type="password"
@@ -136,7 +136,7 @@ export default function CreateAccountPage() {
                 id="terms"
                 className="mt-0.5 border-[#cccccc] data-[state=checked]:bg-[#c62676] data-[state=checked]:border-[#c62676]"
                 />
-                <label htmlFor="terms" className="text-sm text-[#333333] leading-relaxed">
+                <label htmlFor="terms" className="text-sm text-[#333333] dark:text-white leading-relaxed">
                 I Acknowledge that I have read and understood the{" "}
                 <a href="#" className="text-[#c62676] underline hover:no-underline">
                     Terms of Use
@@ -157,7 +157,7 @@ export default function CreateAccountPage() {
             </Button>
 
             {/* Sign In Link */}
-            <div className="text-center text-sm text-[#333333]">
+            <div className="text-center text-sm text-[#333333] dark:text-white">
                 Already have an account{" "}
                 <a href="#" className="text-[#c62676] underline hover:no-underline">
                 Sign-in
@@ -171,28 +171,28 @@ export default function CreateAccountPage() {
                 size="icon"
                 className="w-12 h-12 rounded-lg border-[#cccccc] hover:bg-[#d9d9d9] bg-[#009951]"
                 >
-                <div className="w-6 h-6 bg-white rounded-sm"></div>
+                <div className="w-6 h-6 bg-white dark:bg-[#2C2C2C] rounded-sm"></div>
                 </Button>
                 <Button
                 variant="outline"
                 size="icon"
                 className="w-12 h-12 rounded-lg border-[#cccccc] hover:bg-[#d9d9d9] bg-[#999999]"
                 >
-                <div className="w-6 h-6 bg-white rounded-sm"></div>
+                <div className="w-6 h-6 bg-white dark:bg-[#2C2C2C] rounded-sm"></div>
                 </Button>
                 <Button
                 variant="outline"
                 size="icon"
                 className="w-12 h-12 rounded-lg border-[#cccccc] hover:bg-[#d9d9d9] bg-[#999999]"
                 >
-                <div className="w-6 h-6 bg-white rounded-sm"></div>
+                <div className="w-6 h-6 bg-white dark:bg-[#2C2C2C] rounded-sm"></div>
                 </Button>
                 <Button
                 variant="outline"
                 size="icon"
                 className="w-12 h-12 rounded-lg border-[#cccccc] hover:bg-[#d9d9d9] bg-[#999999]"
                 >
-                <div className="w-6 h-6 bg-white rounded-sm"></div>
+                <div className="w-6 h-6 bg-white dark:bg-[#2C2C2C] rounded-sm"></div>
                 </Button>
             </div>
             </div>
@@ -203,11 +203,11 @@ export default function CreateAccountPage() {
                 {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-sm mx-4 relative">
+          <div className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-6 w-full max-w-sm mx-4 relative">
             {/* Close button */}
             <button
               onClick={handleCancel}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+              className="absolute top-4 right-4 text-gray-400 hover:text-[#2C2C2C]"
             >
               <X className="h-5 w-5" />
             </button>
@@ -219,20 +219,20 @@ export default function CreateAccountPage() {
               
               <div className="space-y-4 text-left">
                 <div>
-                  <p className="text-sm font-medium text-gray-700 mb-1">Phone Number</p>
-                  <p className="text-sm text-gray-900">+254 {phoneNumber || "720 123 456"}</p>
+                  <p className="text-sm font-medium text-[#2C2C2C] dark:text-[#FFFFFF] mb-1">Phone Number</p>
+                  <p className="text-sm text-gray-900 dark:text-[#FFFFFF]">+254 {phoneNumber || "720 123 456"}</p>
                 </div>
                 
                 <div>
-                  <p className="text-sm font-medium text-gray-700 mb-1">Email Address</p>
-                  <p className="text-sm text-gray-900">{email || "mokua@gmail.com"}</p>
+                  <p className="text-sm font-medium text-[#2C2C2C] dark:text-[#FFFFFF] mb-1">Email Address</p>
+                  <p className="text-sm text-gray-900 dark:text-[#FFFFFF]">{email || "mokua@gmail.com"}</p>
                 </div>
               </div>
               
               <div className="flex gap-3 pt-6">
                 <button
                   onClick={handleCancel}
-                  className="flex-1 px-4 py-3 bg-gray-500 text-white rounded-full hover:bg-gray-600 transition-colors font-medium"
+                  className="flex-1 px-4 py-3 bg-gray-50 dark:bg-[#2C2C2C]0 text-white rounded-full hover:bg-gray-600 transition-colors font-medium"
                 >
                   Cancel
                 </button>

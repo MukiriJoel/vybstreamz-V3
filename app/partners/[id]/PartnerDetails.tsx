@@ -65,7 +65,7 @@ export default function PartnerDetails({id}:{id:number}) {
 
 
   return (
-    <div className="bg-[#f2f2f2]">
+    <div className="bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Main Content */}
       <main className="pt-12">
           {/* Hero Section */}
@@ -82,7 +82,7 @@ export default function PartnerDetails({id}:{id:number}) {
                             className="object-cover w-full h-full"
                         />
                     </div>
-                    <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] leading-[100%] ">{partnerDetails?.name}</h2>
+                    <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">{partnerDetails?.name}</h2>
                 </div>
             :
             <div className="flex justify-between">
@@ -93,7 +93,7 @@ export default function PartnerDetails({id}:{id:number}) {
                             className="object-cover w-full h-full"
                         />
                     </div>
-                    <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] leading-[100%] ">{partnerDetails?.name}</h2>
+                    <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">{partnerDetails?.name}</h2>
                 </div>
                 <div className="flex items-center mt-10">
                     <Button className="cursor-pointer bg-[#c62676] hover:bg-[#a91e63] text-white text-xl px-12 py-6 rounded-full font-medium">
@@ -116,10 +116,10 @@ export default function PartnerDetails({id}:{id:number}) {
             {/* Partners Section */}
             <div className="mb-8">
                 <div className="flex items-center justify-between mb-3">
-                <h3 className="text-[24px] text-[#1A1A1A] font-bold capitalize">explore plans</h3>
+                <h3 className="text-[24px] text-[#333333] dark:text-white font-bold capitalize">explore plans</h3>
                 <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                 >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -131,7 +131,7 @@ export default function PartnerDetails({id}:{id:number}) {
             </div>
 
                 {/* TABS */}
-                <div className="bg-[#f2f2f2] mb-8 pt-8">
+                <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-8 pt-8">
                         <nav className="flex space-x-8 overflow-x-auto scrollbar-hide">
                         {tabs.map((tab) => (
                             <button
@@ -142,7 +142,7 @@ export default function PartnerDetails({id}:{id:number}) {
                                 ${
                                 activeTab === tab
                                     ? "border-[#c62676] text-[#c62676]"
-                                    : "border-transparent text-[#000000 ] hover:text-[#2c2c2c] hover:border-[#cccccc]"
+                                    : "border-transparent text-[#000000 ] hover:text-[#2C2C2C] dark:text-[#FFFFFF] hover:border-[#cccccc]"
                                 }
                             `}
                             >

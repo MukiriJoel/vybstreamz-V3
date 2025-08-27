@@ -103,12 +103,12 @@ const PartnersCarousel = ({
                 <Slider  {...settings}
                     ref={sliderRef}
                     beforeChange={(_, next) => setActiveIndex(next)}
-                    className="adSlider pt-3 bg-[#f2f2f2]"
+                    className="adSlider pt-3 bg-[#F2F2F2] dark:bg-[#141414]"
                     >
                     
                     {slidesToRender.map((slide, index) => (
                         <div className="relative pb-6" key={slide.id}>
-                            <div className="bg-[#f2f2f2] h-60 sm:h-45 md:h-100 lg:h-120 xl:h-120 rounded-4xl overflow-hidden">
+                            <div className="bg-[#F2F2F2] dark:bg-[#141414] h-60 sm:h-45 md:h-100 lg:h-120 xl:h-120 rounded-4xl overflow-hidden">
                                 {/* Image Container */}
                                 
                                     <img
@@ -123,8 +123,8 @@ const PartnersCarousel = ({
                             </div>
                         
                               <div className="text-left w-full">
-                                     <h2 className="text-4xl font-semibold text-[#2C2C2C] mb-3 mt-4">{slide.name}</h2>
-                                      <p className="text-[#2C2C2C] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
+                                     <h2 className="text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-3 mt-4">{slide.name}</h2>
+                                      <p className="text-[#2C2C2C] dark:text-[#FFFFFF] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
                                       {slide.description}
                                       </p>
                               </div>

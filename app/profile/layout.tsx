@@ -14,7 +14,7 @@ const ProfileLayout = ({children}: AuthLayoutProps) => {
     
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#f2f2f2] dark:bg-[#121212]">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#F2F2F2] dark:bg-[#141414] dark:bg-[#121212]">
             <Head>
                 <title>Profile</title>
                 <meta name="description" content="Authentication page"/>
@@ -22,11 +22,11 @@ const ProfileLayout = ({children}: AuthLayoutProps) => {
             <header className="w-full flex justify-end">
                 <NavBarMini/>
             </header>
-            <main className="w-full max-w-full mx-auto bg-[#f2f2f2] min-h-[100vh]">
+            <main className="w-full max-w-full mx-auto bg-[#F2F2F2] dark:bg-[#141414] min-h-[100vh]">
                 {children}
                   
             </main>
-            <div className='w-screen lg:w-[calc(95vw-256px)] mx-auto bg-[#f2f2f2] flex-1 lg:ml-64 pt-5 lg:pt-19.5"'>
+            <div className='w-screen lg:w-[calc(95vw-256px)] mx-auto bg-[#F2F2F2] dark:bg-[#141414] flex-1 lg:ml-64 pt-5 lg:pt-19.5"'>
                <Footer/>
             </div>
     

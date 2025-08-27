@@ -135,7 +135,7 @@ const GamesSlider = () => {
 
                 {/* Hover Overlay */}
                 <div
-                  className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${
+                  className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white dark:bg-[#2C2C2C] rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${
                     index === 0
                       ? "md:hover:scale-100 ml-12 md:-translate-x-10.5 !md:hover:origin-left"
                       : "-translate-x-12"
@@ -152,13 +152,13 @@ const GamesSlider = () => {
                     {/* Top Section */}
                     <div className="text-left">
                       {/* <div className="flex items-center gap-2 mb-2">
-                        <div className="rounded-full w-4 h-4 md:w-5 md:h-5 overflow-hidden border border-gray-200">
+                        <div className="rounded-full w-4 h-4 md:w-5 md:h-5 overflow-hidden border border-gray-200 dark:border-[#2C2C2C] ">
                           <img src={item.partner} className="w-full h-full object-cover" alt="Partner" />
                         </div>
-                        <span className="text-xs text-gray-500 uppercase tracking-wide">Original</span>
+                        <span className="text-xs text-[#2C2C2C] uppercase tracking-wide">Original</span>
                       </div> */}
 
-                      <h3 className="font-extrabold text-sm md:text-lg text-[#000000] mb-1 leading-tight capitalize">
+                      <h3 className="font-extrabold text-sm md:text-lg text-black dark:text-white mb-1 leading-tight capitalize">
                         {item.title}
                       </h3>
                       {/* genres */}
@@ -166,7 +166,7 @@ const GamesSlider = () => {
                         {item.genres.map((genre, index) => (
                           <div
                             key={index}
-                            className="py-1 px-2 rounded-lg bg-[#333333] text-white !font-normal !text-[10px] capitalize"
+                            className="py-1 px-2 rounded-lg bg-[#333333] dark:bg-[#999999] text-white !font-normal !text-[10px] capitalize"
                           >
                             {genre}
                           </div>
@@ -175,14 +175,14 @@ const GamesSlider = () => {
                       <div className="py-1">
                         <RatingDisplay rating={4} />
                       </div>
-                      <p className="!text-sm !md:text-sm text-[#000000] !font-normal line-clamp-2 leading-[120%]">
+                      <p className="!text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%]">
                         {item.description}
                       </p>
 
                       {/* Bottom Action Buttons */}
                       <div className="flex items-center justify-between gap-2 mt-1 mb-3 py-2">
                         <div className="flex items-center text-left cursor-pointer">
-                          <p className="text-[12px] text-[#333333] uppercase leading-[120%] font-semibold">
+                          <p className="text-[12px] text-[#333333] dark:text-white uppercase leading-[120%] font-semibold">
                             stream on:
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
@@ -208,7 +208,7 @@ const GamesSlider = () => {
               </div>
 
               {/* Title (shown when not hovering) */}
-              <h4 className="font-semibold text-[#2C2C2C] text-xs sm:text-sm md:text-base lg:text-lg capitalize max-w-24 sm:max-w-28 md:max-w-32 lg:max-w-40 md:group-hover:opacity-0 transition-opacity duration-300">
+              <h4 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] text-xs sm:text-sm md:text-base lg:text-lg capitalize max-w-24 sm:max-w-28 md:max-w-32 lg:max-w-40 md:group-hover:opacity-0 transition-opacity duration-300">
                 {item.title}
               </h4>
             </div>

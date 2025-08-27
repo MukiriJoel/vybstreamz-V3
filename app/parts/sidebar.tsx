@@ -49,9 +49,9 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Horizontal Tabs */}
-      <div className="lg:hidden mt-10 fixed top-0 left-0 right-0 bg-white border-b border-[#E5E5E5] z-40">
+      <div className="lg:hidden mt-10 fixed top-0 left-0 right-0 bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] border-b border-[#e5e5e5] dark:border-[#333333] z-40">
         {/* Logo section */}
-        <div className="h-[60px] flex justify-center items-center border-b border-[#E5E5E5]">
+        <div className="h-[60px] flex justify-center items-center border-b border-[#e5e5e5] dark:border-[#333333]">
           <Link href={"/"}>
             <Image 
               src={"/logos/VybeStreams.png"} 
@@ -73,7 +73,7 @@ export default function Sidebar() {
                 onClick={item.label === "Logout" ? handleLogoutClick : undefined}
                 className={`
                   flex flex-col items-center justify-center min-w-[80px] px-3 py-2 rounded-lg text-center transition-colors cursor-pointer mx-1
-                  ${pathname === item.link ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
+                  ${pathname === item.link ? "bg-[#c62676] text-white" : "text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#F2F2F2] dark:bg-[#2C2C2C]"}
                   ${item.label === "Logout" ? "hover:bg-red-50 hover:text-red-600" : ""}
                 `}
               >
@@ -89,7 +89,7 @@ export default function Sidebar() {
       <div className="lg:hidden h-[120px]"></div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:block fixed top-0 left-0 h-screen border-r border-[#E5E5E5] w-64 bg-white shadow-lg z-40">
+      <aside className="hidden lg:block fixed top-0 left-0 h-screen border-r border-[#e5e5e5] dark:border-[#333333] dark:border-[#333333] w-64 bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] shadow-lg z-40">
         <div className="h-[100px] flex justify-center items-center">
           <div className="flex items-center">
             <Link href={"/"}>
@@ -112,7 +112,7 @@ export default function Sidebar() {
                 onClick={item.label === "Logout" ? handleLogoutClick : undefined}
                 className={`
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors cursor-pointer
-                  ${pathname === item.link ? "bg-[#c62676] text-white" : "text-[#2c2c2c] hover:bg-[#f2f2f2]"}
+                  ${pathname === item.link ? "bg-[#c62676] text-white" : "text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#F2F2F2] dark:bg-[#2C2C2C]"}
                   ${item.label === "Logout" ? "hover:bg-red-50 hover:text-red-600" : ""}
                 `}
               >
@@ -127,19 +127,19 @@ export default function Sidebar() {
       {/* Logout Confirmation Modal */}
       {showLogoutModal && (
         <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-100 mx-4">
+          <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-100 mx-4">
             <div className="text-center">
               <h3 className="text-xl font-semibold text-pink-600 mb-4">
                 You are about to log out !
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">
                 Are you sure you want to log out from Vybz Streams? You will have to log back in to access your account
               </p>
               
               <div className="flex gap-4 justify-center">
                 <button
                   onClick={handleCancelLogout}
-                  className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  className="px-6 py-2 bg-gray-600 dark:bg-white text-white dark:text-[#2C2C2C] rounded-lg hover:bg-gray-700 transition-colors"
                 >
                   No, Go back
                 </button>

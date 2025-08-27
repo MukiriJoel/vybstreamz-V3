@@ -17,7 +17,7 @@ export default function Home() {
   }
   return (
     <>
-      <div className="bg-[#f2f2f2]">
+      <div className="bg-[#F2F2F2] dark:bg-[#141414]">
         {/* Main Content */}
         <main className="">
           {/* Hero Section */}
@@ -27,10 +27,10 @@ export default function Home() {
             {/* Partners Section */}
             <div className="">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black">Partners</h3>
+                <h3 className="text-2xl font-bold text-black dark:text-white">Partners</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -44,12 +44,12 @@ export default function Home() {
             {/* Trending Section */}
             <div className="">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black capitalize">
+                <h3 className="text-2xl font-bold text-black dark:text-white capitalize">
                   Recently Updated
                 </h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -61,10 +61,10 @@ export default function Home() {
             {/* Recommended For You Section */}
             <div className="">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black">Kids</h3>
+                <h3 className="text-2xl font-bold text-black dark:text-white">Kids</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -76,10 +76,10 @@ export default function Home() {
             {/* Trending Section */}
             <div className="">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black">Business</h3>
+                <h3 className="text-2xl font-bold text-black dark:text-white">Business</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -91,12 +91,12 @@ export default function Home() {
             {/* Recommended For You Section */}
             <div className="">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black">
+                <h3 className="text-2xl font-bold text-black dark:text-white">
                   Digital Skills
                 </h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -108,10 +108,10 @@ export default function Home() {
             {/* Trending Section */}
             <div className="">
               <div className="flex items-center justify-between ">
-                <h3 className="text-2xl font-bold text-black">Trending</h3>
+                <h3 className="text-2xl font-bold text-black dark:text-white">Trending</h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -123,12 +123,12 @@ export default function Home() {
             {/* Recommended For You Section */}
             <div className="">
               <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black">
+                <h3 className="text-2xl font-bold text-black dark:text-white">
                   Recommended For You
                 </h3>
                 <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
                 >
                   View More
                   <MdArrowForward className="!w-[36px] !h-[36px]" />

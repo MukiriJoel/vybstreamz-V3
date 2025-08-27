@@ -63,7 +63,7 @@ const DealsSlider = () => {
           ].map((item, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5 flex flex-col"
+              className="bg-white dark:bg-[#2C2C2C] rounded-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5 flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 min-w-0 flex-1">
@@ -72,7 +72,7 @@ const DealsSlider = () => {
                     alt={item.title}
                     className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 shadow-lg rounded-lg flex-shrink-0"
                   />
-                  <span className="font-extrabold text-black capitalize text-sm sm:text-base md:text-lg truncate">
+                  <span className="font-extrabold text-black dark:text-white capitalize text-sm sm:text-base md:text-lg truncate">
                     {item.title}
                   </span>
                 </div>
@@ -81,16 +81,16 @@ const DealsSlider = () => {
                 </span>
               </div>
               
-              <p className="text-sm sm:text-base md:text-lg py-2 border-t-2 border-b-2 border-gray-300 font-normal text-[#2C2C2C] text-left mb-3 capitalize line-clamp-2 flex-grow">
+              <p className="text-sm sm:text-base md:text-lg py-2 border-t-2 border-b-2 border-gray-300 font-normal text-[#2C2C2C] dark:text-[#FFFFFF] text-left mb-3 capitalize line-clamp-2 flex-grow">
                 {item.subtitle}
               </p>
               
               <div className="mt-auto">
                 <div className="flex items-center space-x-2 mb-4">
-                  <span className="text-sm sm:text-base md:text-lg font-normal text-gray-500">
+                  <span className="text-sm sm:text-base md:text-lg font-normal text-[#2C2C2C]  dark:text-[#FFFFFF]">
                     Ksh {item.price}
                   </span>
-                  <span className="text-lg sm:text-xl md:text-2xl text-[#2C2C2C] font-extrabold mb-2">
+                  <span className="text-lg sm:text-xl md:text-2xl text-[#2C2C2C] dark:text-[#FFFFFF] font-extrabold mb-2">
                     Ksh {item.discount}
                   </span>
                 </div>

@@ -36,14 +36,14 @@ export default function RatingsComponent({
 
   return (
     <>
-    <div className="grid grid-cols-2 gap-1 bg-[#f2f2f2] mt-1 px-8">
+    <div className="grid grid-cols-2 gap-1 bg-[#F2F2F2] dark:bg-[#141414] mt-1 px-8">
      <div className="p-6 rounded-lg max-w-4xl mt-8  mb-10">
       <div className="items-center pb-1">
         {/* Left Container - Rating bars */}
         <div className="space-y-2">
           {ratingBars.map((bar) => (
             <div key={bar.label} className="flex items-center space-x-3">
-              <div className="w-12 text-sm font-medium text-gray-700 text-left">
+              <div className="w-12 text-sm font-medium text-[#2C2C2C] dark:text-[#FFFFFF] text-left">
                 {bar.label}
               </div>
               <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 flex-shrink-0" />
@@ -62,12 +62,12 @@ export default function RatingsComponent({
         
       </div>
     </div>
-    <div className="bg-[#E5E5E5] p-10 rounded-lg max-w-2xl mt-4 ml-4.5 mb-6">
+    <div className="bg-[#E5E5E5] dark:bg-[#333333] p-10 rounded-lg max-w-2xl mt-4 ml-4.5 mb-6">
       <div className="items-center">
         
         {/* Right Container - Overall rating and stars */}
         <div className="text-center">
-          <div className="text-5xl font-light text-gray-800 mb-3">
+          <div className="text-5xl font-light text-[#2C2C2C] dark:text-[#FFFFFF] mb-3">
             {overallRating}
           </div>
           <div className="flex justify-center mb-3">
@@ -84,7 +84,7 @@ export default function RatingsComponent({
               />
             ))}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-[#2C2C2C] dark:text-white">
             {totalRatings} Ratings
           </div>
         </div>

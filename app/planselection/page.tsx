@@ -32,7 +32,7 @@ export default function PlanSelection() {
 
     <div className="flex-1 max-w-lg">
     <div className="bg-[#ffffff] rounded-lg p-8 pt-16 pb-16 shadow-sm">
-      <h2 className="text-3xl font-bold text-[#333333] mb-8 text-center">Choose your Preferred Plan</h2>
+      <h2 className="text-3xl font-bold text-[#333333] dark:text-white mb-8 text-center">Choose your Preferred Plan</h2>
 
       <div className="space-y-4 mb-8">
         {plans.map((plan) => (
@@ -59,7 +59,7 @@ export default function PlanSelection() {
                   {selectedPlan === plan.id && <div className="w-2 h-2 rounded-full bg-[#ffffff]"></div>}
                 </div>
               </div>
-              <label className="text-[#333333] font-medium cursor-pointer flex-1">{plan.name}</label>
+              <label className="text-[#333333] dark:text-white font-medium cursor-pointer flex-1">{plan.name}</label>
             </div>
           </div>
         ))}
@@ -73,7 +73,7 @@ export default function PlanSelection() {
         </Button>
         <Button
           variant="outline"
-          className="flex-1 bg-[#2c2c2c] hover:bg-[#333333] text-[#ffffff] border-[#2c2c2c] font-semibold py-3 px-6 rounded-lg"
+          className="flex-1 bg-[#2c2c2c] hover:bg-[#333333] dark:bg-[#999999] text-[#ffffff] border-[#2c2c2c] font-semibold py-3 px-6 rounded-lg"
         >
           <ShoppingCart className="w-4 h-4 mr-2" />
           Add To Cart

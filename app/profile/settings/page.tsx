@@ -2,11 +2,10 @@
 
 import { useState } from "react"
 import { ChevronRight, Search, ShoppingCart, Bell, User } from "lucide-react"
-import SettingsContent from "@/app/parts/settings-content"
-// import ToggleSwitch from "@/app/parts/toggle-switch"
+import { useTheme, getThemeDisplayName } from "@/lib/context/ThemeContext";
 
 // Toggle Switch Component
-function ToggleSwitch({ enabled, onChange }) {
+function ToggleSwitch({ enabled, onChange }: { enabled: boolean; onChange: () => void }) {
   return (
     <button
       onClick={onChange}
@@ -15,7 +14,7 @@ function ToggleSwitch({ enabled, onChange }) {
       }`}
     >
       <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+        className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-[#2C2C2C] transition-transform ${
           enabled ? 'translate-x-6' : 'translate-x-1'
         }`}
       />
@@ -27,7 +26,7 @@ type SettingOption = "appTheme" | "notifications" | "autoplay" | "accountDeletio
 
 export default function SettingsPage() {
   const [selectedOption, setSelectedOption] = useState<SettingOption>("appTheme")
-  const [selectedTheme, setSelectedTheme] = useState("Light Mode")
+  const { theme, setTheme } = useTheme()
 
   // State for all notification settings
   const [notifications, setNotifications] = useState({
@@ -49,12 +48,12 @@ export default function SettingsPage() {
   })
 
   // Function to toggle a specific notification setting
-  const toggleNotification = (category, setting) => {
+  const toggleNotification = (category: keyof typeof notifications, setting: string) => {
     setNotifications(prev => ({
       ...prev,
       [category]: {
-        ...prev[category],
-        [setting]: !prev[category][setting]
+        ...(prev as any)[category],
+        [setting]: !(prev as any)[category][setting]
       }
     }))
   }
@@ -63,20 +62,20 @@ export default function SettingsPage() {
     switch (selectedOption) {
       case "appTheme":
         return (
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-6 text-[#2c2c2c]">App Theme</h2>
+          <div className="bg-white dark:bg-[#2C2C2C] p-6 rounded-lg">
+            <h2 className="text-xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white">App Theme</h2>
             <div className="space-y-3">
-              {["Light Mode", "Dark Mode", "System Defined"].map((theme) => (
+              {(['light', 'dark', 'system'] as const).map((themeOption) => (
                 <button
-                  key={theme}
-                  onClick={() => setSelectedTheme(theme)}
+                  key={themeOption}
+                  onClick={() => setTheme(themeOption)}
                   className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
-                    selectedTheme === theme
+                    theme === themeOption
                       ? "bg-[#c62676] text-white"
-                      : "bg-[#f2f2f2] text-[#2c2c2c] hover:bg-[#e5e5e5]"
+                      : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
                   }`}
                 >
-                  {theme}
+                  {getThemeDisplayName(themeOption)}
                 </button>
               ))}
             </div>
@@ -84,114 +83,106 @@ export default function SettingsPage() {
         )
       case "notifications":
         return (
-                            
-              
-                    
-                    <div className="flex">
-      {/* General Settings */}
-      
+          <div className="flex">
+            {/* Notifications Panel */}
+            <div className="w-80 bg-white dark:bg-[#2C2C2C] border-l border-[#e5e5e5] dark:border-[#333333] dark:border-gray-700 p-8">
+              <h2 className="text-xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white mb-8">Notifications</h2>
 
-      {/* Notifications Panel */}
-      <div className="w-80 bg-[#ffffff] border-l border-[#e5e5e5] p-8">
-        <h2 className="text-xl font-bold text-[#2c2c2c] mb-8">Notifications</h2>
+              <div className="space-y-8">
+                {/* Email Notifications */}
+                <div>
+                  <h3 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white mb-4">Email</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">Recommended Content</span>
+                      <ToggleSwitch 
+                        enabled={notifications.email.recommendedContent}
+                        onChange={() => toggleNotification('email', 'recommendedContent')}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">New Releases</span>
+                      <ToggleSwitch 
+                        enabled={notifications.email.newReleases}
+                        onChange={() => toggleNotification('email', 'newReleases')}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">Payment Issues</span>
+                      <ToggleSwitch 
+                        enabled={notifications.email.paymentIssues}
+                        onChange={() => toggleNotification('email', 'paymentIssues')}
+                      />
+                    </div>
+                  </div>
+                </div>
 
-        <div className="space-y-8">
-          {/* Email Notifications */}
-          <div>
-            <h3 className="font-semibold text-[#2c2c2c] mb-4">Email</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Recommended Content</span>
-                <ToggleSwitch 
-                  enabled={notifications.email.recommendedContent}
-                  onChange={() => toggleNotification('email', 'recommendedContent')}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">New Releases</span>
-                <ToggleSwitch 
-                  enabled={notifications.email.newReleases}
-                  onChange={() => toggleNotification('email', 'newReleases')}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Payment Issues</span>
-                <ToggleSwitch 
-                  enabled={notifications.email.paymentIssues}
-                  onChange={() => toggleNotification('email', 'paymentIssues')}
-                />
+                {/* SMS Notifications */}
+                <div>
+                  <h3 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white mb-4">SMS</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">Recommended Content</span>
+                      <ToggleSwitch 
+                        enabled={notifications.sms.recommendedContent}
+                        onChange={() => toggleNotification('sms', 'recommendedContent')}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">New Releases</span>
+                      <ToggleSwitch 
+                        enabled={notifications.sms.newReleases}
+                        onChange={() => toggleNotification('sms', 'newReleases')}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">Payment Issues</span>
+                      <ToggleSwitch 
+                        enabled={notifications.sms.paymentIssues}
+                        onChange={() => toggleNotification('sms', 'paymentIssues')}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* App Notifications */}
+                <div>
+                  <h3 className="font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white mb-4">App</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">Recommended Content</span>
+                      <ToggleSwitch 
+                        enabled={notifications.app.recommendedContent}
+                        onChange={() => toggleNotification('app', 'recommendedContent')}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">New Releases</span>
+                      <ToggleSwitch 
+                        enabled={notifications.app.newReleases}
+                        onChange={() => toggleNotification('app', 'newReleases')}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-gray-300">Payment Issues</span>
+                      <ToggleSwitch 
+                        enabled={notifications.app.paymentIssues}
+                        onChange={() => toggleNotification('app', 'paymentIssues')}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* SMS Notifications */}
-          <div>
-            <h3 className="font-semibold text-[#2c2c2c] mb-4">SMS</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Recommended Content</span>
-                <ToggleSwitch 
-                  enabled={notifications.sms.recommendedContent}
-                  onChange={() => toggleNotification('sms', 'recommendedContent')}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">New Releases</span>
-                <ToggleSwitch 
-                  enabled={notifications.sms.newReleases}
-                  onChange={() => toggleNotification('sms', 'newReleases')}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Payment Issues</span>
-                <ToggleSwitch 
-                  enabled={notifications.sms.paymentIssues}
-                  onChange={() => toggleNotification('sms', 'paymentIssues')}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* App Notifications */}
-          <div>
-            <h3 className="font-semibold text-[#2c2c2c] mb-4">App</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Recommended Content</span>
-                <ToggleSwitch 
-                  enabled={notifications.app.recommendedContent}
-                  onChange={() => toggleNotification('app', 'recommendedContent')}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">New Releases</span>
-                <ToggleSwitch 
-                  enabled={notifications.app.newReleases}
-                  onChange={() => toggleNotification('app', 'newReleases')}
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[#2c2c2c]">Payment Issues</span>
-                <ToggleSwitch 
-                  enabled={notifications.app.paymentIssues}
-                  onChange={() => toggleNotification('app', 'paymentIssues')}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> 
-                 
-           
         )
       case "autoplay":
         return (
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-6 text-[#2c2c2c]">Autoplay</h2>
+          <div className="bg-white dark:bg-[#2C2C2C] p-6 rounded-lg">
+            <h2 className="text-xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white">Autoplay</h2>
             <div className="space-y-3">
               <button className="w-full text-left px-4 py-3 rounded-lg bg-[#c62676] text-white">Enabled</button>
-              <button className="w-full text-left px-4 py-3 rounded-lg bg-[#f2f2f2] text-[#2c2c2c] hover:bg-[#e5e5e5]">
+              <button className="w-full text-left px-4 py-3 rounded-lg bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600">
                 Disabled
               </button>
             </div>
@@ -199,10 +190,10 @@ export default function SettingsPage() {
         )
       case "accountDeletion":
         return (
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-6 text-[#2c2c2c]">Account Deletion</h2>
+          <div className="bg-white dark:bg-[#2C2C2C] p-6 rounded-lg">
+            <h2 className="text-xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white">Account Deletion</h2>
             <div className="space-y-4">
-              <p className="text-[#696969] text-sm">
+              <p className="text-[#696969] dark:text-gray-400 text-sm">
                 Deleting your account will permanently remove all your data and cannot be undone.
               </p>
               <button className="w-full px-4 py-3 rounded-lg bg-[#ec221f] text-white hover:bg-red-600 transition-colors">
@@ -217,30 +208,26 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen w-screen lg:w-[calc(95vw-256px)] bg-[#f2f2f2] pt-8">
-      {/* Header */}
-      
-
+    <div className="min-h-screen w-screen lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414] pt-8">
       <div className="flex">       
-
         {/* Main Content */}
         <div className="flex-1 p-6">
           <div className="grid grid-cols-2 gap-6">
             {/* General Settings */}
-            <div className="bg-white rounded-lg p-6">
-              <h1 className="text-2xl font-semibold mb-6 text-[#2c2c2c]">General</h1>
+            <div className="bg-white dark:bg-[#2C2C2C] dark:bg-bgTheme-card rounded-lg p-6">
+              <h1 className="text-2xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white">General</h1>
               <div className="space-y-4">
                 <button
                   onClick={() => setSelectedOption("appTheme")}
                   className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "appTheme"
                       ? "bg-[#c62676] text-white"
-                      : "bg-[#f2f2f2] text-[#2c2c2c] hover:bg-[#e5e5e5]"
+                      : "bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
                   }`}
                 >
                   <div>
                     <div className="font-medium">App Theme</div>
-                    <div className="text-sm opacity-75">Light Mode</div>
+                    <div className="text-sm text-[#2C2C2C] dark:text-white">{getThemeDisplayName(theme)}</div>
                   </div>
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -250,12 +237,12 @@ export default function SettingsPage() {
                   className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "notifications"
                       ? "bg-[#c62676] text-white"
-                      : "bg-[#f2f2f2] text-[#2c2c2c] hover:bg-[#e5e5e5]"
+                      : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
                   }`}
                 >
                   <div>
                     <div className="font-medium">Notifications</div>
-                    <div className="text-sm opacity-75">On</div>
+                    <div className="text-sm text-[#2C2C2C] dark:text-white">On</div>
                   </div>
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -265,12 +252,12 @@ export default function SettingsPage() {
                   className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "autoplay"
                       ? "bg-[#c62676] text-white"
-                      : "bg-[#f2f2f2] text-[#2c2c2c] hover:bg-[#e5e5e5]"
+                      : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
                   }`}
                 >
                   <div>
                     <div className="font-medium">Autoplay</div>
-                    <div className="text-sm opacity-75">Enabled</div>
+                    <div className="text-sm text-[#2C2C2C] dark:text-white">Enabled</div>
                   </div>
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -280,7 +267,7 @@ export default function SettingsPage() {
                   className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "accountDeletion"
                       ? "bg-[#c62676] text-white"
-                      : "bg-[#f2f2f2] text-[#2c2c2c] hover:bg-[#e5e5e5]"
+                      : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
                   }`}
                 >
                   <div>

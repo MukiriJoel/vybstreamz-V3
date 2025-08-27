@@ -384,7 +384,7 @@ export default function MusicPlayer({
           <div className="w-4 h-4 border border-white"></div>
           <span>Switch To Video</span>
         </Button> */}
-        <Button className="bg-[#2C2C2C] hover:bg-white/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
+        <Button className="bg-[#2C2C2C] hover:bg-white dark:bg-[#2C2C2C]/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
                               <MdOutlineVideocam className="mr-1" />
                               Switch To Video
                             </Button>
@@ -397,7 +397,7 @@ export default function MusicPlayer({
         {/* Progress Bar */}
         <div className="mb-4">
           <div 
-            className="seek-bar w-full h-2 bg-white/30 rounded-full cursor-pointer relative group"
+            className="seek-bar w-full h-2 bg-white dark:bg-[#2C2C2C]/30 rounded-full cursor-pointer relative group"
             onMouseDown={handleSeekMouseDown}
             onMouseMove={handleSeekMouseMove}
             onMouseUp={handleSeekMouseUp}
@@ -427,7 +427,7 @@ export default function MusicPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMuted(!isMuted)}
-                className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
+                className="w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
               >
                 {isMuted || volume === 0 ? (
                   <VolumeX className="h-5 w-5 text-white" />
@@ -441,7 +441,7 @@ export default function MusicPlayer({
                 <div className={`transition-all duration-200 ${
                 showVolumeSlider ? 'opacity-100 w-24' : 'opacity-0 w-0'
               } overflow-hidden`}>
-                <div className="bg-white/20 backdrop-blur-sm rounded-md p-2">
+                <div className="bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm rounded-md p-2">
                   <Slider
                     orientation="horizontal"
                     className="w-20 h-4"
@@ -465,7 +465,7 @@ export default function MusicPlayer({
               variant="ghost"
               size="icon"
               onClick={handlePlayPause}
-              className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
+              className="w-12 h-12 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
             >
               {isPlaying ? (
                 <Pause className="h-6 w-6 text-white" />
@@ -479,7 +479,7 @@ export default function MusicPlayer({
               variant="ghost"
               size="icon"
               onClick={handleSkip}
-              className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
+              className="w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
             >
               <SkipForward className="h-5 w-5 text-white" />
             </Button>
@@ -490,7 +490,7 @@ export default function MusicPlayer({
             variant="ghost"
             size="icon"
             onClick={toggleFullscreen}
-            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
+            className="w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
           >
             {isFullscreen ? (
               <Minimize className="h-5 w-5 text-white" />
@@ -506,7 +506,7 @@ export default function MusicPlayer({
         variant="ghost"
         size="icon"
         onClick={handlePlayPause}
-        className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 ${
+        className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30 transition-all duration-300 ${
           (isHovered && showControls) || !isPlaying ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         } z-20`}
       >
@@ -519,13 +519,13 @@ export default function MusicPlayer({
     </div>
 
        {/* Trending Section */}
-        <main className="bg-[#f2f2f2]">
+        <main className="bg-[#F2F2F2] dark:bg-[#141414]">
           <section className="px-6 pb-3 pt-8 px-8">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-black">Similar Videos</h3>
+              <h3 className="text-2xl font-bold text-black dark:text-white">Similar Videos</h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium" onClick={()=>onHandleClick()}
+                className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -542,7 +542,7 @@ export default function MusicPlayer({
                 { title: "Awinja's Perfect ...", category: "Comedy" },
                 { title: "Awinja's Perfect ...", category: "Comedy" },
               ].map((item, index) => (
-                <div key={index} className="flex-shrink-0 w-60 bg-white rounded-lg overflow-hidden shadow-sm">
+                <div key={index} className="flex-shrink-0 w-60 bg-white dark:bg-[#2C2C2C] rounded-lg overflow-hidden shadow-sm">
                   <div className="relative">
                     <img
                       src={`/young-people-steps.png`}
@@ -556,7 +556,7 @@ export default function MusicPlayer({
                     </div>
                   </div>
                   <div className="p-3">
-                    <h4 className="font-medium text-black text-sm mb-1">{item.title}</h4>
+                    <h4 className="font-medium text-black dark:text-white text-sm mb-1">{item.title}</h4>
                     <p className="text-xs text-[#696969]">{item.category}</p>
                   </div>
                 </div>

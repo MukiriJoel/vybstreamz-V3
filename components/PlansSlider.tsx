@@ -34,11 +34,11 @@ const PlansSlider = () => {
           ].map((item, index) => (
             <div 
               key={index} 
-              className="cursor-pointer bg-[#E5E5E5] min-h-40  md:min-h-55 sm:min-h-45  rounded-2xl flex-shrink-0 w-42 sm:w-46 md:w-54 lg:w-62 p-3 sm:p-3 md:p-5 flex flex-col"
+              className="cursor-pointer bg-[#E5E5E5] dark:bg-[#333333] min-h-40  md:min-h-55 sm:min-h-45  rounded-2xl flex-shrink-0 w-42 sm:w-46 md:w-54 lg:w-62 p-3 sm:p-3 md:p-5 flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 min-w-0 flex-1 text-left">
-                  <span className="leading-[120%] lg:text-xl sm:text-lg !font-normal text-black capitalize md:text-xl line-clamp-2">
+                  <span className="leading-[120%] lg:text-xl sm:text-lg !font-normal text-black dark:text-white capitalize md:text-xl line-clamp-2">
                     {item.title}
                   </span>
                 </div>
@@ -47,7 +47,7 @@ const PlansSlider = () => {
               
               
                 <div className="flex h-full items-end space-x-2 mt-0">
-                  <span className="text-xl lg:text-2xl sm:text-xl !font-extrabold text-[#2C2C2C]">
+                  <span className="text-xl lg:text-2xl sm:text-xl !font-extrabold text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Ksh {item.price}
                   </span>
                

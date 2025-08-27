@@ -12,13 +12,13 @@ export default function EducationListing() {
 
   return (
     <>
-      <div className="bg-[#f2f2f2]">
+      <div className="bg-[#F2F2F2] dark:bg-[#141414]">
         {/* Main Content */}
         <main className="">
           <VybzCarouselEducation tabs={tabs} activeTab={activeTab} />
           {/* Content Navigation */}
           {/* TABS */}
-          <div className="bg-[#f2f2f2] mb-8 pt-8  ">
+          <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-8 pt-8  ">
             <nav className="flex space-x-8 overflow-x-auto justify-center scrollbar-hide">
               {tabs.map((tab) => (
                 <button
@@ -29,7 +29,7 @@ export default function EducationListing() {
                                 ${
                                   activeTab === tab
                                     ? "border-[#c62676] text-[#c62676]"
-                                    : "border-transparent text-[#000000 ] hover:text-[#2c2c2c] hover:border-[#cccccc]"
+                                    : "border-transparent text-[#000000 ] hover:text-[#2C2C2C] dark:text-[#FFFFFF] hover:border-[#cccccc]"
                                 }
                             `}
                 >
@@ -46,12 +46,12 @@ export default function EducationListing() {
               {/* trending Section */}
               <div className="mb-8 pt-1">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Trending 
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -63,12 +63,12 @@ export default function EducationListing() {
               {/* trending Section */}
               <div className="mb-8 pt-1">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Engaging 
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -82,12 +82,12 @@ export default function EducationListing() {
               {/* recent Section */}
               <div className="mb-8 pt-1">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Recently Updated
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -101,12 +101,12 @@ export default function EducationListing() {
               {/* top ranked Section */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Top ranked 
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -119,12 +119,12 @@ export default function EducationListing() {
               {/* trending Section */}
               <div className="mb-8 pt-1">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Trending 
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -136,12 +136,12 @@ export default function EducationListing() {
               {/* trending Section */}
               <div className="mb-8 pt-1">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Engaging 
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -155,12 +155,12 @@ export default function EducationListing() {
               {/* recent Section */}
               <div className="mb-8 pt-1">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                     Recently Updated
                   </h3>
                   <Button
                     variant="ghost"
-                    className="text-[#1A1A1A] text-[16px] !font-medium"
+                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
                   >
                     View More
                     <MdArrowForward className="!w-[36px] !h-[36px]" />

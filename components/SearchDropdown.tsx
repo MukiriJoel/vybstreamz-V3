@@ -75,28 +75,28 @@ const SearchDropdown = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={handleInputFocus}
             placeholder="Search for a help topic"
-            className="w-full h-14 pl-6 pr-14 text-gray-700 placeholder-gray-500 bg-white border-2 border-gray-300 rounded-full focus:outline-none focus:border-gray-400 transition-colors duration-200 text-lg"
+            className="w-full h-14 pl-6 pr-14 text-[#2C2C2C] dark:text-[#FFFFFF] placeholder-gray-500 bg-white dark:bg-[#2C2C2C] border-2 border-gray-300 rounded-full focus:outline-none focus:border-gray-400 transition-colors duration-200 text-lg"
           />
           <button
             type="submit"
             className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
           >
-            <Search className="w-5 h-5 text-gray-600" />
+            <Search className="w-5 h-5 text-[#2C2C2C]" />
           </button>
         </div>
       </form>
 
       {/* Dropdown */}
       {isDropdownOpen && filteredResults.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-2xl shadow-lg overflow-hidden z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#2C2C2C] border-2 border-gray-200 dark:border-[#2C2C2C]  rounded-2xl shadow-lg overflow-hidden z-50">
           <div className="max-h-80 overflow-y-auto">
             {filteredResults.map((result, index) => (
               <div
                 key={index}
                 onClick={() => handleSuggestionClick(result)}
-                className="flex items-center justify-between px-6 py-4 hover:bg-gray-50 cursor-pointer transition-colors duration-200 border-b border-gray-100 last:border-b-0"
+                className="flex items-center justify-between px-6 py-4 hover:bg-gray-50 dark:bg-[#2C2C2C] cursor-pointer transition-colors duration-200 border-b border-gray-100 last:border-b-0"
               >
-                <span className="text-gray-700 text-lg">{result}</span>
+                <span className="text-[#2C2C2C] dark:text-[#FFFFFF] text-lg">{result}</span>
                 <ChevronRight className="w-5 h-5 text-gray-400" />
               </div>
             ))}

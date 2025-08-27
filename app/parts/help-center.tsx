@@ -62,7 +62,7 @@ export default function HelpCenter() {
             />
             <Button
               size="icon"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent hover:bg-[#e5e5e5] text-[#696969]"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent hover:bg-[#E5E5E5] dark:bg-[#333333] text-[#696969]"
             >
               <Search className="h-5 w-5" />
             </Button>
@@ -70,7 +70,7 @@ export default function HelpCenter() {
         </div>
 
         {/* Help Center Title */}
-        <h1 className="text-4xl md:text-5xl font-bold text-[#2c2c2c] mb-12">Help Center</h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-12">Help Center</h1>
 
         {/* Help Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -84,7 +84,7 @@ export default function HelpCenter() {
                 className={`w-full justify-between text-left p-6 h-auto rounded-lg transition-colors ${
                   selectedCategory === category
                     ? "bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff]"
-                    : "bg-[#f8f8f8] hover:bg-[#e5e5e5] text-[#2c2c2c] border border-[#e5e5e5]"
+                    : "bg-[#f8f8f8] hover:bg-[#E5E5E5] dark:bg-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] border border-[#e5e5e5] dark:border-[#333333]"
                 }`}
               >
                 <span className="text-lg font-medium">{category}</span>
@@ -99,7 +99,7 @@ export default function HelpCenter() {
               <Button
                 key={index}
                 variant="outline"
-                className="w-full justify-between text-left p-6 h-auto bg-[#ffffff] hover:bg-[#f2f2f2] text-[#2c2c2c] border-[#e5e5e5] rounded-lg"
+                className="w-full justify-between text-left p-6 h-auto bg-[#ffffff] hover:bg-[#F2F2F2] dark:bg-[#141414] text-[#2C2C2C] dark:text-[#FFFFFF] border-[#e5e5e5] dark:border-[#333333] rounded-lg"
               >
                 <span className="text-lg font-medium">{question}</span>
                 <ChevronRight className="h-5 w-5 ml-2 flex-shrink-0 text-[#696969]" />

@@ -8,7 +8,7 @@ export default function Home() {
     <>
     <Navbar isDarkBackground={false} />
 
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-[#2C2C2C]">
       {/* Header */}
       
 
@@ -57,7 +57,7 @@ export default function Home() {
           </Button>
           <Button
             variant="outline"
-            className="border-[#4d4d4d] text-white hover:bg-white/10 px-6 py-2 rounded-full bg-transparent"
+            className="border-[#4d4d4d] text-white hover:bg-white dark:bg-[#2C2C2C]/10 px-6 py-2 rounded-full bg-transparent"
           >
             <Bookmark className="h-4 w-4 mr-2" />
             Save
@@ -66,7 +66,7 @@ export default function Home() {
         
         {/* Audio Controls */}
         <div className="flex items-center gap-4 mb-4">
-          <Button className="bg-[#333333] hover:bg-[#333333]/90 text-white px-4 py-2 rounded-md text-sm">
+          <Button className="bg-[#333333] dark:bg-[#999999] hover:bg-[#333333] dark:bg-[#999999]/90 text-white px-4 py-2 rounded-md text-sm">
             Switch To Audio
           </Button>
           <Button variant="ghost" size="icon" className="text-white">
@@ -79,7 +79,7 @@ export default function Home() {
           <span className="text-white text-sm">1:25</span>
           <div className="flex-1 bg-[#4d4d4d] rounded-full h-2 relative">
             <div className="bg-[#c62676] h-2 rounded-full w-1/4 relative">
-              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full"></div>
+              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white dark:bg-[#2C2C2C] rounded-full"></div>
             </div>
           </div>
           <span className="text-white text-sm">2:45</span>
@@ -90,8 +90,8 @@ export default function Home() {
 </div>
 
         {/* Episodes Section */}
-        <div className="bg-[#f2f2f2] rounded-lg p-6 mb-8">
-          <h3 className="text-xl font-semibold text-[#333333] mb-6">Episodes</h3>
+        <div className="bg-[#F2F2F2] dark:bg-[#141414] rounded-lg p-6 mb-8">
+          <h3 className="text-xl font-semibold text-[#333333] dark:text-white mb-6">Episodes</h3>
           <div className="space-y-4">
             {[
               { title: "Ukichelewa", subtitle: "Edin Finky Ft Lilian Okemo", duration: "4:33" },
@@ -102,7 +102,7 @@ export default function Home() {
             ].map((episode, index) => (
               <div key={index} className="flex items-center justify-between py-2">
                 <div>
-                  <h4 className="font-medium text-[#333333]">{episode.title}</h4>
+                  <h4 className="font-medium text-[#333333] dark:text-white">{episode.title}</h4>
                   <p className="text-sm text-[#808080]">{episode.subtitle}</p>
                 </div>
                 <span className="text-sm text-[#808080]">{episode.duration}</span>
@@ -115,7 +115,7 @@ export default function Home() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-white">Partners</h3>
-            <Button variant="ghost" className="text-white hover:bg-white/10">
+            <Button variant="ghost" className="text-white hover:bg-white dark:bg-[#2C2C2C]/10">
               View More →
             </Button>
           </div>
@@ -127,13 +127,13 @@ export default function Home() {
               { name: "Showmax", logo: "/generic-streaming-logo.png" },
               { name: "GoTV", logo: "/gotv-logo.png" },
             ].map((partner, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 flex flex-col items-center justify-center h-24">
+              <div key={index} className="bg-white dark:bg-[#2C2C2C] rounded-lg p-4 flex flex-col items-center justify-center h-24">
                 <img
                   src={partner.logo || "/placeholder.svg"}
                   alt={partner.name}
                   className="h-12 w-12 object-contain mb-2"
                 />
-                <span className="text-sm font-medium text-[#333333]">{partner.name}</span>
+                <span className="text-sm font-medium text-[#333333] dark:text-white">{partner.name}</span>
               </div>
             ))}
           </div>
@@ -143,7 +143,7 @@ export default function Home() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-white">Trending</h3>
-            <Button variant="ghost" className="text-white hover:bg-white/10">
+            <Button variant="ghost" className="text-white hover:bg-white dark:bg-[#2C2C2C]/10">
               View More →
             </Button>
           </div>
@@ -173,7 +173,7 @@ export default function Home() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-semibold text-white">Digital Skills</h3>
-            <Button variant="ghost" className="text-white hover:bg-white/10">
+            <Button variant="ghost" className="text-white hover:bg-white dark:bg-[#2C2C2C]/10">
               View More →
             </Button>
           </div>

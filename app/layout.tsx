@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 import localFont from 'next/font/local'
 import { AuthProvider } from './context/AuthContext'
+import { ThemeProvider } from '@/lib/context/ThemeContext'
 
 export const metadata: Metadata = {
   title: 'Vybz Streams',
@@ -66,7 +65,9 @@ html {
       </head>
       <body className={proximaFont.className}>
         <AuthProvider>
+          <ThemeProvider>
            {children}
+          </ThemeProvider>
         </AuthProvider>
        
         </body>

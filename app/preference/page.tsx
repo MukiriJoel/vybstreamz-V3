@@ -58,11 +58,11 @@ export default function PreferencePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] px-4 py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#2c2c2c] mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">
             Help us understand your preference
           </h1>
           <p className="text-lg sm:text-xl text-[#999999]">Explore, compare, vibe – without switching apps</p>
@@ -81,7 +81,7 @@ export default function PreferencePage() {
                 ${
                   selectedGenres.includes(genre)
                     ? "bg-[#c62676] text-white shadow-lg"
-                    : "bg-[#e5e5e5] text-[#2c2c2c] hover:bg-[#d9d9d9]"
+                    : "bg-[#E5E5E5] dark:bg-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#d9d9d9]"
                 }
               `}
             >

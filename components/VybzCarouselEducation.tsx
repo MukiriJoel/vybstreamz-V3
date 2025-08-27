@@ -217,7 +217,7 @@ const VybzCarouselEducation = ({
                         <div className="flex flex-col flex-wrap items-end gap-4">
                           {/* Audio/Video Controls */}
                           <div className="flex items-center gap-3">
-                            {/* <Button className="bg-[#2C2C2C] hover:bg-white/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
+                            {/* <Button className="bg-[#2C2C2C] hover:bg-white dark:bg-[#2C2C2C]/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
                               <MdOutlineVideocam className="mr-1" />
                               Switch To Video
                             </Button> */}
@@ -243,7 +243,7 @@ const VybzCarouselEducation = ({
                     </Button>
                     <Button
                       variant="outline"
-                      className="border-white/20 text-xs text-white hover:bg-white/20 hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                      className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C]/20 hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                     >
                       <Bookmark className="h-4 w-4 mr-2" />
                       Save
@@ -251,19 +251,19 @@ const VybzCarouselEducation = ({
                   </div>
 
                   {/* Progress Bar */}
-                  {activeTab==="Audio Book"?
+                  {/* {activeTab==="Audio Book"?
                     <div className="flex items-center gap-4 mt-3 mb-4">
                     <span className="text-white text-sm font-medium">1:25</span>
-                    <div className="flex-1 bg-white/20 rounded-full h-1.5 relative cursor-pointer">
+                    <div className="flex-1 bg-white dark:bg-[#2C2C2C]/20 rounded-full h-1.5 relative cursor-pointer">
                       <div className="bg-[#C62676] h-1.5 rounded-full w-1/3 relative">
-                        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+                        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white dark:bg-[#2C2C2C] rounded-full shadow-sm"></div>
                       </div>
                     </div>
                     <span className="text-white text-sm font-medium">2:45</span>
                   </div>
                   :
                   <></>  
-                }
+                } */}
                   
 
                    {/* Dots Navigation */}

@@ -17,7 +17,7 @@ import VybzCarouselMain from "@/components/VybzCarouselMain";
 export default function GamesPage() {
 
   return (
-    <div className="bg-[#f2f2f2]">
+    <div className="bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Main Content */}
       <main className="">
         <VybzCarouselMain/>
@@ -27,8 +27,8 @@ export default function GamesPage() {
           {/* Partners Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-3">
-                <h3 className="text-[24px] text-[#1A1A1A] font-bold">Partners</h3>
-                <Button variant="ghost" className="text-[#1A1A1A] text-[16px] !font-medium">
+                <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Partners</h3>
+                <Button variant="ghost" className="text-[#333333] dark:text-white text-[16px] !font-medium">
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]"/>
                 </Button>
@@ -53,7 +53,7 @@ export default function GamesPage() {
                         alt={partner.name}
                         className="h-[150px] w-[150px] object-contain mb-2 rounded-4xl"
                     />
-                    <span className="text-xl font-semibold text-[#2C2C2C]">{partner.name}</span>
+                    <span className="text-xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF]">{partner.name}</span>
                     </div>
                 ))}
                 </div>
@@ -63,12 +63,12 @@ export default function GamesPage() {
           {/* top ranked Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                 Top ranked Games
               </h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -81,8 +81,8 @@ export default function GamesPage() {
           {/* trending Section */}
           <div className="mb-8 pt-1">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-[24px] text-[#1A1A1A] font-bold">Trending Games</h3>
-             <Button variant="ghost" className="text-[#1A1A1A] text-[16px] !font-medium">
+            <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Trending Games</h3>
+             <Button variant="ghost" className="text-[#333333] dark:text-white text-[16px] !font-medium">
               View More
               <MdArrowForward className="!w-[36px] !h-[36px]"/> 
             </Button>
@@ -94,8 +94,8 @@ export default function GamesPage() {
           {/* trending Section */}
           <div className="mb-8 pt-1">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">Engaging Games</h3>
-              <Button variant="ghost" className="text-[#1A1A1A] text-[16px] !font-medium">
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Engaging Games</h3>
+              <Button variant="ghost" className="text-[#333333] dark:text-white text-[16px] !font-medium">
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]"/> 
               </Button>
@@ -108,8 +108,8 @@ export default function GamesPage() {
           {/* recent Section */}
           <div className="mb-8 pt-1">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">Recently Updated</h3>
-              <Button variant="ghost" className="text-[#1A1A1A] text-[16px] !font-medium">
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Recently Updated</h3>
+              <Button variant="ghost" className="text-[#333333] dark:text-white text-[16px] !font-medium">
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]"/> 
               </Button>

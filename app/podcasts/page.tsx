@@ -159,7 +159,7 @@ const PodcastPlayer: React.FC = () => {
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Header */}
      <main className="">
           {/* Hero Section */}
@@ -169,8 +169,8 @@ const PodcastPlayer: React.FC = () => {
         <div className="p-8 max-w-8xl mx-auto">
           {/* Episodes Section */}
 
-          <div className="bg-white rounded-lg p-6 ">
-            <h3 className="text-[14px] !font-extrabold text-[#4D4D4D] mb-6">
+          <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 ">
+            <h3 className="text-[14px] !font-extrabold text-[#4D4D4D] dark:text-white mb-6">
               Episodes
             </h3>
             <div className="space-y-4">
@@ -195,17 +195,17 @@ const PodcastPlayer: React.FC = () => {
               ].map((episode, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between py-1 border-b"
+                  className="flex items-center justify-between py-1 border-b border-[#e5e5e5] dark:!border-[#333333]"
                 >
                   <div>
-                    <h4 className="font-semibold text-[14px] text-[#2C2C2C]">
+                    <h4 className="font-semibold text-[14px] text-[#2C2C2C] dark:text-[#FFFFFF]">
                       {episode.title}
                     </h4>
-                    <p className="text-[12px] !font-normal text-[#4D4D4D]">
+                    <p className="text-[12px] !font-normal text-[#4D4D4D] dark:text-white">
                       {episode.subtitle}
                     </p>
                   </div>
-                  <span className="text-sm text-[#4D4D4D]">
+                  <span className="text-sm text-[#4D4D4D] dark:text-white">
                     {episode.duration}
                   </span>
                 </div>
@@ -216,10 +216,10 @@ const PodcastPlayer: React.FC = () => {
           {/* Partners Section */}
           <div className="pt-2">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">Partners</h3>
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Partners</h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -233,12 +233,12 @@ const PodcastPlayer: React.FC = () => {
           {/* Trending Section */}
           <div className=" pt-10">
             <div className="flex items-center justify-between ">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                 Trending
               </h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
@@ -250,10 +250,10 @@ const PodcastPlayer: React.FC = () => {
           {/* albums Section */}
           <div className=" pt-1">
             <div className="flex items-center justify-between ">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">Digital Skills</h3>
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Digital Skills</h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
               >
                 View More
                 <MdArrowForward className="!w-[36px] !h-[36px]" />

@@ -63,7 +63,7 @@ export default function ArtistDetails({id}:{id:number}) {
 
 
   return (
-    <div className="bg-[#f2f2f2]">
+    <div className="bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Main Content */}
       <main className="pt-12">
           {/* Hero Section */}
@@ -73,8 +73,8 @@ export default function ArtistDetails({id}:{id:number}) {
               <img src={artistDetails?.image} className="w-full h-full object-cover" alt=''/>
             </div>
 
-            <h2 className="text-4xl font-semibold text-[#2C2C2C] mb-3 mt-4">{artistDetails?.title}</h2>
-            <p className="text-[#2C2C2C] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
+            <h2 className="text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-3 mt-4">{artistDetails?.title}</h2>
+            <p className="text-[#2C2C2C] dark:text-[#FFFFFF] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
             {artistDetails?.description}
             </p>
 
@@ -87,10 +87,10 @@ export default function ArtistDetails({id}:{id:number}) {
           {/* Partners Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">Partners</h3>
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Partners</h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
                 onClick={()=>onHandleClick()}
               >
                 View More
@@ -105,12 +105,12 @@ export default function ArtistDetails({id}:{id:number}) {
           {/* top ranked Section */}
           <div className="mb-8 pt-1">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
                 Top ranked Music
               </h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
                 onClick={()=>onHandleClick()}
               >
                 View More
@@ -123,10 +123,10 @@ export default function ArtistDetails({id}:{id:number}) {
           {/* albums Section */}
           <div className="mb-8 pt-1">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#1A1A1A] font-bold">Albums</h3>
+              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Albums</h3>
               <Button
                 variant="ghost"
-                className="text-[#1A1A1A] text-[16px] !font-medium"
+                className="text-[#333333] dark:text-white text-[16px] !font-medium"
                 onClick={()=>onHandleClick()}
               >
                 View More

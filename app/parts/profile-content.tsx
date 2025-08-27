@@ -55,7 +55,7 @@ export default function ProfileContent() {
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (event:any) => {
     const file = event.target.files[0];
     if (file) {
       console.log('File selected:', file.name);
@@ -64,11 +64,11 @@ export default function ProfileContent() {
     }
   };
 
-  const handleDragOver = (e) => {
+  const handleDragOver = (e:any) => {
     e.preventDefault();
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e:any) => {
     e.preventDefault();
     const files = e.dataTransfer.files;
     if (files.length > 0) {
@@ -95,7 +95,7 @@ export default function ProfileContent() {
   return (
     <div className="py-4 ">
       {/* Profile Header */}
-      <div className="bg-white flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-8 py-6 ">
+      <div className="bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-8 py-6 ">
         <div onClick={openPopup} className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0">
           <img src="/logos/user-profile-illustration.png" alt="Profile" className="w-full h-full object-cover" />
           <div className="imgOverlay absolute w-40 h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[191px] sm:inset-y-[200px] lg:inset-y-[129px] ">
@@ -105,10 +105,10 @@ export default function ProfileContent() {
           </div>
         </div>
         <div>
-          <h1 className="text-4xl font-extrabold text-[#2c2c2c] mb-2">My Profile</h1>
-          <p className="text-[#2C2C2C] text-base !font-normal">View and edit your profile details below</p>
+          <h1 className="text-4xl font-extrabold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">My Profile</h1>
+          <p className="text-[#2C2C2C] dark:text-[#FFFFFF] text-base !font-normal">View and edit your profile details below</p>
           {/* Tabs */}
-      <div className="bg-white mb-8 pt-8">
+      <div className="bg-white dark:bg-[#2C2C2C] mb-8 pt-8">
         <nav className="flex space-x-8 overflow-x-auto ">
           {tabs.map((tab) => (
             <button
@@ -119,7 +119,7 @@ export default function ProfileContent() {
                 ${
                   activeTab === tab
                     ? "border-[#c62676] text-[#c62676]"
-                    : "border-transparent text-[#000000 ] hover:text-[#2c2c2c] hover:border-[#cccccc]"
+                    : "border-transparent text-[#000000 ] hover:text-[#2C2C2C] dark:text-[#FFFFFF] hover:border-[#cccccc]"
                 }
               `}
             >
@@ -142,13 +142,13 @@ export default function ProfileContent() {
           />
           
           {/* Popup Content */}
-          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8">
+          <div className="relative bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8">
             {/* Close Button */}
             <button 
               onClick={closePopup}
               className="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors"
             >
-              <MdClose className="w-6 h-6 text-gray-500" />
+              <MdClose className="w-6 h-6 text-[#2C2C2C]" />
             </button>
 
             {/* Upload Area */}
@@ -171,7 +171,7 @@ export default function ProfileContent() {
               <h3 className="text-lg font-medium text-pink-500 mb-2">
                 Drag and drop your image here
               </h3>
-              <p className="text-gray-500 mb-6">
+              <p className="text-[#2C2C2C] mb-6">
                 Or browse files in your computer
               </p>
 
@@ -196,18 +196,18 @@ export default function ProfileContent() {
       {/* Subscriptions Content */}
       {activeTab === "Subscriptions" && (
         <div className="p-8">
-          <h2 className="text-2xl font-bold text-[#2c2c2c] mb-6">All Subscription Plans</h2>
+          <h2 className="text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">All Subscription Plans</h2>
 
           {/* Desktop Table */}
           <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="">
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C]"></th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C]">Amount</th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C]">Expiry Date</th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C]">Status</th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C]">Action</th>
+                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]"></th>
+                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">Amount</th>
+                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">Expiry Date</th>
+                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">Status</th>
+                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -223,13 +223,13 @@ export default function ProfileContent() {
                           />
                         </div>
                         <div>
-                          <h3 className="font-bold text-[#2c2c2c]">{subscription.name}</h3>
-                          <p className="text-sm font-semibold text-[#2C2C2C]">{subscription.description}</p>
+                          <h3 className="font-bold text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.name}</h3>
+                          <p className="text-sm font-semibold text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.description}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-6 px-4 text-[#2c2c2c] font-normal">{subscription.amount}</td>
-                    <td className="py-6 px-4 text-[#2c2c2c]">{subscription.expiryDate}</td>
+                    <td className="py-6 px-4 text-[#2C2C2C] dark:text-[#FFFFFF] font-normal">{subscription.amount}</td>
+                    <td className="py-6 px-4 text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.expiryDate}</td>
                     <td className="py-6 px-4">
                       <span className="inline-flex items-center">
                         <span className="w-2 h-2 bg-[#06a54c] rounded-full mr-2"></span>
@@ -240,7 +240,7 @@ export default function ProfileContent() {
                       {subscription.showAction && (
                         <Button
                           variant="outline"
-                          className="cursor-pointer border-[#2C2C2C] text-[#2c2c2c] text-base hover:bg-[#f2f2f2] bg-transparent rounded-sm"
+                          className="cursor-pointer border-[#2C2C2C] dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
                           onClick={()=>onUnsubscribeClick()}
                         >
                           Unsubscribe
@@ -255,12 +255,12 @@ export default function ProfileContent() {
              {/* Logout Confirmation Modal */}
               {showUnsubscribeModal && (
                 <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
-                  <div className="bg-white rounded-lg p-6 w-100 mx-4">
+                  <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-100 mx-4">
                     <div className="text-center">
                       <h3 className="text-xl font-semibold text-pink-600 mb-4">
                         Unsubscribe from Plan
                       </h3>
-                      <p className="text-gray-600 mb-6">
+                      <p className="text-[#2C2C2C] dark:text-[#FFFFFF]mb-6">
                         Are you sure you want to unsubscribe from this plan. You will lose access to premium content if you unsubscribe
                       </p>
                       
@@ -287,7 +287,7 @@ export default function ProfileContent() {
           {/* Mobile Cards */}
           <div className="lg:hidden space-y-4">
             {subscriptions.map((subscription) => (
-              <div key={subscription.id} className="bg-white rounded-lg p-6 shadow-sm border border-[#e5e5e5]">
+              <div key={subscription.id} className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 shadow-sm border border-[#e5e5e5] dark:border-[#333333]">
                 <div className="flex items-start space-x-4 mb-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                     <img
@@ -297,7 +297,7 @@ export default function ProfileContent() {
                     />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-medium text-[#2c2c2c] mb-1">{subscription.name}</h3>
+                    <h3 className="font-medium text-[#2C2C2C] dark:text-[#FFFFFF] mb-1">{subscription.name}</h3>
                     <p className="text-sm text-[#696969]">{subscription.description}</p>
                   </div>
                 </div>
@@ -305,11 +305,11 @@ export default function ProfileContent() {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <p className="text-sm text-[#696969] mb-1">Amount</p>
-                    <p className="font-medium text-[#2c2c2c]">{subscription.amount}</p>
+                    <p className="font-medium text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.amount}</p>
                   </div>
                   <div>
                     <p className="text-sm text-[#696969] mb-1">Expiry Date</p>
-                    <p className="text-[#2c2c2c]">{subscription.expiryDate}</p>
+                    <p className="text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.expiryDate}</p>
                   </div>
                 </div>
 
@@ -322,7 +322,7 @@ export default function ProfileContent() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="cursor-pointer border-[#cccccc] text-[#2c2c2c] hover:bg-[#f2f2f2] bg-transparent"
+                      className="cursor-pointer border-[#cccccc] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent"
                       onClick={()=>onUnsubscribeClick()}
                     >
                       Unsubscribe
@@ -342,37 +342,37 @@ export default function ProfileContent() {
                 <form className="space-y-6">
                   
                     <div>
-                        <label className="block text-base font-bold text-[#2C2C2C] mb-2">
+                        <label className="block text-base font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">
                             Full Names
                         </label>
                         <input 
                             type="text" 
                             placeholder="John Kungu"
-                            className="w-full px-4 py-3 border text-base border-gray-200 rounded-lg bg-gray-50 text-[#4D4D4D] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border text-base border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                         />
                     </div>
 
                     
                     <div>
-                        <label className="block text-base font-bold text-[#2C2C2C] mb-2">
+                        <label className="block text-base font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">
                             Email Address
                         </label>
                         <input 
                             type="email" 
                             placeholder="john.doe@example.com"
-                            className="w-full px-4 py-3 border text-base border-gray-200 rounded-lg bg-gray-50 text-[#4D4D4D] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border text-base border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                         />
                     </div>
 
                 
                     <div>
-                        <label className="block text-sm font-bold text-[#2C2C2C] mb-2">
+                        <label className="block text-sm font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">
                             Phone Number
                         </label>
                         <input 
                             type="tel" 
                             placeholder="0720 123 456"
-                            className="w-full px-4 py-3 text-base border border-gray-200 rounded-lg bg-gray-50 text-[#4D4D4D] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                            className="w-full px-4 py-3 text-base border border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                         />
                     </div>
 
@@ -380,10 +380,10 @@ export default function ProfileContent() {
                     <div>
                         <div className="flex items-center justify-between py-4  rounded-lg">
                             <div>
-                                <label className="text-base font-bold text-gray-700">Password</label>
-                                <div className="text-sm text-[#2C2C2C] mt-1">Change Password</div>
+                                <label className="text-base font-bold text-[#2C2C2C] dark:text-[#FFFFFF]">Password</label>
+                                <div className="text-sm text-[#2C2C2C] dark:text-[#FFFFFF] mt-1">Change Password</div>
                             </div>
-                            <svg className="w-5 h-5 text-[#2C2C2C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-[#2C2C2C] dark:text-[#FFFFFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </div>
@@ -405,7 +405,7 @@ export default function ProfileContent() {
         <div className="p-8 w-full">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center justify-start">
-               <h3 className="text-2xl font-bold text-black">
+               <h3 className="text-2xl font-bold text-black dark:text-white">
                   Video
                 </h3>
                 <MdOutlineChevronRight className="text-[#C62676] h-6 w-6" />
@@ -414,13 +414,13 @@ export default function ProfileContent() {
               <div className="flex items-center justify-end gap-1">
                   <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium bg-white !p-0"
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium bg-white dark:bg-[#2C2C2C] !p-0"
                   >
                     <MdArrowLeft className="!w-[38px] !h-[38px]" />  
                   </Button>
                   <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium bg-white !p-0"
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium bg-white dark:bg-[#2C2C2C] !p-0"
                   >
                       <MdArrowRight className="!w-[38px] !h-[38px]"/>
                   </Button>
@@ -434,7 +434,7 @@ export default function ProfileContent() {
             {/* music */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center justify-start">
-               <h3 className="text-2xl font-bold text-black">
+               <h3 className="text-2xl font-bold text-black dark:text-white">
                   Music
                 </h3>
                 <MdOutlineChevronRight className="text-[#C62676] h-6 w-6" />
@@ -443,13 +443,13 @@ export default function ProfileContent() {
               <div className="flex items-center justify-end gap-1">
                   <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium bg-white !p-0"
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium bg-white dark:bg-[#2C2C2C] !p-0"
                   >
                     <MdArrowLeft className="!w-[38px] !h-[38px]" />  
                   </Button>
                   <Button
                   variant="ghost"
-                  className="text-[#1A1A1A] text-[16px] !font-medium bg-white !p-0"
+                  className="text-[#333333] dark:text-white text-[16px] !font-medium bg-white dark:bg-[#2C2C2C] !p-0"
                   >
                       <MdArrowRight className="!w-[38px] !h-[38px]"/>
                   </Button>

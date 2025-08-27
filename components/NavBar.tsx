@@ -111,10 +111,10 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
     };
 
   // Dynamic text colors based on background
-  const textColor = isDarkBackground ? 'text-white' : 'text-gray-700';
-  const hoverTextColor = isDarkBackground ? 'hover:text-gray-200' : 'hover:text-gray-900';
-  const iconColor = isDarkBackground ? 'text-white' : 'text-[#000000]';
-  const menuIconColor = isDarkBackground ? 'text-white' : 'text-[#000000]';
+  const textColor = isDarkBackground ? 'text-white' : 'text-[#2C2C2C] dark:text-[#FFFFFF]';
+  const hoverTextColor = isDarkBackground ? 'hover:text-gray-200' : 'hover:text-gray-900 dark:text-[#FFFFFF]';
+  const iconColor = isDarkBackground ? 'text-white' : 'text-black dark:text-white';
+  const menuIconColor = isDarkBackground ? 'text-white' : 'text-black dark:text-white';
 
   const onSearchEnter = (e:any) =>{
     const searchValue=e.target.value
@@ -124,8 +124,8 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
 
   return (
     <>
-      <header className={`w-full transition-all duration-300 ${getPositionClass()} ${
-        isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2]'
+      <header className={`w-full transition-all z-50 duration-300 ${getPositionClass()} ${
+        isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2] dark:bg-[#141414]'
       }`}>
         <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">
           <div className="flex justify-between h-[100px]">
@@ -180,7 +180,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
                                                   onSearchEnter(e);
                                                 }}}
                                               placeholder="Search..."
-                                              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-black bg-white"
+                                              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-black dark:text-white bg-white dark:bg-[#141414]"
                                               autoFocus
                                           />
                                           {/* <button type="submit" className={`${textColor} ${hoverTextColor}`}>
@@ -232,11 +232,11 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
       )}
 
       {/* Mobile Sidebar */}
-      <div className={`fixed top-0 left-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 md:hidden ${
+      <div className={`fixed top-0 left-0 h-full w-80 bg-white dark:bg-[#141414] shadow-lg transform transition-transform duration-300 ease-in-out z-120 md:hidden ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         {/* Sidebar Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-[#2C2C2C] ">
           <Link href={"/"} onClick={closeMobileMenu}>
             <Image 
               src={"/logos/VybeStreams.png"} 
@@ -247,7 +247,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
             />
           </Link>
           <IconButton onClick={closeMobileMenu}>
-            <X className="h-[24px] w-[24px] text-[#000000]" />
+            <X className="h-[24px] w-[24px] text-black dark:text-white" />
           </IconButton>
         </div>
 
@@ -261,7 +261,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
               className={`flex items-center justify-between py-4 font-medium capitalize text-lg border-b border-gray-100 last:border-b-0 transition-colors duration-200 ${
                 pathname.includes(item.link) 
                   ? 'text-[#C62676]' 
-                  : 'text-gray-700 hover:text-gray-900'
+                  : 'text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900 dark:text-[#FFFFFF]'
               }`}
             >
               {item.name}

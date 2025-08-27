@@ -222,12 +222,12 @@ export default function SettingsPage() {
                   className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
                     selectedOption === "appTheme"
                       ? "bg-[#c62676] text-white"
-                      : "bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
+                      : "bg-[#F2F2F2] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
                   }`}
                 >
                   <div>
                     <div className="font-medium">App Theme</div>
-                    <div className="text-sm text-[#2C2C2C] dark:text-white">{getThemeDisplayName(theme)}</div>
+                    <div className="text-sm dark:text-white">{getThemeDisplayName(theme)}</div>
                   </div>
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -242,7 +242,7 @@ export default function SettingsPage() {
                 >
                   <div>
                     <div className="font-medium">Notifications</div>
-                    <div className="text-sm text-[#2C2C2C] dark:text-white">On</div>
+                    <div className="text-sm dark:text-white">On</div>
                   </div>
                   <ChevronRight className="w-5 h-5" />
                 </button>
@@ -257,7 +257,7 @@ export default function SettingsPage() {
                 >
                   <div>
                     <div className="font-medium">Autoplay</div>
-                    <div className="text-sm text-[#2C2C2C] dark:text-white">Enabled</div>
+                    <div className="text-sm dark:text-white">Enabled</div>
                   </div>
                   <ChevronRight className="w-5 h-5" />
                 </button>

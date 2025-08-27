@@ -11,7 +11,7 @@ import { IconButton } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { text } from "stream/consumers";
 import { FaTimes } from "react-icons/fa";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "@/lib/context/AuthContext";
 
 const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,7 +81,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
       const isInMusicPlayer = scrollY < viewportHeight - 150;
       
       // You can also check for specific routes that have dark backgrounds
-      const isDarkRoute = pathname.includes('/music') || pathname.includes('/games') || pathname.includes('/videos')  || pathname === '/podcasts' || pathname === '/education' || pathname === '/home' || pathname === '/education/educationListing' || pathname === '/planselection';
+      const isDarkRoute = pathname.includes('/music') || pathname.includes('/games') || pathname.includes('/videos')  || pathname === '/podcasts' || pathname === '/education' || pathname === '/home' || pathname === '/education/educationListing';
       
       setIsDarkBackground(isInMusicPlayer && isDarkRoute);
     };
@@ -211,7 +211,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
                 </IconButton>
               </div>
 
-              <Link href={"/profile"}>
+              <Link href={isLoggedIn ? "/profile" : "/create"}>
 
                   <Avatar className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />

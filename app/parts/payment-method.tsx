@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f2f2f2]">
@@ -46,7 +47,9 @@ export default function HomePage() {
               </div>
 
               {/* Pay Button */}
-              <Button className="w-full bg-[#c62676] hover:bg-[#b3246a] text-white py-3 text-lg font-semibold mt-6">
+              <Button className="w-full bg-[#c62676] hover:bg-[#b3246a] text-white py-3 text-lg font-semibold mt-6"
+                
+              >
                 Pay
               </Button>
             </div>

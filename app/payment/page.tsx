@@ -27,12 +27,16 @@ export default function HomePage() {
             {/* Payment Options */}
             <div className="flex space-x-4 mb-6">
               <div className="flex-1 p-4 border-2 border-[#c62676] rounded-lg bg-[#f2f2f2]">
-                <div className="h-8"></div>
+                <div className="h-8">
+                  <img src="/images/Mpesa.png" alt="" />
+                </div>
               </div>
               <Button variant="outline" className="px-6 py-4 h-auto bg-[#e5e5e5] text-[#333333] border-[#d9d9d9]">
                 Airtime
               </Button>
-              <div className="w-16 h-16 border-2 border-[#d9d9d9] rounded-lg bg-[#f2f2f2]"></div>
+              <div className="w-16 h-16 border-2 border-[#d9d9d9] rounded-lg bg-[#f2f2f2]">
+                <img src="/images/Visa.png" alt="" />
+              </div>
             </div>
 
             {/* Phone Number Input */}
@@ -71,7 +75,7 @@ export default function HomePage() {
               <div className="flex items-center justify-between p-4 border border-[#e5e5e5] rounded-lg">
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-[#f2f2f2] rounded-lg flex items-center justify-center">
-                    <img src="/baze-logo-colorful.png" alt="Baze" className="w-8 h-8" />
+                    <img src="/images/Baze_logo 1.png" alt="Baze" className="w-8 h-8" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-[#333333]">Baze Daily Access only Autorenewal</h3>
@@ -103,7 +107,7 @@ export default function HomePage() {
               <div className="flex items-center justify-between p-4 border border-[#e5e5e5] rounded-lg">
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-[#f2f2f2] rounded-lg flex items-center justify-center">
-                    <img src="/placeholder-y074q.png" alt="YouTube" className="w-8 h-8" />
+                    <img src="/images/YTP.png" alt="YouTube" className="w-8 h-8" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-[#333333]">YouTube Premium Individual</h3>
@@ -145,7 +149,7 @@ export default function HomePage() {
             <Card className="overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-3 mb-4">
-                  <img src="/baze-logo-colorful-streaming.png" alt="Baze" className="w-12 h-12 rounded-lg" />
+                  <img src="/images/Baze_logo 1.png" alt="Baze" className="w-12 h-12 rounded-lg" />
                   <h3 className="text-xl font-bold text-[#333333]">Baze</h3>
                 </div>
                 <p className="text-[#696969] text-sm">

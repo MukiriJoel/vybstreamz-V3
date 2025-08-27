@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import Navbar from "../parts/Navbar"
 import NavBar from "@/components/NavBar"
+import { useRouter } from 'next/navigation';
 
 export default function PlanSelection() {
   const [selectedPlan, setSelectedPlan] = useState(0)
+   const router = useRouter();
 
   const plans = [
     { id: 0, name: "Baze Daily Access only Autorenewal @Ksh 10" },
@@ -17,9 +19,19 @@ export default function PlanSelection() {
 
   return (
     <>
-    <NavBar />
+    <NavBar position="relative" />
+    <main className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto ">
+            <div className="flex-1 flex justify-center rounded-lg p-8 pb-16 h-120 shadow-sm">
+                <div className="relative">
+                        <img src="/images/baze_logo 1.png" alt="Baze Logo" className="w-80 h-80 object-contain" />
+                </div>
+            </div>
+        
+
+
     <div className="flex-1 max-w-lg">
-    <div className="bg-[#ffffff] rounded-lg p-8 shadow-sm">
+    <div className="bg-[#ffffff] rounded-lg p-8 pt-16 pb-16 shadow-sm">
       <h2 className="text-3xl font-bold text-[#333333] mb-8 text-center">Choose your Preferred Plan</h2>
 
       <div className="space-y-4 mb-8">
@@ -54,7 +66,9 @@ export default function PlanSelection() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button className="flex-1 bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff] font-semibold py-3 px-6 rounded-lg">
+        <Button className="flex-1 bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff] font-semibold py-3 px-6 rounded-lg"
+        onClick={() => router.push('/payment')}
+        >
           Buy Now
         </Button>
         <Button
@@ -67,6 +81,8 @@ export default function PlanSelection() {
       </div>
     </div>
     </div>
+    </div>
+    </main>
     </>
   )
 }

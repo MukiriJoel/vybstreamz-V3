@@ -99,8 +99,8 @@ export default function HomePage() {
     router.push('/preference')
   }
 
-  const handleGoToContent = () =>{
-    router.push('/home')
+  const handleGoToSubscriptions = () =>{
+    router.push('/profile/')
   }
 
   const handleResend = () =>{
@@ -318,10 +318,10 @@ export default function HomePage() {
                           Explore More
                         </button>
                         <button
-                          onClick={()=>handleGoToContent()}
+                          onClick={()=>handleGoToSubscriptions()}
                           className="cursor-pointer px-6 py-2 bg-[#C62676] text-white rounded-lg hover:bg-pink-700 transition-colors"
                         >
-                          Go To Content
+                          My Subscriptions
                         </button>
                   </div>
               </div>

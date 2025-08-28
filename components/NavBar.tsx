@@ -211,7 +211,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
                 </IconButton>
               </div>
 
-              <Link href={isLoggedIn ? "/profile" : "/create"}>
+              <Link href={isLoggedIn ? "/profile" : "/createAccount"}>
 
                   <Avatar className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />

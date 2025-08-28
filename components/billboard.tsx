@@ -23,7 +23,7 @@ const Billboard = () => {
                     pointerEvents: 'none' // Prevents hover interactions and banners
                 }}
             />
-            <div className="absolute top-[50%] md:top-[40%] ml-4 md:ml-16">
+            <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
                 <p className="text-white text-1xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-xl">
                     MOFAYA
                 </p>
@@ -45,8 +45,8 @@ const Billboard = () => {
                 <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
                     <button 
                         className="
-                            bg-white dark:bg-[#2C2C2C]
-                            text-black dark:text-white
+                            bg-white
+                            text-black
                             rounded-md
                             py-1 md:py-2
                             px-2 md:px-4
@@ -65,7 +65,7 @@ const Billboard = () => {
                     </button>
                     <button 
                         className="
-                            bg-white dark:bg-[#2C2C2C]/30
+                            bg-white/30
                             text-white
                             rounded-md
                             py-1 md:py-2

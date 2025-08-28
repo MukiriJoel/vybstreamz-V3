@@ -258,13 +258,13 @@ const VybzCarouselMusic = ({
                 <div className="flex items-center gap-4 mx-auto md:mx-0 md:pr-10">
                   {/* Custom dots */}
                   <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     className="text-white border-2 rounded-full cursor-pointer"
                   >
                     <HiOutlineSpeakerXMark />
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
                  

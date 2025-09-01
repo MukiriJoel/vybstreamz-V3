@@ -161,10 +161,10 @@ const VybzCarouselPodCast = ({
           {...settings}
           ref={sliderRef}
           beforeChange={(_, next) => setActiveIndex(next)}
-          className="w-screen h-[90vh]"
+          className="w-full h-[90vh]"
         >
           {slidesToRender.map((slide, index) => (
-            <div key={index} className="relative h-[90vh] w-screen">
+            <div key={index} className="relative h-[90vh] w-full">
               {/* Background Cover Image with Overlay */}
               <div
                 className="absolute inset-0 bg-cover bg-center"
@@ -247,7 +247,7 @@ const VybzCarouselPodCast = ({
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                    className="border-white/20 text-xs text-white bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full hover:bg-[#333333] w-40 cursor-pointer"
                   >
                     <Bookmark className="h-4 w-4 mr-2" />
                     Save

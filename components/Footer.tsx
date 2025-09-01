@@ -30,7 +30,7 @@ const Footer =()=>{
               </a>
             </div>
 
-            <div className="flex flex-wrap xs:pt-4 gap-2 gap-x-4 text-sm text-[#2C2C2C] dark:text-[#FFFFFF] items-end">
+            <div className="flex flex-wrap pt-4 lg:pt-0 gap-2 gap-x-4 text-sm text-[#2C2C2C] dark:text-[#FFFFFF] items-end">
               <a href="#" className="hover:text-gray-900 dark:text-[#FFFFFF]">
                 Help and Support
               </a>

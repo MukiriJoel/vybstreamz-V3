@@ -36,7 +36,7 @@ export default function RatingsComponent({
 
   return (
     <>
-    <div className="grid grid-cols-2 gap-1 bg-[#F2F2F2] dark:bg-[#141414] mt-1 px-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 bg-[#F2F2F2] dark:bg-[#141414] mt-1 px-8">
      <div className="p-6 rounded-lg max-w-4xl mt-8  mb-10">
       <div className="items-center pb-1">
         {/* Left Container - Rating bars */}

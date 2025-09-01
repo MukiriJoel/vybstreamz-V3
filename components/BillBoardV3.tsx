@@ -344,7 +344,7 @@ const BillBoardV3 = ({
                     goToSlide={goToSlide}
                     activeIndex={activeIndex}
                   />
-                  {autoplay && (
+                  {/* {autoplay && (
                     <Button
                       onClick={toggleAutoplay}
                       variant="ghost"
@@ -370,7 +370,7 @@ const BillBoardV3 = ({
                         </svg>
                       )}
                     </Button>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
@@ -382,20 +382,6 @@ const BillBoardV3 = ({
       <PrevArrow />
       <NextArrow />
 
-      {/* Progress Bar */}
-      {autoplay && (
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">
-          <div
-            className="h-full bg-[#C62676] transition-all duration-100 ease-linear"
-            style={{
-              width: !isPaused ? "100%" : "0%",
-              animation: !isPaused
-                ? `progress ${delay}ms linear infinite`
-                : "none",
-            }}
-          />
-        </div>
-      )}
 
       <style jsx global>{`
         @keyframes progress {

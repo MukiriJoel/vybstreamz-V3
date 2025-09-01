@@ -26,11 +26,12 @@ import ReviewsSection from "@/components/reviews-section";
 import MusicSlider from "@/components/MusicSlider";
 import { useRouter } from "next/navigation";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function MusicView() {
   const router=useRouter();
   
-  const onHandleClick = () =>{
+  const onViewMoreClick = () =>{
       router.push('/viewMore');
   }
 
@@ -49,19 +50,7 @@ export default function MusicView() {
         {/* Trending Section */}
         <main className="bg-[#F2F2F2] dark:bg-[#141414]">
           <section className="px-6 pb-3 pt-8 px-8">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-black dark:text-white">
-                Similar Videos
-              </h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                onClick={() => onHandleClick()}
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+            <SectionHeader title="similar videos" onViewMoreClick={onViewMoreClick}/>
 
             <MusicSlider />
           </section>

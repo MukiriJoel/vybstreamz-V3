@@ -14,16 +14,16 @@ import AdSlider from "@/components/AdSlider";
 import { useRouter } from "next/navigation";
 import PartnerHighlight from "@/components/PartnerHighlight";
 import Billboard from "@/components/billboard";
+import SectionHeader from "@/components/SectionHeader";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function Home() {
    const Router=useRouter();
     
-     const onHandleClick = () =>{
-     
+     const onViewMoreClick = () =>{
       Router.push(`/viewMore/`)
-  }
+    }
 
   return (
     <>
@@ -35,78 +35,34 @@ export default function Home() {
           <div className="p-8 max-w-8xl mx-auto">
             {/* Partners Section */}
             <section className="">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Partners</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+                <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
               <PartnersSlider />
             </section>
 
             {/* Best Deals Section */}
             <section className=" py-4">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-black dark:text-white flex items-center">
-                  Best Deals
-                  <span className="ml-2 text-[#f6b60b]">🔥</span>
-                </h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+               <SectionHeader title="best deals 🔥" onViewMoreClick={onViewMoreClick}/>
               <DealsSlider/>
             </section>
 
             {/* Trending Section */}
             <section className="">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Trending</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
-               
+               <SectionHeader title="videos" onViewMoreClick={onViewMoreClick}/>
                   <VideoSlider />
-               
-         
             </section>
 
             {/* Recommended For You Section */}
-            <section className="">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">
-                  Recommended For You
-                </h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+            {/* <section className="">
+               <SectionHeader title="recommended for you" onViewMoreClick={onViewMoreClick}/>
               <VideoSlider />
-            </section>
+            </section> */}
 
             {/* partner highligh Section */}
             
             
 
             {/* Netflix Content Banner */}
-            <div className="relative w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative mt-4 w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
               {/* Background Image Placeholder */}
               <div className="absolute inset-0 rounded-xl shadow-2xl">
                 <img
@@ -115,38 +71,17 @@ export default function Home() {
                   className="w-full h-full  object-fit"
                 />
               </div>
-
-            
             </div>
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Listen</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+              <SectionHeader title="music" onViewMoreClick={onViewMoreClick}/>
               <MusicSlider />
             </section>
 
             {/* Trending Section */}
             <section className="py-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Play</h3>
-
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+                <SectionHeader title="games" onViewMoreClick={onViewMoreClick}/>
               <GamesSlider />
             </section>
 
@@ -155,30 +90,12 @@ export default function Home() {
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Learn</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+                <SectionHeader title="education" onViewMoreClick={onViewMoreClick}/>
               <EducationSlider />
             </section>
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Tune In</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+                <SectionHeader title="podcasts" onViewMoreClick={onViewMoreClick}/>
               <PodcastSlider />
             </section>
           </div>

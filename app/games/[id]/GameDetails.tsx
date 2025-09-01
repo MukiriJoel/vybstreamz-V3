@@ -26,6 +26,7 @@ import { MdArrowForward, MdPlayArrow } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import ReviewsSection from "@/components/reviews-section";
 import GamesSlider from "@/components/GamesSlider";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Gamedetails({
   videoSrc = "/videos/squid_game.mp4",
@@ -313,13 +314,13 @@ export default function Gamedetails({
 
   const router = useRouter();
 
-  const onHandleClick = () => {
+  const onViewMoreClick = () => {
     router.push(`/viewMore/`);
   };
 
-  const onSubscribeClick = () =>{
-     router.push(`/planselection/`);
-  }
+  const onSubscribeClick = () => {
+    router.push(`/planselection/`);
+  };
 
   return (
     <>
@@ -414,7 +415,10 @@ export default function Gamedetails({
           </div>
           <div className="flex gap-4 justify-between flex-wrap pt-4">
             <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
-              <Button onClick={()=>onSubscribeClick()} className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer">
+              <Button
+                onClick={() => onSubscribeClick()}
+                className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer"
+              >
                 Subscribe
               </Button>
               <Button
@@ -584,29 +588,8 @@ export default function Gamedetails({
           )}
         </Button>
 
-              {/* Trailer thumbnails */}
-              {/* <div 
-              className={`absolute bottom-10 right-4 flex space-x-6 transition-all duration-300 ${
-                showContent ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-              }`}
-            >
-              {[1, 2, 3].map((trailer) => (
-                <div>
-                  <div className="text-white text-center text-md mb-1">Trailer {trailer}</div>
-                <div
-                  key={trailer}
-                  onClick={() => handleTrailerClick(trailer)}
-                  className="w-64 h-36 bg-[url('/images/Trailer.png')] bg-cover bg-center rounded-xl border-4 border-[#ffffff] flex flex-col items-center justify-center cursor-pointer hover:border-[#C62676] transition-colors"
-                >
-          
-                  <div className="w-10 h-10 flex items-center justify-center">
-                    <MdPlayArrow className="text-white w-15 h-15"/>
-                  </div>
-                </div>
-                </div>
-                
-              ))}
-            </div> */}
+        {/* Trailer thumbnails */}
+
         <div
           className={`absolute bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 right-2 sm:right-4 
     flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6 
@@ -650,33 +633,19 @@ export default function Gamedetails({
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] dark:bg-[#141414]">
         <section className="px-6 pb-3 pt-8 px-8">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black dark:text-white">Top Ranked Games</h3>
-            <Button
-              variant="ghost"
-              className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              onClick={() => onHandleClick()}
-            >
-              View More
-              <MdArrowForward className="!w-[36px] !h-[36px]" />
-            </Button>
-          </div>
-          
+          <SectionHeader
+            title="top ranked games"
+            onViewMoreClick={onViewMoreClick}
+          />
+
           <GamesSlider />
         </section>
         <section className=" px-8">
-              <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black dark:text-white">Top Ranked Games</h3>
-            <Button
-              variant="ghost"
-              className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              onClick={() => onHandleClick()}
-            >
-              View More
-              <MdArrowForward className="!w-[36px] !h-[36px]" />
-            </Button>
-          </div>
-          <GamesSlider/>
+          <SectionHeader
+            title="top ranked games"
+            onViewMoreClick={onViewMoreClick}
+          />
+          <GamesSlider />
         </section>
       </main>
     </>

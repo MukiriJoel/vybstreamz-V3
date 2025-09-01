@@ -8,6 +8,7 @@ import {
 } from "react-icons/md";
 import PartnersCarousel from "@/components/PartnersCarousel";
 import { useRouter } from "next/navigation";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function PartnersPage() {
   const partnersArray = [
@@ -101,6 +102,11 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
     Router.push(`/partners/${partner.id}`)
   }
 
+  const onViewMoreClick = () =>{
+     
+      Router.push(`/viewMore/`)
+  }
+
   const getLogoSrc = (logo: string) => {
     switch (logo) {
       case "baze":
@@ -122,18 +128,9 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
 
   return (
     <section className="p-8 border-gray-200 dark:border-[#2C2C2C] ">
-      <div className="flex items-center justify-between mb-6 pt-6  border-t-2">
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-[#FFFFFF]">{title}</h3>
-        <Button
-          variant="ghost"
-          className="text-gray-900 dark:text-[#FFFFFF] hover:text-gray-900 dark:text-[#FFFFFF] cursor-pointer"
-        >
-          View More
-          <MdArrowForward className="!w-[36px] !h-[36px]" />
-        </Button>
-      </div>
+     <SectionHeader title={title} onViewMoreClick={onViewMoreClick}/>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 
+      <div className="grid pt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 
         {partners.map((partner, index) => (
           <div
             key={index}

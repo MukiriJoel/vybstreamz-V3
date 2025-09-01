@@ -12,11 +12,12 @@ import DealsSlider from "@/components/DealsSlider";
 import AdSlider from "@/components/AdSlider";
 import { useRouter } from "next/navigation";
 import PartnerHighlight from "@/components/PartnerHighlight";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function viewMore(){
   const Router=useRouter();
       
-       const onHandleClick = () =>{
+       const onViewMoreClick = () =>{
        
         Router.push(`/viewMore/`)
   }
@@ -36,16 +37,7 @@ export default function viewMore(){
 
             {/* Trending Section */}
             <section className="mt-6">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Trending</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+              <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
                
                   <VideoSlider />
                
@@ -54,65 +46,27 @@ export default function viewMore(){
 
             {/* Recommended For You Section */}
             <section className="">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">
-                  Recommended For You
-                </h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
+               <SectionHeader title="videos" onViewMoreClick={onViewMoreClick}/>
               <VideoSlider />
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Listen</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
-              <VideoSlider />
+               <SectionHeader title="music" onViewMoreClick={onViewMoreClick}/>
+              <MusicSlider />
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Tune In</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
-              <VideoSlider />
+              <SectionHeader title="podcasts" onViewMoreClick={onViewMoreClick}/>
+              <PodcastSlider />
             </section>
 
              <section className=" py-4  ">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold text-black dark:text-white">Tune In</h3>
-                <Button
-                  variant="ghost"
-                  className="text-[#333333] dark:text-white text-[16px] !font-medium" onClick={()=>onHandleClick()}
-                >
-                  View More
-                  <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-              </div>
-              <VideoSlider />
+              <SectionHeader title="education" onViewMoreClick={onViewMoreClick}/>
+              <EducationSlider />
             </section>
           </div>
         </main>

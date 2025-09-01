@@ -21,6 +21,8 @@ import VideoSlider from "@/components/VideoSlider";
 import GamesSlider from "@/components/GamesSlider";
 import EducationSlider from "@/components/EducationSlider";
 import PodcastSlider from "@/components/PodcastSlider";
+import SectionHeader from "@/components/SectionHeader";
+import { useRouter } from "next/navigation";
 
 interface Partner {
   id: number;
@@ -61,6 +63,11 @@ export default function PartnerDetails({id}:{id:number}) {
 
         (partnerDetails as any)=findById(id,partnersArr)
 
+    }
+
+    const Router=useRouter();
+      const onViewMoreClick = () =>{
+        Router.push(`/viewMore/`)
     }
 
 
@@ -115,16 +122,7 @@ export default function PartnerDetails({id}:{id:number}) {
             {/* Episodes Section */}
             {/* Partners Section */}
             <div className="mb-8">
-                <div className="flex items-center justify-between mb-3">
-                <h3 className="text-[24px] text-[#333333] dark:text-white font-bold capitalize">explore plans</h3>
-                <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                </Button>
-                </div>
+                <SectionHeader title="explore plans" onViewMoreClick={onViewMoreClick}/>
 
                 {/* Horizontal scrollable container */}
                 <PlansSlider/>

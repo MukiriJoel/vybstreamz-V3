@@ -19,8 +19,8 @@ export default function PlanSelection() {
     <>
       <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-4 md:px-10 pt-12 mt-12 max-w-8xl">
        
-          <div className="flex w-full flex-col lg:flex-row items-center gap-6  mx-auto my-auto p-8">
-            <div className="flex-1 w-full items-center bg-white dark:bg-[#2C2C2C] flex justify-center rounded-lg p-8 h-auto md:h-120 shadow-sm">
+          <div className="flex w-full flex-col lg:flex-row items-center gap-6  mx-auto my-auto p-4">
+            <div className="flex-1 hidden lg:flex w-full items-center bg-white dark:bg-[#2C2C2C] flex justify-center rounded-lg p-8 h-auto md:h-120 shadow-sm">
               <div className="relative">
                 <img
                   src="/images/baze_logo 1.png"

@@ -212,7 +212,7 @@ export default function SettingsPage() {
       <div className="flex">       
         {/* Main Content */}
         <div className="flex-1 p-6">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2  gap-6">
             {/* General Settings */}
             <div className="bg-white dark:bg-[#2C2C2C] dark:bg-bgTheme-card rounded-lg p-6">
               <h1 className="text-2xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white">General</h1>

@@ -169,8 +169,8 @@ export default function HomePage() {
               <div className="grid grid-cols-4 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#333333] dark:text-white mb-2">Country</label>
-                  {/* <div className="p-3 border-2 border-[#c62676] rounded-lg bg-[#F2F2F2] dark:bg-[#141414] text-center">+254</div> */}
-                  <CountryDropdown/>
+                  <div className="p-3 border-2 border-[#c62676] rounded-lg bg-[#F2F2F2]  dark:bg-[#2C2C2C] text-center">+254</div>
+                  {/* <CountryDropdown/> */}
                 </div>
                 <div className="col-span-3 items-center">
                   <label className="block text-sm font-medium text-[#333333] dark:text-white mb-2">Phone Number*</label>

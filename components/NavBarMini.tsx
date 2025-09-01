@@ -55,6 +55,10 @@ const NavBarMini = () => {
       setShowProfileModal(true);
     }
 
+ const closeProfileModal = () =>{
+             setShowProfileModal(false);
+             console.log("closing")
+        }
 
 
   // Dynamic background detection
@@ -163,7 +167,7 @@ const NavBarMini = () => {
                   </Avatar>
             
               {showProfileModal && (
-                <TopProfileMenu/>
+                <TopProfileMenu closeProfileModal={closeProfileModal}/>
               )}
             </div>
           </div>

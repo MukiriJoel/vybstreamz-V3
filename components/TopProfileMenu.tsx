@@ -7,16 +7,18 @@ import { useAuth } from "@/lib/context/AuthContext";
 import { useRouter } from "next/navigation";
 import TabPillComponent from "./TabPills";
 
-const TopProfileMenu = () =>{
+interface TopProfileMenuProps {
+  closeProfileModal: () => void;
+}
+
+const TopProfileMenu = ({closeProfileModal}:TopProfileMenuProps) =>{
     const { theme, setTheme } = useTheme();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [activeTab, setActiveTab] = useState<any>(theme==='dark' ? "dark" : "light");
      const { isLoggedIn,logout } = useAuth();
       const router=useRouter();
        
-    const closeProfileModal = () =>{
-             setShowProfileModal(false);
-        }
+     
     
         const onMenuClick = () =>{
           isLoggedIn?
@@ -44,7 +46,7 @@ const TopProfileMenu = () =>{
           <div className="border-2 shadow-lg border-[#e5e5e5] dark:border-[#333333] bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-100 mx-4">
             <div className="flex justify-end">
                <button 
-                            onClick={()=>closeProfileModal()}
+                            onClick={closeProfileModal}
                             className="rounded-full cursor-pointer p-1 hover:bg-gray-400 transition-colors"
                           >
                             <MdClose className="w-6 h-6 text-[#2C2C2C] dark:text-white" />

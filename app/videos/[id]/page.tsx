@@ -14,7 +14,7 @@ const Page = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#F2F2F2] dark:bg-[#141414] dark:bg-[#121212]">
             <header className="w-full">
-                <NavBar/>
+                {/* <NavBar/> */}
             </header>
             <main className="w-full min-h-screen">
                 <VideoPlayer id={id} videoSrc={"/videos/MofayaTrailer.mp4"}/>

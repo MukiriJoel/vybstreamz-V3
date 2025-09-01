@@ -22,12 +22,6 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [showProfileModal, setShowProfileModal] = useState(false);
-
-  const { theme, setTheme } = useTheme();
-    console.log("theme",theme)
-  //   const [activeTab, setActiveTab] = useState<any>(theme==='dark' ? "dark" : "light");
-  // const { isLoggedIn,logout } = useAuth();
-
   const pathname = usePathname();
   const router=useRouter();
 
@@ -84,7 +78,10 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
       setShowProfileModal(true);
     }
 
-    
+      const closeProfileModal = () =>{
+             setShowProfileModal(false);
+             console.log("closing")
+        }
     
 
       
@@ -120,6 +117,8 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+
 
   const getPositionClass = () => {
         if (isSticky) {
@@ -238,7 +237,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
               {/* </Link> */}
                 {/* top profile modal */}
               {showProfileModal && (
-                  <TopProfileMenu/>
+                  <TopProfileMenu closeProfileModal={closeProfileModal}/>
               )}
             </div>
           </div>

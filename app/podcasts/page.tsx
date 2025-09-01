@@ -9,6 +9,8 @@ import VybzCarouselPodcast from '@/components/VybzCarouselPodcast';
 import { MdArrowForward } from 'react-icons/md';
 import PartnersSlider from '@/components/PartnersSlider';
 import PodcastSlider from '@/components/PodcastSlider';
+import SectionHeader from '@/components/SectionHeader';
+import { useRouter } from 'next/navigation';
 
 // Type definitions
 interface Episode {
@@ -98,66 +100,11 @@ const PodcastPlayer: React.FC = () => {
     }
   ];
 
-  // useEffect(() => {
-  //   const audio = audioRef.current as HTMLAudioElement | null;
-  //   if (audio) {
-  //     const updateTime = () => setCurrentTime(audio.currentTime);
-  //     const updateDuration = () => setDuration(audio.duration || 0);
-      
-  //     audio.addEventListener('timeupdate', updateTime);
-  //     audio.addEventListener('loadedmetadata', updateDuration);
-      
-  //     return () => {
-  //       audio.removeEventListener('timeupdate', updateTime);
-  //       audio.removeEventListener('loadedmetadata', updateDuration);
-  //     };
-  //   }
-  // }, [selectedPodcast]);
-
-  // const handlePodcastSelect = (podcast: Podcast): void => {
-  //   setSelectedPodcast(podcast);
-  //   setIsPlaying(false);
-  //   setCurrentTime(0);
-  // };
-
-  // const togglePlayPause = (): void => {
-  //   const audio = audioRef.current as HTMLAudioElement | null;
-  //   if (audio) {
-  //     if (isPlaying) {
-  //       audio.pause();
-  //     } else {
-  //       audio.play();
-  //     }
-  //     setIsPlaying(!isPlaying);
-  //   }
-  // };
-
-  // const handleSeek = (e: React.MouseEvent<HTMLDivElement>): void => {
-  //   const audio = audioRef.current as HTMLAudioElement | null;
-  //   if (audio) {
-  //     const rect = e.currentTarget.getBoundingClientRect();
-  //     const percent = (e.clientX - rect.left) / rect.width;
-  //     audio.currentTime = percent * duration;
-  //   }
-  // };
-
-  // const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   const newVolume = parseFloat(e.target.value);
-  //   setVolume(newVolume);
-  //   const audio = audioRef.current as HTMLAudioElement | null;
-  //   if (audio) {
-  //     audio.volume = newVolume;
-  //   }
-  // };
-
-  // const formatTime = (seconds: number): string => {
-  //   const mins = Math.floor(seconds / 60);
-  //   const secs = Math.floor(seconds % 60);
-  //   return `${mins}:${secs.toString().padStart(2, '0')}`;
-  // };
-
-  // const progressPercent = duration ? (currentTime / duration) * 100 : 0;
-
+  const Router=useRouter();
+  const onViewMoreClick = () =>{
+    Router.push(`/viewMore/`)
+  }
+    
   return (
     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Header */}
@@ -171,50 +118,21 @@ const PodcastPlayer: React.FC = () => {
 
           {/* Partners Section */}
           <div className="pt-2">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Partners</h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+             <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
 
             {/* Horizontal scrollable container */}
               <PartnersSlider></PartnersSlider>
           </div>
 
           {/* Trending Section */}
-          <div className=" pt-10">
-            <div className="flex items-center justify-between ">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                Trending
-              </h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+          <div className="pt-10">
+            <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
             <PodcastSlider></PodcastSlider>
           </div>
 
           {/* albums Section */}
           <div className=" pt-1">
-            <div className="flex items-center justify-between ">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Digital Skills</h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+           <SectionHeader title="digital skills" onViewMoreClick={onViewMoreClick}/>
             <PodcastSlider></PodcastSlider>
           </div>
         </div>

@@ -16,6 +16,7 @@ import MusicSlider from "@/components/MusicSlider";
 import { useState } from "react";
 import { useMusic } from "@/hooks/useMusic";
 import { useRouter } from "next/navigation";
+import SectionHeader from "@/components/SectionHeader";
 
 interface Artist {
   id: number;
@@ -39,7 +40,7 @@ export default function ArtistDetails({id}:{id:number}) {
 
   const Router=useRouter();
     
-     const onHandleClick = () =>{
+     const onViewMoreClick = () =>{
      
       Router.push(`/viewMore/`)
     }
@@ -86,17 +87,7 @@ export default function ArtistDetails({id}:{id:number}) {
           {/* Episodes Section */}
           {/* Partners Section */}
           <div className="mb-8">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Partners</h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                onClick={()=>onHandleClick()}
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+             <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
 
             {/* Horizontal scrollable container */}
             <PartnersSlider></PartnersSlider>
@@ -104,35 +95,13 @@ export default function ArtistDetails({id}:{id:number}) {
 
           {/* top ranked Section */}
           <div className="mb-8 pt-1">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                Top ranked Music
-              </h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                onClick={()=>onHandleClick()}
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+             <SectionHeader title="top ranked music" onViewMoreClick={onViewMoreClick}/>
             <MusicSlider></MusicSlider>
           </div>
 
           {/* albums Section */}
           <div className="mb-8 pt-1">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">Albums</h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                onClick={()=>onHandleClick()}
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+             <SectionHeader title="albums" onViewMoreClick={onViewMoreClick}/>
             <MusicSlider></MusicSlider>
           </div>
         </div>

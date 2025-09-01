@@ -27,7 +27,7 @@ const PartnersSlider =()=>{
                     className="cursor-pointer pt-6 flex flex-col items-center justify-center flex-shrink-0 lg:h-[200px] w-28 xs:h-24 xs:w-24 sm:h-40 sm:w-36 md:h-40 md:w-38 lg:h-40 lg:w-40 xl:h-48 xl:w-44 2xl:h-48 2xl:w-48"
                     onClick={()=>onHandleClick(partner)}
                   >
-                    <div className="!bg-[#F2F2F2] dark:bg-[#141414] mb-2 !min-h-28 !min-w-28 xs:h-25 xs:w-25 sm:h-28 sm:w-28 md:h-36 md:w-28 lg:h-35 lg:w-35 xl:h-40 xl:w-33 rounded-4xl shadow-sm overflow-hidden">
+                    <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-2 !min-h-28 !min-w-28 xs:h-25 xs:w-25 sm:h-28 sm:w-28 md:h-36 md:w-28 lg:h-35 lg:w-35 xl:h-40 xl:w-33 rounded-4xl shadow-sm overflow-hidden">
                       <img
                       src={partner.logo || "/placeholder.svg"}
                       alt={partner.name}

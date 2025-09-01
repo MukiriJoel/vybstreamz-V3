@@ -25,6 +25,7 @@ import VideoSlider from "@/components/VideoSlider";
 import { MdArrowForward, MdPlayArrow } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import ReviewsSection from "@/components/reviews-section";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function VideoPlayer({
   videoSrc = "/videos/MofayaTrailer.mp4",
@@ -312,7 +313,7 @@ export default function VideoPlayer({
 
   const Router = useRouter();
 
-  const onHandleClick = () => {
+  const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
   };
   return (
@@ -644,48 +645,7 @@ export default function VideoPlayer({
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] dark:bg-[#141414]">
         <section className="px-6 pb-3 pt-8 px-8">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-black dark:text-white">Similar Videos</h3>
-            <Button
-              variant="ghost"
-              className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              onClick={() => onHandleClick()}
-            >
-              View More
-              <MdArrowForward className="!w-[36px] !h-[36px]" />
-            </Button>
-          </div>
-          {/* <div className="flex space-x-4 overflow-x-auto pb-4 gap-0 scrollbar-hide">
-          {[
-            { title: "Jacob's Daughter", category: "Drama" },
-            { title: "Kaka Chainizee", category: "Comedy" },
-            { title: "Msingi Pack", category: "Action" },
-            { title: "Alusa why are ...", category: "Comedy" },
-            { title: "Asphalt 9", category: "Gaming" },
-            { title: "Awinja's Perfect ...", category: "Comedy" },
-            { title: "Awinja's Perfect ...", category: "Comedy" },
-            { title: "Awinja's Perfect ...", category: "Comedy" },
-          ].map((item, index) => (
-            <div key={index} className="flex-shrink-0 w-60 bg-white dark:bg-[#2C2C2C] rounded-lg overflow-hidden shadow-sm">
-              <div className="relative">
-                <img
-                  src={`/young-people-steps.png`}
-                  alt={item.title}
-                  className="w-full h-50 object-cover"
-                />
-                <div className="absolute bottom-2 left-2">
-                  <div className="w-6 h-6 bg-[#3bad49] rounded-full flex items-center justify-center">
-                    <Play className="w-3 h-3 text-white fill-white" />
-                  </div>
-                </div>
-              </div>
-              <div className="p-3">
-                <h4 className="font-medium text-black dark:text-white text-sm mb-1">{item.title}</h4>
-                <p className="text-xs text-[#696969]">{item.category}</p>
-              </div>
-            </div>
-          ))}
-        </div> */}
+           <SectionHeader title="similar videos" onViewMoreClick={onViewMoreClick}/>
           <VideoSlider />
         </section>
         <section>

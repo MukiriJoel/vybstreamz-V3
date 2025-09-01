@@ -15,6 +15,8 @@ import { useRouter } from "next/navigation";
 import PartnerHighlight from "@/components/PartnerHighlight";
 import Billboard from "@/components/billboard";
 import SectionHeader from "@/components/SectionHeader";
+import BillboardV2 from "@/components/BillBoardV2";
+import BillBoardV3 from "@/components/BillBoardV3";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -30,7 +32,7 @@ export default function Home() {
       <div className="bg-[#F2F2F2] dark:bg-[#141414]">
         {/* Hero Section */}
         <main className="">
-          <Billboard/>
+          <BillBoardV3/>
           {/* <VybzCarouselMain/> */}
           <div className="p-8 max-w-8xl mx-auto">
             {/* Partners Section */}

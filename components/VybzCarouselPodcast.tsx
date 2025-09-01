@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Bookmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HiOutlineSpeakerXMark } from "react-icons/hi2";
@@ -44,7 +44,6 @@ const VybzCarouselPodCast = ({
 }: VybzCarouselPodcastProps) => {
   const sliderRef = useRef<Slider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  
 
   // Default slide if no slides provided
   const defaultSlide: ICarousel = {
@@ -71,7 +70,7 @@ const VybzCarouselPodCast = ({
       genre: "Hiphop",
       streamingPlatform: "Spotify",
       platformLogo: "/logos/spotify.png",
-      cover:"/images/podcastThumb.png",
+      cover: "/images/podcastThumb.png",
       backgroundImage: "/images/sandwich2.jpg",
     },
     {
@@ -84,7 +83,7 @@ const VybzCarouselPodCast = ({
       genre: "Hiphop",
       streamingPlatform: "Spotify",
       platformLogo: "/logos/spotify.png",
-      cover:"/images/pod4.png",
+      cover: "/images/pod4.png",
       backgroundImage: "/images/sandwich2.jpg",
     },
     {
@@ -97,7 +96,7 @@ const VybzCarouselPodCast = ({
       genre: "Hiphop",
       streamingPlatform: "Spotify",
       platformLogo: "/logos/spotify.png",
-      cover:"/images/pod3.png",
+      cover: "/images/pod3.png",
       backgroundImage: "/images/sandwich2.jpg",
     },
   ];
@@ -147,13 +146,12 @@ const VybzCarouselPodCast = ({
     );
   };
 
-  
-    const router = useRouter();
-        
-        const onSubscribeClick = () =>{
-             router.push(`/planselection/`);
-          }
-          
+  const router = useRouter();
+
+  const onSubscribeClick = () => {
+    router.push(`/planselection/`);
+  };
+
   return (
     <>
       <div className="relative h-[90vh] w-full overflow-hidden">
@@ -175,9 +173,9 @@ const VybzCarouselPodCast = ({
                 <div className="absolute inset-0 bg-black/50"></div>
               </div>
 
-                {/* Content Overlay */}
+              {/* Content Overlay */}
               <div className="relative z-10 pb-9 md:pb-15 px-8 h-full flex flex-col justify-end">
-                <div className="p-8 pb-6">
+               
                   <div className="flex flex-wrap items-end gap-6 mb-8">
                     {/* Album Cover */}
                     <div className="flex-shrink-0 flex items-center w-35 h-50 overflow-hidden">
@@ -199,7 +197,8 @@ const VybzCarouselPodCast = ({
                           {slide.subtitle}
                         </p>
                         <p className="text-white text-[12px] mt-2">
-                          {slide.category} | {slide.duration} | {slide.tracks} | {slide.genre}
+                          {slide.category} | {slide.duration} | {slide.tracks} |{" "}
+                          {slide.genre}
                         </p>
                       </div>
 
@@ -217,7 +216,6 @@ const VybzCarouselPodCast = ({
                           />
                         </div>
 
-                       
                         {/* <div className="flex flex-col flex-wrap items-end gap-4">
                           
                           <div className="flex items-center gap-3">
@@ -239,56 +237,61 @@ const VybzCarouselPodCast = ({
                   </div>
 
                   {/* Action Buttons */}
-                   {/* Action Buttons */}
-              <div className="flex gap-4 justify-between flex-wrap">
-                <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
-                  <Button onClick={()=>onSubscribeClick()} className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer">
-                    Subscribe
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full hover:!bg-[#333333] w-40 cursor-pointer"
-                  >
-                    <Bookmark className="h-4 w-4 mr-2" />
-                    Save
-                  </Button>
-                </div>
+                  {/* Action Buttons */}
+                  <div className="flex gap-4 justify-between flex-wrap">
+                    <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
+                      <Button
+                        onClick={() => onSubscribeClick()}
+                        className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer"
+                      >
+                        Subscribe
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full hover:!bg-[#333333] w-40 cursor-pointer"
+                      >
+                        <Bookmark className="h-4 w-4 mr-2" />
+                        Save
+                      </Button>
+                    </div>
 
-                <div className="flex items-center gap-4 mx-auto md:mx-0 md:pr-10">
-                  {/* Custom dots */}
-                  <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
-                  {/* <Button
+                    <div className="flex items-center gap-4 mx-auto md:mx-0 md:pr-10">
+                      {/* Custom dots */}
+                      <CarouselDots
+                        slides={slides}
+                        goToSlide={goToSlide}
+                        activeIndex={activeIndex}
+                      />
+                      {/* <Button
                     variant="ghost"
                     size="icon"
                     className="text-white border-2 rounded-full cursor-pointer"
                   >
                     <HiOutlineSpeakerXMark />
                   </Button> */}
-                </div>
-              </div>
-                 
-                </div>
+                    </div>
+                  </div>
+               
               </div>
             </div>
           ))}
         </Slider>
-          {/* Arrows */}
-        
-        <PrevArrow/>
-        <NextArrow/>
+        {/* Arrows */}
 
-          <style jsx global>{`
-                .slick-list{
-                    height:90vh
-                }
-                .slick-track{
-                  height:90vh
-                }
-                .dot {
-                  transition: background-color 0.2s ease-in-out;
-                }
-          
-          `}</style>
+        <PrevArrow />
+        <NextArrow />
+
+        <style jsx global>{`
+          .slick-list {
+            height: 90vh;
+          }
+          .slick-track {
+            height: 90vh;
+          }
+          .dot {
+            transition: background-color 0.2s ease-in-out;
+          }
+        `}</style>
       </div>
     </>
   );

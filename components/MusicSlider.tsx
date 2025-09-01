@@ -11,7 +11,7 @@ const MusicSlider = () => {
   }
   
   const onMusicClick = (id:any) =>{
-    Router.push(`music/${id}`)
+    Router.push(`/music/${id}`)
   }
 
   return (
@@ -121,7 +121,7 @@ const MusicSlider = () => {
               className="pt-8 md:py-12 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
-              <div className="relative" >
+              <div className="relative" onClick={()=>onMusicClick(item.id)}>
                 <img
                   src={item.image || "/placeholder.svg"}
                   alt={item.title}

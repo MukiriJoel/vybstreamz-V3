@@ -51,7 +51,7 @@
 //                             <MdClose className="w-6 h-6 text-[#2C2C2C] dark:text-white" />
 //                           </button>
 //             </div>
-//             <div onClick={()=>onMenuClick()} className="hover:bg-pink-300/20 cursor-pointer flex py-2 px-1 justify-between  items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
+//             <div onClick={()=>onMenuClick()} className="hover:bg-[#C62676]/20 cursor-pointer flex py-2 px-1 justify-between  items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
 //                   <Avatar  className="h-[35px] w-[35px] md:h-[55px] md:w-[55px] ml-2 md:ml-4 cursor-pointer">
 //                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
 //                     <AvatarFallback>U</AvatarFallback>
@@ -62,7 +62,7 @@
 //                         <MdArrowForward className="text-[#2C2C2C] ml-1 dark:text-white"/>
 //                     </IconButton>
 //             </div>
-//             <div className="hover:bg-pink-300/20 flex px-1 py-2 justify-between items-center ">
+//             <div className="hover:bg-[#C62676]/20 flex px-1 py-2 justify-between items-center ">
 //                     <div className="flex justify-start items-center">
 //                         <p className="text-lg text-[#2C2C2C2] dark:text-white">App Theme</p>
 //                     </div>
@@ -71,7 +71,7 @@
 //                     </div>
 //             </div>
 //             {isLoggedIn ? 
-//             <div className="hover:bg-pink-300/20 cursor-pointer flex px-1 py-2 justify-between items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
+//             <div className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-2 justify-between items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
 //                     <div className="flex justify-start items-center" onClick={isLoggedIn? ()=>handleLogout():undefined}>
                        
 //                         <p className="text-lg text-[#2C2C2C] dark:text-white">Logout</p>
@@ -164,7 +164,7 @@ const TopProfileMenu = ({closeProfileModal}:TopProfileMenuProps) =>{
                             <MdClose className="w-6 h-6 text-[#2C2C2C] dark:text-white" />
                           </button>
             </div> */}
-            <div onClick={()=>onMenuClick()} className="hover:bg-pink-300/20 cursor-pointer flex py-2 px-1 justify-between  items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
+            <div onClick={()=>onMenuClick()} className="hover:bg-[#C62676]/20 cursor-pointer flex py-2 px-1 justify-between  items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
                   <Avatar  className="h-[35px] w-[35px] md:h-[55px] md:w-[55px] ml-2 md:ml-4 cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
@@ -175,7 +175,7 @@ const TopProfileMenu = ({closeProfileModal}:TopProfileMenuProps) =>{
                         <MdArrowForward className="text-[#2C2C2C] ml-1 dark:text-white"/>
                     </IconButton>
             </div>
-            <div className="hover:bg-pink-300/20 flex px-1 py-2 justify-between items-center ">
+            <div className="hover:bg-[#C62676]/20 flex gap-2 px-1 py-2 justify-between items-center ">
                     <div className="flex justify-start items-center">
                         <p className="text-lg text-[#2C2C2C2] dark:text-white">App Theme</p>
                     </div>
@@ -184,7 +184,7 @@ const TopProfileMenu = ({closeProfileModal}:TopProfileMenuProps) =>{
                     </div>
             </div>
             {isLoggedIn ? 
-            <div className="hover:bg-pink-300/20 cursor-pointer flex px-1 py-2 justify-between items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
+            <div className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-2 justify-between items-center border-b border-[#e5e5e5] dark:border-[#333333] ">
                     <div className="flex justify-start items-center" onClick={isLoggedIn? ()=>handleLogout():undefined}>
                        
                         <p className="text-lg text-[#2C2C2C] dark:text-white">Logout</p>

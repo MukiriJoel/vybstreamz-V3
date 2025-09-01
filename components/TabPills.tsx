@@ -21,18 +21,19 @@ const TabPillComponent = (props: { tabs: any, activeTab: any, onTabChange: any }
                     borderRadius: '100px',
                     padding: '1px',
                     backgroundColor: theme.theme === 'dark'
-                        ? '#364153'
-                        : '#f3f4f6',
+                        ? '#333333'
+                        : '#E5E5E5',
                     "& .MuiTabs-indicator": {
                         background: "transparent",
                         height: "20px",
                         borderRadius: "40px",
-                        fontFamily:"var(font-family)"
+            
                     },
                     "& .MuiTab-root": {
                         textTransform: "capitalize",
+                         fontFamily:"var(--font-family)",
                         color: theme.theme === 'dark'
-                            ?'oklch(70.7% 0.022 261.325)'
+                            ?'#ffffff'
                             : '#2C2C2C',
                         "&.Mui-selected": {
                             WebkitBackgroundClip: "none",
@@ -40,7 +41,8 @@ const TabPillComponent = (props: { tabs: any, activeTab: any, onTabChange: any }
                             backgroundColor: "#c62676",
                             fontWeight: "bold",
                             borderRadius: "50px",
-                            transition:"300"
+                            transition: "all 0.5s ease-out",
+                            
                         },
                     },
                 }}

@@ -10,10 +10,13 @@ import { MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "r
 import { IconButton } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@/lib/context/ThemeContext";
+import TopProfileMenu from "./TopProfileMenu";
 
 const NavBarMini = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const pathname = usePathname();
   const router=useRouter();
 
@@ -47,6 +50,11 @@ const NavBarMini = () => {
   const goToNotifications = () =>{
     router.push("/profile/notifications")
   }
+
+   const onAvatarClick = () =>{
+      setShowProfileModal(true);
+    }
+
 
 
   // Dynamic background detection
@@ -147,13 +155,16 @@ const NavBarMini = () => {
                 </IconButton>
               </div>
 
-              <Link href={"/profile"}>
+             
 
-                  <Avatar className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
+                  <Avatar  onClick={()=>onAvatarClick()} className="h-[35px] w-[35px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
-              </Link>
+            
+              {showProfileModal && (
+                <TopProfileMenu/>
+              )}
             </div>
           </div>
         </nav>

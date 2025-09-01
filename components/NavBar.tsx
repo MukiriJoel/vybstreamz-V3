@@ -6,19 +6,28 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link";
 import Image from "next/image";
-import { MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "react-icons/md";
+import { MdArrowForward, MdClose, MdOutlineNotifications, MdOutlineSearch, MdOutlineShoppingBag } from "react-icons/md";
 import { IconButton } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { text } from "stream/consumers";
 import { FaTimes } from "react-icons/fa";
 import { useAuth } from "@/lib/context/AuthContext";
 
+import { useTheme } from "@/lib/context/ThemeContext";
+import TopProfileMenu from "./TopProfileMenu";
+
 const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkBackground, setIsDarkBackground] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const { isLoggedIn } = useAuth()
+  const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const { theme, setTheme } = useTheme();
+    console.log("theme",theme)
+  //   const [activeTab, setActiveTab] = useState<any>(theme==='dark' ? "dark" : "light");
+  // const { isLoggedIn,logout } = useAuth();
+
   const pathname = usePathname();
   const router=useRouter();
 
@@ -60,7 +69,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
           }
       }, [showSearchBar])
   
-      const handleSearchSubmit = (e:any) => {
+    const handleSearchSubmit = (e:any) => {
           e.preventDefault()
           if (searchQuery.trim()) {
               console.log("Searching for:", searchQuery)
@@ -70,6 +79,15 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
     const handleShoppingBagClick = () => {
         router.push('/payment')
     }
+
+    const onAvatarClick = () =>{
+      setShowProfileModal(true);
+    }
+
+    
+    
+
+      
 
   // Dynamic background detection
   useEffect(() => {
@@ -158,7 +176,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
             </div>
 
             {/* Right side icons */}
-            <div className="flex items-center space-x-2 md:space-x-4 gap-1 md:gap-3">
+            <div className="flex items-center space-x-1 md:space-x-4 gap-1 md:gap-3">
               {/* Mobile menu button - only visible on mobile */}
               <div className="md:hidden">
                 <IconButton onClick={toggleMobileMenu}>
@@ -195,29 +213,33 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
                                       //     <FaSearch className="transition" />
                                       // </div>
                                         <IconButton>
-                                          <MdOutlineSearch onClick={toggleSearchBar} className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
+                                          <MdOutlineSearch onClick={toggleSearchBar} className={`h-[24px] w-[24px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
                                         </IconButton>
                                   )}
             
               
               <IconButton onClick={handleShoppingBagClick}>
-                <MdOutlineShoppingBag className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
+                <MdOutlineShoppingBag className={`h-[24px] w-[24px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
               </IconButton>
 
               <div className="relative">
                 <IconButton onClick={()=>goToNotifications()}>
                   <span className="absolute -top-[2px] -right-[2px] h-3 w-3 bg-red-500 rounded-full z-10"></span>
-                  <MdOutlineNotifications className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
+                  <MdOutlineNotifications className={`h-[24px] w-[24px] md:h-[36px] md:w-[36px]  ${textColor} transition-colors duration-300`} />
                 </IconButton>
               </div>
 
-              <Link href={isLoggedIn ? "/profile" : "/createAccount"}>
+              {/* <Link href={isLoggedIn ? "/profile" : "/createAccount"}> */}
 
-                  <Avatar className="h-[50px] w-[50px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
+                  <Avatar onClick={()=>onAvatarClick()} className="h-[35px] w-[35px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
-              </Link>
+              {/* </Link> */}
+                {/* top profile modal */}
+              {showProfileModal && (
+                  <TopProfileMenu/>
+              )}
             </div>
           </div>
         </nav>

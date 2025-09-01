@@ -152,7 +152,7 @@ const VybzCarouselMain = ({
             </div>
 
             {/* Content */}
-            <div className="relative z-10 h-full flex flex-col justify-end p-8">
+            <div className="relative pb-9 md:pb-15 z-10 h-full flex flex-col justify-end px-8">
               <div className="flex flex-wrap items-end gap-6 mb-4">
                 <div className="flex-1 min-w-[150px]">
                   <h1 className="text-[28px] font-extrabold text-white capitalize">
@@ -187,7 +187,7 @@ const VybzCarouselMain = ({
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C]/20 hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                   >
                     <Bookmark className="h-4 w-4 mr-2" />
                     Save
@@ -197,13 +197,13 @@ const VybzCarouselMain = ({
                 <div className="flex items-center gap-4 mx-auto md:mx-0 md:pr-10">
                   {/* Custom dots */}
                   <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
-                  <Button
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     className="text-white border-2 rounded-full cursor-pointer"
                   >
                     <HiOutlineSpeakerXMark />
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>

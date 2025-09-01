@@ -178,8 +178,8 @@ const VybzCarouselEducation = ({
               </div>
 
               {/* Content Overlay */}
-              <div className="relative z-10 h-full flex flex-col justify-end">
-                <div className="p-8 pb-6">
+              <div className="relative pb-9 md:pb-15 px-8 z-10 h-full flex flex-col justify-end">
+         
                   <div className="flex flex-wrap items-end gap-6 mb-8">
                     {/* Album Cover */}
                     <div className="flex-shrink-0">
@@ -249,34 +249,34 @@ const VybzCarouselEducation = ({
                     </Button>
                     <Button
                       variant="outline"
-                      className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C]/20 hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                      className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                     >
                       <Bookmark className="h-4 w-4 mr-2" />
                       Save
                     </Button>
                   </div>
 
-                  {/* Progress Bar */}
-                  {/* {activeTab==="Audio Book"?
-                    <div className="flex items-center gap-4 mt-3 mb-4">
-                    <span className="text-white text-sm font-medium">1:25</span>
-                    <div className="flex-1 bg-white dark:bg-[#2C2C2C]/20 rounded-full h-1.5 relative cursor-pointer">
-                      <div className="bg-[#C62676] h-1.5 rounded-full w-1/3 relative">
-                        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white dark:bg-[#2C2C2C] rounded-full shadow-sm"></div>
+                      {/* Progress Bar */}
+                      {/* {activeTab==="Audio Book"?
+                        <div className="flex items-center gap-4 mt-3 mb-4">
+                        <span className="text-white text-sm font-medium">1:25</span>
+                        <div className="flex-1 bg-white dark:bg-[#2C2C2C]/20 rounded-full h-1.5 relative cursor-pointer">
+                          <div className="bg-[#C62676] h-1.5 rounded-full w-1/3 relative">
+                            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white dark:bg-[#2C2C2C] rounded-full shadow-sm"></div>
+                          </div>
+                        </div>
+                        <span className="text-white text-sm font-medium">2:45</span>
                       </div>
-                    </div>
-                    <span className="text-white text-sm font-medium">2:45</span>
-                  </div>
-                  :
-                  <></>  
-                } */}
-                  
+                      :
+                      <></>  
+                    } */}
+                      
 
                    {/* Dots Navigation */}
                     <div className="flex items-center justify-center gap-4 mx-auto md:pr-10">
                       {/* <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/> */}
                     </div>
-                </div>
+                
               </div>
             </div>
           ))}

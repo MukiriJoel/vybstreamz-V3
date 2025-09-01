@@ -362,10 +362,12 @@ export default function VideoPlayer({
 
         {/* Video Title & Description */}
         <div
-          className={`absolute pt-2 mb-20 top-[30%] md:top-[30%] ml-4 md:ml-16 transition-opacity duration-300 ${
+          className={`absolute pt-2 mb-25 w-[50%] md:w-full top-[27%] md:top-[30%] lg:top-[38%] ml-4 md:ml-16 transition-opacity duration-300 ${
             showContent
-              ? "opacity-100 top-[10%] md:top-[15%] lg:top-[32%]"
-              : "opacity-0"
+            ? isFullscreen 
+              ? "opacity-100 top-[42%] md:!top-[55%] lg:top-[55%]"  // Different positioning when fullscreen
+              : "opacity-100 top-[10%] md:top-[15%] lg:top-[32%]"  // Normal positioning
+            : "opacity-0"
           }`}
         >
           {/* <p className="text-white text-1xl md:text-5xl h-full w-[30%] lg:text-6xl font-bold drop-shadow-xl">
@@ -386,7 +388,7 @@ export default function VideoPlayer({
           secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks
           more fire.
         </p> */}
-          <div className="flex-1 min-w-[150px]">
+          <div className="flex-1 pb-5 md:pb-1 min-w-[150px]">
             <h1 className="text-[28px] font-extrabold text-white capitalize">
               Mofaya
             </h1>
@@ -407,14 +409,14 @@ export default function VideoPlayer({
 
             <img src={"/logos/bazeLg.png"} className="w-[45px] h-[45px] ml-2" />
           </div>
-          <div className="flex gap-4 justify-between flex-wrap pt-4">
+          <div className="flex gap-4 justify-between flex-wrap pt-4 mb-6 md:pb-1 md:mb-0">
             <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
               <Button className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer">
                 Subscribe
               </Button>
               <Button
                 variant="outline"
-                className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C]/20 hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C]  w-40 cursor-pointer"
               >
                 <Bookmark className="h-4 w-4 mr-2" />
                 Save
@@ -434,7 +436,7 @@ export default function VideoPlayer({
           {/* Progress Bar */}
           <div className="mb-4">
             <div
-              className="seek-bar w-full h-2 bg-white dark:bg-[#2C2C2C]/30 rounded-full cursor-pointer relative group"
+              className="seek-bar w-full h-2 bg-white/30  rounded-full cursor-pointer relative group"
               onMouseDown={handleSeekMouseDown}
               onMouseMove={handleSeekMouseMove}
               onMouseUp={handleSeekMouseUp}
@@ -466,7 +468,7 @@ export default function VideoPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMuted(!isMuted)}
-                className="w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
+                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
               >
                 {isMuted || volume === 0 ? (
                   <VolumeX className="h-5 w-5 text-white" />
@@ -482,7 +484,7 @@ export default function VideoPlayer({
                     showVolumeSlider ? "opacity-100 w-24" : "opacity-0 w-0"
                   } overflow-hidden`}
                 >
-                  <div className="bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm rounded-md p-2">
+                  <div className="bg-[#2C2C2C]  rounded-md p-2">
                     <Slider
                       orientation="horizontal"
                       className="w-20 h-4"
@@ -506,7 +508,7 @@ export default function VideoPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={handlePlayPause}
-                className="w-12 h-12 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
+                className="cursor-pointer w-12 h-12 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
               >
                 {isPlaying ? (
                   <Pause className="h-6 w-6 text-white" />
@@ -520,7 +522,7 @@ export default function VideoPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={handleSkip}
-                className="w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
+                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
               >
                 <SkipForward className="h-5 w-5 text-white" />
               </Button>
@@ -531,7 +533,7 @@ export default function VideoPlayer({
             variant="ghost"
             size="icon"
             onClick={toggleFullscreen}
-            className="w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30"
+            className="w-10 h-10 rounded-full dark:bg-[#2C2C2C]  hover:bg-[#333333] "
           >
             {isFullscreen ? (
               <Minimize className="h-5 w-5 text-white" />
@@ -547,7 +549,7 @@ export default function VideoPlayer({
           variant="ghost"
           size="icon"
           onClick={handlePlayPause}
-          className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30 transition-all duration-300 ${
+          className={`cursor-pointer absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]  transition-all duration-300 ${
             (isHovered && showControls) || !isPlaying
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
@@ -566,7 +568,7 @@ export default function VideoPlayer({
           variant="ghost"
           size="icon"
           onClick={toggleFullscreen}
-          className={`absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white dark:bg-[#2C2C2C]/20 backdrop-blur-sm hover:bg-white dark:bg-[#2C2C2C]/30 transition-all duration-300 ${
+          className={`cursor-pointer absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]  transition-all duration-300 ${
             (showControls && isHovered) || isDragging || showContent
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
@@ -603,8 +605,8 @@ export default function VideoPlayer({
               ))}
             </div> */}
         <div
-          className={`absolute bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-10 right-2 sm:right-4 
-    flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6 
+          className={`absolute bottom-50 sm:bottom-35 md:bottom-12 lg:bottom-32 xl:bottom-36 right-2 sm:right-4 
+    flex flex-col sm:flex-col md:flex-col lg:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6 
     transition-all duration-300 ${
       showContent
         ? "opacity-100 pointer-events-auto  md:bottom-32 lg:bottom-30"
@@ -618,7 +620,7 @@ export default function VideoPlayer({
               </div>
               <div
                 onClick={() => handleTrailerClick(trailer)}
-                className="w-32 h-20 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-48 lg:h-32 
+                className="w-32 h-20 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-40 lg:h-28 
           bg-[url('/images/Trailer.png')] bg-cover bg-center 
           rounded-lg sm:rounded-xl 
           border-2 sm:border-3 lg:border-4 border-white 

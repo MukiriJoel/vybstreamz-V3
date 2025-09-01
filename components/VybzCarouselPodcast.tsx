@@ -176,7 +176,7 @@ const VybzCarouselPodCast = ({
               </div>
 
                 {/* Content Overlay */}
-              <div className="relative z-10 pb-15 px-8 h-full flex flex-col justify-end">
+              <div className="relative z-10 pb-9 md:pb-15 px-8 h-full flex flex-col justify-end">
                 <div className="p-8 pb-6">
                   <div className="flex flex-wrap items-end gap-6 mb-8">
                     {/* Album Cover */}
@@ -217,9 +217,9 @@ const VybzCarouselPodCast = ({
                           />
                         </div>
 
-                        {/* Right Side Controls */}
-                        <div className="flex flex-col flex-wrap items-end gap-4">
-                          {/* Audio/Video Controls */}
+                       
+                        {/* <div className="flex flex-col flex-wrap items-end gap-4">
+                          
                           <div className="flex items-center gap-3">
                             <Button className="bg-[#2C2C2C] hover:bg-white dark:bg-[#2C2C2C] text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
                               <MdOutlineVideocam className="mr-1" />
@@ -232,10 +232,8 @@ const VybzCarouselPodCast = ({
                             >
                               <HiOutlineSpeakerXMark />
                             </Button>
-                          </div>
-
-                         
-                        </div>
+                          </div> 
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -249,7 +247,7 @@ const VybzCarouselPodCast = ({
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C]/20 hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                   >
                     <Bookmark className="h-4 w-4 mr-2" />
                     Save

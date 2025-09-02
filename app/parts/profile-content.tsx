@@ -285,7 +285,7 @@ export default function ProfileContent() {
                       {subscription.showAction && (
                         <Button
                           variant="outline"
-                          className="cursor-pointer border-[#2C2C2C] dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
+                          className="cursor-pointer border-[#2C2C2C] border-2 group-hover:border-white group-hover:text-white  dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent row click when button is clicked
                             onUnsubscribeClick();

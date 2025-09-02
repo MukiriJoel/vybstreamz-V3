@@ -34,7 +34,7 @@ const PartnerBanner = ({title,logo,button,image}:PartnerBannerProps) =>{
                 <img
                   src={image}
                   alt="Netflix comedies showcase"
-                  className="w-full h-full  object-fit"
+                  className="w-full h-full  object-fit cursor-pointer"
                 />
               </div>
             </div>

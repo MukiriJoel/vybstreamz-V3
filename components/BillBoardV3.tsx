@@ -166,7 +166,7 @@ const BillBoardV3 = ({
         <div className="absolute inset-0 overflow-hidden">
             <iframe
             src={slide.backgroundVideo}
-            className="!absolute !top-1/2 !left-1/2 w-[250vw] h-[100vh] !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
+            className="!absolute !top-1/2 !left-1/2 w-[300vw] h-[100vh] !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
             style={{
                 transform: "translate(-50%, -50%)",
             }}

@@ -165,17 +165,7 @@ const PodcastSlider = () =>{
                       <p className="!text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%] capitalize">
                         {item.subtitle}
                       </p>
-                      {/* genres */}
-                      {/* <div className="flex gap-1 ">
-                        {item.genres.map((genre,index)=>(
-                            <div key={index} className="py-1 px-2 rounded-lg bg-[#333333] dark:bg-[#999999] text-white !font-normal !text-[10px] capitalize">
-                                    {genre}
-                            </div>
-                        ))}
-                      </div> */}
-                      {/* <div className="py-1">
-                        <RatingDisplay rating={4}/>
-                      </div> */}
+                  
                       <p className="!text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%]">
                         {item.description}
                       </p>

@@ -105,7 +105,7 @@ export default function ProfileContent() {
   };
 
   return (
-    <div className="py-4 pl-10">
+    <div className="py-4 ">
       {/* Profile Header */}
       <div className="bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] ml-0 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-12 py-6 ">
         <div

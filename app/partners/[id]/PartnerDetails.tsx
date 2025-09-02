@@ -66,6 +66,10 @@ export default function PartnerDetails({ id }: { id: number }) {
     Router.push(`/viewMore/`);
   };
 
+  const onViewReviewsClick = () =>{
+    Router.push('/viewMore/review')
+  }
+
   return (
     <div className="bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Main Content */}
@@ -191,7 +195,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <ReviewTop/>
             </section>
             <section>
-                <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader title="user reviews" onViewMoreClick={onViewReviewsClick}/>
                 <ReviewSlider/>
             </section>
           </div>

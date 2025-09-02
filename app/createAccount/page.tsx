@@ -72,28 +72,29 @@ export default function CreateAccountPage() {
       
       {/* Back button and logo */}
       <div className="relative flex items-center justify-between p-6">
-        <button 
+        
+        <div className="absolute flex items-center pl-239 pt-50">
+          <button 
           onClick={() => router.push('/')}
-          className="flex items-center text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+          className="flex items-center pr-55 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
         >
           <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <div className="absolute flex items-center pl-260 pt-50">
-          <img src="/images/VybeStreams.png" alt="" />
+          <img src="/images/VybeStreams.png" alt=""  />
         </div>
       </div>
 
     <div className="flex min-h-[calc(100vh-100px)]">
         {/* <div className="flex bg-white dark:bg-[#2C2C2C] rounded-2xl shadow-xl overflow-hidden max-w-4xl w-full"> */}
-                <div className="w-1/2 flex items-center justify-center p-8">
+                <div className="w-1/2 flex items-right pl-50 justify-center p-8">
                         <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
                     </div>
           {/* </div> */}
    
       {/* Main Content */}
-      <div className="w-1/2 flex items-center justify-center p-8">
+      <div className="w-1/2 flex items-center justify-left p-8">
         <div className="w-full max-w-md space-y-6">
           {/* Title Section */}
           <div className="text-center md:text-left">
@@ -292,7 +293,7 @@ export default function CreateAccountPage() {
               <div className="flex gap-3 pt-6">
                 <button
                   onClick={handleCancel}
-                  className="flex-1 px-4 py-3 bg-gray-50 dark:bg-[#2C2C2C]0 text-white rounded-full hover:bg-gray-600 transition-colors font-medium"
+                  className="flex-1 px-4 py-3 border-2 bg-gray-50 dark:bg-[#2C2C2C]0 text-[#2C2C2C] rounded-full hover:bg-gray-600 transition-colors font-medium"
                 >
                   Cancel
                 </button>

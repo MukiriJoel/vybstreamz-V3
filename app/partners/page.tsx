@@ -65,19 +65,19 @@ export default function PartnersPage() {
         </div>
 
         {/* Video Partners Section */}
-        <PartnerSection title="Video Partners" partners={partnersArray} />
+        <PartnerSection title="Video " partners={partnersArray} />
 
         {/* Music Partners Section */}
-        <PartnerSection title="Music Partners" partners={partnersArray} />
+        <PartnerSection title="Music" partners={partnersArray} />
 
         {/* Games Partners Section */}
-        <PartnerSection title="Games Partners" partners={partnersArray} />
+        <PartnerSection title="Games " partners={partnersArray} />
 
         {/* Education Partners Section */}
-        <PartnerSection title="Education Partners" partners={partnersArray} />
+        <PartnerSection title="Education " partners={partnersArray} />
 
         {/* Podcast Partners Section */}
-        <PartnerSection title="Podcast Partners" partners={partnersArray} />
+        <PartnerSection title="Podcast " partners={partnersArray} />
       </main>
     </div>
   );
@@ -150,7 +150,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
                 <h4 className="text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
                   {partner.name}
                 </h4>
-                <p className="text-sm font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                <p className="text-xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                   {partner.description}
                 </p>
               </div>

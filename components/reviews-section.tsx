@@ -42,24 +42,7 @@ export default function ReviewsSection() {
 
   return (
     <div className="mt-8 px-8">
-      {/* Add Review Section */}
-      {/* <div className="rounded-lg p-6 mb-6">
-        <div className="flex items-center space-x-4 w-full">
-          <div className="w-10 h-10 bg-[#eb3131] rounded-full flex items-center justify-center overflow-hidden">
-            <img src={"/logos/user-profile-illustration.png"} className="object-cover w-full h-full"/>
-          </div>
-          
-            <Textarea
-              placeholder="Add your review"
-              className="items-center flex bg-[#FFFFFF] border-[#e5e5e5] dark:border-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] placeholder:text-[#2C2C2C] placeholder:dark:text-white dark:text-[#FFFFFF] mb-4"
-            />
-            <Button className=" h-15 bg-[#eb3131] hover:bg-[#eb3131]/80 text-white">
-              <Send className="h-4 w-4 mr-2" />
-              Post Review
-            </Button>
-          
-        </div>
-      </div> */}
+     
   <div className="py-4 mb-6">
       <div className="flex items-center space-x-4 w-full">
         {/* User Avatar */}

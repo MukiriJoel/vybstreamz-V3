@@ -2,42 +2,42 @@
 {
     "id":1,
     "name": "Baze",
-    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "description": "Baze is a digital-first content platform from Safaricom offering a rich mix of on-demand and live entertainment, including short-form videos, trending music",
     "logo": "/logos/bazeLg.png",
     "image": "/images/bazePoster.png"
 },
 {
     "id":2,
     "name": "Hulu",
-    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "description": "Baze is a digital-first content platform from Safaricom offering a rich mix of on-demand and live entertainment, including short-form videos, trending music,",
     "logo": "/logos/hulu.png",
     "image": "/images/bazePoster.png"
 },
 {
     "id":3,
     "name": "Netflix",
-    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "description": "Baze is a digital-first content platform from Safaricom offering a rich mix of on-demand and live entertainment, including short-form videos, trending music,",
     "logo": "/logos/netflixLg.png",
     "image": "/images/netflixGames.png"
 },
 {
     "id":4,
     "name": "StarTimes",
-    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "description": "Baze is a digital-first content platform from Safaricom offering a rich mix of on-demand and live entertainment, including short-form videos, trending music,",
     "logo": "/logos/startimes.png",
     "image": "/images/netflixGames.png"
 },
 {
     "id":5,
     "name": "YouTube",
-    "description": "The journey of a couple towards their wedding, in their planning they...",
+    "description": "Baze is a digital-first content platform from Safaricom offering a rich mix of on-demand and live entertainment, including short-form videos, trending music,",
     "logo": "/logos/youtube.png",
     "image":  "/images/netflixGames.png"
 },
 {
     "id":6,
     "name": "GoTv",
-    "description": "Your account gives you access to live Gotv content and community",
+    "description": "Baze is a digital-first content platform from Safaricom offering a rich mix of on-demand and live entertainment, including short-form videos, trending music,",
     "logo": "/logos/gotv.png",
     "image": "/images/netflixGames.png"
 }

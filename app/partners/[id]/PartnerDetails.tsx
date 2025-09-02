@@ -24,6 +24,7 @@ import PodcastSlider from "@/components/PodcastSlider";
 import SectionHeader from "@/components/SectionHeader";
 import { useRouter } from "next/navigation";
 import ReviewSlider from "@/components/ReviewSlider";
+import ReviewTop from "@/components/ReviewTop";
 
 interface Partner {
   id: number;
@@ -75,23 +76,30 @@ export default function PartnerDetails({ id }: { id: number }) {
             <div className="flex rounded-4xl h-57vh md:h-[65vh] p-0">
               <img
                 src={partnerDetails?.image}
-                className="w-full rounded-4xl object-cover"
+                className="w-full h-full object-cover"
                 alt=""
               />
             </div>
             {isSubscribed ? (
               <div className="flex mt-10 items-center">
-                <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
+                <div className="w-16 h-16 rounded-2xl shadow-lg flex justify-center overflow-hidden">
                   <img
                     src={partnerDetails?.logo}
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
-                  {partnerDetails?.name}
-                </h2>
+                <div className="flex-1 min-w-0">
+                    <h2 className="ml-8 text-3xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
+                    {partnerDetails?.name}
+                    </h2>
+                    <p className="text-xl ml-8 font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                    {partnerDetails?.description}
+                    </p>
+                </div>
+               
               </div>
             ) : (
+            
               <div className="flex justify-between">
                 <div className="flex mt-10 items-center">
                   <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
@@ -127,6 +135,9 @@ export default function PartnerDetails({ id }: { id: number }) {
               {/* Horizontal scrollable container */}
               <PlansSlider />
             </div>
+            <section>
+                <ReviewTop/>
+            </section>
             <section>
                 <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
                 <ReviewSlider/>
@@ -186,6 +197,9 @@ export default function PartnerDetails({ id }: { id: number }) {
         ) : (
             
           <div className="p-8 max-w-8xl mx-auto">
+            <section>
+                <ReviewTop/>
+            </section>
             <section>
                 <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
                 <ReviewSlider/>

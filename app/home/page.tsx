@@ -42,7 +42,7 @@ export default function Home() {
             </section>
 
             {/* Best Deals Section */}
-            <section className=" py-4">
+            <section className="py-4">
                <SectionHeader title="best deals 🔥" onViewMoreClick={onViewMoreClick}/>
               <DealsSlider/>
             </section>

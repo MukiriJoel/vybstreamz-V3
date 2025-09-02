@@ -29,7 +29,7 @@ interface BillBoardV3Props {
 
 const BillBoardV3 = ({
   slides = [],
-  delay = 20000,
+  delay = 10000,
   autoplay = true,
   transitionSpeed = 1000,
 }: BillBoardV3Props) => {

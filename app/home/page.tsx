@@ -64,8 +64,30 @@ export default function Home() {
             
 
             {/* Netflix Content Banner */}
+            <div className="relative mb-8">
+                    
+
+                    {/* Netflix Partner Card */}
+                    <div className="flex items-center justify-between bg-transparent rounded-lg p-6">
+                      <div className="flex items-center gap-4">
+                        {/* Netflix Logo */}
+                        <div className=" flex items-center justify-center">
+                          <h1 className="text-2xl font-bold text-[#1a1a1a] mb-6">Partner Highlight</h1>
+                        </div>
+                        
+                      </div>
+
+                      <Button className="bg-[#c62676] hover:bg-[#a91e63] text-white px-8 py-3 rounded-full font-medium">
+                        Visit Site
+                      </Button>
+                    </div>
+              </div>
             <div className="relative mt-4 w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
               {/* Background Image Placeholder */}
+              
+
+
+
               <div className="absolute inset-0 rounded-xl shadow-2xl">
                 <img
                   src="/images/bestNetflix.png"

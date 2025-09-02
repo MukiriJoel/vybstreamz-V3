@@ -79,28 +79,36 @@ export default function LoginForm() {
   }
 
   const handleForgotPassword = () =>{
-    router.push("/verifyForgot")
+    router.push("/verifyForgotEmail")
   }
 
   return (
     <div className="min-h-screen bg-[#f2f2f2] px-6 py-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <ArrowLeft onClick={handleBackToCreate}  className="w-6 h-6 text-[#2c2c2c]" />
-        <div className="absolute flex items-center pl-262 pt-40">
-          <img src="/images/VybeStreams.png" alt="VybeStreams" />
+       <div className="relative flex items-center justify-between p-6">
+        
+        <div className="absolute flex items-center pl-226 pt-50">
+          <button 
+          onClick={() => router.push('/')}
+          className="flex items-center pr-70 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+        >
+          <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+          <img src="/images/VybeStreams.png" alt=""  />
         </div>
       </div>
 
-    <div className="flex items-center justify-center min-h-[80vh] gap-0">
-      <div className="w-1/2 flex items-center justify-center p-8 pr-25">
-                        <img className="object-contain h-[100vh] pl-40" src="/images/create.png" alt="" />
+    <div className="flex min-h-[calc(100vh-100px)]">
+      <div className="w-1/2 flex items-right pl-50 justify-center p-8">
+                        <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
                     </div>
       {/* Welcome Section */}
       
 
       {/* Form */}
-      <div className="space-y-6">
+      <div className="space-y-6 pt-40">
         <h1 className="text-3xl font-bold text-[#2c2c2c] mb-3">Welcome Back</h1>
         <p className="text-[#999999] text-base leading-relaxed">
           Log into your account and dive into non-stop entertainment made for you
@@ -114,28 +122,13 @@ export default function LoginForm() {
             </label>
           </div>
           <div className="flex gap-2">
-            <div className="w-10 pr-45">
-              <Select value={selectedCountryCode} onValueChange={setSelectedCountryCode}>
-                <SelectTrigger className="bg-[#ffffff] border-[#d9d9d9] text-[#2c2c2c] font-medium">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-[#ffffff] border-[#d9d9d9] max-h-60">
-                  {africanCountries.map((country) => (
-                    <SelectItem
-                      key={country.code}
-                      value={country.code}
-                      className="text-[#2c2c2c] hover:bg-[#f2f2f2] focus:bg-[#f2f2f2]"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span>{country.flag}</span>
-                        <span>{country.code}</span>
-                        <span className="text-sm text-[#999999]">{country.country}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <div className="w-20">
+                            <Input
+                            value="+254"
+                            readOnly
+                            className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676]"
+                            />
+                        </div>
             <div className="flex-1">
               <Input
                 value={phoneNumber}

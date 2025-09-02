@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { User, Settings, Bell, MessageSquare, HelpCircle, LogOut, Menu, X } from "lucide-react"
+import { User, Settings, Bell, MessageSquare, HelpCircle, Share, LogOut, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from 'next/navigation'
 import { useAuth } from "@/lib/context/AuthContext"
@@ -13,7 +13,8 @@ const menuItems = [
   { icon: Settings, label: "Settings", active: false, link: "/profile/settings" },
   { icon: Bell, label: "Notifications", active: false, link: "/profile/notifications" },
   { icon: MessageSquare, label: "Feedback", active: false, link: "/profile/feedback" },
-  { icon: HelpCircle, label: "Help", active: false, link: "/profile/help" },
+  { icon: HelpCircle, label: "Help & Support", active: false, link: "/profile/help" },
+  { icon: Share, label: "Share App", active: false, link: "/profile/share" },
   { icon: LogOut, label: "Logout", active: false, link: "/logout" },
 ]
 

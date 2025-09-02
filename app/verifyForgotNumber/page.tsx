@@ -22,21 +22,28 @@ export default function ForgotPasswordPage() {
   const handleResetPassword = () =>{
     router.push("/passwordReset")
   }
+  const handleEmail = () =>{
+    router.push("/verifyForgotEmail")
+  }
 
   return (
     <div className="min-h-screen " style={{ backgroundColor: "#f2f2f2" }}>
       <div className="min-h-screen mx-auto px-4 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-16">
-          <button className="p-2">
-            <ArrowLeft className="w-6 h-6" style={{ color: "#2c2c2c" }} />
-          </button>
-
-          {/* VybeStreams Logo */}
-          <div className="absolute flex items-center pl-260 pt-50">
-              <img src="/images/VybeStreams.png" alt="" />
+        <div className="relative flex items-center justify-between p-6">
+        
+        <div className="absolute flex items-center pl-239 pt-50">
+          <button 
+          onClick={() => router.push('/')}
+          className="flex items-center pr-55 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+        >
+          <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+          <img src="/images/VybeStreams.png" alt=""  />
         </div>
-        </div>
+      </div>
 
 
     <div className="flex items-center justify-center min-h-[80vh] gap-0">
@@ -44,10 +51,10 @@ export default function ForgotPasswordPage() {
                         <img className="object-contain h-[100vh] pl-40" src="/images/create.png" alt="" />
                     </div>
         {/* Main Content */}
-        <div className="max-w-sm mx-auto ml-20">
+        <div className="max-w-sm mx-auto ml-20 mb-50">
 
-                <div className="text-center mb-8">
-                  <h1 className="text-3xl font-bold mb-4" style={{ color: "#2c2c2c" }}>
+                <div className="mb-8">
+                  <h1 className="text-4xl font-bold mb-4" style={{ color: "#2c2c2c" }}>
                     Forgot Password
                   </h1>
                   <p className="text-base leading-relaxed" style={{ color: "#999999" }}>
@@ -57,30 +64,34 @@ export default function ForgotPasswordPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#2c2c2c" }}>
-                      Email Address
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg border-0 text-base"
-                      style={{
-                        backgroundColor: "#ffffff",
-                        border: "1px solid #cccccc",
-                      }}
-                      required
-                    />
-                  </div>
+                        <label className="text-sm font-medium text-[#333333] dark:text-white">
+                        Country <span className="ml-16">Phone Number*</span>
+                        </label>
+                        <div className="flex gap-2">
+                        <div className="w-20">
+                            <Input
+                            value="+254"
+                            readOnly
+                            className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676]"
+                            />
+                        </div>
+                        <div className="flex-1">
+                            <Input
+                            type="tel"
+                            placeholder="720 123 456"
+                            className="border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676]"
+                            />
+                        </div>
+                        </div>
+                    </div>
 
                   <button
                     type="button"
-                    onClick={() => setUsePhone(!usePhone)}
+                    onClick={handleEmail}
                     className="text-sm underline"
                     style={{ color: "#999999" }}
                   >
-                    Use Phone Number Instead
+                    Use Email Instead
                   </button>
 
                   <Button

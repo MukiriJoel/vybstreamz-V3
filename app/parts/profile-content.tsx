@@ -18,7 +18,7 @@ const subscriptions = [
     amount: "KES 200",
     expiryDate: "02/07/2026",
     status: "Active",
-    showAction: false,
+    showAction: true,
   },
   {
     id: 2,
@@ -92,10 +92,14 @@ export default function ProfileContent() {
     setShowUnsubscribeModal(true)
   }
 
+  const handleSubscriptionClick = () => {
+    router.push("/payment")
+  }
+
   return (
-    <div className="py-4 ">
+    <div className="py-4 pl-10">
       {/* Profile Header */}
-      <div className="bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-8 py-6 ">
+      <div className="bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] ml-0 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-12 py-6 ">
         <div onClick={openPopup} className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0">
           <img src="/logos/user-profile-illustration.png" alt="Profile" className="w-full h-full object-cover" />
           <div className="imgOverlay absolute w-40 h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[191px] sm:inset-y-[200px] lg:inset-y-[129px] ">
@@ -199,7 +203,7 @@ export default function ProfileContent() {
           <h2 className="text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">All Subscription Plans</h2>
 
           {/* Desktop Table */}
-          <div className="hidden lg:block overflow-x-auto">
+          <div className="hidden lg:block overflow-x-visible overflow-y-visible">
             <table className="w-full">
               <thead>
                 <tr className="">
@@ -210,46 +214,53 @@ export default function ProfileContent() {
                   <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {subscriptions.map((subscription) => (
-                  <tr key={subscription.id} className="border-b border-[#f2f2f2]">
-                    <td className="py-6 px-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border border-[#999999] p-0">
-                          <img
-                            src={subscription.icon || "/placeholder.svg"}
-                            alt={subscription.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.name}</h3>
-                          <p className="text-sm font-semibold text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.description}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-6 px-4 text-[#2C2C2C] dark:text-[#FFFFFF] font-normal">{subscription.amount}</td>
-                    <td className="py-6 px-4 text-[#2C2C2C] dark:text-[#FFFFFF]">{subscription.expiryDate}</td>
-                    <td className="py-6 px-4">
-                      <span className="inline-flex items-center">
-                        <span className="w-2 h-2 bg-[#06a54c] rounded-full mr-2"></span>
-                        <span className="text-[#06a54c] font-normal">{subscription.status}</span>
-                      </span>
-                    </td>
-                    <td className="py-6 px-4">
-                      {subscription.showAction && (
-                        <Button
-                          variant="outline"
-                          className="cursor-pointer border-[#2C2C2C] dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
-                          onClick={()=>onUnsubscribeClick()}
-                        >
-                          Unsubscribe
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+             <tbody>
+  {subscriptions.map((subscription) => (
+    <tr 
+      key={subscription.id} 
+      className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-800 pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1"
+      onClick={() => handleSubscriptionClick()}
+    >
+      <td className="py-6 px-4 overflow-visible">
+        <div className="flex items-center space-x-4">
+          <div className="w-12 h-12 rounded-full overflow-hidden  flex-shrink-0 border border-[#999999] p-0">
+            <img
+              src={subscription.icon || "/placeholder.svg"}
+              alt={subscription.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <h3 className="font-bold text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF]">{subscription.name}</h3>
+            <p className="text-sm font-semibold text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF]">{subscription.description}</p>
+          </div>
+        </div>
+      </td>
+      <td className="py-6 px-4 text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF] font-normal">{subscription.amount}</td>
+      <td className="py-6 px-4 text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF]">{subscription.expiryDate}</td>
+      <td className="py-6 px-4">
+        <span className="inline-flex items-center">
+          <span className="w-2 h-2 bg-[#06a54c] rounded-full mr-2"></span>
+          <span className="text-[#06a54c] group-hover:text-white font-normal">{subscription.status}</span>
+        </span>
+      </td>
+      <td className="py-6 px-4">
+        {subscription.showAction && (
+          <Button
+            variant="outline"
+            className="cursor-pointer border-[#2C2C2C] dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent row click when button is clicked
+              onUnsubscribeClick();
+            }}
+          >
+            Unsubscribe
+          </Button>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
             </table>
 
              {/* Logout Confirmation Modal */}

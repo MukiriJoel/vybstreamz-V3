@@ -44,7 +44,7 @@ const defaultPartner: Partner = {
 
 export default function PartnerDetails({ id }: { id: number }) {
   const [activeTab, setActiveTab] = useState("Videos");
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(true);
   const tabs = ["Videos", "Music", "Games", "Education", "Podcast"];
 
   const partners = usePartners();

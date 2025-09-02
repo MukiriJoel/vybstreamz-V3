@@ -73,7 +73,7 @@ export default function PartnerDetails({ id }: { id: number }) {
         {/* Hero Section */}
         {partnerDetails && (
           <div className="px-8 pt-8 mt-10">
-            <div className="flex rounded-4xl h-57vh md:h-[65vh] p-0">
+            <div className="flex rounded-4xl overflow-hidden h-57vh md:h-[65vh] p-0">
               <img
                 src={partnerDetails?.image}
                 className="w-full h-full object-cover"
@@ -135,13 +135,7 @@ export default function PartnerDetails({ id }: { id: number }) {
               {/* Horizontal scrollable container */}
               <PlansSlider />
             </div>
-            <section>
-                <ReviewTop/>
-            </section>
-            <section>
-                <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
-                <ReviewSlider/>
-            </section>
+            
             {/* TABS */}
             <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-8 pt-8">
               <nav className="flex space-x-8 overflow-x-auto scrollbar-hide">
@@ -193,6 +187,13 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <PodcastSlider />
               </div>
             )}
+            <section>
+                <ReviewTop/>
+            </section>
+            <section>
+                <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
+                <ReviewSlider/>
+            </section>
           </div>
         ) : (
             

@@ -12,7 +12,7 @@ const PartnerBanner = ({title,logo,button,image}:PartnerBannerProps) =>{
         <div>
             <div className="flex justify-between">
                 <div className="flex mt-10 items-center">
-                  <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
+                  <div className="w-14 h-14 rounded-2xl bg-transparent shadow-lg flex justify-center overflow-hidden">
                     <img
                       src={logo}
                       className="object-cover w-full h-full"

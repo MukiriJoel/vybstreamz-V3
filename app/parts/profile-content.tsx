@@ -218,7 +218,7 @@ export default function ProfileContent() {
   {subscriptions.map((subscription) => (
     <tr 
       key={subscription.id} 
-      className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-800 pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1"
+      className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-800 pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-103 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1 group"
       onClick={() => handleSubscriptionClick()}
     >
       <td className="py-6 px-4 overflow-visible">
@@ -240,15 +240,15 @@ export default function ProfileContent() {
       <td className="py-6 px-4 text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF]">{subscription.expiryDate}</td>
       <td className="py-6 px-4">
         <span className="inline-flex items-center">
-          <span className="w-2 h-2 bg-[#06a54c] rounded-full mr-2"></span>
-          <span className="text-[#06a54c] group-hover:text-white font-normal">{subscription.status}</span>
+          <span className="w-2 h-2 bg-[#06a54c] group-hover:bg-[#2ee17c] rounded-full mr-2"></span>
+          <span className="text-[#06a54c] group-hover:text-[#2ee17c] font-normal">{subscription.status}</span>
         </span>
       </td>
       <td className="py-6 px-4">
         {subscription.showAction && (
           <Button
             variant="outline"
-            className="cursor-pointer border-[#2C2C2C] dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
+            className="cursor-pointer border-[#2C2C2C] group-hover:border-white dark:border-white text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
             onClick={(e) => {
               e.stopPropagation(); // Prevent row click when button is clicked
               onUnsubscribeClick();

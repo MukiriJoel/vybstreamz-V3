@@ -40,14 +40,20 @@ export default function PasswordResetForm() {
     <div className="min-h-screen bg-[#f2f2f2] px-4 py-8">
       <div className="max-w-screen mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-16">
-          <button className="p-2">
-            <ArrowLeft className="w-6 h-6 text-[#2c2c2c]" />
-          </button>
-          <div className="absolute flex items-center pl-260 pt-50">
-          <img src="/images/VybeStreams.png" alt="" />
+        <div className="relative flex items-center justify-between p-6">
+        
+        <div className="absolute flex items-center pl-220 pt-50">
+          <button 
+          onClick={() => router.push('/')}
+          className="flex items-center pr-55 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+        >
+          <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+          <img src="/images/VybeStreams.png" alt=""  />
         </div>
-        </div>
+      </div>
 
     <div className="flex items-center justify-center min-h-[80vh] gap-0">
         <div className="w-1/2  p-8 flex flex-col justify-center">

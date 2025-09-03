@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, ShoppingCart, Bell, User, Send, MessageCircle, Phone, Mail, MoreHorizontal, Copy } from "lucide-react"
+import { FaXTwitter } from "react-icons/fa6"
 
 export default function VybStreamsPage() {
   const [copied, setCopied] = useState(false)
@@ -37,110 +38,116 @@ export default function VybStreamsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2]">
+    <div className="bg-[#f2f2f2] dark:bg-[#141414] w-full overflow-hidden">
       {/* Header */}
       
-
-      <div className="flex">
         {/* Sidebar */}
         
 
         {/* Main Content */}
         <main className="flex-1 p-8">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <div className="max-w-4xl">
-              <h1 className="text-3xl font-bold text-[#2c2c2c] mb-4">Spread the Word</h1>
-              <p className="text-[#696969] mb-8 leading-relaxed">
+          <div className="bg-white dark:bg-[#2C2C2C] rounded-lg shadow-sm p-8">
+            <div className="w-full">
+              <h1 className="text-3xl font-bold text-[#2c2c2c] dark:text-white mb-4">Spread the Word</h1>
+              <p className="text-[#2C2C2C] dark:text-white mb-8 leading-relaxed">
                 Great things are meant to be shared. Invite your friends and colleagues to discover the platform — use
                 the quick options below, or copy the link and send it your way.
               </p>
 
               <div className="mb-8">
-                <h2 className="text-lg font-semibold text-[#2c2c2c] mb-6">Share To:</h2>
+                <h2 className="text-lg font-semibold text-[#2c2c2c] dark:text-white  mb-6">Share To:</h2>
                 <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+                  
                   <button
-                    onClick={() => handleSocialShare("telegram")}
-                    className="flex flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
+                    onClick={() => handleSocialShare("email")}
+                    className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
                   >
-                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                      <Send className="h-6 w-6 text-[#2c2c2c]" />
+                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
+                      <Send className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] font-medium">Telegram</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Telegram</span>
                   </button>
 
+                  
                   <button
-                    onClick={() => window.open("https://web.whatsapp.com", "_blank")}
-                    className="flex flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
+                    onClick={() => handleSocialShare("email")}
+                    className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
                   >
-                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                      <MessageCircle className="h-6 w-6 text-[#2c2c2c]" />
+                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
+                      <MessageCircle className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] font-medium">Chat</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Chat</span>
                   </button>
 
+                  
                   <button
-                    onClick={() => handleSocialShare("whatsapp")}
-                    className="flex flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
+                    onClick={() => handleSocialShare("email")}
+                    className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
                   >
-                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                      <Phone className="h-6 w-6 text-[#2c2c2c]" />
+                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
+                      <Phone className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] font-medium">Whatsapp</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Whatsapp</span>
                   </button>
+                  
 
+                 
                   <button
                     onClick={() => handleSocialShare("twitter")}
-                    className="flex flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
+                    className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
                   >
-                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                      <svg className="h-6 w-6 text-[#2c2c2c]" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                      </svg>
+                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
+                      <FaXTwitter className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] font-medium">X</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">X</span>
                   </button>
 
                   <button
                     onClick={() => handleSocialShare("email")}
-                    className="flex flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
+                    className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
                   >
-                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                      <Mail className="h-6 w-6 text-[#2c2c2c]" />
+                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
+                      <Mail className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] font-medium">Email</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Email</span>
                   </button>
 
-                  <button className="flex flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group">
-                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                      <MoreHorizontal className="h-6 w-6 text-[#2c2c2c]" />
+                
+                  <button
+                    onClick={() => handleSocialShare("email")}
+                    className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
+                  >
+                    <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
+                      <MoreHorizontal className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] font-medium">More</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Email</span>
                   </button>
+                  
                 </div>
               </div>
 
               <div>
                 <h2 className="text-lg font-semibold text-[#2c2c2c] mb-4">Or Copy Link</h2>
-                <div className="flex items-center space-x-3 bg-[#f2f2f2] p-4 rounded-lg border border-[#e5e5e5]">
+                <div className="flex items-center space-x-3 bg-[#E5E5E5] dark:bg-[#666666] p-4 rounded-sm ">
                   <Input
                     value={shareUrl}
                     readOnly
-                    className="flex-1 border-none bg-transparent text-[#696969] focus:ring-0"
+                    className="flex-1 !border-none !bg-transparent !shadow-none text-[#2C2C2C] dark:text-white focus:ring-0"
                   />
                   <Button
                     onClick={handleCopyLink}
-                    variant="outline"
-                    className="flex items-center space-x-2 border-[#e5e5e5] hover:bg-[#ffffff] bg-transparent"
+                    variant="ghost"
+                    className="flex items-center space-x-2 !border-none hover:bg-[#ffffff] bg-transparent"
                   >
                     <Copy className="h-4 w-4" />
-                    <span>{copied ? "Copied!" : "Copy"}</span>
+                    <span className="text-[#2C2C2C] dark:text-white">{copied ? "Copied!" : "Copy"}</span>
                   </Button>
                 </div>
               </div>
             </div>
           </div>
         </main>
-      </div>
+    
     </div>
   )
 }

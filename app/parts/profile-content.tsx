@@ -245,7 +245,7 @@ export default function ProfileContent() {
                 {subscriptions.map((subscription) => (
                   <tr
                     key={subscription.id}
-                    className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-800 pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1 group"
+                    className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-[#c62676] pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1 group"
                     onClick={() => handleSubscriptionClick()}
                   >
                     <td className="py-6 px-4 overflow-visible">
@@ -285,7 +285,7 @@ export default function ProfileContent() {
                       {subscription.showAction && (
                         <Button
                           variant="outline"
-                          className="cursor-pointer border-[#2C2C2C] border-2 group-hover:border-white group-hover:text-white  dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
+                          className="cursor-pointer border-[#2C2C2C] border-2 group-hover:border-white group-hover:text-white  dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:hover:bg-[#121212] dark:bg-transparent bg-transparent rounded-sm"
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent row click when button is clicked
                             onUnsubscribeClick();

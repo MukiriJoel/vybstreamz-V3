@@ -351,6 +351,11 @@ export default function VybzMusicPlayer({
     Router.push(`/planselection/`);
   };
 
+   const onSaveClick = () =>{
+    Router.push('/profile?tab=My Favorites');
+  }
+
+
   return (
     <>
       <div
@@ -445,6 +450,7 @@ export default function VybzMusicPlayer({
               <Button
                 variant="outline"
                 className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full  w-40 cursor-pointer"
+                onClick={()=>onSaveClick()} 
               >
                 <Bookmark className="h-4 w-4 mr-2" />
                 Save

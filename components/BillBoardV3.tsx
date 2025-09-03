@@ -196,7 +196,7 @@ const BillBoardV3 = ({
   };
 
   const onSaveClick = () =>{
-    router.push('/profile');
+    router.push('/profile?tab=My Favorites');
   }
 
   return (

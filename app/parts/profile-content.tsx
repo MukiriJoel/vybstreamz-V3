@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@mui/material";
 import {
@@ -15,7 +15,7 @@ import {
 import VideoSlider from "@/components/VideoSlider";
 import MusicSlider from "@/components/MusicSlider";
 import { useAuth } from "@/lib/context/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const subscriptions = [
   {
@@ -62,6 +62,15 @@ export default function ProfileContent() {
 
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
+
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab && ["Account", "My Favorites", "Subscriptions"].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
+
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];

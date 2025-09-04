@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 
 interface PartnerBannerProps{
@@ -9,6 +10,12 @@ interface PartnerBannerProps{
 }
 
 const PartnerBanner = ({title,header,logo,button,image}:PartnerBannerProps) =>{
+  const router=useRouter();
+
+  const onVisitSiteClick = () =>{
+      router.push('/partners/2')
+  }
+
     return(
         <div>
           <div>
@@ -31,7 +38,7 @@ const PartnerBanner = ({title,header,logo,button,image}:PartnerBannerProps) =>{
                   </h2>
                 </div>
                 <div className="flex items-center mt-10">
-                  <Button className="cursor-pointer bg-[#c62676] hover:bg-[#a91e63] text-white text-lg lg:text-xl px-12 py-6 rounded-full font-medium capitalize">
+                  <Button onClick={()=>onVisitSiteClick()} className="cursor-pointer bg-[#c62676] hover:bg-[#a91e63] text-white text-lg lg:text-xl px-12 py-6 rounded-full font-medium capitalize">
                     {button}
                   </Button>
                 </div>

@@ -66,13 +66,17 @@ export default function CreateAccountPage() {
     router.push("/login")
   }
 
+  const GoToHome = () =>{
+    router.push('/')
+  }
+
   return (
     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col transition-colors duration-200">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
-        <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-8">
-          <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
+        <div className="hidden lg:flex lg:w-1/2 items-start justify-center p-8">
+          <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" />
         </div>
    
         {/* Form Section */}
@@ -80,12 +84,12 @@ export default function CreateAccountPage() {
           {/* Header - Now inside form section */}
           <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-50">
             <button 
-              onClick={() => router.push('/')}
-              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+              onClick={() => router.back()}
+              className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
             >
               <MdArrowBack className="!w-8 !h-8"/>
             </button>
-            <img src="/logos/vybstreamz.png" alt="" className="!h-15 !w-50" />
+            <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
           </div>
           
           {/* Form Content */}

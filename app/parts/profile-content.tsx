@@ -113,6 +113,11 @@ export default function ProfileContent() {
     router.push("/payment");
   };
 
+  const onUpdateDetails = (e:any) =>{
+    e.preventDefault()
+    router.push("/profile?tab=Account")
+  }
+
   return (
     <div className="py-4 ">
       {/* Profile Header */}
@@ -471,7 +476,7 @@ export default function ProfileContent() {
               </div>
 
               <button
-                type="submit"
+                onClick={(e)=>onUpdateDetails(e)}
                 className="w-full bg-[#C62676] hover:bg-pink-700 cursor-pointer text-white font-medium py-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
               >
                 Update Details

@@ -13,7 +13,7 @@ const PartnerBanner = ({title,header,logo,button,image}:PartnerBannerProps) =>{
   const router=useRouter();
 
   const onVisitSiteClick = () =>{
-      router.push('/partners/2')
+       window.open('https://netflix.com', '_blank');
   }
 
     return(

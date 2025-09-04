@@ -36,22 +36,31 @@ export default function VerifyEmail() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-6 py-8">
-      {/* Header */}
-      <div className="relative flex items-center">
-        <ArrowLeft className=" w-6 h-6 text-[#2C2C2C] text-black line-clamp-3dark:text-[#FFFFFF]" />
-        <div className="absolute flex items-center pl-260 pt-50">
-          <img src="/images/VybeStreams.png" alt="" />
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
       {/* Main Content */}
-    <div className="flex items-center justify-center min-h-[80vh] gap-0">
-      <div className="w-1/2 flex items-center justify-center p-8">
-                        <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
-                    </div>
+      <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
+        {/* Image Section - Hidden on mobile, visible on large screens */}
+        <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-8">
+          <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
+        </div>
+   
+        {/* Form Section */}
+        <div className="w-full lg:w-1/2 flex flex-col ">
 
-      <div className="max-w-sm mx-auto ml-20">
+          <div className="flex pt-10 pb-15 items-center pl-8 md:p-6 md:pl-60 lg:pt-14 lg:pl-13 lg:pb-20 gap-50">
+            <button 
+              onClick={() => router.push('/')}
+              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+            >
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <img src="/images/VybeStreams.png" alt="" className="h-8 md:h-10 " />
+          </div>
+      
+
+      <div className="max-w-sm mx-auto ml:50 md:ml-70 mt-20 lg:mr-50 lg:ml-20">
         <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">Verify Email</h1>
 
         <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-12 leading-relaxed">
@@ -87,6 +96,11 @@ export default function VerifyEmail() {
         </div>
       </div>
       </div>
+
+      </div>
+
+      {/* Confirmation Modal */}
+      
     </div>
   )
 }

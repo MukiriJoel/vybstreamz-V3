@@ -83,7 +83,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col transition-colors duration-200">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
@@ -94,10 +94,10 @@ export default function LoginForm() {
         {/* Form Section */}
         <div className="w-full lg:w-1/2 flex flex-col">
           {/* Header - Now inside form section */}
-          <div className="flex pb-10 pt-10 items-center pl-13 md:p-6 md:pl-50 lg:pt-8 lg:pl-40 gap-50">
+          <div className="flex pb-10 pt-10 items-center pl-13 md:p-6 md:pl-50 lg:pt-8 lg:pl-56 gap-50">
             <button 
               onClick={() => router.push('/')}
-              className="flex items-center text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+              className="flex items-center text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -111,8 +111,8 @@ export default function LoginForm() {
             <div className="w-full max-w-md space-y-6 pb-40">
               {/* Title Section */}
               <div className="text-center lg:text-left">
-                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#333333] dark:text-white mb-2">Welcome Back</h1>
-                <p className="text-[#999999] text-sm md:text-base">
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#333333] dark:text-white mb-2 transition-colors duration-200">Welcome Back</h1>
+                <p className="text-[#999999] dark:text-gray-400 text-sm md:text-base transition-colors duration-200">
                   Log into your account and dive into non-stop entertainment made for you
                 </p>
               </div>
@@ -121,7 +121,7 @@ export default function LoginForm() {
               <div className="space-y-4">
                 {/* Phone Number Section */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#333333] dark:text-white block">
+                  <label className="text-sm font-medium text-[#333333] dark:text-white block transition-colors duration-200">
                     <span className="block sm:inline">Country</span>
                     <span className="block sm:inline sm:ml-16">Phone Number*</span>
                   </label>
@@ -130,7 +130,7 @@ export default function LoginForm() {
                       <Input
                         value="+254"
                         readOnly
-                        className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                        className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:border-[#c62676] dark:text-white transition-colors duration-200"
                       />
                     </div>
                     <div className="flex-1">
@@ -138,7 +138,7 @@ export default function LoginForm() {
                         type="tel"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        className="border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                        className="border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:border-[#c62676] dark:text-white dark:placeholder-gray-400 transition-colors duration-200"
                         placeholder="720 123 456"
                       />
                     </div>
@@ -147,17 +147,17 @@ export default function LoginForm() {
 
                 {/* Password Section */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-[#333333] dark:text-white">Password</label>
+                  <label className="text-sm font-medium text-[#333333] dark:text-white transition-colors duration-200">Password</label>
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
-                      className="pr-10 border-[#cccccc] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                      className="pr-10 border-[#cccccc] dark:border-gray-600 focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 transition-colors duration-200"
                       placeholder="Enter your password"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#999999]"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#999999] dark:text-gray-400 hover:text-[#777777] dark:hover:text-gray-300 transition-colors duration-200"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                     </button>
@@ -168,7 +168,7 @@ export default function LoginForm() {
                 <div className="text-left">
                   <button 
                     onClick={handleForgotPassword}
-                    className="text-xs sm:text-sm text-[#333333] dark:text-white font-medium hover:text-[#c62676] transition-colors"
+                    className="text-xs sm:text-sm text-[#333333] dark:text-white font-medium hover:text-[#c62676] transition-colors duration-200"
                   >
                     Forgot Password?
                   </button>
@@ -177,13 +177,13 @@ export default function LoginForm() {
                 {/* Login Button */}
                 <Button 
                   onClick={handleSuccessLogin}
-                  className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base"
+                  className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base transition-all duration-200"
                 >
                   Log In
                 </Button>
 
                 {/* Safaricom Button */}
-                <Button className="w-full bg-[#35a839] hover:bg-[#35a839]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base">
+                <Button className="w-full bg-[#35a839] hover:bg-[#35a839]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base transition-all duration-200">
                   Continue With Safaricom
                 </Button>
 
@@ -193,7 +193,7 @@ export default function LoginForm() {
                 </div>
 
                 {/* Sign Up Link */}
-                <div className="text-center text-xs sm:text-sm text-[#333333] dark:text-white">
+                <div className="text-center text-xs sm:text-sm text-[#333333] dark:text-white transition-colors duration-200">
                   {"Don't have an account "}
                   <button 
                     onClick={handleBackToCreate}

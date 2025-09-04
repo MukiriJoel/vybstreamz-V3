@@ -1,108 +1,107 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
-import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 
-export default function ForgotPasswordPage() {
+export default function ForgotPasswordEmailPage() {
   const [email, setEmail] = useState("")
-  const [usePhone, setUsePhone] = useState(false)
   const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
     console.log("Sending verification to:", email)
   }
-  const handleResetPassword = () =>{
+
+  const handleResetPassword = () => {
     router.push("/passwordReset")
   }
-  const handleNumber = () =>{
+
+  const handleNumber = () => {
     router.push("/verifyForgotNumber")
   }
 
   return (
-    <div className="min-h-screen " style={{ backgroundColor: "#f2f2f2" }}>
-      <div className="min-h-screen mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="relative flex items-center justify-between p-6">
-        
-        <div className="absolute flex items-center pl-239 pt-50">
-          <button 
-          onClick={() => router.push('/')}
-          className="flex items-center pr-55 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
-        >
-          <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-          <img src="/images/VybeStreams.png" alt=""  />
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] transition-colors duration-200">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        {/* Image Section - Hidden on mobile and tablet, visible on desktop */}
+        <div className="hidden lg:flex lg:w-1/2 xl:w-3/5 items-center justify-center p-8 xl:p-12">
+          <img 
+            className="max-w-full max-h-full object-contain" 
+            src="/images/create.png" 
+            alt="Forgot password illustration" 
+          />
         </div>
-      </div>
+   
+        {/* Form Section */}
+        <div className="w-full lg:w-1/2 xl:w-2/5 flex flex-col">
+          {/* Header */}
+          <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-28 gap-50">
+            <button 
+              onClick={() => router.push('/')}
+              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+            >
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <img src="/images/VybeStreams.png" alt="" className="h-8 md:h-10 " />
+          </div>
+          
+          {/* Form Content */}
+          <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 lg:pt-0">
+            <div className="w-full max-w-sm sm:max-w-md space-y-6 sm:space-y-8">
+              {/* Title Section */}
+              <div className="text-center sm:text-left">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-[#2c2c2c] dark:text-white transition-colors duration-200">
+                  Forgot Password
+                </h1>
+                <p className="text-sm sm:text-base leading-relaxed text-[#999999] dark:text-gray-400 transition-colors duration-200">
+                  Please enter your phone number or email address to receive a verification code
+                </p>
+              </div>
 
-
-    <div className="flex items-center justify-center min-h-[80vh] gap-0">
-        <div className="w-1/2  pl-40 p-8 flex flex-col justify-center">
-                        <img className="object-contain h-[100vh] pl-40" src="/images/create.png" alt="" />
-                    </div>
-        {/* Main Content */}
-        <div className="max-w-sm mx-auto ml-20 mb-50">
-
-                <div className="mb-8">
-                  <h1 className="text-4xl font-bold mb-4" style={{ color: "#2c2c2c" }}>
-                    Forgot Password
-                  </h1>
-                  <p className="text-base leading-relaxed" style={{ color: "#999999" }}>
-                    Please enter your phone number or email address to receive a verification code
-                  </p>
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="space-y-2">
+                  <Label 
+                    htmlFor="email" 
+                    className="text-sm font-medium text-[#2c2c2c] dark:text-white transition-colors duration-200"
+                  >
+                    Email Address*
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg border border-[#cccccc] dark:border-gray-600 bg-white dark:bg-gray-800 text-[#2c2c2c] dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-[#c62676] focus:ring-[#c62676] dark:focus:border-[#c62676] transition-colors duration-200"
+                    required
+                  />
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium" style={{ color: "#2c2c2c" }}>
-                      Email Address
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg border-0 text-base"
-                      style={{
-                        backgroundColor: "#ffffff",
-                        border: "1px solid #cccccc",
-                      }}
-                      required
-                    />
-                  </div>
+                <button
+                  type="button"
+                  onClick={handleNumber}
+                  className="text-sm underline text-[#999999] dark:text-gray-400 hover:text-[#777777] dark:hover:text-gray-300 transition-colors duration-200"
+                >
+                  Use Phone Number Instead
+                </button>
 
-                  <button
-                    type="button"
-                    onClick={handleNumber}
-                    className="text-sm underline"
-                    style={{ color: "#999999" }}
-                  >
-                    Use Phone Number Instead
-                  </button>
-
-                  <Button
+                <Button
                   onClick={handleResetPassword}
-                    type="submit"
-                    className="w-full py-4 text-base font-medium rounded-full border-0 hover:opacity-90 transition-opacity"
-                    style={{
-                      backgroundColor: "#c62676",
-                      color: "#ffffff",
-                    }}
-                  >
-                    Send
-                  </Button>
-                </form>
-        </div>
+                  type="submit"
+                  className="w-full py-3 sm:py-4 text-sm sm:text-base font-medium rounded-full border-0 hover:opacity-90 transition-all duration-200 bg-[#c62676] hover:bg-[#b01f64] text-white"
+                >
+                  Send
+                </Button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -37,31 +37,40 @@ export default function PasswordResetForm() {
   
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] px-4 py-8">
-      <div className="max-w-screen mx-auto">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
+
         {/* Header */}
-        <div className="relative flex items-center justify-between p-6">
         
-        <div className="absolute flex items-center pl-220 pt-50">
-          <button 
-          onClick={() => router.push('/')}
-          className="flex items-center pr-55 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
-        >
-          <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-          <img src="/images/VybeStreams.png" alt=""  />
+
+    <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
+        {/* Image Section - Hidden on mobile, visible on large screens */}
+        <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-8">
+          <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
         </div>
-      </div>
+   
+        {/* Form Section */}
+        <div className="w-full lg:w-1/2 flex flex-col ">
+          {/* Header - Now inside form section */}
+          <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-58 gap-50">
+            <button 
+              onClick={() => router.push('/')}
+              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+            >
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <img src="/images/VybeStreams.png" alt="" className="h-8 md:h-10 " />
+          </div>
+          
+          {/* Form Content */}
+          <div className="flex-1 flex items-center justify-center p-4 md:p-8 lg:pt-0">
+          <div className="w-full max-w-md space-y-6">
+            {/* Title Section */}
+            
 
-    <div className="flex items-center justify-center min-h-[80vh] gap-0">
-        <div className="w-1/2  p-8 flex flex-col justify-center">
-                        <img className="object-contain h-[100vh] pl-40" src="/images/create.png" alt="" />
-                    </div>
-
-        {/* Form */}
-        <div className="space-y-8">
+            {/* Form */}
+                    <div className="space-y-8">
           <div className="text-center space-y-2">
             <h1 className="text-3xl font-bold text-[#2c2c2c]">Reset Password</h1>
             <p className="text-[#2c2c2c] text-sm">Your new password must be different from your previous passwords</p>
@@ -147,8 +156,12 @@ export default function PasswordResetForm() {
             </Button>
           </form>
         </div>
+
+          </div>
         </div>
       </div>
+      </div>
+  
     </div>
   )
 }

@@ -66,7 +66,7 @@ export default function CreateAccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col transition-colors duration-200">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
@@ -77,10 +77,10 @@ export default function CreateAccountPage() {
         {/* Form Section */}
         <div className="w-full lg:w-1/2 flex flex-col ">
           {/* Header - Now inside form section */}
-          <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-39 gap-50">
+          <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-58 gap-50">
             <button 
               onClick={() => router.push('/')}
-              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
             >
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -94,8 +94,8 @@ export default function CreateAccountPage() {
           <div className="w-full max-w-md space-y-6">
             {/* Title Section */}
             <div className="text-center lg:text-left">
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#333333] dark:text-white mb-2">Create Account</h1>
-              <p className="text-[#999999] text-sm md:text-base">
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#333333] dark:text-white mb-2 transition-colors duration-200">Create Account</h1>
+              <p className="text-[#999999] dark:text-gray-400 text-sm md:text-base transition-colors duration-200">
                 Create your account and dive into non-stop entertainment made for you
               </p>
             </div>
@@ -104,7 +104,7 @@ export default function CreateAccountPage() {
             <div className="space-y-4">
               {/* Phone Number Section */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-[#333333] dark:text-white block">
+                <label className="text-sm font-medium text-[#333333] dark:text-white block transition-colors duration-200">
                   <span className="block sm:inline">Country</span>
                   <span className="block sm:inline sm:ml-16">Phone Number*</span>
                 </label>
@@ -113,14 +113,14 @@ export default function CreateAccountPage() {
                     <Input
                       value="+254"
                       readOnly
-                      className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                      className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:border-[#c62676] dark:text-white transition-colors duration-200"
                     />
                   </div>
                   <div className="flex-1">
                     <Input
                       type="tel"
                       placeholder="720 123 456"
-                      className="border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                      className="border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:border-[#c62676] dark:text-white dark:placeholder-gray-400 transition-colors duration-200"
                     />
                   </div>
                 </div>
@@ -128,22 +128,22 @@ export default function CreateAccountPage() {
 
               {/* Email Section */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-[#333333] dark:text-white">Email Address (Optional)</label>
+                <label className="text-sm font-medium text-[#333333] dark:text-white transition-colors duration-200">Email Address (Optional)</label>
                 <Input
                   type="email"
-                  className="border-[#cccccc] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                  className="border-[#cccccc] dark:border-gray-600 focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 transition-colors duration-200"
                 />
               </div>
 
               {/* Password Section */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-[#333333] dark:text-white">Password</label>
+                <label className="text-sm font-medium text-[#333333] dark:text-white transition-colors duration-200">Password</label>
                 <div className="relative">
                   <Input
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="pr-10 border-[#cccccc] focus:border-[#c62676] focus:ring-[#c62676] text-sm"
+                    className="pr-10 border-[#cccccc] dark:border-gray-600 focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 transition-colors duration-200"
                   />
                 </div>
               </div>
@@ -152,38 +152,38 @@ export default function CreateAccountPage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center ${hasMinLength ? "bg-[#009951]" : "bg-gray-300"}`}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center transition-colors duration-200 ${hasMinLength ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                   >
                     {hasMinLength && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white">At least 8 characters</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 8 characters</span>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center ${hasCapitalLetter ? "bg-[#009951]" : "bg-gray-300"}`}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center transition-colors duration-200 ${hasCapitalLetter ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                   >
                     {hasCapitalLetter && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white">At least 1 Capital Letter</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 1 Capital Letter</span>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center ${hasSpecialChar ? "bg-[#009951]" : "bg-gray-300"}`}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center transition-colors duration-200 ${hasSpecialChar ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                   >
                     {hasSpecialChar && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white">At least 1 special character e.g !,@,#,?</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 1 special character e.g !,@,#,?</span>
                 </div>
 
                 <div className="flex items-center space-x-3">
                   <div
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center ${hasNumber ? "bg-[#009951]" : "bg-gray-300"}`}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center transition-colors duration-200 ${hasNumber ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                   >
                     {hasNumber && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white">At least 1 number</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 1 number</span>
                 </div>
               </div>
 
@@ -191,9 +191,9 @@ export default function CreateAccountPage() {
               <div className="flex items-start gap-2 pt-2">
                 <Checkbox
                   id="terms"
-                  className="mt-0.5 border-[#cccccc] data-[state=checked]:bg-[#c62676] data-[state=checked]:border-[#c62676] w-4 h-4 sm:w-5 sm:h-5"
+                  className="mt-0.5 border-[#cccccc] dark:border-gray-600 data-[state=checked]:bg-[#c62676] data-[state=checked]:border-[#c62676] w-4 h-4 sm:w-5 sm:h-5 dark:data-[state=checked]:bg-[#c62676] dark:data-[state=checked]:border-[#c62676] transition-colors duration-200"
                 />
-                <label htmlFor="terms" className="text-xs sm:text-sm text-[#333333] dark:text-white leading-relaxed">
+                <label htmlFor="terms" className="text-xs sm:text-sm text-[#333333] dark:text-white leading-relaxed transition-colors duration-200">
                   I Acknowledge that I have read and understood the{" "}
                   <a href="#" className="text-[#c62676] underline hover:no-underline">
                     Terms of Use
@@ -207,14 +207,14 @@ export default function CreateAccountPage() {
 
               {/* Create Account Button */}
               <Button
-                className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base"
+                className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base transition-all duration-200"
                 onClick={handleCreateAccount}
               >
                 Create Account
               </Button>
 
               {/* Sign In Link */}
-              <div className="text-center text-xs sm:text-sm text-[#333333] dark:text-white">
+              <div className="text-center text-xs sm:text-sm text-[#333333] dark:text-white transition-colors duration-200">
                 Already have an account{" "}
                 <a href="#" 
                   onClick={handleLoginPage}
@@ -235,12 +235,12 @@ export default function CreateAccountPage() {
 
       {/* Confirmation Modal */}
       {showConfirmModal && (
-        <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-4 sm:p-6 w-full max-w-sm mx-4 relative">
+        <div className="fixed inset-0 backdrop-blur bg-black/16 dark:bg-black/30 flex items-center justify-center z-50 p-4 transition-colors duration-200">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 w-full max-w-sm mx-4 relative transition-colors duration-200">
             {/* Close button */}
             <button
               onClick={handleCancel}
-              className="absolute top-4 right-4 text-gray-400 hover:text-[#2C2C2C]"
+              className="absolute top-4 right-4 text-gray-400 dark:text-gray-300 hover:text-[#2C2C2C] dark:hover:text-white transition-colors duration-200"
             >
               <X className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
@@ -252,26 +252,26 @@ export default function CreateAccountPage() {
               
               <div className="space-y-3 sm:space-y-4 text-left">
                 <div>
-                  <p className="text-xs sm:text-sm font-medium text-[#2C2C2C] dark:text-[#FFFFFF] mb-1">Phone Number</p>
-                  <p className="text-xs sm:text-sm text-gray-900 dark:text-[#FFFFFF]">+254 {phoneNumber || "720 123 456"}</p>
+                  <p className="text-xs sm:text-sm font-medium text-[#2C2C2C] dark:text-white mb-1 transition-colors duration-200">Phone Number</p>
+                  <p className="text-xs sm:text-sm text-gray-900 dark:text-gray-200 transition-colors duration-200">+254 {phoneNumber || "720 123 456"}</p>
                 </div>
                 
                 <div>
-                  <p className="text-xs sm:text-sm font-medium text-[#2C2C2C] dark:text-[#FFFFFF] mb-1">Email Address</p>
-                  <p className="text-xs sm:text-sm text-gray-900 dark:text-[#FFFFFF]">{email || "mokua@gmail.com"}</p>
+                  <p className="text-xs sm:text-sm font-medium text-[#2C2C2C] dark:text-white mb-1 transition-colors duration-200">Email Address</p>
+                  <p className="text-xs sm:text-sm text-gray-900 dark:text-gray-200 transition-colors duration-200">{email || "mokua@gmail.com"}</p>
                 </div>
               </div>
               
               <div className="flex gap-3 pt-4 sm:pt-6">
                 <button
                   onClick={handleCancel}
-                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border-2 bg-gray-50 dark:bg-[#2C2C2C] text-[#2C2C2C] dark:text-white rounded-full hover:bg-gray-600 transition-colors font-medium text-xs sm:text-sm"
+                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-[#2C2C2C] dark:text-white rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 font-medium text-xs sm:text-sm"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleConfirmNext}
-                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-[#c62676] text-white rounded-full hover:bg-[#c62676]/90 transition-colors font-medium text-xs sm:text-sm"
+                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-[#c62676] text-white rounded-full hover:bg-[#c62676]/90 transition-colors duration-200 font-medium text-xs sm:text-sm"
                 >
                   Next
                 </button>

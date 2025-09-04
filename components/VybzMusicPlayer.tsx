@@ -395,13 +395,13 @@ export default function VybzMusicPlayer({
 
         {/* Left Side Content - Album Info */}
         <div
-          className={`absolute w-full left-4 pr-4 md:left-16 top-1/2 transform -translate-y-1/2 flex items-center space-x-6 transition-opacity duration-300 ${
+          className={`absolute w-full left-4 pr-4 md:left-16 top-[54%] transform -translate-y-1/2 flex items-center space-x-6 transition-opacity duration-300 ${
             showContent ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Album Details */}
           <div className="relative z-10 w-full h-full flex flex-col justify-end">
-            <div className="flex flex-wrap items-end gap-6 mb-20 pb-10 md:mb-8">
+            <div className="flex flex-wrap items-end gap-6 mb-20 md:mb-8">
               {/* Album Cover */}
               <div className="flex-shrink-0 flex items-center w-35 h-50 overflow-hidden">
                 <img

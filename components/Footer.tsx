@@ -6,10 +6,7 @@ const Footer =()=>{
         <footer className="w-full bg-[#F2F2F2] dark:bg-[#141414] mt-10 max-w-8xl mx-auto ">
          <div className="px-8 sm:px-6 lg:px-8 py-8 ">
           {/* App Store Buttons */}
-          <div className="flex gap-3 mb-4 flex-start sm:mx-auto xs:justify-center cursor-pointer">
-            <img src="/logos/appStore.png" alt="Download on App Store" className="h-10" />
-            <img src="/logos/googlePlay.png" alt="Get it on Google Play" className="h-10" />
-          </div>
+        
 
           {/* Social Links and Footer Links */}
           <div className="flex flex-wrap justify-between items-center border-t border-gray-600 pt-5 min-h-[60px]">
@@ -28,9 +25,14 @@ const Footer =()=>{
                  {/* <img src={"/logos/twitter-x.svg"}></img> */}
                  <FaXTwitter   className="w-8 h-8 "/>
               </a>
+              <div className="flex gap-3 items-center mb-4 flex-start sm:mx-auto xs:justify-center cursor-pointer">
+                <img src="/logos/appStore.png" alt="Download on App Store" className="h-9 md:h-10" />
+                <img src="/logos/googlePlay.png" alt="Get it on Google Play" className="h-9 md:h-10" />
+              </div>
             </div>
+            
 
-            <div className="flex flex-wrap pt-4 lg:pt-0 gap-2 gap-x-4 text-sm text-[#2C2C2C] dark:text-[#FFFFFF] items-end">
+            <div className="flex flex-wrap items-center lg:pt-0 gap-2 gap-x-4 text-sm text-[#2C2C2C] dark:text-[#FFFFFF] items-end">
               <a href="#" className="hover:text-gray-900 dark:text-[#FFFFFF]">
                 Help and Support
               </a>

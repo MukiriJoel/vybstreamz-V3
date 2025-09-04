@@ -2,16 +2,24 @@ import { Button } from "./ui/button";
 
 interface PartnerBannerProps{
     title?: string;
+    header?: string;
     logo?: string;
     button?: string;
     image?: string
 }
 
-const PartnerBanner = ({title,logo,button,image}:PartnerBannerProps) =>{
+const PartnerBanner = ({title,header,logo,button,image}:PartnerBannerProps) =>{
     return(
         <div>
-            <div className="flex justify-between">
-                <div className="flex mt-10 items-center">
+          <div>
+                <h2 className="capitalize text-xl md:text-2xl lg:text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
+                    {header}
+                  </h2>
+              </div>
+            <div className="flex justify-between items-end h-14 mt-4">
+              
+                <div className="flex pt-1 h-14 items-center">
+                  
                   <div className="w-14 h-14 rounded-2xl bg-transparent shadow-lg flex justify-center overflow-hidden">
                     <img
                       src={logo}
@@ -27,7 +35,7 @@ const PartnerBanner = ({title,logo,button,image}:PartnerBannerProps) =>{
                     {button}
                   </Button>
                 </div>
-              </div>
+            </div>
             <div className="relative mt-4 w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
               {/* Background Image Placeholder */}
               <div className="absolute inset-0 rounded-xl shadow-2xl">

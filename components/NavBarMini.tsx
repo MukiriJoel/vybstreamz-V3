@@ -157,8 +157,8 @@ const NavBarMini = () => {
             <div className="flex items-center lg:hidden">
               <Link href={"/"}>
                 <Image
-                  src={"/logos/VybeStreams.png"}
-                  className="h-[26px] w-[157px] object-contain"
+                  src={"/logos/vybStreamz.png"}
+                  className="object-contain"
                   alt={"logo"}
                   width={200}
                   height={50}

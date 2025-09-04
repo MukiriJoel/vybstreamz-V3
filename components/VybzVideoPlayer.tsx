@@ -365,7 +365,7 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
 
         {/* Video Title & Description */}
         <div
-          className={`absolute pt-2 mb-25 w-[50%] md:w-full top-[27%] md:top-[30%] lg:top-[38%] ml-4 md:ml-16 transition-opacity duration-300 ${
+          className={`absolute pt-2 mb-25 w-[50%] md:w-full top-[33%] md:top-[40%] lg:top-[38%] ml-4 md:ml-16 transition-opacity duration-300 ${
             showContent
             ? isFullscreen 
               ? "opacity-100 top-[42%] md:!top-[55%] lg:top-[55%]"  // Different positioning when fullscreen
@@ -373,24 +373,7 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
             : "opacity-0"
           }`}
         >
-          {/* <p className="text-white text-1xl md:text-5xl h-full w-[30%] lg:text-6xl font-bold drop-shadow-xl">
-          MOFAYA
-        </p>
-        <p className="
-          text-white
-          text-[8px]
-          md:text-lg
-          mt-30
-          md:mt-8
-          w-[70%]
-          md:w-[80%]
-          lg:w-[40%]
-          drop-shadow-xl
-        ">
-          A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of
-          secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks
-          more fire.
-        </p> */}
+      
           <div className="flex-1 pb-5 md:pb-1 min-w-[150px]">
             <h1 className="text-[28px] font-extrabold text-white capitalize">
               Mofaya

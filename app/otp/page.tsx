@@ -6,6 +6,7 @@ import { useState } from "react"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation'
+import { MdArrowBack } from "react-icons/md"
 
 export default function VerifyEmail() {
   const [code, setCode] = useState(["", "", "", ""])
@@ -47,20 +48,18 @@ export default function VerifyEmail() {
         {/* Form Section */}
         <div className="w-full lg:w-1/2 flex flex-col ">
 
-          <div className="flex pt-10 pb-15 items-center pl-8 md:p-6 md:pl-60 lg:pt-14 lg:pl-13 lg:pb-20 gap-50">
-            <button 
-              onClick={() => router.push('/')}
-              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
-            >
-              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <img src="/images/VybeStreams.png" alt="" className="h-8 md:h-10 " />
-          </div>
+          <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-50">
+                      <button 
+                        onClick={() => router.push('/')}
+                        className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                      >
+                        <MdArrowBack className="!w-8 !h-8"/>
+                      </button>
+                      <img src="/logos/vybstreamz.png" alt="" className="!h-15 !w-50" />
+                    </div>
       
 
-      <div className="max-w-sm mx-auto ml:50 md:ml-70 mt-20 lg:mr-50 lg:ml-20">
+      <div className="max-w-sm mx-auto pt-20">
         <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">Verify Email</h1>
 
         <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-12 leading-relaxed">

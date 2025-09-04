@@ -235,17 +235,17 @@ export default function ProfileContent() {
             <table className="w-full">
               <thead>
                 <tr className="">
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]"></th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]"></th>
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Amount
                   </th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Expiry Date
                   </th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Status
                   </th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Action
                   </th>
                 </tr>

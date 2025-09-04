@@ -66,7 +66,7 @@ export default function Home() {
 
             {/* Netflix Content Banner */}
             <section>
-              <PartnerBanner title="partner highlight" logo="/logos/netflix.png" button="visit site" image="/images/bestNetflix.png"/>
+              <PartnerBanner header="partner highlight" title="netflix" logo="/logos/netflix.png" button="visit site" image="/images/bestNetflix.png"/>
             </section>
 
             {/* Recommended For You Section */}

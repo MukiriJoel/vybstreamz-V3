@@ -54,7 +54,7 @@ export default function PasswordResetForm() {
           <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-58 gap-50">
             <button 
               onClick={() => router.push('/')}
-              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
+              className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900 dark:hover:text-gray-100"
             >
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -72,14 +72,14 @@ export default function PasswordResetForm() {
             {/* Form */}
                     <div className="space-y-8">
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-[#2c2c2c]">Reset Password</h1>
-            <p className="text-[#2c2c2c] text-sm">Your new password must be different from your previous passwords</p>
+            <h1 className="text-3xl font-bold text-[#2c2c2c] dark:text-[#FFFFFF]">Reset Password</h1>
+            <p className="text-[#2c2c2c] dark:text-[#CCCCCC] text-sm">Your new password must be different from your previous passwords</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
               <div>
-                <label htmlFor="newPassword" className="block text-sm font-medium text-[#2c2c2c] mb-2">
+                <label htmlFor="newPassword" className="block text-sm font-medium text-[#2c2c2c] dark:text-[#FFFFFF] mb-2">
                   New Password
                 </label>
                 <Input
@@ -87,13 +87,13 @@ export default function PasswordResetForm() {
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-[#c62676] rounded-lg focus:outline-none focus:border-[#c62676] bg-white"
+                  className="w-full px-4 py-3 border-2 border-[#c62676] rounded-lg focus:outline-none focus:border-[#c62676] bg-white dark:bg-[#2A2A2A] dark:text-[#FFFFFF] dark:placeholder-[#888888]"
                   placeholder=""
                 />
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-[#2c2c2c] mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-[#2c2c2c] dark:text-[#FFFFFF] mb-2">
                   Confirm Password
                 </label>
                 <Input
@@ -101,7 +101,7 @@ export default function PasswordResetForm() {
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-[#c62676] rounded-lg focus:outline-none focus:border-[#c62676] bg-white"
+                  className="w-full px-4 py-3 border-2 border-[#c62676] rounded-lg focus:outline-none focus:border-[#c62676] bg-white dark:bg-[#2A2A2A] dark:text-[#FFFFFF] dark:placeholder-[#888888]"
                   placeholder=""
                 />
               </div>
@@ -111,38 +111,38 @@ export default function PasswordResetForm() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasMinLength ? "bg-[#009951]" : "bg-gray-300"}`}
+                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasMinLength ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                 >
                   {hasMinLength && <Check className="w-3 h-3 text-white" />}
                 </div>
-                <span className="text-sm text-[#2c2c2c]">At least 8 characters</span>
+                <span className="text-sm text-[#2c2c2c] dark:text-[#CCCCCC]">At least 8 characters</span>
               </div>
 
               <div className="flex items-center space-x-3">
                 <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasCapitalLetter ? "bg-[#009951]" : "bg-gray-300"}`}
+                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasCapitalLetter ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                 >
                   {hasCapitalLetter && <Check className="w-3 h-3 text-white" />}
                 </div>
-                <span className="text-sm text-[#2c2c2c]">At least 1 Capital Letter</span>
+                <span className="text-sm text-[#2c2c2c] dark:text-[#CCCCCC]">At least 1 Capital Letter</span>
               </div>
 
               <div className="flex items-center space-x-3">
                 <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasSpecialChar ? "bg-[#009951]" : "bg-gray-300"}`}
+                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasSpecialChar ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                 >
                   {hasSpecialChar && <Check className="w-3 h-3 text-white" />}
                 </div>
-                <span className="text-sm text-[#2c2c2c]">At least 1 special character e.g !,@,#,?</span>
+                <span className="text-sm text-[#2c2c2c] dark:text-[#CCCCCC]">At least 1 special character e.g !,@,#,?</span>
               </div>
 
               <div className="flex items-center space-x-3">
                 <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasNumber ? "bg-[#009951]" : "bg-gray-300"}`}
+                  className={`w-5 h-5 rounded-full flex items-center justify-center ${hasNumber ? "bg-[#009951]" : "bg-gray-300 dark:bg-gray-600"}`}
                 >
                   {hasNumber && <Check className="w-3 h-3 text-white" />}
                 </div>
-                <span className="text-sm text-[#2c2c2c]">At least 1 number</span>
+                <span className="text-sm text-[#2c2c2c] dark:text-[#CCCCCC]">At least 1 number</span>
               </div>
             </div>
 

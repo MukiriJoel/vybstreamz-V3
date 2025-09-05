@@ -48,7 +48,7 @@ export default function ForgotPasswordEmailPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <img src="/images/VybeStreams.png" alt="" className="h-8 md:h-10 " />
+            <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
           </div>
           
           {/* Form Content */}

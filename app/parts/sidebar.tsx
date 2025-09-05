@@ -55,7 +55,7 @@ export default function Sidebar() {
         <div className="h-[60px] flex justify-center items-center border-b border-[#e5e5e5] dark:border-[#333333]">
           <Link href={"/"}>
             <Image 
-              src={"/logos/VybeStreams.png"} 
+              src={"/logos/vybstreamz.png"} 
               className="h-[20px] w-[120px] object-contain" 
               alt={"logo"}
               width={120} 
@@ -95,8 +95,8 @@ export default function Sidebar() {
           <div className="flex items-center">
             <Link href={"/"}>
               <Image 
-                src={"/logos/VybeStreams.png"} 
-                className="h-[26px] w-[157px] object-contain" 
+                src={"/logos/vybstreamz.png"} 
+                className="object-contain" 
                 alt={"logo"}
                 width={200} 
                 height={50}

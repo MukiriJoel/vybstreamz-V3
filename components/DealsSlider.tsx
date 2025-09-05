@@ -7,7 +7,7 @@ const DealsSlider = () => {
   const router = useRouter();
 
 const onSubscribeClick = () =>{
-     router.push(`/planselection/`);
+     router.push(`/payment/`);
   }
   
   return (
@@ -96,7 +96,7 @@ const onSubscribeClick = () =>{
               
               <div className="mt-auto">
                 <div className="flex items-center space-x-2 mb-4">
-                  <span className="text-sm sm:text-base md:text-lg font-normal text-[#2C2C2C]  dark:text-[#FFFFFF]">
+                  <span className="text-sm sm:text-base md:text-lg line-through font-normal text-[#2C2C2C]  dark:text-[#FFFFFF]">
                     Ksh {item.price}
                   </span>
                   <span className="text-lg sm:text-xl md:text-2xl text-[#2C2C2C] dark:text-[#FFFFFF] font-extrabold mb-2">
@@ -104,7 +104,7 @@ const onSubscribeClick = () =>{
                   </span>
                 </div>
                 
-                <Button onClick={()=>onSubscribeClick()} className="w-full bg-[#C62676] hover:bg-[#a91e62] text-sm sm:text-base md:text-lg font-semibold text-white rounded-full capitalize py-4 sm:py-5 md:py-6 transition-colors">
+                <Button onClick={()=>onSubscribeClick()} className="cursor-pointer w-full bg-[#C62676] hover:bg-[#a91e62] text-sm sm:text-base md:text-lg font-semibold text-white rounded-full capitalize py-4 sm:py-5 md:py-6 transition-colors">
                   {item.buttonText}
                 </Button>
               </div>

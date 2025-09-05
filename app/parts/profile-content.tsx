@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@mui/material";
 import {
@@ -15,7 +15,7 @@ import {
 import VideoSlider from "@/components/VideoSlider";
 import MusicSlider from "@/components/MusicSlider";
 import { useAuth } from "@/lib/context/AuthContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const subscriptions = [
   {
@@ -63,6 +63,15 @@ export default function ProfileContent() {
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab && ["Account", "My Favorites", "Subscriptions"].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
+
+
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
     if (file) {
@@ -104,8 +113,13 @@ export default function ProfileContent() {
     router.push("/payment");
   };
 
+  const onUpdateDetails = (e:any) =>{
+    e.preventDefault()
+    router.push("/profile?tab=Account")
+  }
+
   return (
-    <div className="py-4 pl-10">
+    <div className="py-4 ">
       {/* Profile Header */}
       <div className="bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] ml-0 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-12 py-6 ">
         <div
@@ -226,17 +240,17 @@ export default function ProfileContent() {
             <table className="w-full">
               <thead>
                 <tr className="">
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]"></th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]"></th>
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Amount
                   </th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Expiry Date
                   </th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Status
                   </th>
-                  <th className="text-center py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Action
                   </th>
                 </tr>
@@ -245,7 +259,7 @@ export default function ProfileContent() {
                 {subscriptions.map((subscription) => (
                   <tr
                     key={subscription.id}
-                    className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-800 pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1 group"
+                    className="border-b border-[#f2f2f2] cursor-pointer hover:bg-[#c62676] hover:text-[#FFFFFF] dark:hover:bg-gray-[#c62676] pl-40 rounded-sm transform transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-1 group"
                     onClick={() => handleSubscriptionClick()}
                   >
                     <td className="py-6 px-4 overflow-visible">
@@ -285,7 +299,7 @@ export default function ProfileContent() {
                       {subscription.showAction && (
                         <Button
                           variant="outline"
-                          className="cursor-pointer border-[#2C2C2C] border-2 group-hover:border-white group-hover:text-white  dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent rounded-sm"
+                          className="cursor-pointer border-[#2C2C2C] border-2 group-hover:border-white group-hover:text-white  dark:border-white text-[#2C2C2C] dark:text-[#FFFFFF] text-base hover:bg-[#F2F2F2] dark:hover:bg-[#121212] dark:bg-transparent bg-transparent rounded-sm"
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent row click when button is clicked
                             onUnsubscribeClick();
@@ -462,7 +476,7 @@ export default function ProfileContent() {
               </div>
 
               <button
-                type="submit"
+                onClick={(e)=>onUpdateDetails(e)}
                 className="w-full bg-[#C62676] hover:bg-pink-700 cursor-pointer text-white font-medium py-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
               >
                 Update Details

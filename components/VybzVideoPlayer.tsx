@@ -21,44 +21,28 @@ import {
   Bookmark,
 } from "lucide-react";
 import RatingsComponent from "@/components/ratings-section";
-import { MdArrowForward, MdOutlineVideocam } from "react-icons/md";
-import ReviewsSection from "@/components/reviews-section";
-import MusicSlider from "@/components/MusicSlider";
+import VideoSlider from "@/components/VideoSlider";
+import { MdArrowForward, MdPlayArrow } from "react-icons/md";
 import { useRouter } from "next/navigation";
-import { HiOutlineSpeakerXMark } from "react-icons/hi2";
+import ReviewsSection from "@/components/reviews-section";
+import SectionHeader from "@/components/SectionHeader";
 
-export interface VybzMusicPlayerProps {
-  audioSrc: string;
-  albumImage?: string;
-  bannerImage?: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  albumInfo?: string;
-  platformLogo?: string;
+interface VybzVideoPlayerProps{
+    videoSrc?:string
 }
 
-export default function VybzMusicPlayer({
-  audioSrc,
-  bannerImage,
-  albumImage,
-  title,
-  subtitle,
-  albumInfo,
-  description,
-  platformLogo,
-}: VybzMusicPlayerProps) {
+export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const [showContent, setShowContent] = useState(true);
-  const [showPosterOverlay, setShowPosterOverlay] = useState(false);
+  const [showContent, setShowContent] = useState(true); // For hiding/showing trailers and description
+  const [showPosterOverlay, setShowPosterOverlay] = useState(false); // For showing poster after pause
   const [isHovered, setIsHovered] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [lastMouseMove, setLastMouseMove] = useState(Date.now());
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const contentHideTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
@@ -70,6 +54,7 @@ export default function VybzMusicPlayer({
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+
   // Hide controls after 3 seconds when playing or when mouse is stationary
   useEffect(() => {
     const hideControlsTimer = () => {
@@ -111,16 +96,16 @@ export default function VybzMusicPlayer({
     };
   }, [isPlaying, isHovered, isDragging, lastMouseMove]);
 
-  // Handle content hiding when audio starts playing
+  // Handle content hiding when video starts playing
   useEffect(() => {
     if (isPlaying) {
-      // Hide content after 300ms when audio starts
+      // Hide content after 300ms when video starts
       contentHideTimeoutRef.current = setTimeout(() => {
         setShowContent(false);
         setShowPosterOverlay(false);
       }, 300);
     } else {
-      // Show content immediately when audio is paused
+      // Show content immediately when video is paused
       setShowContent(true);
       // Clear any existing timeouts
       if (contentHideTimeoutRef.current) {
@@ -168,8 +153,8 @@ export default function VybzMusicPlayer({
             Math.min(1, (e.clientX - rect.left) / rect.width)
           );
           const newTime = percent * duration;
-          if (audioRef.current) {
-            audioRef.current.currentTime = newTime;
+          if (videoRef.current) {
+            videoRef.current.currentTime = newTime;
             setCurrentTime(newTime);
           }
         }
@@ -195,81 +180,65 @@ export default function VybzMusicPlayer({
 
   //Handle Volume Control
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-      audioRef.current.muted = isMuted;
+    if (videoRef.current) {
+      videoRef.current.volume = volume;
+      videoRef.current.muted = isMuted;
     }
   }, [volume, isMuted]);
 
   const handlePlayPause = () => {
-    if (audioRef.current) {
+    if (videoRef.current) {
       if (isPlaying) {
-        audioRef.current.pause();
+        videoRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play().catch((error) => {
-          console.error("Audio play failed:", error);
-        });
+        videoRef.current.play();
         setIsPlaying(true);
       }
     }
   };
 
   const handleSkip = () => {
-    if (audioRef.current) {
+    if (videoRef.current) {
       const newTime = Math.min(
-        audioRef.current.currentTime + 10,
-        audioRef.current.duration
+        videoRef.current.currentTime + 10,
+        videoRef.current.duration
       );
-      audioRef.current.currentTime = newTime;
+      videoRef.current.currentTime = newTime;
     }
   };
 
-  const handleBannerClick = () => {
+  const handleVideoClick = () => {
     handlePlayPause();
   };
 
-  const handleAudioEnded = () => {
+  const handleVideoEnded = () => {
     setIsPlaying(false);
     setShowControls(true);
   };
 
   const handleTimeUpdate = () => {
-    if (audioRef.current && !isDragging) {
-      setCurrentTime(audioRef.current.currentTime);
+    if (videoRef.current && !isDragging) {
+      setCurrentTime(videoRef.current.currentTime);
     }
   };
 
   const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration);
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
     }
   };
 
   const handleSeekClick = (e: any) => {
-    if (audioRef.current) {
+    if (videoRef.current) {
       const rect = e.currentTarget.getBoundingClientRect();
       const percent = (e.clientX - rect.left) / rect.width;
       const newTime = percent * duration;
-      audioRef.current.currentTime = newTime;
+      videoRef.current.currentTime = newTime;
       setCurrentTime(newTime);
     }
   };
- 
 
-  // const handleSeekMouseDown = (e: React.MouseEvent) => {
-  // // e.preventDefault();
-  // // e.stopPropagation();
-  // setIsDragging(true);
-  
-  // if (audioRef.current) {
-  //   const rect = e.currentTarget.getBoundingClientRect();
-  //   const percent = (e.clientX - rect.left) / rect.width;
-  //   const newTime = percent * duration;
-  //   audioRef.current.currentTime = newTime;
-  //   setCurrentTime(newTime);
-  // }
-  // };
   const handleSeekMouseDown = (e: any) => {
     setIsDragging(true);
     handleSeekClick(e);
@@ -285,17 +254,16 @@ export default function VybzMusicPlayer({
     setIsDragging(false);
   };
 
-  // const formatTime = (time: any) => {
-  //   if (isNaN(time) || time === 0) return "0:00";
-  //   const minutes = Math.floor(time / 60);
-  //   const seconds = Math.floor(time % 60);
-  //   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  // };
   const formatTime = (time: any) => {
-    if (isNaN(time) || time === 0) return "0:00";
+    if (isNaN(time)) return "0:00";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  const handleTrailerClick = (trailerNumber: any) => {
+    console.log(`Clicked trailer ${trailerNumber}`);
+    // You can implement trailer switching logic here
   };
 
   const handleMouseEnter = () => {
@@ -343,18 +311,13 @@ export default function VybzMusicPlayer({
 
   const Router = useRouter();
 
-  const onHandleClick = () => {
+  const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
-  };
-
-  const onSubscribeClick = () => {
-    Router.push(`/planselection/`);
   };
 
    const onSaveClick = () =>{
     Router.push('/profile?tab=My Favorites');
   }
-
 
   return (
     <>
@@ -369,88 +332,78 @@ export default function VybzMusicPlayer({
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
       >
-        {/* Hidden audio element */}
-        <audio
-          ref={audioRef}
-          onEnded={handleAudioEnded}
-          onTimeUpdate={handleTimeUpdate}
-          onLoadedMetadata={handleLoadedMetadata}
-          preload="metadata"
-        >
-          <source src={audioSrc} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-
-        {/* Banner Image (Background) */}
-        <img
-          src={bannerImage}
-          alt="Album/Podcast Banner"
-          className={`object-cover ${
+        {/* Video element */}
+        <video
+          ref={videoRef}
+          className={`object-contain ${
             isFullscreen ? "w-screen h-screen" : "w-full h-full"
           }`}
-        />
+          onClick={handleVideoClick}
+          onEnded={handleVideoEnded}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleLoadedMetadata}
+          playsInline
+        >
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
-        {/* Left Side Content - Album Info */}
+        {/* Poster overlay when paused for 4 seconds */}
+        {showPosterOverlay && !isPlaying && (
+          <div className="absolute inset-0 transition-opacity duration-500">
+            <img
+              src="/images/mofayabanner.jpeg"
+              alt="Movie Poster"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/30" />
+          </div>
+        )}
+
+        {/* Video Title & Description */}
         <div
-          className={`absolute w-full left-4 pr-4 md:left-16 top-[54%] transform -translate-y-1/2 flex items-center space-x-6 transition-opacity duration-300 ${
-            showContent ? "opacity-100" : "opacity-0"
+          className={`absolute pt-2 mb-25 w-[50%] md:w-full top-[33%] md:top-[40%] lg:top-[38%] ml-4 md:ml-16 transition-opacity duration-300 ${
+            showContent
+            ? isFullscreen 
+              ? "opacity-100 top-[42%] md:!top-[55%] lg:top-[55%]"  // Different positioning when fullscreen
+              : "opacity-100 top-[10%] md:top-[15%] lg:top-[32%]"  // Normal positioning
+            : "opacity-0"
           }`}
         >
-          {/* Album Details */}
-          <div className="relative z-10 w-full h-full flex flex-col justify-end">
-            <div className="flex flex-wrap items-end gap-6 mb-20 md:mb-8">
-              {/* Album Cover */}
-              <div className="flex-shrink-0 flex items-center w-35 h-50 overflow-hidden">
-                <img
-                  src={albumImage}
-                  alt="DISKO Cover"
-                  className="w-full h-full rounded-lg object-cover shadow-lg"
-                />
-              </div>
-              {/* Album Info Container */}
-              <div className="flex-1 min-w-[150px] flex flex-col justify-end">
-                {/* Main Album Info */}
-                <div className="mb-0">
-                  <h1 className="text-[28px] font-extrabold text-white capitalize leading-tight">
-                    {title}
-                  </h1>
-                  <p className="text-white text-[22px] mt-2 !font-normal leading-tight capitalize">
-                    {subtitle}
-                  </p>
-                  <p className="text-white text-[12px] mt-2">{albumInfo}</p>
-                </div>
+      
+          <div className="flex-1 pb-5 md:pb-1 min-w-[150px]">
+            <h1 className="text-[28px] font-extrabold text-white capitalize">
+              Mofaya
+            </h1>
+            <p className="text-white text-[14px] font-semibold mt-2">
+              Movie | 16 Yrs+
+            </p>
+            <p className="text-white text-[12px] max-w-md pt-1">
+              A young woman moves in with her boyfriend for a fresh start—only
+              to get pulled into a dangerous world of secrets, crime, and
+              betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where
+              every choice sparks more fire.
+            </p>
+          </div>
+          <div className="flex pt-1 items-center pr-10 cursor-pointer">
+            <p className="text-white/70 text-[14px] uppercase tracking-wide">
+              stream on:
+            </p>
 
-                {/* Stream On and Controls Row */}
-                <div className="flex flex-wrap justify-between items-end py-2 w-full">
-                  {/* Stream On Section */}
-                  <div className="flex items-center mb-2">
-                    <p className="text-white text-[14px] uppercase tracking-wide mr-3">
-                      stream on:
-                    </p>
-                    <img
-                      src={platformLogo}
-                      className="w-[45px] h-[45px]"
-                      alt={title}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Action Buttons */}
-            <div className="flex gap-4 pt-5 md:pt-1 pb-13 md:pb-4 lg:pb-4 mx-auto md:mx-0">
-              <Button
-                onClick={() => onSubscribeClick()}
-                className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer"
-              >
+            <img src={"/logos/bazeLg.png"} className="w-[45px] h-[45px] ml-2" />
+          </div>
+          <div className="flex gap-4 justify-between flex-wrap pt-4 mb-6 md:pb-1 md:mb-0">
+            <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
+              <Button className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer">
                 Subscribe
               </Button>
               <Button
                 variant="outline"
-                className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full  w-40 cursor-pointer"
-                onClick={()=>onSaveClick()} 
+                className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C]  w-40 cursor-pointer"
+                onClick={()=>onSaveClick()}
               >
                 <Bookmark className="h-4 w-4 mr-2" />
                 Save
@@ -459,32 +412,7 @@ export default function VybzMusicPlayer({
           </div>
         </div>
 
-        {/* Right Side - Switch to Video Button */}
-        <div
-          className={`absolute right-4 md:right-16 top-1/2 transition-opacity duration-300 ${
-            showContent ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {/* Right Side Controls */}
-          <div className="flex flex-col flex-wrap items-end gap-4 mt-[60px] md:mt-0 lg:mt-0">
-            {/* Audio/Video Controls */}
-            <div className="flex items-center gap-3">
-              <Button className="bg-[#2C2C2C] hover:!bg-[#333333] dark:bg-[#2C2C2C] text-white px-4 py-2 rounded-[5px] text-xs  border border-white/10 cursor-pointer">
-                <MdOutlineVideocam className="mr-1" />
-                Switch To Video
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="cursor-pointer text-white border-2 border-white rounded-full cursor-pointer w-10 h-10"
-              >
-                <HiOutlineSpeakerXMark />
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Music/Podcast Player Controls */}
+        {/* Video Player Controls */}
         <div
           className={`absolute bottom-4 left-4 right-4 transition-all duration-300 ${
             (showControls && isHovered) || isDragging
@@ -495,7 +423,7 @@ export default function VybzMusicPlayer({
           {/* Progress Bar */}
           <div className="mb-4">
             <div
-              className="seek-bar w-full h-2 bg-white/30 rounded-full cursor-pointer relative group"
+              className="seek-bar w-full h-2 bg-white/30  rounded-full cursor-pointer relative group"
               onMouseDown={handleSeekMouseDown}
               onMouseMove={handleSeekMouseMove}
               onMouseUp={handleSeekMouseUp}
@@ -506,7 +434,7 @@ export default function VybzMusicPlayer({
                   width: `${duration ? (currentTime / duration) * 100 : 0}%`,
                 }}
               >
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-[#C62676]  rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-[#C62676] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </div>
             <div className="flex justify-between text-white text-sm mt-1">
@@ -514,27 +442,6 @@ export default function VybzMusicPlayer({
               <span>{formatTime(duration)}</span>
             </div>
           </div>
-          {/* <div className="mb-4">
-            <div
-            className="seek-bar w-full h-2 bg-white/30 rounded-full cursor-pointer relative group"
-            onMouseDown={handleSeekMouseDown}
-            onMouseMove={handleSeekMouseMove}
-            >
-              <div
-              className="h-full bg-pink-500 rounded-full relative"
-              style={{
-              width: `${duration ? (currentTime / duration) * 100 : 0}%`,
-              }}
-              >
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-pink-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </div>
-            <div className="flex justify-between text-white text-sm mt-1">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
-            </div>
-          </div> */}
-                    
 
           {/* Control Buttons */}
           <div className="flex items-center space-x-4">
@@ -548,7 +455,7 @@ export default function VybzMusicPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMuted(!isMuted)}
-                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]"
+                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
               >
                 {isMuted || volume === 0 ? (
                   <VolumeX className="h-5 w-5 text-white" />
@@ -588,7 +495,7 @@ export default function VybzMusicPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={handlePlayPause}
-                className="cursor-pointer w-12 h-12 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]"
+                className="cursor-pointer w-12 h-12 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
               >
                 {isPlaying ? (
                   <Pause className="h-6 w-6 text-white" />
@@ -602,12 +509,25 @@ export default function VybzMusicPlayer({
                 variant="ghost"
                 size="icon"
                 onClick={handleSkip}
-                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]"
+                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
               >
                 <SkipForward className="h-5 w-5 text-white" />
               </Button>
             </div>
 
+            {/* Fullscreen Button */}
+            {/* <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleFullscreen}
+            className="w-10 h-10 rounded-full dark:bg-[#2C2C2C]  hover:bg-[#333333] "
+          >
+            {isFullscreen ? (
+              <Minimize className="h-5 w-5 text-white" />
+            ) : (
+              <Maximize className="h-5 w-5 text-white" />
+            )}
+          </Button> */}
           </div>
         </div>
 
@@ -616,7 +536,7 @@ export default function VybzMusicPlayer({
           variant="ghost"
           size="icon"
           onClick={handlePlayPause}
-          className={`cursor-pointer absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] transition-all duration-300 ${
+          className={`cursor-pointer absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]  transition-all duration-300 ${
             (isHovered && showControls) || !isPlaying
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
@@ -628,7 +548,87 @@ export default function VybzMusicPlayer({
             <Play className="h-8 w-8 text-white ml-1" />
           )}
         </Button>
+
+        {/* Fullscreen toggle button - only show when not in fullscreen and content is visible */}
+
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleFullscreen}
+          className={`cursor-pointer absolute bottom-4 right-4 w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333]  transition-all duration-300 ${
+            (showControls && isHovered) || isDragging || showContent
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+        >
+          {isFullscreen ? (
+            <Minimize className="h-5 w-5 text-white" />
+          ) : (
+            <Maximize className="h-5 w-5 text-white" />
+          )}
+        </Button>
+
+              {/* Trailer thumbnails */}
+              {/* <div 
+              className={`absolute bottom-10 right-4 flex space-x-6 transition-all duration-300 ${
+                showContent ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              {[1, 2, 3].map((trailer) => (
+                <div>
+                  <div className="text-white text-center text-md mb-1">Trailer {trailer}</div>
+                <div
+                  key={trailer}
+                  onClick={() => handleTrailerClick(trailer)}
+                  className="w-64 h-36 bg-[url('/images/Trailer.png')] bg-cover bg-center rounded-xl border-4 border-[#ffffff] flex flex-col items-center justify-center cursor-pointer hover:border-[#C62676] transition-colors"
+                >
+          
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    <MdPlayArrow className="text-white w-15 h-15"/>
+                  </div>
+                </div>
+                </div>
+                
+              ))}
+            </div> */}
+        <div
+          className={`absolute bottom-50 sm:bottom-35 md:bottom-12 lg:bottom-32 xl:bottom-36 right-2 sm:right-4 
+    flex flex-col sm:flex-col md:flex-col lg:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6 
+    transition-all duration-300 ${
+      showContent
+        ? "opacity-100 pointer-events-auto  md:bottom-32 lg:bottom-30"
+        : "opacity-0 pointer-events-none"
+    }`}
+        >
+          {[1, 2, 3].map((trailer) => (
+            <div key={trailer} className="flex flex-col items-center">
+              <div className="text-white text-center text-xs sm:text-sm md:text-base mb-1">
+                Trailer {trailer}
+              </div>
+              <div
+                onClick={() => handleTrailerClick(trailer)}
+                className="w-32 h-20 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-40 lg:h-28 
+          bg-[url('/images/Trailer.png')] bg-cover bg-center 
+          rounded-lg sm:rounded-xl 
+          border-2 sm:border-3 lg:border-4 border-white 
+          flex items-center justify-center 
+          cursor-pointer hover:border-[#C62676] 
+          transition-colors duration-200
+          group"
+              >
+                <div
+                  className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 
+          flex items-center justify-center 
+          bg-black/20 rounded-full 
+          group-hover:bg-[#C62676]/80 
+          transition-all duration-200"
+                >
+                  <MdPlayArrow className="text-white w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
-  );
-}
+)}

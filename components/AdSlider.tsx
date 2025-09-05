@@ -87,7 +87,7 @@ const AdSlider = ({
                                     <img
                                     src={slide.image}
                                     alt="Advertisement"
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover cursor-pointer"
                                     />
                                 
                             </div>

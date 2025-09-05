@@ -191,14 +191,32 @@ export default function SettingsPage() {
       case "accountDeletion":
         return (
           <div className="bg-white dark:bg-[#2C2C2C] p-6 rounded-lg">
-            <h2 className="text-xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white">Account Deletion</h2>
+            <h2 className="text-xl font-semibold mb-6 text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white capitalize">delete account?</h2>
             <div className="space-y-4">
-              <p className="text-[#696969] dark:text-gray-400 text-sm">
-                Deleting your account will permanently remove all your data and cannot be undone.
+              <p className="text-[#2C2C2C]  dark:text-white text-sm mb-0">
+                   You will permanently lose your:
               </p>
-              <button className="w-full px-4 py-3 rounded-lg bg-[#ec221f] text-white hover:bg-red-600 transition-colors">
-                Delete Account
-              </button>
+             
+                <ul className="pl-3 ml-3 mt-0 list-disc text-[#2C2C2C]  dark:text-white text-sm">
+                  <li>Profile</li>
+                  <li>Subscription Information</li>
+                  <li>Settings</li>
+                </ul>
+              
+              <div className="flex gap-4 justify-center w-full">
+                <button
+                 
+                  className="cursor-pointer px-6 py-3 w-full bg-[#333333] dark:bg-[#333333]  text-white dark:text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-700 transition-colors"
+                >
+                  No, Keep My Account
+                </button>
+                <button
+               
+                  className="cursor-pointer px-6 py-3 w-full bg-[#c62676] text-white rounded-lg hover:bg-pink-700 transition-colors"
+                >
+                  Delete Account
+                </button>
+              </div>
             </div>
           </div>
         )

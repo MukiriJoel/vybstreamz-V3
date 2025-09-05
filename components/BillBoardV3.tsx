@@ -166,7 +166,7 @@ const BillBoardV3 = ({
         <div className="absolute inset-0 overflow-hidden">
             <iframe
             src={slide.backgroundVideo}
-            className="!absolute !top-1/2 !left-1/2 w-[250vw] h-[100vh] !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
+            className="!absolute !top-1/2 !left-1/2 w-[300vw] h-[100vh] !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
             style={{
                 transform: "translate(-50%, -50%)",
             }}
@@ -194,6 +194,10 @@ const BillBoardV3 = ({
       </div>
     );
   };
+
+  const onSaveClick = () =>{
+    router.push('/profile?tab=My Favorites');
+  }
 
   return (
     <div
@@ -332,7 +336,8 @@ const BillBoardV3 = ({
                   <Button
                     variant="outline"
                     className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer transform hover:scale-105 transition-transform duration-200"
-                  >
+                    onClick={()=>onSaveClick()}
+                 >
                     <Bookmark className="h-4 w-4 mr-2" />
                     Save
                   </Button>

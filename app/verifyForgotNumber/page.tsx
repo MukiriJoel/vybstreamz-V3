@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
           {/* Header */}
           <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-28 gap-50">
             <button 
-              onClick={() => router.push('/')}
+              onClick={() => router.push('/login')}
               className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900"
             >
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

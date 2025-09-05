@@ -53,14 +53,14 @@ export default function PasswordResetForm() {
           {/* Header - Now inside form section */}
           <div className="flex pt-10 items-center pl-19 md:p-6 md:pl-60 lg:pt-8 lg:pl-58 gap-50">
             <button 
-              onClick={() => router.push('/')}
+              onClick={() => router.push('/verifyForgotEmail')}
               className="flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-900 dark:hover:text-gray-100"
             >
               <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <img src="/images/VybeStreams.png" alt="" className="h-8 md:h-10 " />
+            <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
           </div>
           
           {/* Form Content */}

@@ -67,6 +67,7 @@ export default function LoginForm() {
                 <p className="text-[#999999] dark:text-gray-400 text-sm md:text-base transition-colors duration-200">
                   Log into your account and dive into non-stop entertainment made for you
                 </p>
+                
               </div>
 
               {/* Form */}

@@ -1,9 +1,8 @@
 // contexts/ThemeContext.tsx
 "use client"
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-
-type Theme = 'light' | 'dark' | 'system'
+import { useAppSelector,useAppDispatch } from '@/hooks/redux'
+import { setActualTheme,Theme,setTheme as setThemeAction } from '@/store/slices/themeSlice'
 
 interface ThemeContextType {
   theme: Theme
@@ -18,8 +17,10 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>('system')
-  const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light')
+  const dispatch = useAppDispatch();
+  // const [theme, setTheme] = useState<Theme>('system')
+  const {theme,actualTheme} = useAppSelector((state)=>state.theme)
+  // const [actualTheme, setActualTheme] = useState<'light' | 'dark'>('light')
 
   // Function to get system theme preference
   const getSystemTheme = (): 'light' | 'dark' => {
@@ -35,18 +36,18 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       const root = window.document.documentElement
       root.classList.remove('light', 'dark')
       root.classList.add(themeToApply)
-      setActualTheme(themeToApply)
+      dispatch(setActualTheme(themeToApply)) 
     }
   }
 
   // Initialize theme on mount
-  useEffect(() => {
-    // Try to get saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme') as Theme | null
-    if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
-      setTheme(savedTheme)
-    }
-  }, [])
+  // useEffect(() => {
+  //   // Try to get saved theme from localStorage
+  //   const savedTheme = localStorage.getItem('theme') as Theme | null
+  //   if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
+  //     setTheme(savedTheme)
+  //   }
+  // }, [])
 
   // Handle theme changes
   useEffect(() => {
@@ -72,12 +73,12 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     }
 
     applyTheme(resolvedTheme)
-    
-    // Save to localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme)
-    }
-  }, [theme])
+  
+  }, [theme,dispatch]);
+
+  const setTheme = (newTheme:Theme)=>{
+    dispatch(setThemeAction(newTheme))
+  }
 
   const contextValue: ThemeContextType = {
     theme,

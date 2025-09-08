@@ -191,7 +191,7 @@ const VybzCarouselMain = ({
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                    className="border-white/20 text-xs text-white hover:!bg-[#333333] dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                     onClick={()=>onSaveClick()}
                   >
                     <Bookmark className="h-4 w-4 mr-2" />

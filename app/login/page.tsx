@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
+
+import { useAuth } from "@/lib/context/AuthContext"
+
 import { MdArrowBack } from "react-icons/md"
 
 
@@ -14,13 +17,15 @@ export default function LoginForm() {
   const [phoneNumber, setPhoneNumber] = useState("720 123 456")
   const [selectedCountryCode, setSelectedCountryCode] = useState("+254")
   const router = useRouter()
+  const { isLoggedIn, login } = useAuth()
 
   const handleBackToCreate = () => {
     router.push("/createAccount")
   }
 
   const handleSuccessLogin = () => {
-    router.push("/preference")
+    login() // Set logged in state to true
+    router.push('/')
   }
 
   const handleForgotPassword = () => {

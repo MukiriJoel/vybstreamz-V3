@@ -6,64 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
+
 import { useAuth } from "@/lib/context/AuthContext"
 
-const africanCountries = [
-  { code: "+213", country: "Algeria", flag: "🇩🇿" },
-  { code: "+244", country: "Angola", flag: "🇦🇴" },
-  { code: "+229", country: "Benin", flag: "🇧🇯" },
-  { code: "+267", country: "Botswana", flag: "🇧🇼" },
-  { code: "+226", country: "Burkina Faso", flag: "🇧🇫" },
-  { code: "+257", country: "Burundi", flag: "🇧🇮" },
-  { code: "+237", country: "Cameroon", flag: "🇨🇲" },
-  { code: "+238", country: "Cape Verde", flag: "🇨🇻" },
-  { code: "+236", country: "Central African Republic", flag: "🇨🇫" },
-  { code: "+235", country: "Chad", flag: "🇹🇩" },
-  { code: "+269", country: "Comoros", flag: "🇰🇲" },
-  { code: "+243", country: "Congo (DRC)", flag: "🇨🇩" },
-  { code: "+242", country: "Congo (Republic)", flag: "🇨🇬" },
-  { code: "+225", country: "Côte d'Ivoire", flag: "🇨🇮" },
-  { code: "+253", country: "Djibouti", flag: "🇩🇯" },
-  { code: "+20", country: "Egypt", flag: "🇪🇬" },
-  { code: "+240", country: "Equatorial Guinea", flag: "🇬🇶" },
-  { code: "+291", country: "Eritrea", flag: "🇪🇷" },
-  { code: "+251", country: "Ethiopia", flag: "🇪🇹" },
-  { code: "+241", country: "Gabon", flag: "🇬🇦" },
-  { code: "+220", country: "Gambia", flag: "🇬🇲" },
-  { code: "+233", country: "Ghana", flag: "🇬🇭" },
-  { code: "+224", country: "Guinea", flag: "🇬🇳" },
-  { code: "+245", country: "Guinea-Bissau", flag: "🇬🇼" },
-  { code: "+254", country: "Kenya", flag: "🇰🇪" },
-  { code: "+266", country: "Lesotho", flag: "🇱🇸" },
-  { code: "+231", country: "Liberia", flag: "🇱🇷" },
-  { code: "+218", country: "Libya", flag: "🇱🇾" },
-  { code: "+261", country: "Madagascar", flag: "🇲🇬" },
-  { code: "+265", country: "Malawi", flag: "🇲🇼" },
-  { code: "+223", country: "Mali", flag: "🇲🇱" },
-  { code: "+222", country: "Mauritania", flag: "🇲🇷" },
-  { code: "+230", country: "Mauritius", flag: "🇲🇺" },
-  { code: "+212", country: "Morocco", flag: "🇲🇦" },
-  { code: "+258", country: "Mozambique", flag: "🇲🇿" },
-  { code: "+264", country: "Namibia", flag: "🇳🇦" },
-  { code: "+227", country: "Niger", flag: "🇳🇪" },
-  { code: "+234", country: "Nigeria", flag: "🇳🇬" },
-  { code: "+250", country: "Rwanda", flag: "🇷🇼" },
-  { code: "+239", country: "São Tomé and Príncipe", flag: "🇸🇹" },
-  { code: "+221", country: "Senegal", flag: "🇸🇳" },
-  { code: "+248", country: "Seychelles", flag: "🇸🇨" },
-  { code: "+232", country: "Sierra Leone", flag: "🇸🇱" },
-  { code: "+252", country: "Somalia", flag: "🇸🇴" },
-  { code: "+27", country: "South Africa", flag: "🇿🇦" },
-  { code: "+211", country: "South Sudan", flag: "🇸🇸" },
-  { code: "+249", country: "Sudan", flag: "🇸🇩" },
-  { code: "+268", country: "Eswatini", flag: "🇸🇿" },
-  { code: "+255", country: "Tanzania", flag: "🇹🇿" },
-  { code: "+228", country: "Togo", flag: "🇹🇬" },
-  { code: "+216", country: "Tunisia", flag: "🇹🇳" },
-  { code: "+256", country: "Uganda", flag: "🇺🇬" },
-  { code: "+260", country: "Zambia", flag: "🇿🇲" },
-  { code: "+263", country: "Zimbabwe", flag: "🇿🇼" },
-]
+import { MdArrowBack } from "react-icons/md"
+
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -85,29 +32,31 @@ export default function LoginForm() {
     router.push("/verifyForgotEmail")
   }
 
+  const GoToHome = () =>{
+    router.push('/')
+  }
+
   return (
     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col transition-colors duration-200">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
-        <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-8">
-          <img className="max-w-full max-h-full object-contain" src="/images/create.png" alt="" />
+        <div className="hidden lg:flex lg:w-1/2 items-start justify-center p-8">
+          <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" />
         </div>
    
         {/* Form Section */}
         <div className="w-full lg:w-1/2 flex flex-col">
           {/* Header - Now inside form section */}
-          <div className="flex pb-10 pt-10 items-center pl-13 md:p-6 md:pl-50 lg:pt-8 lg:pl-56 gap-50">
-            <button 
-              onClick={() => router.push('/')}
-              className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <img src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
-          </div>
+           <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-50">
+                      <button 
+                        onClick={() => router.back()}
+                        className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                      >
+                        <MdArrowBack className="!w-8 !h-8"/>
+                      </button>
+                      <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
+            </div>
           
           {/* Form Content */}
           <div className="flex-1 flex items-center justify-center p-4 md:p-8 lg:pt-0">

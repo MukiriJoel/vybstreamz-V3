@@ -70,11 +70,11 @@ export default function VerifyEmail() {
 
           <div className="w-full mx-auto  pt-20">
             <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">
-              Verify Email
+              Verify Phone Number
             </h1>
 
             <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-12 leading-relaxed">
-              Please enter the verification code sent to your email address
+              Please enter the verification code sent to your number
             </p>
 
             {/* Code Input */}

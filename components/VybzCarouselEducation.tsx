@@ -228,7 +228,7 @@ const VybzCarouselEducation = ({
                         <div className="flex flex-col flex-wrap items-end gap-4">
                           {/* Audio/Video Controls */}
                           <div className="flex items-center gap-3">
-                            {/* <Button className="bg-[#2C2C2C] hover:bg-white dark:bg-[#2C2C2C]/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
+                            {/* <Button className="bg-[#2C2C2C] hover:!bg-[#333333] dark:bg-[#2C2C2C]/20 text-white px-4 py-2 rounded-[5px] text-xs backdrop-blur-sm border border-white/10 cursor-pointer">
                               <MdOutlineVideocam className="mr-1" />
                               Switch To Video
                             </Button> */}
@@ -254,7 +254,7 @@ const VybzCarouselEducation = ({
                     </Button>
                     <Button
                       variant="outline"
-                      className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                      className="border-white/20 text-xs text-white hover:!bg-[#333333] dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                       onClick={()=>onSaveClick()}
                     >
                       <Bookmark className="h-4 w-4 mr-2" />

@@ -37,7 +37,7 @@ export default function viewMore(){
 
             {/* Trending Section */}
             <section className="mt-6">
-              <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="trending" route=""/>
                
                   <VideoSlider />
                
@@ -46,26 +46,26 @@ export default function viewMore(){
 
             {/* Recommended For You Section */}
             <section className="">
-               <SectionHeader title="videos" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="videos" route=""/>
               <VideoSlider />
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-               <SectionHeader title="music" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="music" route=""/>
               <MusicSlider />
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <SectionHeader title="podcasts" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="podcasts" route=""/>
               <PodcastSlider />
             </section>
 
              <section className=" py-4  ">
-              <SectionHeader title="education" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="education" route=""/>
               <EducationSlider />
             </section>
           </div>

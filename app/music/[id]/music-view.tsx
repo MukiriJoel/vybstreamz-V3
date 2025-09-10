@@ -50,7 +50,7 @@ export default function MusicView() {
         {/* Trending Section */}
         <main className="bg-[#F2F2F2] dark:bg-[#141414]">
           <section className="px-6 pb-3 pt-8 px-2">
-            <SectionHeader title="similar videos" onViewMoreClick={onViewMoreClick}/>
+            <SectionHeader  viewButton={true} title="similar videos" route=""/>
 
             <MusicSlider />
           </section>

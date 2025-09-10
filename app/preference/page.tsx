@@ -41,7 +41,7 @@ const genres = [
   "Historical Fiction",
 ]
 
-const initialSelected = ["Action", "Fantasy", "Family", "Action Comedy"]
+const initialSelected = [""]
 
 export default function PreferencePage() {
   const [selectedGenres, setSelectedGenres] = useState<string[]>(initialSelected)

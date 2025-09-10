@@ -131,9 +131,9 @@ export default function PartnerDetails({ id }: { id: number }) {
             {/* Episodes Section */}
             {/* Partners Section */}
             <div className="mb-8">
-              <SectionHeader
+              <SectionHeader  viewButton={true}
                 title="explore plans"
-                onViewMoreClick={onViewMoreClick}
+                route=""
               />
 
               {/* Horizontal scrollable container */}
@@ -195,7 +195,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <ReviewTop/>
             </section>
             <section>
-                <SectionHeader title="user reviews" onViewMoreClick={onViewReviewsClick}/>
+                <SectionHeader  viewButton={true} title="user reviews" onViewMoreClick={onViewReviewsClick}/>
                 <ReviewSlider/>
             </section>
           </div>
@@ -206,7 +206,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <ReviewTop/>
             </section>
             <section>
-                <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="user reviews" route=""/>
                 <ReviewSlider/>
             </section>
             <VideoSlider />

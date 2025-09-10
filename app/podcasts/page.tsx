@@ -118,7 +118,7 @@ const PodcastPlayer: React.FC = () => {
 
           {/* Partners Section */}
           <div className="pt-2">
-             <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
+             <SectionHeader  viewButton={true} title="partners" route=""/>
 
             {/* Horizontal scrollable container */}
               <PartnersSlider></PartnersSlider>
@@ -126,13 +126,13 @@ const PodcastPlayer: React.FC = () => {
 
           {/* Trending Section */}
           <div className="pt-10">
-            <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
+            <SectionHeader  viewButton={true} title="trending" route=""/>
             <PodcastSlider></PodcastSlider>
           </div>
 
           {/* albums Section */}
           <div className=" pt-1">
-           <SectionHeader title="digital skills" onViewMoreClick={onViewMoreClick}/>
+           <SectionHeader  viewButton={true} title="digital skills" route=""/>
             <PodcastSlider></PodcastSlider>
           </div>
         </div>

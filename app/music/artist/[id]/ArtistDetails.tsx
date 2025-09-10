@@ -87,7 +87,7 @@ export default function ArtistDetails({id}:{id:number}) {
           {/* Episodes Section */}
           {/* Partners Section */}
           <div className="mb-8">
-             <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
+             <SectionHeader  viewButton={true} title="partners" route="/partners"/>
 
             {/* Horizontal scrollable container */}
             <PartnersSlider></PartnersSlider>
@@ -95,13 +95,13 @@ export default function ArtistDetails({id}:{id:number}) {
 
           {/* top ranked Section */}
           <div className="mb-8 pt-1">
-             <SectionHeader title="top ranked music" onViewMoreClick={onViewMoreClick}/>
+             <SectionHeader  viewButton={true} title="top ranked music" route="/music"/>
             <MusicSlider></MusicSlider>
           </div>
 
           {/* albums Section */}
           <div className="mb-8 pt-1">
-             <SectionHeader title="albums" onViewMoreClick={onViewMoreClick}/>
+             <SectionHeader  viewButton={true} title="albums" route="/music"/>
             <MusicSlider></MusicSlider>
           </div>
         </div>

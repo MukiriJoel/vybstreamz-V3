@@ -379,8 +379,8 @@ export default function ProfileContent() {
                       {subscription.amount}
                     </p>
                   </div>
-                  <div>
-                    <p className="text-sm text-[#696969] mb-1">Expiry Date</p>
+                  <div className="flex flex-col items-end">
+                    <p className="text-sm text-[#696969] mb-1 mr-3">Expiry Date</p>
                     <p className="text-[#2C2C2C] dark:text-[#FFFFFF]">
                       {subscription.expiryDate}
                     </p>

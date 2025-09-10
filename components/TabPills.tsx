@@ -19,14 +19,16 @@ const TabPillComponent = (props: { tabs: any, activeTab: any, onTabChange: any }
                 className="w-full"
                 sx={{
                     borderRadius: '100px',
-                    padding: '1px',
+                    padding: '7px',
                     backgroundColor: theme.theme === 'dark'
                         ? '#333333'
                         : '#E5E5E5',
+                        
                     "& .MuiTabs-indicator": {
                         background: "transparent",
                         height: "20px",
                         borderRadius: "40px",
+                   
             
                     },
                     "& .MuiTab-root": {
@@ -42,7 +44,7 @@ const TabPillComponent = (props: { tabs: any, activeTab: any, onTabChange: any }
                             fontWeight: "bold",
                             borderRadius: "50px",
                             transition: "all 0.5s ease-out",
-                            
+                          
                         },
                     },
                 }}

@@ -1,11 +1,12 @@
 import { IconButton } from "@mui/material";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { MdArrowForward, MdClose } from "react-icons/md";
+import { MdArrowForward, MdClose, MdOutlineListAlt } from "react-icons/md";
 import { useState } from "react";
 import { useTheme } from "@/lib/context/ThemeContext";
 import { useAuth } from "@/lib/context/AuthContext";
 import { useRouter } from "next/navigation";
 import TabPillComponent from "./TabPills";
+import { FaCircleChevronRight } from "react-icons/fa6";
 
 interface TopProfileMenuProps {
   closeProfileModal: () => void;
@@ -71,114 +72,85 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
     // Handle modal content click to prevent event bubbling
     const handleModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
-    };
-
-    // Handle logout modal backdrop click
-    const handleLogoutBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target === e.currentTarget) {
-            setShowLogoutModal(false);
-        }
-    };
+      };
     
-    return (
-        <>
-            {/* Profile Menu Modal */}
-            <div 
-                className="fixed inset-0 z-50 flex items-start justify-end pt-4 pr-4"
-                onClick={handleBackdropClick}
-            >
-                <div 
-                    className="border-2 shadow-lg border-[#e5e5e5] dark:border-[#333333] bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-[350px]"
-                    onClick={handleModalClick}
-                >
-                    {/* Profile Section */}
-                    <div 
-                        onClick={onMenuClick} 
-                        className="hover:bg-[#C62676]/20 cursor-pointer flex py-2 px-1 justify-between items-center border-b border-[#e5e5e5] dark:border-[#333333]"
-                    >
-                        <Avatar className="h-[35px] w-[35px] md:h-[55px] md:w-[55px] ml-2 md:ml-4 cursor-pointer">
-                            <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
-                            <AvatarFallback>U</AvatarFallback>
-                        </Avatar>
-                        
-                        <div className="flex items-center">
-                            <p className="text-lg text-[#2C2C2C] dark:text-white">
-                                {isLoggedIn ? 'My Profile' : 'Create Account'}
-                            </p>
-                            <MdArrowForward className="text-[#2C2C2C] ml-1 dark:text-white"/>
-                        </div>
-                    </div>
-
-                    {/* Theme Section */}
-                    <div className="hover:bg-[#C62676]/20 flex gap-2 px-1 py-2 justify-between items-center">
-                        <div className="flex justify-start items-center">
-                            <p className="text-lg text-[#2C2C2C] dark:text-white">App Theme</p>
-                        </div>
-                        <div className="flex justify-end">
-                            <TabPillComponent 
-                                tabs={['light', 'dark']} 
-                                activeTab={activeTab}  
-                                onTabChange={handleDrawerTabChange}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Logout Section - Only show if logged in */}
-                    {isLoggedIn && (
-                        <div 
-                            className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-2 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]"
-                            onClick={handleLogoutClick}
-                        >
-                            <div className="flex justify-start items-center">
-                                <p className="text-lg text-[#2C2C2C] dark:text-white">Logout</p>
-                            </div>
-                            <div className="flex justify-end">
-                                <IconButton className="hover:!bg-transparent">
-                                    <MdArrowForward className="text-[#2C2C2C] ml-1 dark:text-white"/>
-                                </IconButton>
-                            </div>
-                        </div>
-                    )}
-                </div>
+    return(
+        // Add backdrop with click handler
+        <div 
+          className="fixed inset-0 z-50 flex items-start justify-end pt-4 pr-4"
+          onClick={handleBackdropClick}
+        >
+          <div 
+            className="border-2 shadow-lg border-[#e5e5e5] dark:border-[#333333] bg-white dark:bg-[#2C2C2C] rounded-lg p-4 w-[350px]"
+            onClick={handleModalClick}
+          >
+            {/* <div className="flex justify-end">
+               <button 
+                            onClick={closeProfileModal}
+                            className="rounded-full cursor-pointer p-1 hover:bg-gray-400 transition-colors"
+                          >
+                            <MdClose className="w-6 h-6 text-[#2C2C2C] dark:text-white" />
+                          </button>
+            </div> */}
+            <div onClick={()=>onMenuClick()} className="hover:bg-[#C62676]/20 cursor-pointer flex py-2 px-0 justify-between  items-center">
+                 <div className="flex justify-start">
+                  <Avatar  className="h-[35px] w-[35px] md:h-[65px] md:w-[65px] cursor-pointer">
+                    <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
+                    <AvatarFallback>U</AvatarFallback>
+                  </Avatar>
+                  <div className="block items-center pt-3 pl-3 ">
+                          <p className="!text-2xl !font-extrabold text-[#2C2C2C] dark:text-white leading-[100%]">{isLoggedIn ? `My Profile`:`Create Account`}</p>
+                          <p className="!text-xs mt-2 !font-light text-[#2C2C2C] uppercase dark:text-white leading-[100%]">{isLoggedIn ? `Onunga`:``}</p>
+                  </div>
+                 </div>
+                 
+                 
+                    <IconButton className="hover:!bg-transparent !pr-0" onClick={() => router.push("/account/profile")}>
+                        {/* <p className="text-lg text-[#2C2C2C] dark:text-white">{isLoggedIn ? `My Profile`:`Create Account`}</p> */}
+                      
+                        <FaCircleChevronRight className="w-8 h-8 text-[#2C2C2C] dark:text-[#FFFFFF]" /> 
+                    </IconButton>
             </div>
-
-            {/* Logout Confirmation Modal */}
-            {showLogoutModal && (
-                <div 
-                    className="fixed inset-0 backdrop-blur bg-black/50 flex items-center justify-center z-[60]"
-                    onClick={handleLogoutBackdropClick}
-                >
-                    <div 
-                        className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 w-96 mx-4 border-2 border-[#e5e5e5] dark:border-[#333333] shadow-xl"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="text-center">
-                            <h3 className="text-xl font-semibold text-pink-600 mb-4">
-                                You are about to log out!
-                            </h3>
-                            <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">
-                                Are you sure you want to log out from Vybz Streams? You will have to log back in to access your account.
-                            </p>
-                            
-                            <div className="flex gap-4 justify-center">
-                                <button
-                                    onClick={handleCancelLogout}
-                                    className="px-6 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
-                                >
-                                    No, Go back
-                                </button>
-                                <button
-                                    onClick={handleLogout}
-                                    className="px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
-                                >
-                                    Log Out
-                                </button>
-                            </div>
-                        </div>
+            <div className="hover:bg-[#C62676]/20 flex gap-2 px-1 py-3 justify-between items-center ">
+                    <div className="flex justify-start items-center">
+                        <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white">Switch App Theme</p>
                     </div>
-                </div>
-            )}
-        </>
+                    <div className="flex justify-end">
+                        <TabPillComponent tabs={['light', 'dark']} activeTab={activeTab}  onTabChange={handleDrawerTabChange}/>
+                    </div>
+            </div>
+            
+           
+            {isLoggedIn ? 
+            <div>
+               <div className="hover:bg-[#C62676]/20 cursor-pointer flex gap-2 px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={()=>router.push('/profile?tab=My Favorites')}>
+                    <div className="flex justify-start items-center">
+                      <MdOutlineListAlt className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
+                        <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white ml-3">My Favorites</p>
+                    </div>
+                    <div className="flex justify-end">
+                      
+                    </div>
+              </div>
+              <div className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={isLoggedIn? ()=>handleLogout():undefined}>
+                    <div className="flex justify-start items-center">
+                        <MdOutlineListAlt className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
+                        <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white ml-3">Logout</p>
+                       
+                    </div>
+                    <div className="flex justify-end">
+                             <IconButton className="hover:!bg-transparent">
+                           
+                             </IconButton>
+                    </div>
+              </div>
+            </div>
+           
+            :``
+            }
+            
+          </div>
+        </div>
     )
 }
 

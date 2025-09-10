@@ -7,7 +7,7 @@ export default function ViewMoreReview(){
         <>
             <div className="bg-[#F2F2F2] dark:bg-[#141414]">
              <main className="pt-12 mt-12">
-                <div className="flex mt-10 px-8 items-center">
+                <div className="flex mt-10 px-2 items-center">
                     <div className="w-16 h-16 rounded-2xl shadow-lg flex justify-center overflow-hidden">
                     <img
                         src="/logos/baze.png"

@@ -48,7 +48,7 @@ return(
 
           <GamesSlider />
         </section>
-        <section className=" px-8">
+        <section className=" px-2">
           <SectionHeader
             title="top ranked games"
             onViewMoreClick={onViewMoreClick}

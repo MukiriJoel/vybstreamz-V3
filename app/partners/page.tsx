@@ -60,7 +60,7 @@ export default function PartnersPage() {
       {/* Main Content */}
       <main className="">
         {/* Hero Section */}
-        <div className="px-8 mt-12 pt-12">
+        <div className="px-2 mt-12 pt-12">
           <PartnersCarousel />
         </div>
 
@@ -127,7 +127,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
   };
 
   return (
-    <section className="p-8 border-gray-200 dark:border-[#2C2C2C] ">
+    <section className="p-2 border-gray-200 dark:border-[#2C2C2C] ">
      <SectionHeader title={title} onViewMoreClick={onViewMoreClick}/>
 
       <div className="grid pt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 

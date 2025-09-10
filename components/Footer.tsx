@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer =()=>{
     return(
         <footer className="w-full bg-[#F2F2F2] dark:bg-[#141414] mt-10 max-w-8xl mx-auto ">
-         <div className="px-8 sm:px-6 lg:px-8 py-8 ">
+         <div className="px-2 sm:px-2 lg:px-2 py-3 ">
           {/* App Store Buttons */}
         
 

@@ -42,7 +42,7 @@ export default function VerifyEmail() {
   }
 
   return (
-    <div className="px-8 min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
+    <div className="px-2 min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}

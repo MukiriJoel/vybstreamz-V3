@@ -195,7 +195,7 @@ const PodcastPlayer: React.FC = () => {
         />
 
         {/* Partners Section */}
-        <div className="p-8 max-w-8xl mx-auto">
+        <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
           {/* Episodes Section */}
 
           <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 ">

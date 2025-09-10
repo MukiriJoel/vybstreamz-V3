@@ -42,30 +42,30 @@ export default function GamesPage() {
         <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
           {/* Partners Section */}
           <div className="mb-8">
-            <SectionHeader title="partners" onViewMoreClick={onViewMoreClick} />
+            <SectionHeader  viewButton={true} title="partners" route="/partners" />
             <PartnersSlider />
           </div>
 
           {/* top ranked Section */}
           <div className="mb-8">
-            <SectionHeader
+            <SectionHeader  viewButton={true}
               title="top ranked games"
-              onViewMoreClick={onViewMoreClick}
+              route="/games"
             />
             <GamesSlider></GamesSlider>
           </div>
 
           {/* trending Section */}
           <div className="mb-8 pt-1">
-            <SectionHeader title="trending" onViewMoreClick={onViewMoreClick} />
+            <SectionHeader  viewButton={true} title="trending" route="/games" />
             <GamesSlider></GamesSlider>
           </div>
 
           {/* trending Section */}
           <div className="mb-8 pt-1">
-            <SectionHeader
+            <SectionHeader  viewButton={true}
               title="engaging games"
-              onViewMoreClick={onViewMoreClick}
+              route="/games"
             />
             <div className="overflow-x-auto scrollbar-hide">
               <GamesSlider></GamesSlider>
@@ -74,9 +74,9 @@ export default function GamesPage() {
 
           {/* recent Section */}
           <div className="mb-8 pt-1">
-            <SectionHeader
+            <SectionHeader  viewButton={true}
               title="recently updated"
-              onViewMoreClick={onViewMoreClick}
+              route="/games"
             />
             <GamesSlider></GamesSlider>
           </div>

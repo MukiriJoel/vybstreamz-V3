@@ -26,14 +26,14 @@ export default function Home() {
           <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             {/* Partners Section */}
             <section className="">
-                <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="partners" route="/videos"/>
               <PartnersSlider />
             </section>
 
 
             {/* Trending Section */}
             <section className="">
-                <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="trending" route="/videos"/>
                
                   <VideoSlider />
                
@@ -42,21 +42,21 @@ export default function Home() {
 
             {/* Recommended For You Section */}
             <section className="">
-                <SectionHeader title="recommended for you" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="recommended for you" route="/videos"/>
               <VideoSlider />
             </section>
 
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-                <SectionHeader title="drama" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="drama" route="/videos"/>
               <VideoSlider />
             </section>
 
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-                <SectionHeader title="comedy" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="comedy" route="/videos"/>
               <VideoSlider />
             </section>
            

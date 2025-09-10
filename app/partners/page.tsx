@@ -128,7 +128,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
 
   return (
     <section className="p-2 border-gray-200 dark:border-[#2C2C2C] ">
-     <SectionHeader title={title} onViewMoreClick={onViewMoreClick}/>
+     <SectionHeader  viewButton={true} title={title} route="/partners"/>
 
       <div className="grid pt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 
         {partners.map((partner, index) => (

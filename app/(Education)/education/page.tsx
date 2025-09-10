@@ -28,7 +28,7 @@ export default function Home() {
           <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             {/* Partners Section */}
             <div className="">
-              <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="partners" route="/partners"/>
               <PartnersSlider />
             </div>
 
@@ -36,31 +36,31 @@ export default function Home() {
 
             {/* Trending Section */}
             <div className="">
-              <SectionHeader title="recently updated" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="recently updated" route="/education"/>
               <EducationSlider/>
             </div>
 
             {/* Recommended For You Section */}
             <div className="">
-              <SectionHeader title="kids" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="kids" route="/education"/>
               <EducationSlider/>
             </div>
 
             {/* Trending Section */}
             <div className="">
-              <SectionHeader title="business" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="business" route="/education"/>
               <EducationSlider/>
             </div>
 
             {/* Recommended For You Section */}
             <div className="">
-             <SectionHeader title="digital skills" onViewMoreClick={onViewMoreClick}/>
+             <SectionHeader  viewButton={true} title="digital skills" route="/education"/>
               <EducationSlider></EducationSlider>
             </div>
 
             {/* Trending Section */}
             <div className="">
-             <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
+             <SectionHeader  viewButton={true} title="trending" route="/education"/>
               <EducationSlider/>
             </div>
 

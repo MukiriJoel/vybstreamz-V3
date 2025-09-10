@@ -40,7 +40,7 @@ const [code, setCode] = useState(["", "", "", ""])
             <input
               key={index}
               id={`code-${index}`}
-              type="text"
+              type="number"
               value={digit}
               onChange={(e) => handleInputChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}

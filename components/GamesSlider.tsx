@@ -11,7 +11,7 @@ const GamesSlider = () => {
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide  overflow-y-hidden">
-        <div className="flex gap-3 md:gap-4 text-center min-w-max">
+        <div className="flex gap-3 md:gap-4 text-center min-w-max h-[190px] md:!h-auto">
           {[
             {
               

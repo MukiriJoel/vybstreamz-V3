@@ -17,7 +17,7 @@ const MusicSlider = () => {
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
-        <div className="flex gap-3 md:gap-4 text-center min-w-max">
+        <div className="flex gap-3 md:gap-4 text-center min-w-max h-[210px] md:!h-auto">
           {[
             {
               id:1,
@@ -118,7 +118,7 @@ const MusicSlider = () => {
           ].map((item, index) => (
             <div
               key={index}
-              className="pt-1 pb-1 md:pt-8 lg:pt-8 xl:pt-8 md:pb-4 lg:pb-4 xl:pb-4 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
+              className="pt-1  md:pt-8 lg:pt-8 xl:pt-8 md:pb-4 lg:pb-4 xl:pb-4 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onMusicClick(item.id)}>

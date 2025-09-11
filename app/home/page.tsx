@@ -52,7 +52,7 @@ export default function Home() {
 
             {/* Trending Section */}
             <section className="">
-               <SectionHeader  viewButton={true} title="videos" route='/videos'/>
+               <SectionHeader  viewButton={true} title="watch" route='/videos'/>
                   <VideoSlider />
             </section>
 
@@ -73,7 +73,7 @@ export default function Home() {
 
             {/* Recommended For You Section */}
             <section className=" ">
-              <SectionHeader  viewButton={true} title="music" route='/music'/>
+              <SectionHeader  viewButton={true} title="listen" route='/music'/>
               <MusicSlider />
             </section>
 
@@ -92,12 +92,12 @@ export default function Home() {
 
             {/* Recommended For You Section */}
             <section className=" ">
-                <SectionHeader  viewButton={true} title="education" route='education'/>
+                <SectionHeader  viewButton={true} title="learn" route='education'/>
               <EducationSlider />
             </section>
             {/* Recommended For You Section */}
             <section className="  ">
-                <SectionHeader  viewButton={true} title="podcasts" route='/podcasts'/>
+                <SectionHeader  viewButton={true} title="tune in" route='/podcasts'/>
               <PodcastSlider />
             </section>
           </div>

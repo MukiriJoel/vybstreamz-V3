@@ -237,7 +237,7 @@
 //               <div className="space-y-4">
 //                 <button
 //                   onClick={() => setSelectedOption("appTheme")}
-//                   className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+//                   className={`cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
 //                     selectedOption === "appTheme"
 //                       ? "bg-[#c62676] text-white"
 //                       : "bg-[#F2F2F2] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -252,7 +252,7 @@
 
 //                 <button
 //                   onClick={() => setSelectedOption("notifications")}
-//                   className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+//                   className={`cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
 //                     selectedOption === "notifications"
 //                       ? "bg-[#c62676] text-white"
 //                       : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -267,7 +267,7 @@
 
 //                 <button
 //                   onClick={() => setSelectedOption("autoplay")}
-//                   className={`w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+//                   className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
 //                     selectedOption === "autoplay"
 //                       ? "bg-[#c62676] text-white"
 //                       : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -282,7 +282,7 @@
 
 //                 <button
 //                   onClick={() => setSelectedOption("accountDeletion")}
-//                   className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+//                   className={`cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
 //                     selectedOption === "accountDeletion"
 //                       ? "bg-[#c62676] text-white"
 //                       : "bg-[#F2F2F2]  text-[#2C2C2C] dark:text-[#FFFFFF] dark:text-white hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -388,7 +388,7 @@
 //       <div className="space-y-4">
 //         <button
 //           onClick={() => handleOptionClick("appTheme")}
-//           className="cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
+//           className="cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
 //         >
 //           <div>
 //             <div className="font-medium">App Theme</div>
@@ -399,7 +399,7 @@
 
 //         <button
 //           onClick={() => handleOptionClick("notifications")}
-//           className="cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
+//           className="cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
 //         >
 //           <div>
 //             <div className="font-medium">Notifications</div>
@@ -410,7 +410,7 @@
 
 //         <button
 //           onClick={() => handleOptionClick("autoplay")}
-//           className="w-full flex items-center justify-between p-4 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
+//           className="w-full flex items-center justify-between p-3 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
 //         >
 //           <div>
 //             <div className="font-medium">Autoplay</div>
@@ -421,7 +421,7 @@
 
 //         <button
 //           onClick={() => handleOptionClick("accountDeletion")}
-//           className="cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
+//           className="cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
 //         >
 //           <div>
 //             <div className="font-medium">Account Deletion</div>
@@ -667,6 +667,7 @@ type SettingOption = "appTheme" | "notifications" | "autoplay" | "accountDeletio
 
 export default function SettingsPage() {
   const [selectedOption, setSelectedOption] = useState<SettingOption>(null)
+  const [enabled, setEnabled] = useState<boolean>(false);
   const { theme, setTheme } = useTheme()
 
   // State for all notification settings
@@ -722,7 +723,7 @@ export default function SettingsPage() {
       <div className="space-y-4">
         <button
           onClick={() => handleOptionClick("appTheme")}
-          className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${selectedOption=== "appTheme"?
+          className={`cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors ${selectedOption=== "appTheme"?
             "bg-[#c62676] text-white":"bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
@@ -735,7 +736,7 @@ export default function SettingsPage() {
 
         <button
           onClick={() => handleOptionClick("notifications")}
-          className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${selectedOption=== "notifications"?
+          className={`cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors ${selectedOption=== "notifications"?
             "bg-[#c62676] text-white":"bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
@@ -748,7 +749,7 @@ export default function SettingsPage() {
 
         <button
           onClick={() => handleOptionClick("autoplay")}
-          className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${selectedOption=== "autoplay"?
+          className={`cursor-pointer w-full flex items-center justify-between p-3 rounded-lg transition-colors ${selectedOption=== "autoplay"?
             "bg-[#c62676] text-white":"bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
@@ -761,7 +762,7 @@ export default function SettingsPage() {
 
         <button
           onClick={() => handleOptionClick("accountDeletion")}
-          className={`cursor-pointer w-full flex items-center justify-between p-4 rounded-lg transition-colors ${
+          className={`cursor-pointer w-full flex items-center justify-between py-5 px-3 rounded-lg transition-colors ${
             selectedOption === "accountDeletion"
               ? "bg-[#c62676] text-white"
               : "bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -786,6 +787,10 @@ export default function SettingsPage() {
         default: return ""
       }
     }
+
+    const autoPlaySwitch = (isEnabled: boolean) => {
+  setEnabled(isEnabled);
+}
 
     return (
       <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6">
@@ -911,9 +916,31 @@ export default function SettingsPage() {
         )}
 
         {selectedOption === "autoplay" && (
+         
           <div className="space-y-3">
-            <button className="w-full text-left px-4 py-3 rounded-lg bg-[#c62676] text-white">Enabled</button>
-            <button className="w-full text-left px-4 py-3 rounded-lg bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600">
+            <button 
+              className={`
+                w-full text-left px-4 py-3 rounded-lg text-white
+                ${enabled 
+                  ? 'bg-[#c62676]' 
+                  : 'bg-[#F2F2F2] dark:bg-[#333333] hover:bg-[#E5E5E5] dark:hover:bg-gray-600'
+                }
+              `}
+              onClick={() => autoPlaySwitch(true)}
+            >
+              Enabled
+            </button>
+            
+            <button 
+              className={`
+                w-full text-left px-4 py-3 rounded-lg
+                ${enabled 
+                  ? 'bg-[#F2F2F2] dark:bg-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:hover:bg-gray-600' 
+                  : 'bg-[#c62676] text-white'
+                }
+              `}
+              onClick={() => autoPlaySwitch(false)}
+            >
               Disabled
             </button>
           </div>
@@ -929,7 +956,7 @@ export default function SettingsPage() {
               <li>Subscription Information</li>
               <li>Settings</li>
             </ul>
-            <div className="flex gap-4 justify-center w-full">
+            <div className="flex flex-col gap-4 justify-center w-full">
               <button className="cursor-pointer px-6 py-3 w-full bg-[#333333] dark:bg-[#333333] text-white dark:text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-700 transition-colors">
                 No, Keep My Account
               </button>

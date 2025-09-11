@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { MdOutlineShoppingBag } from "react-icons/md";
 
 export default function PlanSelection() {
   const [selectedPlan, setSelectedPlan] = useState(0);
@@ -17,9 +18,9 @@ export default function PlanSelection() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-4 md:px-10 pt-12 mt-12 max-w-8xl">
+      <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-2 md:px-4 pt-12 mt-18 max-w-8xl">
        
-          <div className="flex w-full flex-col lg:flex-row items-center gap-6  mx-auto my-auto p-4">
+          <div className="flex w-full flex-col lg:flex-row items-center gap-6  mx-auto my-auto">
             <div className="flex-1 hidden lg:flex w-full items-center bg-white dark:bg-[#2C2C2C] flex justify-center rounded-lg p-8 h-auto md:h-120 shadow-sm">
               <div className="relative">
                 <img
@@ -77,16 +78,16 @@ export default function PlanSelection() {
 
                 <div className="flex  gap-4">
                   <Button
-                    className="cursor-pointer flex-1 text-base md:text-lg bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff] font-semibold py-6 px-6 rounded-lg"
+                    className="cursor-pointer flex-1 text-base md:text-lg bg-[#c62676] hover:bg-[#c62676]/90 text-[#ffffff] font-semibold py-7 px-6 rounded-lg"
                     onClick={() => router.push("/payment")}
                   >
                     Buy Now
                   </Button>
                   <Button
                     variant="outline"
-                    className="cursor-pointer flex-1 text-base md:text-lg bg-[#2c2c2c] hover:bg-[#333333] dark:bg-[#141414] text-[#ffffff] border-[#2c2c2c] font-semibold py-6 px-6 rounded-lg"
+                    className="cursor-pointer flex-1 text-base md:text-lg bg-[#2c2c2c] hover:bg-[#333333] dark:bg-[#141414] text-[#ffffff] border-[#2c2c2c] font-semibold py-7 px-6 rounded-lg"
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    <MdOutlineShoppingBag  className="!w-5 !h-5 mr-2" />
                     Add To Cart
                   </Button>
                 </div>

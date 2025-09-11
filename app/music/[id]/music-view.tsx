@@ -28,6 +28,8 @@ import { useRouter } from "next/navigation";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
 import SectionHeader from "@/components/SectionHeader";
 import ReviewTop from "@/components/ReviewTop";
+import TrackList from "@/components/TrackList";
+import PartnersSlider from "@/components/PartnersSlider";
 
 interface MusicDetailsProps {
   audioSrc: string;
@@ -60,16 +62,22 @@ export default function MusicView({ audioSrc, bannerImage,albumImage,title,subti
         />
         {/* Trending Section */}
         <main className="bg-[#F2F2F2] dark:bg-[#141414]">
-          <section className="pb-3 pt-8 px-2">
-            <SectionHeader  viewButton={true} title="similar music" route=""/>
+          <div className="p-2 md:p-4 lg:p-4">
+              <TrackList title="tracklist"/>
+          </div>
+          
+          <section className="pb-0 px-2">
+            <SectionHeader  viewButton={true} title="partners" route="/partners"/>
 
-            <MusicSlider />
+            <PartnersSlider />
           </section>
           <section className="px-2">
-            <ReviewTop/>
+            <SectionHeader  viewButton={true} title="top ranked music" route="/music"/>
+            <MusicSlider/>
           </section>
           <section className="px-2">
-            <ReviewsSection />
+            <SectionHeader  viewButton={true} title="albums" route="/music"/>
+            <MusicSlider/>
           </section>
         </main>
       </div>

@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { MdArrowForward, MdClose, MdOutlineListAlt } from "react-icons/md";
+import { MdArrowForward, MdClose, MdOutlineListAlt, MdStarOutline } from "react-icons/md";
 import { useState } from "react";
 import { useTheme } from "@/lib/context/ThemeContext";
 import { useAuth } from "@/lib/context/AuthContext";
@@ -126,8 +126,17 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
             <div>
                <div className="hover:bg-[#C62676]/20 cursor-pointer flex gap-2 px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={()=>router.push('/profile?tab=My Favorites')}>
                     <div className="flex justify-start items-center">
-                      <MdOutlineListAlt className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
+                      <MdStarOutline className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
                         <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white ml-3">My Favorites</p>
+                    </div>
+                    <div className="flex justify-end">
+                      
+                    </div>
+              </div>
+               <div className="hover:bg-[#C62676]/20 cursor-pointer flex gap-2 px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={()=>router.push('/profile?tab=Subscriptions')}>
+                    <div className="flex justify-start items-center">
+                      <MdOutlineListAlt className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
+                        <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white ml-3">Subscriptions</p>
                     </div>
                     <div className="flex justify-end">
                       

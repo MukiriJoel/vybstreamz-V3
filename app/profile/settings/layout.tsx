@@ -11,7 +11,7 @@ interface AuthLayoutProps {
 
 export default function HomePage({children}: AuthLayoutProps) {
   return (
-     <div className="min-h-screen flex flex-col items-center justify-center bg-[#F2F2F2] dark:bg-[#141414] dark:bg-[#121212]">
+     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-[#F2F2F2] dark:bg-[#141414] dark:bg-[#121212]">
             <Head>
                 <title>Profile</title>
                 <meta name="description" content="Authentication page"/>

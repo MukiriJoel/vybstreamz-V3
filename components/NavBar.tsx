@@ -261,7 +261,8 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
           <Link href={"/"} onClick={closeMobileMenu}>
             <Image 
               src={"/logos/vybstreamz.png"} 
-              className="object-contain" 
+              className="h-[66px] w-[197px] pr-10 object-contain" 
+
               alt={"logo"}
               width={200} 
               height={50}

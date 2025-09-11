@@ -75,14 +75,14 @@ export default function CreateAccountPage() {
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
-        <div className="hidden lg:flex lg:w-1/2 items-start justify-center p-8">
+        <div className="hidden lg:flex lg:w-1/2 items-start justify-start  p-8">
           <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" />
         </div>
    
         {/* Form Section */}
         <div className="w-full lg:w-1/2 flex flex-col ">
           {/* Header - Now inside form section */}
-          <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-50">
+          <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-4">
             <button 
               onClick={() => router.back()}
               className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
@@ -228,7 +228,7 @@ export default function CreateAccountPage() {
 
               {/* Social Login Buttons */}
               <div className="flex justify-center gap-3 pt-4">
-                <img className="w-auto h-8 sm:h-10" src="/images/Frame 480.png" alt="" />
+                <img className="w-auto h-8 sm:h-10" src="/images/Frame 4802.png" alt="" />
               </div>
             </div>
           </div>

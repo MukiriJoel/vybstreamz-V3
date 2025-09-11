@@ -24,8 +24,10 @@ import PartnerBanner from "@/components/PartnerBanner";
 export default function Home() {
    const Router=useRouter();
     
-     const onViewMoreClick = (route:string) =>{
-      Router.push(`/viewMore/`)
+
+     const onViewMoreClick = () =>{
+      Router.push(`/partners`)
+
     }
 
   return (

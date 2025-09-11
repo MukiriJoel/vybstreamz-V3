@@ -33,14 +33,14 @@ export default function ForgotPasswordEmailPage() {
     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] transition-colors duration-200">
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Image Section - Hidden on mobile and tablet, visible on desktop */}
-         <div className="hidden lg:flex lg:w-1/2 items-start justify-center p-8">
+         <div className="hidden lg:flex lg:w-1/2 items-start justify-start p-8">
           <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" />
         </div>
 
         {/* Form Section */}
         <div className="w-full lg:w-1/2 xl:w-2/5 flex flex-col">
           {/* Header */}
-          <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-50">
+          <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-4">
             <button
               onClick={() => router.push("/login")}
               className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"

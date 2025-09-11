@@ -54,11 +54,11 @@ export default function PartnerDetails({ id }: { id: number }) {
   if (partners) {
     const partnersArr = partners.partners;
 
-    const findById = (id: number, array: Partner[]) => {
+    const getById = (id: number, array: Partner[]) => {
       return array.find((item: Partner) => item && item.id == id);
     };
 
-    (partnerDetails as any) = findById(id, partnersArr);
+    (partnerDetails as any) = getById(id, partnersArr);
   }
 
   const Router = useRouter();

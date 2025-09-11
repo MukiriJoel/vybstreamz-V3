@@ -54,11 +54,11 @@ export default function ArtistDetails({id}:{id:number}) {
       const musicArr=music.music;
       
 
-      const findById=(id:number, array: Artist[])=> {
+      const getById=(id:number, array: Artist[])=> {
         return array.find((item: Artist) =>item && item.id == id);
       }
 
-      (artistDetails as any)=findById(id,musicArr)
+      (artistDetails as any)=getById(id,musicArr)
 
     }
 

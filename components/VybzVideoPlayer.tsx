@@ -28,7 +28,8 @@ import ReviewsSection from "@/components/reviews-section";
 import SectionHeader from "@/components/SectionHeader";
 
 interface VybzVideoPlayerProps{
-    videoSrc?:string
+    videoSrc?:string;
+ 
 }
 
 export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {

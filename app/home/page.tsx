@@ -45,7 +45,7 @@ export default function Home() {
             </section>
 
             {/* Best Deals Section */}
-            <section className="py-4">
+            <section className="">
                <SectionHeader  viewButton={true} title="best deals 🔥" route='/deals'/>
               <DealsSlider/>
             </section>
@@ -72,13 +72,13 @@ export default function Home() {
             </section>
 
             {/* Recommended For You Section */}
-            <section className=" py-4  ">
+            <section className=" ">
               <SectionHeader  viewButton={true} title="music" route='/music'/>
               <MusicSlider />
             </section>
 
             {/* Trending Section */}
-            <section className="py-4">
+            <section className="">
                 <SectionHeader  viewButton={true} title="games" route='/games'/>
               <GamesSlider />
             </section>
@@ -91,12 +91,12 @@ export default function Home() {
               
 
             {/* Recommended For You Section */}
-            <section className=" py-4  ">
+            <section className=" ">
                 <SectionHeader  viewButton={true} title="education" route='education'/>
               <EducationSlider />
             </section>
             {/* Recommended For You Section */}
-            <section className=" py-4  ">
+            <section className="  ">
                 <SectionHeader  viewButton={true} title="podcasts" route='/podcasts'/>
               <PodcastSlider />
             </section>

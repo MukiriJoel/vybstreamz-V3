@@ -120,7 +120,7 @@ export default function VybStreamsPage() {
                     <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
                       <MoreHorizontal className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Email</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">More</span>
                   </button>
                   
                 </div>

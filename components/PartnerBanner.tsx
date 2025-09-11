@@ -43,7 +43,7 @@ const PartnerBanner = ({title,header,logo,button,image}:PartnerBannerProps) =>{
                   </Button>
                 </div>
             </div>
-            <div className="relative mt-4 w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative mt-4 mb-6 w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
               {/* Background Image Placeholder */}
               <div className="absolute inset-0 rounded-xl shadow-2xl">
                 <img

@@ -6,6 +6,8 @@ import { useRef, useState, useEffect } from "react";
 import React from "react";
 import CarouselDots from "./CarouselDots";
 import { useRouter } from "next/navigation";
+import Hls from "hls.js";
+import * as dashjs from "dashjs";
 
 export interface ICarousel {
   id: number;
@@ -16,7 +18,10 @@ export interface ICarousel {
   streamingPlatform?: string;
   platformLogo?: string;
   backgroundImage?: string;
-  backgroundVideo?: string; // now expects iframe embed URLs
+  backgroundVideo?: string; // old YouTube iframe URL
+  hlsUrl?: string; // HLS (.m3u8)
+  dashUrl?: string; // DASH (.mpd)
+  mp4Url?: string; // MP4 fallback
   backgroundType?: "image" | "video";
 }
 
@@ -39,11 +44,18 @@ const BillBoardV3 = ({
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const router = useRouter();
 
-  const onSubscribeClick = () => {
-    router.push(`/planselection/`);
-  };
+  // --- Video player refs ---
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const hlsRef = useRef<Hls | null>(null);
 
-  // Default slides data
+  type DashFactory = ReturnType<typeof dashjs.MediaPlayer>;
+  type DashPlayer = ReturnType<DashFactory["create"]>;
+  const dashRef = useRef<DashPlayer | null>(null);
+
+  const onSubscribeClick = () => router.push(`/planselection/`);
+  const onSaveClick = () => router.push('/profile?tab=My Favorites');
+
+  // Default slides with working HLS URLs
   const defaultSlides: ICarousel[] = [
     {
       id: 1,
@@ -52,8 +64,7 @@ const BillBoardV3 = ({
         "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal.",
       category: "Game",
       ageRating: "16 Yrs +",
-      backgroundVideo:
-        "https://youtube.com/embed/vfYBFhunfsY?autoplay=1&mute=1&controls=0&loop=1&playlist=vfYBFhunfsY",
+      hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
       backgroundImage: "/images/netflixGames.png",
       backgroundType: "video",
       streamingPlatform: "Netflix",
@@ -66,8 +77,7 @@ const BillBoardV3 = ({
         "A gritty drama set in modern Kenya, where every choice sparks more fire.",
       category: "Movie",
       ageRating: "16 Yrs +",
-      backgroundVideo:
-        "https://www.youtube.com/embed/RARtsWwvxAk?autoplay=1&mute=1&controls=0&loop=1&playlist=RARtsWwvxAk",
+      hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
       backgroundImage: "/images/mofaya.png",
       backgroundType: "video",
       streamingPlatform: "Baze",
@@ -79,7 +89,7 @@ const BillBoardV3 = ({
       description: "A modern-day tale of discovery and danger.",
       category: "Movie",
       ageRating: "16 Yrs +",
-      backgroundVideo:"https://youtube.com/embed/gUTtJjV852c?autoplay=1&mute=1&controls=0&loop=1&playlist=gUTtJjV852c",
+      hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
       backgroundImage: "/images/dora.png",
       backgroundType: "video",
       streamingPlatform: "Baze",
@@ -93,9 +103,7 @@ const BillBoardV3 = ({
   useEffect(() => {
     if (!autoplay || isPaused || slidesToRender.length <= 1) return;
 
-    autoplayTimerRef.current = setTimeout(() => {
-      goToNext();
-    }, delay);
+    autoplayTimerRef.current = setTimeout(goToNext, delay);
 
     return () => {
       if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
@@ -108,20 +116,12 @@ const BillBoardV3 = ({
     setActiveIndex(index);
 
     if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
-
     setTimeout(() => setIsTransitioning(false), transitionSpeed);
   };
 
-  const goToNext = () => {
-    const nextIndex = (activeIndex + 1) % slidesToRender.length;
-    goToSlide(nextIndex);
-  };
-
-  const goToPrev = () => {
-    const prevIndex =
-      activeIndex === 0 ? slidesToRender.length - 1 : activeIndex - 1;
-    goToSlide(prevIndex);
-  };
+  const goToNext = () => goToSlide((activeIndex + 1) % slidesToRender.length);
+  const goToPrev = () =>
+    goToSlide(activeIndex === 0 ? slidesToRender.length - 1 : activeIndex - 1);
 
   const handleMouseEnter = () => {
     if (autoplay) {
@@ -134,13 +134,152 @@ const BillBoardV3 = ({
     if (autoplay) setIsPaused(false);
   };
 
-  const handleSaveButton = () =>{
-    router.push("/profile")
-  }
+  // --- Fixed Video Player Logic ---
+  useEffect(() => {
+    const slide = slidesToRender[activeIndex];
+    const videoEl = videoRef.current;
+    if (!videoEl) return;
 
-  const toggleAutoplay = () => setIsPaused(!isPaused);
+    // Cleanup previous player
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
+      hlsRef.current = null;
+    }
+    if (dashRef.current) {
+      dashRef.current.reset();
+      dashRef.current = null;
+    }
 
-  // Navigation Arrows
+    // Reset video element
+    videoEl.src = '';
+    videoEl.load();
+
+    if (slide.hlsUrl) {
+      if (Hls.isSupported()) {
+        const hls = new Hls({
+          debug: false, // Set to true for debugging
+          enableWorker: true,
+          lowLatencyMode: true,
+          backBufferLength: 90
+        });
+        
+        hls.loadSource(slide.hlsUrl);
+        hls.attachMedia(videoEl);
+        
+        // Add error handling
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          console.error('HLS Error:', data);
+          if (data.fatal) {
+            switch (data.type) {
+              case Hls.ErrorTypes.NETWORK_ERROR:
+                console.log('Network error encountered, trying to recover...');
+                hls.startLoad();
+                break;
+              case Hls.ErrorTypes.MEDIA_ERROR:
+                console.log('Media error encountered, trying to recover...');
+                hls.recoverMediaError();
+                break;
+              default:
+                console.log('Fatal error, cannot recover');
+                hls.destroy();
+                // Fallback to native video
+                if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+                  videoEl.src = slide.hlsUrl;
+                }
+                break;
+            }
+          }
+        });
+
+        hls.on(Hls.Events.MANIFEST_LOADED, () => {
+          console.log('HLS manifest loaded successfully');
+        });
+
+        hlsRef.current = hls;
+      } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+        // Native HLS support (Safari)
+        videoEl.src = slide.hlsUrl;
+      } else {
+        console.error('HLS not supported in this browser');
+      }
+    } else if (slide.dashUrl) {
+      if (typeof dashjs !== 'undefined') {
+        const dashFactory = dashjs.MediaPlayer();
+        const dashPlayer = dashFactory.create();
+        dashPlayer.initialize(videoEl, slide.dashUrl, true);
+        dashRef.current = dashPlayer;
+      }
+    } else if (slide.mp4Url) {
+      videoEl.src = slide.mp4Url;
+    }
+
+    // Add video event listeners for debugging
+    const handleCanPlay = () => console.log('Video can start playing');
+    const handleError = (e) => console.error('Video error:', e);
+    const handleLoadStart = () => console.log('Video load started');
+    
+    videoEl.addEventListener('canplay', handleCanPlay);
+    videoEl.addEventListener('error', handleError);
+    videoEl.addEventListener('loadstart', handleLoadStart);
+
+    // Cleanup listeners
+    return () => {
+      videoEl.removeEventListener('canplay', handleCanPlay);
+      videoEl.removeEventListener('error', handleError);
+      videoEl.removeEventListener('loadstart', handleLoadStart);
+    };
+  }, [activeIndex, slidesToRender]);
+
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+      }
+      if (dashRef.current) {
+        dashRef.current.reset();
+      }
+    };
+  }, []);
+
+  // --- Background Renderer ---
+  const renderBackground = (slide: ICarousel, index: number) => {
+    const isVideo = slide.backgroundType === "video";
+
+    if (isVideo) {
+      return (
+        <div
+          className="absolute inset-0 overflow-hidden -top-[10vh]"
+          style={{ height: "calc(100% + 10vh)" }}
+        >
+          <video
+            ref={videoRef}
+            className="!absolute pt-17 !top-1/2 !left-1/2 w-[490vw] h-full object-cover !min-h-screen md:h-[56.25vw] lg:h-[56.25vw]"
+            style={{ transform: "translate(-50%, -50%)" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+      );
+    }
+
+    return (
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
+          style={{
+            backgroundImage: `url(${slide.backgroundImage})`,
+            transform: index === activeIndex ? "scale(1)" : "scale(1.1)",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+    );
+  };
+
   const PrevArrow = () => (
     <button
       onClick={goToPrev}
@@ -161,55 +300,12 @@ const BillBoardV3 = ({
     </button>
   );
 
-  // Background renderer (iframe or image)
-  const renderBackground = (slide: ICarousel, index: number) => {
-    const isVideo = slide.backgroundType === "video" && slide.backgroundVideo;
-
-    if (isVideo) {
-      return (
-        <div className="absolute inset-0 overflow-hidden -top-[10vh]" style={{ height: 'calc(100% + 10vh)' }}>
-            <iframe
-            src={slide.backgroundVideo}
-            className="!absolute pt-25 !top-1/2 !left-1/2 w-[450vw] h-full object-cover !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
-            style={{
-                transform: "translate(-50%, -50%)",
-            }}
-            allow="autoplay; fullscreen; encrypted-media"
-            allowFullScreen
-        
-            />
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-black/40" />
-        </div>
-
-      );
-    }
-
-    return (
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
-          style={{
-            backgroundImage: `url(${slide.backgroundImage})`,
-            transform: index === activeIndex ? "scale(1)" : "scale(1.1)",
-          }}
-        />
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
-    );
-  };
-
-  const onSaveClick = () =>{
-    router.push('/profile?tab=My Favorites');
-  }
-
   return (
     <div
       className="relative w-full h-[90vh] overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Slides */}
       <div className="relative w-full h-full">
         {slidesToRender.map((slide, index) => (
           <div
@@ -217,14 +313,12 @@ const BillBoardV3 = ({
             className={`absolute inset-0 transition-opacity ease-in-out ${
               index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
-            style={{
-              transitionDuration: `${transitionSpeed}ms`,
-            }}
+            style={{ transitionDuration: `${transitionSpeed}ms` }}
           >
             {renderBackground(slide, index)}
-
             {/* Overlay Content */}
             <div className="relative pb-9 md:pb-15 z-20 h-full flex flex-col justify-end px-8">
+              {/* Title & Meta */}
               <div className="flex flex-wrap items-end gap-6 mb-4">
                 <div className="flex-1 min-w-[150px]">
                   <h1
@@ -281,7 +375,6 @@ const BillBoardV3 = ({
                     {slide.description}
                   </p>
                 </div>
-
                 <div
                   className={`flex pt-10 items-center pr-10 cursor-pointer transition-all ease-out ${
                     index === activeIndex
@@ -311,7 +404,6 @@ const BillBoardV3 = ({
                   )}
                 </div>
               </div>
-
               {/* Action Buttons */}
               <div
                 className={`flex gap-4 justify-between flex-wrap transition-all ease-out ${
@@ -341,67 +433,25 @@ const BillBoardV3 = ({
                     variant="outline"
                     className="border-white/20 text-xs text-white hover:!bg-[#333333] dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
                     onClick={onSaveClick}
-                 >
+                  >
                     <Bookmark className="h-4 w-4 mr-2" />
                     Save
                   </Button>
                 </div>
-
                 <div className="flex items-center gap-4 mx-auto md:mx-0 md:pr-10">
                   <CarouselDots
                     slides={slidesToRender}
                     goToSlide={goToSlide}
                     activeIndex={activeIndex}
                   />
-                  {/* {autoplay && (
-                    <Button
-                      onClick={toggleAutoplay}
-                      variant="ghost"
-                      size="icon"
-                      className="text-white/70 hover:text-white border border-white/20 rounded-full cursor-pointer transition-colors duration-200"
-                      title={isPaused ? "Resume autoplay" : "Pause autoplay"}
-                    >
-                      {isPaused ? (
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      ) : (
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                        </svg>
-                      )}
-                    </Button>
-                  )} */}
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      {/* Arrows */}
       <PrevArrow />
       <NextArrow />
-
-
-      <style jsx global>{`
-        @keyframes progress {
-          0% {
-            width: 0%;
-          }
-          100% {
-            width: 100%;
-          }
-        }
-      `}</style>
     </div>
   );
 };

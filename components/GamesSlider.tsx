@@ -114,7 +114,7 @@ const GamesSlider = () => {
           ].map((item, index) => (
             <div
               key={index}
-              className="pt-8 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
+              className="pt-3 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onGameClick(index)}>

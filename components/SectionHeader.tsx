@@ -8,7 +8,7 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({onViewMoreClick,title}:SectionHeaderProps) =>{
     return(
-        <div className="flex items-center pt-2 justify-between">
+        <div className="flex items-center pt-0 justify-between">
                 <h3 className="text-lg md:text-2xl font-bold text-black dark:text-white capitalize">{title}</h3>
                 <Button
                   variant="ghost"

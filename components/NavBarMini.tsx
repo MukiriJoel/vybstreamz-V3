@@ -253,7 +253,7 @@ const NavBarMini = () => {
 
               <Avatar
                 onClick={() => onAvatarClick()}
-                className="h-[35px] w-[35px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer"
+                className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer"
               >
                 <AvatarImage
                   src="/logos/user-profile-illustration.png"

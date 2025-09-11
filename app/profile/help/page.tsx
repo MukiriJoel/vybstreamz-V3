@@ -378,7 +378,7 @@ export default function HelpCenter() {
           className="cursor-pointer flex items-center text-[#c62676] hover:text-pink-700 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          <span className="font-medium">Back to Categories</span>
+          <span className="font-medium">Back</span>
         </button>
       </div>
 

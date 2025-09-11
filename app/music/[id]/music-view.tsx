@@ -27,6 +27,7 @@ import MusicSlider from "@/components/MusicSlider";
 import { useRouter } from "next/navigation";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
 import SectionHeader from "@/components/SectionHeader";
+import ReviewTop from "@/components/ReviewTop";
 
 interface MusicDetailsProps {
   audioSrc: string;
@@ -59,15 +60,15 @@ export default function MusicView({ audioSrc, bannerImage,albumImage,title,subti
         />
         {/* Trending Section */}
         <main className="bg-[#F2F2F2] dark:bg-[#141414]">
-          <section className="px-6 pb-3 pt-8 px-2">
-            <SectionHeader  viewButton={true} title="similar videos" route=""/>
+          <section className="pb-3 pt-8 px-2">
+            <SectionHeader  viewButton={true} title="similar music" route=""/>
 
             <MusicSlider />
           </section>
-          <section>
-            <RatingsComponent />
+          <section className="px-2">
+            <ReviewTop/>
           </section>
-          <section>
+          <section className="px-2">
             <ReviewsSection />
           </section>
         </main>

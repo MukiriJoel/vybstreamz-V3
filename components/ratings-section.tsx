@@ -62,7 +62,7 @@ export default function RatingsComponent({
         
       </div>
     </div>
-    <div className="bg-[#E5E5E5] dark:bg-[#333333] p-10 rounded-lg max-w-2xl mt-4 ml-4.5 mb-6">
+    <div className="bg-[#E5E5E5] dark:bg-[#333333] p-10 rounded-lg max-w-2xl mt-4 ml-0 md:ml-4.5 mb-6">
       <div className="items-center">
         
         {/* Right Container - Overall rating and stars */}

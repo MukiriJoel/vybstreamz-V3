@@ -18,7 +18,7 @@ const Page = () => {
                 <NavBar/>
             </header>
             <main className="w-full min-h-screen">
-                <MusicView id={id} bannerImage='/images/sandwich2.jpg' title = "Disko" artist = "Kodong Klan"   albumInfo = "Album • 1hr 45min • 10 Songs • Hiphop" audioSrc={"/audio/podcast.mp3"}/>
+                <MusicView bannerImage='/images/sandwich2.jpg'  albumImage="/images/kodong.png" title = "Disko" subtitle = "Kodong Klan"   albumInfo = "Album • 1hr 45min • 10 Songs • Hiphop" audioSrc={"/audio/podcast.mp3"}   platformLogo="/logos/bazeLg.png"/>
             </main>
             {/* <Footer/> */}
         </div>

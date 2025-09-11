@@ -28,7 +28,17 @@ import { useRouter } from "next/navigation";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
 import SectionHeader from "@/components/SectionHeader";
 
-export default function MusicView() {
+interface MusicDetailsProps {
+  audioSrc: string;
+  bannerImage: string;
+  albumImage:string;
+  title:string;
+  subtitle:string;
+  albumInfo:string;
+  platformLogo:string
+}
+
+export default function MusicView({ audioSrc, bannerImage,albumImage,title,subtitle,albumInfo,platformLogo }: MusicDetailsProps) {
   const router=useRouter();
   
   const onViewMoreClick = () =>{

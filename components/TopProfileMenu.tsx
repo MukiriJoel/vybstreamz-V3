@@ -7,6 +7,7 @@ import { useAuth } from "@/lib/context/AuthContext";
 import { useRouter } from "next/navigation";
 import TabPillComponent from "./TabPills";
 import { FaCircleChevronRight } from "react-icons/fa6";
+import { LogOut } from "lucide-react";
 
 interface TopProfileMenuProps {
   closeProfileModal: () => void;
@@ -134,7 +135,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
               </div>
               <div className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={isLoggedIn? ()=>handleLogout():undefined}>
                     <div className="flex justify-start items-center">
-                        <MdOutlineListAlt className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
+                        <LogOut className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
                         <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white ml-3">Logout</p>
                        
                     </div>

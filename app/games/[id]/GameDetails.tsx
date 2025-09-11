@@ -29,7 +29,13 @@ import GamesSlider from "@/components/GamesSlider";
 import SectionHeader from "@/components/SectionHeader";
 import VybzVideoPlayer from "@/components/VybzVideoPlayer";
 
-export default function Gamedetails(){
+interface GameDetailsProps {
+  videoSrc: string;
+  id: any; // Consider using string | number instead of any
+}
+
+
+export default function Gamedetails({ videoSrc, id }: GameDetailsProps) {
   const Router = useRouter();
 
   const onViewMoreClick = () => {
@@ -37,7 +43,7 @@ export default function Gamedetails(){
   };
 return(
     <>
-      <VybzVideoPlayer videoSrc = "/videos/MofayaTrailer.mp4"/>
+      <VybzVideoPlayer videoSrc ={videoSrc}/>
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] dark:bg-[#141414]">
         <section className="px-6 pb-3 pt-8 px-8">

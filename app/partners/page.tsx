@@ -134,7 +134,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
         {partners.map((partner, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-2 hover:shadow-md transition-shadow min-h-[135px]"
+            className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-4 hover:shadow-md transition-shadow "
             onClick={()=>onHandleClick(partner)}
           >
             <div className="flex items-start space-x-4">
@@ -150,7 +150,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
                 <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
                   {partner.name}
                 </h4>
-                <p className="md:text-lg lg:text-lg text-xs font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                <p className="md:text-base lg:text-base text-xs font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                   {partner.description}
                 </p>
               </div>

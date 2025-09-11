@@ -21,7 +21,7 @@ const SectionHeader = ({route,title,viewButton}:SectionHeaderProps) =>{
                 {viewButton &&
                  <Button
                   variant="ghost"
-                  className="cursor-pointer text-[#333333] dark:text-white text-base !font-medium" onClick={()=>onViewMoreClick(route)}
+                  className=" !pr-0 cursor-pointer text-[#333333] dark:text-white text-base !font-medium" onClick={()=>onViewMoreClick(route)}
                 >
                   View More
                   <MdArrowForward className="!w-8 !h-8" />

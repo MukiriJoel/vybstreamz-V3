@@ -41,7 +41,7 @@ export default function ReviewsSection() {
   ]
 
   return (
-    <div className="px-8">
+    <div className="">
      
   {/* <div className="py-4 mb-6">
       <div className="flex items-center space-x-4 w-full">

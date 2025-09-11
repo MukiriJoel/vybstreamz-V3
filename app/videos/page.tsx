@@ -48,14 +48,14 @@ export default function Home() {
 
 
             {/* Recommended For You Section */}
-            <section className=" py-4  ">
+            <section className="   ">
                 <SectionHeader  viewButton={true} title="drama" route="/videos"/>
               <VideoSlider />
             </section>
 
 
             {/* Recommended For You Section */}
-            <section className=" py-4  ">
+            <section className=" ">
                 <SectionHeader  viewButton={true} title="comedy" route="/videos"/>
               <VideoSlider />
             </section>

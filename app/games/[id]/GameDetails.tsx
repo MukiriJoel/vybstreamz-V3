@@ -46,7 +46,7 @@ return(
       <VybzVideoPlayer videoSrc ={videoSrc}/>
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] dark:bg-[#141414]">
-        <section className="px-6 pb-3 pt-8 px-8">
+        <section className="px-2">
           <SectionHeader  viewButton={true}
             title="top ranked games"
             route="/games"

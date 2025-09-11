@@ -1,4 +1,4 @@
-import { Star, Send } from "lucide-react"
+import { Star, Send, ChevronRight, ChevronLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -121,7 +121,7 @@ export default function ReviewsSection() {
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-center space-x-2 mt-8">
+        {/* <div className="flex items-center justify-center space-x-2 mt-8">
           <IconButton className="">
             <FaCircleChevronLeft className="mr-4 w-10 h-10 text-[#333333] dark:text-white "/>
           </IconButton>
@@ -144,7 +144,79 @@ export default function ReviewsSection() {
           <IconButton  className="bg-[#333333] dark:bg-[#999999]">
             <FaCircleChevronRight className="ml-4 w-10 h-10 text-[#2C2C2C] dark:text-[#FFFFFF]" />
           </IconButton>
+        </div> */}
+         <div className="flex items-center justify-center mt-8 px-4">
+      {/* Mobile Version (sm and below) */}
+      <div className="flex items-center space-x-2 sm:hidden">
+        <button className="p-2 rounded-full bg-transparent">
+          <ChevronLeft className="w-6 h-6 text-[#333333] dark:text-white" />
+        </button>
+        
+        <div className="flex items-center space-x-1">
+          <button className="px-3 py-1 text-sm rounded bg-[#C62676] text-white">
+            1
+          </button>
+          <span className="text-[#666666] text-sm">of 68</span>
         </div>
+        
+        <button className="p-2 rounded-full bg-[#333333] dark:bg-[#999999]">
+          <ChevronRight className="w-6 h-6 text-white" />
+        </button>
+      </div>
+
+      {/* Tablet Version (md) */}
+      <div className="hidden sm:flex md:hidden items-center space-x-2">
+        <button className="p-2 rounded-full bg-transparent">
+          <ChevronLeft className="w-8 h-8 text-[#333333] dark:text-white" />
+        </button>
+        
+        <button className="px-3 py-2 text-sm rounded bg-[#C62676] text-white">
+          1
+        </button>
+        <button className="px-3 py-2 text-sm rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800">
+          2
+        </button>
+        <button className="px-3 py-2 text-sm rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800">
+          3
+        </button>
+        <span className="text-[#666666]">...</span>
+        <button className="px-3 py-2 text-sm rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800">
+          68
+        </button>
+        
+        <button className="p-2 rounded-full bg-[#333333] dark:bg-[#999999]">
+          <ChevronRight className="w-8 h-8 text-white" />
+        </button>
+      </div>
+
+      {/* Desktop Version (lg and above) */}
+      <div className="hidden md:flex items-center space-x-2">
+        <button className="p-2 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <ChevronLeft className="w-7 h-7 text-[#333333] dark:text-white" />
+        </button>
+        
+        <button className="px-4 py-2 rounded bg-[#C62676] text-white hover:bg-[#B01E5C] transition-colors">
+          1
+        </button>
+        <button className="px-4 py-2 rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          2
+        </button>
+        <button className="px-4 py-2 rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          3
+        </button>
+        <span className="text-[#666666] px-2">...</span>
+        <button className="px-4 py-2 rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          67
+        </button>
+        <button className="px-4 py-2 rounded text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          68
+        </button>
+        
+        <button className="p-2 rounded-full bg-[#333333] dark:bg-[#999999] hover:bg-[#4A4A4A] dark:hover:bg-[#777777] transition-colors">
+          <ChevronRight className="w-7 h-7 text-white" />
+        </button>
+      </div>
+    </div>
       </div>
     </div>
   )

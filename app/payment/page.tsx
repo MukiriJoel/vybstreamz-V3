@@ -141,7 +141,7 @@ export default function HomePage() {
         <div className=" mx-auto !px-3 py-8 pt-30">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Payment Method Section */}
-            <div className="flex-[1.5] bg-white dark:bg-[#2C2C2C] rounded-lg p-10 shadow-sm">
+            <div className="flex-[1.5] bg-white dark:bg-[#2C2C2C] rounded-lg p-5 md:p-8 shadow-sm">
               <div className="flex items-center mb-4">
                 <ArrowLeft className="h-5 w-5" />
               </div>
@@ -179,7 +179,7 @@ export default function HomePage() {
                       type="tel"
                       readOnly
                       value="+254"
-                      className="border-2 border-[#c62676] bg-[#F2F2F2] dark:bg-[#333333] h-13.5"
+                      className="border-2 border-[#c62676] bg-[#F2F2F2] text-xs md:tex-base dark:bg-[#333333] h-13.5"
                     />
                   </div>
                   <div className="col-span-3">

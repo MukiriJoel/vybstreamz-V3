@@ -1,8 +1,8 @@
 "use client"
 
 interface ToggleSwitchProps {
-  enabled: boolean
-  onChange?: (enabled: boolean) => void
+  enabled: boolean;
+  onChange?: (enabled: boolean) => void;
 }
 
 export default function ToggleSwitch({ enabled, onChange }: ToggleSwitchProps) {

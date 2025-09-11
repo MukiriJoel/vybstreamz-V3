@@ -95,7 +95,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
             </div> */}
             <div onClick={()=>onMenuClick()} className="hover:bg-[#C62676]/20 cursor-pointer flex py-2 px-0 justify-between  items-center">
                  <div className="flex justify-start">
-                  <Avatar  className="h-[45px] w-[45px] md:h-[65px] md:w-[65px] cursor-pointer">
+                  <Avatar  className="h-[65px] w-[65px] md:h-[65px] md:w-[65px] cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>

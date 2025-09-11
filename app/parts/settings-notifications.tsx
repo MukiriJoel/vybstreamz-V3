@@ -1,24 +1,24 @@
 "use client"
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
-
+import ToggleSwitch from "./toggle-switch"
 // Toggle Switch Component
-function ToggleSwitch({ enabled, onChange }) {
-  return (
-    <button
-      onClick={onChange}
-      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#c62676] focus:ring-offset-2 ${
-        enabled ? 'bg-[#c62676]' : 'bg-gray-300'
-      }`}
-    >
-      <span
-        className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-[#2C2C2C] transition-transform ${
-          enabled ? 'translate-x-6' : 'translate-x-1'
-        }`}
-      />
-    </button>
-  )
-}
+// function ToggleSwitch({ enabled, onChange }) {
+//   return (
+//     <button
+//       onClick={onChange}
+//       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#c62676] focus:ring-offset-2 ${
+//         enabled ? 'bg-[#c62676]' : 'bg-gray-300'
+//       }`}
+//     >
+//       <span
+//         className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-[#2C2C2C] transition-transform ${
+//           enabled ? 'translate-x-6' : 'translate-x-1'
+//         }`}
+//       />
+//     </button>
+//   )
+// }
 
 export default function SettingsContent() {
   // State for all notification settings
@@ -41,12 +41,12 @@ export default function SettingsContent() {
   })
 
   // Function to toggle a specific notification setting
-  const toggleNotification = (category, setting) => {
+  const toggleNotification = (category:any, setting:any) => {
     setNotifications(prev => ({
       ...prev,
       [category]: {
-        ...prev[category],
-        [setting]: !prev[category][setting]
+        ...(prev as any)[category],
+        [setting]: !(prev as any)[category][setting]
       }
     }))
   }

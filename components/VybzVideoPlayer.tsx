@@ -22,17 +22,17 @@ import {
 } from "lucide-react";
 import RatingsComponent from "@/components/ratings-section";
 import VideoSlider from "@/components/VideoSlider";
-import { MdArrowForward, MdPlayArrow } from "react-icons/md";
+import { MdArrowForward, MdClose, MdPlayArrow } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import ReviewsSection from "@/components/reviews-section";
 import SectionHeader from "@/components/SectionHeader";
+import CastDisplay from "./CastDisplay";
 
-interface VybzVideoPlayerProps{
-    videoSrc?:string;
- 
+interface VybzVideoPlayerProps {
+  videoSrc?: string;
 }
 
-export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
+export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [showContent, setShowContent] = useState(true); // For hiding/showing trailers and description
@@ -55,6 +55,7 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  
 
   // Hide controls after 3 seconds when playing or when mouse is stationary
   useEffect(() => {
@@ -316,10 +317,11 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
     Router.push(`/viewMore/`);
   };
 
-   const onSaveClick = () =>{
-    Router.push('/profile?tab=My Favorites');
-  }
+  const onSaveClick = () => {
+    Router.push("/profile?tab=My Favorites");
+  };
 
+ 
   return (
     <>
       <div
@@ -327,7 +329,7 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
         className={`relative bg-black overflow-hidden cursor-pointer ${
           isFullscreen
             ? "fixed inset-0 z-50 w-screen h-screen"
-            : "w-full h-[90vh]"
+            : "w-full h-[95vh]"
         }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -356,7 +358,7 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
         {showPosterOverlay && !isPlaying && (
           <div className="absolute inset-0 transition-opacity duration-500">
             <img
-              src="/images/mofayabanner.jpeg"
+              src="/images/mofaya.png"
               alt="Movie Poster"
               className="w-full h-full object-cover"
             />
@@ -366,16 +368,15 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
 
         {/* Video Title & Description */}
         <div
-          className={`absolute pt-2 mb-25 w-[50%] md:w-full top-[33%] md:top-[40%] lg:top-[38%] ml-4 md:ml-16 transition-opacity duration-300 ${
+          className={`absolute pt-2 mb-25  md:w-full top-[23.5%] md:top-[32%] lg:!top-[35%] ml-4 md:ml-16 transition-opacity duration-300 ${
             showContent
-            ? isFullscreen 
-              ? "opacity-100 top-[42%] md:!top-[55%] lg:top-[55%]"  // Different positioning when fullscreen
-              : "opacity-100 top-[10%] md:top-[15%] lg:top-[32%]"  // Normal positioning
-            : "opacity-0"
+              ? isFullscreen
+                ? "opacity-100 top-[40%] md:!top-[50%] lg:!top-[50%]" // Different positioning when fullscreen
+                : "opacity-100 top-[10%] md:top-[15%] lg:top-[32%]" // Normal positioning
+              : "opacity-0"
           }`}
         >
-      
-          <div className="flex-1 pb-5 md:pb-1 min-w-[150px]">
+          <div className="flex-1 pb-5 md:pb-1 w-[50%]">
             <h1 className="text-[28px] font-extrabold text-white capitalize">
               Mofaya
             </h1>
@@ -389,14 +390,17 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
               every choice sparks more fire.
             </p>
           </div>
+          {/* cast */}
+           <CastDisplay/>
           <div className="flex pt-1 items-center pr-10 cursor-pointer">
-            <p className="text-white/70 text-[14px] uppercase tracking-wide">
+            <p className="text-white text-lg uppercase tracking-wide">
               stream on:
             </p>
 
             <img src={"/logos/bazeLg.png"} className="w-[45px] h-[45px] ml-2" />
           </div>
-          <div className="flex gap-4 justify-between flex-wrap pt-4 mb-6 md:pb-1 md:mb-0">
+
+          <div className=" gap-4 justify-between flex-wrap pt-4 mb-6 md:pb-1 md:mb-0">
             <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
               <Button className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer">
                 Subscribe
@@ -404,7 +408,7 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
               <Button
                 variant="outline"
                 className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C]  w-40 cursor-pointer"
-                onClick={()=>onSaveClick()}
+                onClick={() => onSaveClick()}
               >
                 <Bookmark className="h-4 w-4 mr-2" />
                 Save
@@ -413,6 +417,8 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
           </div>
         </div>
 
+      
+       
         {/* Video Player Controls */}
         <div
           className={`absolute bottom-4 left-4 right-4 transition-all duration-300 ${
@@ -569,31 +575,8 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
           )}
         </Button>
 
-              {/* Trailer thumbnails */}
-              {/* <div 
-              className={`absolute bottom-10 right-4 flex space-x-6 transition-all duration-300 ${
-                showContent ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-              }`}
-            >
-              {[1, 2, 3].map((trailer) => (
-                <div>
-                  <div className="text-white text-center text-md mb-1">Trailer {trailer}</div>
-                <div
-                  key={trailer}
-                  onClick={() => handleTrailerClick(trailer)}
-                  className="w-64 h-36 bg-[url('/images/Trailer.png')] bg-cover bg-center rounded-xl border-4 border-[#ffffff] flex flex-col items-center justify-center cursor-pointer hover:border-[#C62676] transition-colors"
-                >
-          
-                  <div className="w-10 h-10 flex items-center justify-center">
-                    <MdPlayArrow className="text-white w-15 h-15"/>
-                  </div>
-                </div>
-                </div>
-                
-              ))}
-            </div> */}
         <div
-          className={`absolute bottom-50 sm:bottom-35 md:bottom-12 lg:bottom-32 xl:bottom-36 right-2 sm:right-4 
+          className={`absolute bottom-82 sm:bottom-35 md:bottom-12 lg:bottom-32 xl:bottom-36 right-2 sm:right-4 
     flex flex-col sm:flex-col md:flex-col lg:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6 
     transition-all duration-300 ${
       showContent
@@ -608,8 +591,8 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
               </div>
               <div
                 onClick={() => handleTrailerClick(trailer)}
-                className="w-32 h-20 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-40 lg:h-28 
-          bg-[url('/images/Trailer.png')] bg-cover bg-center 
+                className="w-24 h-18 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-40 lg:h-28 
+          bg-[url('/images/mofaya.png')] bg-cover bg-center 
           rounded-lg sm:rounded-xl 
           border-2 sm:border-3 lg:border-4 border-white 
           flex items-center justify-center 
@@ -632,4 +615,5 @@ export default function VybzVideoPlayer({videoSrc}: VybzVideoPlayerProps) {
         </div>
       </div>
     </>
-)}
+  );
+}

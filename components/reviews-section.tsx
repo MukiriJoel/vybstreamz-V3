@@ -72,7 +72,7 @@ export default function ReviewsSection() {
       </div>
 </div> */}
 
-      {/* Reviews List */}
+    {/* Reviews List */}
       <div className="bg-[#E5E5E5] dark:bg-[#333333] rounded-lg px-6 py-8">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-[#333333] dark:text-white text-xl font-semibold">User Reviews</h3>

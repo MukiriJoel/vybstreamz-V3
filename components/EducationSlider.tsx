@@ -196,7 +196,7 @@ const EducationSlider = () =>{
                     
                       <div
               key={index}
-              className="pt-8 md:py-12 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
+              className="pt-1 md:py-8 lg:py-8 xl:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onBookClick()}>

@@ -41,17 +41,17 @@ return(
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] dark:bg-[#141414]">
         <section className="px-6 pb-3 pt-8 px-8">
-          <SectionHeader
+          <SectionHeader  viewButton={true}
             title="top ranked games"
-            onViewMoreClick={onViewMoreClick}
+            route="/games"
           />
 
           <GamesSlider />
         </section>
         <section className=" px-2">
-          <SectionHeader
+          <SectionHeader  viewButton={true}
             title="top ranked games"
-            onViewMoreClick={onViewMoreClick}
+            route="/games"
           />
           <GamesSlider />
         </section>

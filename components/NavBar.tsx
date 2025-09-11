@@ -262,6 +262,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
             <Image 
               src={"/logos/vybstreamz.png"} 
               className="h-[66px] w-[197px] pr-10 object-contain" 
+
               alt={"logo"}
               width={200} 
               height={50}

@@ -24,8 +24,10 @@ import PartnerBanner from "@/components/PartnerBanner";
 export default function Home() {
    const Router=useRouter();
     
+
      const onViewMoreClick = () =>{
       Router.push(`/partners`)
+
     }
 
   return (
@@ -38,25 +40,25 @@ export default function Home() {
           <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             {/* Partners Section */}
             <section className="">
-                <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="partners" route='/partners'/>
               <PartnersSlider />
             </section>
 
             {/* Best Deals Section */}
             <section className="py-4">
-               <SectionHeader title="best deals 🔥" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="best deals 🔥" route='/deals'/>
               <DealsSlider/>
             </section>
 
             {/* Trending Section */}
             <section className="">
-               <SectionHeader title="videos" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="videos" route='/videos'/>
                   <VideoSlider />
             </section>
 
             {/* Recommended For You Section */}
             {/* <section className="">
-               <SectionHeader title="recommended for you" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="recommended for you" route=""/>
               <VideoSlider />
             </section> */}
 
@@ -71,31 +73,31 @@ export default function Home() {
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <SectionHeader title="music" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="music" route='/music'/>
               <MusicSlider />
             </section>
 
             {/* Trending Section */}
             <section className="py-4">
-                <SectionHeader title="games" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="games" route='/games'/>
               <GamesSlider />
             </section>
 
             {/*AD slider */}
             <section>
-              <SectionHeader title="amazing deals for you" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={false} title="amazing deals for you" route=''/>
               <AdSlider/>
             </section>
               
 
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-                <SectionHeader title="education" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="education" route='education'/>
               <EducationSlider />
             </section>
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-                <SectionHeader title="podcasts" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="podcasts" route='/podcasts'/>
               <PodcastSlider />
             </section>
           </div>

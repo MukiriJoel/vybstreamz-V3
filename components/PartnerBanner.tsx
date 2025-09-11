@@ -43,16 +43,14 @@ const PartnerBanner = ({title,header,logo,button,image}:PartnerBannerProps) =>{
                   </Button>
                 </div>
             </div>
-            <div className="relative mt-4 w-full h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 rounded-lg overflow-hidden shadow-2xl">
-              {/* Background Image Placeholder */}
-              <div className="absolute inset-0 rounded-xl shadow-2xl">
-                <img
-                  src={image}
-                  alt="Netflix comedies showcase"
-                  className="w-full h-full  object-fit cursor-pointer"
-                />
-              </div>
-            </div>
+          <div className="relative mt-4 w-full aspect-video rounded-lg overflow-hidden shadow-2xl">
+  <img
+    src={image}
+    alt="Netflix comedies showcase"
+    className="w-full h-full object-cover cursor-pointer"
+  />
+</div>
+
         </div>
         
     )

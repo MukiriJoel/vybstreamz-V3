@@ -95,7 +95,7 @@ export default function HelpCenter() {
 
           {/* Right Column - Questions for Selected Category */}
           <div className="space-y-4">
-            {helpContent[selectedCategory]?.map((question, index) => (
+            {(helpContent as any)[selectedCategory]?.map((question:any, index:any) => (
               <Button
                 key={index}
                 variant="outline"

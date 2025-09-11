@@ -60,7 +60,7 @@ export default function PartnersPage() {
       {/* Main Content */}
       <main className="">
         {/* Hero Section */}
-        <div className="px-8 mt-12 pt-12">
+        <div className="px-2 mt-12 pt-12">
           <PartnersCarousel />
         </div>
 
@@ -127,14 +127,14 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
   };
 
   return (
-    <section className="p-8 border-gray-200 dark:border-[#2C2C2C] ">
+    <section className="p-2 border-gray-200 dark:border-[#2C2C2C] ">
      <SectionHeader title={title} onViewMoreClick={onViewMoreClick}/>
 
       <div className="grid pt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 cursor-pointer"> 
         {partners.map((partner, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-6 hover:shadow-md transition-shadow min-h-[135px]"
+            className="bg-white dark:bg-[#2C2C2C] rounded-2xl p-2 hover:shadow-md transition-shadow min-h-[135px]"
             onClick={()=>onHandleClick(partner)}
           >
             <div className="flex items-start space-x-4">
@@ -147,10 +147,10 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h4 className="text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
                   {partner.name}
                 </h4>
-                <p className="text-xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                <p className="md:text-lg lg:text-lg text-xs font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                   {partner.description}
                 </p>
               </div>

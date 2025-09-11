@@ -42,7 +42,7 @@ export default function VerifyEmail() {
   }
 
   return (
-    <div className="px-8 min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
+    <div className="px-2 min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
@@ -70,11 +70,11 @@ export default function VerifyEmail() {
 
           <div className="w-full mx-auto  pt-20">
             <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">
-              Verify Email
+              Verify Phone Number
             </h1>
 
             <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-12 leading-relaxed">
-              Please enter the verification code sent to your email address
+              Please enter the verification code sent to your number
             </p>
 
             {/* Code Input */}

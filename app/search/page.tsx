@@ -23,7 +23,7 @@ export default function SearchPage(){
         {/* Hero Section */}
         <main className="">
          
-          <div className="px-8 pt-12 mt-12 max-w-8xl mx-auto">
+          <div className="px-2 pt-12 mt-12 max-w-8xl mx-auto">
             {/* search */}
             <div className="py-3">
                 <SearchDropdown/>

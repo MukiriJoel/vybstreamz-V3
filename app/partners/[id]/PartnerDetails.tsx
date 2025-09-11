@@ -96,7 +96,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                     <h2 className="ml-8 text-3xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
                     {partnerDetails?.name}
                     </h2>
-                    <p className="text-xl ml-8 font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                    <p className="text-xs ml-8 font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                     {partnerDetails?.description}
                     </p>
                 </div>
@@ -127,10 +127,10 @@ export default function PartnerDetails({ id }: { id: number }) {
         )}
 
         {isSubscribed ? (
-          <div className="p-8 max-w-8xl mx-auto">
+          <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             {/* Episodes Section */}
             {/* Partners Section */}
-            <div className="mb-8">
+            <div className="mb-7">
               <SectionHeader
                 title="explore plans"
                 onViewMoreClick={onViewMoreClick}
@@ -141,7 +141,7 @@ export default function PartnerDetails({ id }: { id: number }) {
             </div>
             
             {/* TABS */}
-            <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-8 pt-8">
+            <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-0 pt-0">
               <nav className="flex space-x-8 overflow-x-auto scrollbar-hide">
                 {tabs.map((tab) => (
                   <button
@@ -201,7 +201,7 @@ export default function PartnerDetails({ id }: { id: number }) {
           </div>
         ) : (
             
-          <div className="p-8 max-w-8xl mx-auto">
+          <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             <section>
                 <ReviewTop/>
             </section>

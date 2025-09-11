@@ -25,7 +25,7 @@ export default function Home() {
    const Router=useRouter();
     
      const onViewMoreClick = () =>{
-      Router.push(`/viewMore/`)
+      Router.push(`/partners`)
     }
 
   return (
@@ -35,7 +35,7 @@ export default function Home() {
         <main className="">
           <BillBoardV3/>
           {/* <VybzCarouselMain/> */}
-          <div className="p-8 max-w-8xl mx-auto">
+          <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             {/* Partners Section */}
             <section className="">
                 <SectionHeader title="partners" onViewMoreClick={onViewMoreClick}/>

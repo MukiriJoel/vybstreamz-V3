@@ -39,7 +39,7 @@ export default function GamesPage() {
       <main className="">
         <VybzCarouselMain />
 
-        <div className="p-8 max-w-8xl mx-auto">
+        <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
           {/* Partners Section */}
           <div className="mb-8">
             <SectionHeader title="partners" onViewMoreClick={onViewMoreClick} />

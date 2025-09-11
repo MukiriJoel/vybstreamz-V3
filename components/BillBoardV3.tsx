@@ -134,6 +134,10 @@ const BillBoardV3 = ({
     if (autoplay) setIsPaused(false);
   };
 
+  const handleSaveButton = () =>{
+    router.push("/profile")
+  }
+
   const toggleAutoplay = () => setIsPaused(!isPaused);
 
   // Navigation Arrows
@@ -163,10 +167,10 @@ const BillBoardV3 = ({
 
     if (isVideo) {
       return (
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden -top-[10vh]" style={{ height: 'calc(100% + 10vh)' }}>
             <iframe
             src={slide.backgroundVideo}
-            className="!absolute !top-1/2 !left-1/2 w-[300vw] h-[100vh] !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
+            className="!absolute pt-25 !top-1/2 !left-1/2 w-[450vw] h-full object-cover !min-h-screen  md:h-[56.25vw] lg:h-[56.25vw]"
             style={{
                 transform: "translate(-50%, -50%)",
             }}
@@ -335,8 +339,8 @@ const BillBoardV3 = ({
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white/20 text-xs text-white hover:bg-white dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer transform hover:scale-105 transition-transform duration-200"
-                    onClick={()=>onSaveClick()}
+                    className="border-white/20 text-xs text-white hover:!bg-[#333333] dark:bg-[#2C2C2C] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C] backdrop-blur-sm w-40 cursor-pointer"
+                    onClick={onSaveClick}
                  >
                     <Bookmark className="h-4 w-4 mr-2" />
                     Save

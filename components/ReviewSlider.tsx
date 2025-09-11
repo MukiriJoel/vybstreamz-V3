@@ -50,7 +50,7 @@ const ReviewSlider = () =>{
           ].map((item, index) => (
             <div 
               key={index} 
-              className="bg-white dark:bg-[#2C2C2C] rounded-lg shadow-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5 flex flex-col"
+              className="bg-white dark:bg-[#2C2C2C] rounded-lg shadow-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 min-h-[130px] sm:min-h-[220px] md:p-5 flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 min-w-0 flex-1">
@@ -76,8 +76,8 @@ const ReviewSlider = () =>{
                  </div>
               </div>
               
-              <div className="pt-3">
-                 <p className="!text-base !leading-[120%] py-2 pr-2 !font-normal line-clamp-3 md:line-clamp-5 text-[#2C2C2C] dark:text-[#FFFFFF] text-left mb-3 capitalize flex-grow">
+              <div className="pt-3 min-h-[100px]">
+                 <p className="!text-base min-h-[70px] !leading-[120%] py-2 pr-2 !font-normal line-clamp-2 md:line-clamp-2 text-[#2C2C2C] dark:text-[#FFFFFF] text-left mb-3 capitalize flex-grow">
                 {item.description}
                 </p>
               </div>

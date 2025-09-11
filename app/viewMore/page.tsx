@@ -28,7 +28,7 @@ export default function viewMore(){
         {/* Hero Section */}
         <main className="">
     
-          <div className="p-8 max-w-8xl mx-auto">
+          <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             <section className="!mt-10 !pt-8">
                   <PartnerHighlight/>
             </section>

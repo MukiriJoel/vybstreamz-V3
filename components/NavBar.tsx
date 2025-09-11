@@ -260,8 +260,8 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-[#2C2C2C] ">
           <Link href={"/"} onClick={closeMobileMenu}>
             <Image 
-              src={"/logos/VybeStreams.png"} 
-              className="h-[26px] w-[157px] object-contain" 
+              src={"/logos/vybstreamz.png"} 
+              className="h-[66px] w-[197px] pr-10 object-contain" 
               alt={"logo"}
               width={200} 
               height={50}

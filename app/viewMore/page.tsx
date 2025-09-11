@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import PartnerHighlight from "@/components/PartnerHighlight";
 import SectionHeader from "@/components/SectionHeader";
 
-export default function viewMore(){
+export default function ViewMore(){
   const Router=useRouter();
       
        const onViewMoreClick = () =>{

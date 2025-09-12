@@ -230,7 +230,7 @@ export default function ProfileContent() {
 
       {/* Subscriptions Content */}
       {activeTab === "Subscriptions" && (
-        <div className="p-8">
+        <div className="p-4">
           <h2 className="text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">
             All Subscription Plans
           </h2>

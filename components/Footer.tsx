@@ -41,7 +41,7 @@ const Footer =()=>{
                 Help and Support
               </a>
 
-              <a href="profile/contacts" className="hover:text-gray-900 dark:text-[#FFFFFF]">
+              <a href="/profile/contacts" className="hover:text-gray-900 dark:text-[#FFFFFF]">
 
                 Contact Us
               </a>

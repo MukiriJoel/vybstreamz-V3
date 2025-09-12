@@ -368,10 +368,10 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
 
         {/* Video Title & Description */}
         <div
-          className={`absolute pt-2 mb-25  md:w-full top-[23.5%] md:top-[32%] lg:!top-[35%] ml-4 md:ml-16 transition-opacity duration-300 ${
+          className={`absolute pt-2 mb-25  md:w-full top-[13%] md:top-[26%] lg:!top-[25%] ml-4 md:ml-16 transition-opacity duration-300 ${
             showContent
               ? isFullscreen
-                ? "opacity-100 top-[40%] md:!top-[50%] lg:!top-[50%]" // Different positioning when fullscreen
+                ? "opacity-100 top-[33%] md:!top-[43%] lg:!top-[43%]" // Different positioning when fullscreen
                 : "opacity-100 top-[10%] md:top-[15%] lg:top-[32%]" // Normal positioning
               : "opacity-0"
           }`}
@@ -576,7 +576,7 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
         </Button>
 
         <div
-          className={`absolute bottom-82 sm:bottom-35 md:bottom-12 lg:bottom-32 xl:bottom-36 right-2 sm:right-4 
+          className={`absolute bottom-67 sm:bottom-35 md:bottom-12 lg:bottom-32 xl:bottom-36 right-2 sm:right-4 
     flex flex-col sm:flex-col md:flex-col lg:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4 lg:space-x-6 
     transition-all duration-300 ${
       showContent

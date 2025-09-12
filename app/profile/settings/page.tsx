@@ -793,7 +793,7 @@ export default function SettingsPage() {
 }
 
     return (
-      <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6">
+      <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-4">
         {/* Mobile Back Button - only visible on mobile */}
         <div className="flex items-center mb-6 lg:hidden">
           <button

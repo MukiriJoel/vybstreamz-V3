@@ -82,7 +82,7 @@ const CastDisplay = () => {
         ].map((actor, index) => (
           <div
             key={index}
-            className="rounded-full overflow-hidden w-12 h-12 border border-white"
+            className="rounded-full overflow-hidden w-12 h-12 border border-white bg-[#2C2C2C]"
           >
             <img className="object-cover w-full h-full" src={actor} />
           </div>

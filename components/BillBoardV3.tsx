@@ -184,7 +184,7 @@ const BillBoardV3 = ({
                 hls.destroy();
                 // Fallback to native video
                 if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-                  videoEl.src = slide.hlsUrl;
+                  (videoEl as any).src = slide.hlsUrl;
                 }
                 break;
             }

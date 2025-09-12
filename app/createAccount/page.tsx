@@ -108,8 +108,8 @@ export default function CreateAccountPage() {
               {/* Phone Number Section */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-[#333333] dark:text-white block transition-colors duration-200">
-                  <span className="block sm:inline">Country</span>
-                  <span className="block sm:inline sm:ml-16">Phone Number*</span>
+                  <span className="inline-block sm:inline-block pr-7">Country</span>
+                  <span className="inline-block sm:inline-block sm:ml-16">Phone Number*</span>
                 </label>
                 <div className="flex gap-2">
                   <div className="w-16 sm:w-20">
@@ -159,7 +159,7 @@ export default function CreateAccountPage() {
                   >
                     {hasMinLength && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 8 characters</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 12 characters</span>
                 </div>
 
                 <div className="flex items-center space-x-3">

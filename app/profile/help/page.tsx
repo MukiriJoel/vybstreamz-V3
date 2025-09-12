@@ -355,7 +355,7 @@ export default function HelpCenter() {
             key={index}
             variant="default"
             onClick={() => handleCategoryClick(category)}
-            className={`cursor-pointer w-full justify-between text-left p-6 h-auto rounded-lg transition-colors  ${
+            className={`cursor-pointer w-full justify-between text-left p-3 h-auto rounded-lg transition-colors  ${
               selectedCategory === category
                 ? "bg-[#c62676] text-white hover:bg-[#c62676]/90"
                 : "bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
@@ -392,7 +392,7 @@ export default function HelpCenter() {
           <Button
             key={index}
             variant="default"
-            className="cursor-pointer w-full justify-between text-left p-6 h-auto bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600 rounded-lg"
+            className="cursor-pointer w-full justify-between text-left p-3 h-auto bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600 rounded-lg"
           >
             <span className="text-lg font-medium line-clamp-2 text-wrap">{question}</span>
             <ChevronRight className="h-5 w-5 ml-2 flex-shrink-0 text-[#696969]" />

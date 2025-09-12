@@ -146,7 +146,7 @@ export default function Sidebar() {
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+                  className="px-10 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
                 >
                   Log Out
                 </button>

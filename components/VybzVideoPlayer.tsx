@@ -55,7 +55,27 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
-  
+
+  // Autoplay effect - runs once when component mounts
+  useEffect(() => {
+    const handleAutoplay = async () => {
+      if (videoRef.current && videoSrc) {
+        try {
+          await videoRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          // Autoplay failed (probably due to browser policy)
+          console.log("Autoplay failed:", error);
+          // Keep isPlaying as false so user can manually start
+        }
+      }
+    };
+
+    // Small delay to ensure video is loaded
+    const autoplayTimeout = setTimeout(handleAutoplay, 100);
+    
+    return () => clearTimeout(autoplayTimeout);
+  }, [videoSrc]);
 
   // Hide controls after 3 seconds when playing or when mouse is stationary
   useEffect(() => {
@@ -346,6 +366,7 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
           playsInline
+          muted={false} // Start unmuted for autoplay
         >
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.

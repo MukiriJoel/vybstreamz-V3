@@ -37,6 +37,28 @@ export default function VybStreamsPage() {
     }
   }
 
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Check out Vyb Streams',
+          text: 'Great things are meant to be shared. Check out this platform!',
+          url: shareUrl,
+        })
+      } catch (err) {
+        // User cancelled the share or error occurred
+        if (err.name !== 'AbortError') {
+          console.error('Error sharing:', err)
+          // Fallback to copy link if share fails
+          handleCopyLink()
+        }
+      }
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      handleCopyLink()
+    }
+  }
+
   return (
     <div className="bg-[#f2f2f2] dark:bg-[#141414] w-full overflow-hidden">
       {/* Header */}
@@ -114,13 +136,13 @@ export default function VybStreamsPage() {
 
                 
                   <button
-                    onClick={() => handleSocialShare("email")}
+                    onClick={handleNativeShare}
                     className="flex cursor-pointer flex-col items-center space-y-2 p-4 hover:bg-[#f2f2f2] rounded-lg transition-colors group"
                   >
                     <div className="w-12 h-12 bg-[#f2f2f2] rounded-full flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:!bg-white dark:group-hover:!bg-[#2C2C2C] transition-shadow">
                       <MoreHorizontal className="h-6 w-6 text-[#2c2c2c] dark:group-hover:text-white" />
                     </div>
-                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">Email</span>
+                    <span className="text-sm text-[#2c2c2c] dark:text-white dark:group-hover:text-[#2c2c2c] font-medium">More</span>
                   </button>
                   
                 </div>

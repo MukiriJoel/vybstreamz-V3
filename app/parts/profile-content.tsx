@@ -26,7 +26,7 @@ const subscriptions = [
     amount: "KES 200",
     expiryDate: "02/07/2026",
     status: "Active",
-    showAction: true,
+    showAction: false,
   },
   {
     id: 2,

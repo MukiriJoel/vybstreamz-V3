@@ -150,7 +150,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
                 <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
                   {partner.name}
                 </h4>
-                <p className="md:text-base lg:text-base text-xs font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                <p className="md:text-base lg:text-base text-xs !font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                   {partner.description}
                 </p>
               </div>

@@ -67,8 +67,10 @@ const ReviewSlider = () =>{
                   {item.percentage}% OFF
                 </span> */}
               </div>
-              <div className="flex flex-col gap-2">
-                <div className="w-full inline-block">
+
+              <div className="flex flex-wrap md:flex-nowrap justify-between gap-1">
+                <div className="flex w-full">
+
                     <RatingDisplay rating={item.rating}/>
                 </div>
                  <div className="inline-block text-left w-full">

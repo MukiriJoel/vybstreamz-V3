@@ -50,7 +50,7 @@ const ReviewSlider = () =>{
           ].map((item, index) => (
             <div 
               key={index} 
-              className="bg-white dark:bg-[#2C2C2C] rounded-lg shadow-lg sm:rounded-xl flex-shrink-0 w-45 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 min-h-[130px] sm:min-h-[220px] md:p-5 flex flex-col"
+              className="bg-white dark:bg-[#2C2C2C] rounded-lg shadow-lg sm:rounded-xl flex-shrink-0 w-43 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 min-h-[100px] sm:min-h-[220px] md:p-5 flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 min-w-0 flex-1">
@@ -67,17 +67,17 @@ const ReviewSlider = () =>{
                   {item.percentage}% OFF
                 </span> */}
               </div>
-              <div className="flex justify-between gap-1">
-                <div className="flex w-full">
+              <div className="flex flex-col gap-2">
+                <div className="w-full inline-block">
                     <RatingDisplay rating={item.rating}/>
                 </div>
-                 <div className="flex justify-start text-left w-full">
+                 <div className="inline-block text-left w-full">
                     <p className="text-base text-[#2C2C2C] dark:text-white">{item.date}</p>
                  </div>
               </div>
               
-              <div className="pt-3 min-h-[90px]">
-                <p className="!text-base min-h-[65px] !leading-[120%] py-2 pr-2 !font-normal line-clamp-2 text-[#2C2C2C] dark:text-[#FFFFFF] text-left mb-3 capitalize">
+              <div className="pt-3 min-h-[85px]">
+                <p className="!text-base min-h-[62px] !leading-[120%] py-1 pr-2 !font-normal line-clamp-3 text-[#2C2C2C] dark:text-[#FFFFFF] text-left mb-3 capitalize">
                   {item.description}
                 </p>
               </div>

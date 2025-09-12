@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { MdArrowBack } from "react-icons/md"
 
-export default function CreateAccountPage() {
+export default function TermsConditionsPage() {
   const { login } = useAuth()
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState("")
@@ -58,9 +58,7 @@ export default function CreateAccountPage() {
     router.push('/otp')
   }
 
-  const handleCancel = () => {
-    setShowConfirmModal(false)
-  }
+  
 
   const handleLoginPage = () => {
     router.push("/login")
@@ -68,6 +66,14 @@ export default function CreateAccountPage() {
 
   const GoToHome = () =>{
     router.push('/')
+  }
+
+  const handleDone = () =>{
+    router.push('/createAccount')
+  }
+
+  const handleCancel = () =>{
+    router.push('/createAccount')
   }
 
   return (
@@ -99,8 +105,8 @@ export default function CreateAccountPage() {
             
 
             {/* Form */}
-            <div className="flex-1 bg-white rounded-lg p-8 shadow-sm">
-            <div className="space-y-6">
+            <div className="bg-transarent rounded-lg p-8 shadow-sm flex flex-col max-h-[70vh]">
+            <div className="flex-1 overflow-y-auto space-y-6 pr-4 bg-transparent no-scrollbar">
               <h1 className="text-2xl font-semibold text-[#333333] mb-6">Terms and conditions</h1>
 
               <p className="text-[#333333] text-sm leading-relaxed">
@@ -150,6 +156,19 @@ export default function CreateAccountPage() {
               </div>
             </div>
           </div>
+            <div className="flex gap-4 mt-12 mb-8">
+          <Button
+            variant="outline"
+            onClick={handleCancel}
+            className="flex-1 bg-[#2c2c2c] text-[#ffffff] border-[#2c2c2c] hover:bg-[#1a1a1a] rounded-full py-6"
+          >
+            Cancel
+          </Button>
+          <Button
+          onClick={handleDone}
+          className="flex-1 bg-[#c62676] text-[#ffffff] hover:bg-[#a91e63] rounded-full py-6">Done</Button>
+        </div>
+
           </div>
         </div>
       </div>

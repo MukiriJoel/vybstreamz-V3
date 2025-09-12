@@ -198,7 +198,7 @@ export default function CreateAccountPage() {
                 />
                 <label htmlFor="terms" className="text-xs sm:text-sm text-[#333333] dark:text-white leading-relaxed transition-colors duration-200">
                   I Acknowledge that I have read and understood the{" "}
-                  <a href="/" className="text-[#c62676] underline hover:no-underline">
+                  <a href="/termsconditions" className="text-[#c62676] underline hover:no-underline">
                     Terms of Use
                   </a>{" "}
                   and{" "}

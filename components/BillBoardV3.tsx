@@ -106,6 +106,7 @@ const BillBoardV3 = ({
     autoplayTimerRef.current = setTimeout(goToNext, delay);
 
     return () => {
+      
       if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
     };
   }, [activeIndex, isPaused, autoplay, delay, slidesToRender.length]);

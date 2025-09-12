@@ -310,12 +310,13 @@ const BillBoardV3 = ({
 
               {/* Action Buttons */}
               <div
-                className={`flex gap-4 justify-between flex-wrap transition-all ease-out ${
+                className={`flex gap-4 justify-between flex-wrap transition-all ease-out`}
+              >
+                <div className={`flex gap-4 mx-auto !sm:ml-0 md:mx-0 ${
                   index === activeIndex
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
-                }`}
-                style={{
+                }`} style={{
                   transitionDuration: `${Math.min(
                     transitionSpeed * 0.7,
                     700
@@ -324,9 +325,7 @@ const BillBoardV3 = ({
                     transitionSpeed * 0.4,
                     400
                   )}ms`,
-                }}
-              >
-                <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
+                }}>
                   <Button
                     onClick={onSubscribeClick}
                     className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer transform hover:scale-105 transition-transform duration-200"
@@ -348,33 +347,7 @@ const BillBoardV3 = ({
                     goToSlide={goToSlide}
                     activeIndex={activeIndex}
                   />
-                  {/* {autoplay && (
-                    <Button
-                      onClick={toggleAutoplay}
-                      variant="ghost"
-                      size="icon"
-                      className="text-white/70 hover:text-white border border-white/20 rounded-full cursor-pointer transition-colors duration-200"
-                      title={isPaused ? "Resume autoplay" : "Pause autoplay"}
-                    >
-                      {isPaused ? (
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      ) : (
-                        <svg
-                          className="w-4 h-4"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                        </svg>
-                      )}
-                    </Button>
-                  )} */}
+                
                 </div>
               </div>
             </div>

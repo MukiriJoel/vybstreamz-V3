@@ -72,7 +72,7 @@ const onSubscribeClick = () =>{
           ].map((item, index) => (
             <div 
               key={index} 
-              className="bg-white dark:bg-[#2C2C2C] rounded-lg sm:rounded-xl flex-shrink-0 w-60 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5 flex flex-col"
+              className="bg-white dark:bg-[#2C2C2C] rounded-lg sm:rounded-xl flex-shrink-0 w-43 sm:w-64 md:w-72 lg:w-80 p-3 sm:p-4 md:p-5 flex flex-col"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 min-w-0 flex-1">

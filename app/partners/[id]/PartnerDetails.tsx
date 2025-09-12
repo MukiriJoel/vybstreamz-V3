@@ -96,7 +96,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                     <h2 className="ml-8 text-3xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
                     {partnerDetails?.name}
                     </h2>
-                    <p className="text-xs ml-8 font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
+                    <p className="text-xs pt-1 ml-8 font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
                     {partnerDetails?.description}
                     </p>
                 </div>

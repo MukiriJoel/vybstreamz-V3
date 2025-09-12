@@ -45,10 +45,10 @@ const Footer =()=>{
 
                 Contact Us
               </a>
-              <a href="/profile/help" className="hover:text-gray-900 dark:text-[#FFFFFF]">
+              <a href="/termsconditions" className="hover:text-gray-900 dark:text-[#FFFFFF]">
                 Terms and Conditions
               </a>
-              <a href="/profile/help" className="hover:text-gray-900 dark:text-[#FFFFFF]">
+              <a href="/termsconditions" className="hover:text-gray-900 dark:text-[#FFFFFF]">
                 Privacy Policy
               </a>
             </div>

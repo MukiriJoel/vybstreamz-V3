@@ -149,7 +149,7 @@ export default function TermsConditionsPage() {
                     You agree that all materials, products, and services provided on this website are the property of
                     company name, its affiliates, directors, officers, employees, agents, suppliers, or licensors
                     including all copyrights, trade secrets, trademarks, patents, and other intellectual property. You
-                    also agree that you will not reproduce or redistribute the company name's intellectual property in
+                    also agree that you will not reproduce or redistribute the company name&apos;s intellectual property in
                     any way, including electronic, digital, or new trademark registrations.
                   </p>
                 </div>

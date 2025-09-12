@@ -152,7 +152,7 @@ export default function ProfileContent() {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`
-                py-3 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors
+                py-3 px-1 border-b-2 font-medium cursor-pointer text-sm whitespace-nowrap transition-colors
                 ${
                   activeTab === tab
                     ? "border-[#c62676] text-[#c62676]"
@@ -398,7 +398,7 @@ export default function ProfileContent() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="cursor-pointer border-[#cccccc] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#F2F2F2] dark:bg-[#141414] bg-transparent"
+                      className="cursor-pointer border-[#cccccc] text-[#2C2C2C] dark:text-[#FFFFFF] hover:!bg-[#c62676] hover:!text-white dark:bg-[#141414] bg-transparent"
                       onClick={() => onUnsubscribeClick()}
                     >
                       Unsubscribe

@@ -64,7 +64,7 @@ const BillBoardV3 = ({
         "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal.",
       category: "Game",
       ageRating: "16 Yrs +",
-      hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+      hlsUrl: "http://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8",
       backgroundImage: "/images/netflixGames.png",
       backgroundType: "video",
       streamingPlatform: "Netflix",
@@ -77,7 +77,7 @@ const BillBoardV3 = ({
         "A gritty drama set in modern Kenya, where every choice sparks more fire.",
       category: "Movie",
       ageRating: "16 Yrs +",
-      hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+      hlsUrl: "http://content.jwplatform.com/manifests/vM7nH0Kl.m3u8",
       backgroundImage: "/images/mofaya.png",
       backgroundType: "video",
       streamingPlatform: "Baze",
@@ -420,12 +420,13 @@ const BillBoardV3 = ({
               </div>
               {/* Action Buttons */}
               <div
-                className={`flex gap-4 justify-between flex-wrap transition-all ease-out ${
+                className={`flex gap-4 justify-between flex-wrap transition-all ease-out`}
+              >
+                <div className={`flex gap-4 mx-auto !sm:ml-0 md:mx-0 ${
                   index === activeIndex
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
-                }`}
-                style={{
+                }`} style={{
                   transitionDuration: `${Math.min(
                     transitionSpeed * 0.7,
                     700
@@ -434,9 +435,7 @@ const BillBoardV3 = ({
                     transitionSpeed * 0.4,
                     400
                   )}ms`,
-                }}
-              >
-                <div className="flex gap-4 mx-auto !sm:ml-0 md:mx-0">
+                }}>
                   <Button
                     onClick={onSubscribeClick}
                     className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer transform hover:scale-105 transition-transform duration-200"

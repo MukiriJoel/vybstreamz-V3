@@ -26,6 +26,8 @@ import { MdArrowForward } from "react-icons/md";
 import PartnersSlider from "@/components/PartnersSlider";
 import PodcastSlider from "@/components/PodcastSlider";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
+import TrackList from "@/components/TrackList";
+import SectionHeader from "@/components/SectionHeader";
 
 // Type definitions
 interface Episode {
@@ -198,83 +200,19 @@ const PodcastPlayer: React.FC = () => {
         <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
           {/* Episodes Section */}
 
-          <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6 ">
-            <h3 className="text-[14px] !font-extrabold text-[#4D4D4D] dark:text-white mb-6">
-              Episodes
-            </h3>
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Ukichelewa",
-                  subtitle: "Edin Finky Ft Lilian Okemo",
-                  duration: "4:33",
-                },
-                { title: "Way Up", subtitle: "Edin Finky", duration: "3:33" },
-                {
-                  title: "Sweet Mama",
-                  subtitle: "Edin Finky",
-                  duration: "3:33",
-                },
-                {
-                  title: "Facts",
-                  subtitle: "Edin Finky Ft Christine Okemo",
-                  duration: "3:33",
-                },
-                { title: "Gere", subtitle: "Edin Finky", duration: "5:33" },
-              ].map((episode, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between py-1 border-b border-[#e5e5e5] dark:!border-[#333333]"
-                >
-                  <div>
-                    <h4 className="font-semibold text-[14px] text-[#2C2C2C] dark:text-[#FFFFFF]">
-                      {episode.title}
-                    </h4>
-                    <p className="text-[12px] !font-normal text-[#4D4D4D] dark:text-white">
-                      {episode.subtitle}
-                    </p>
-                  </div>
-                  <span className="text-sm text-[#4D4D4D] dark:text-white">
-                    {episode.duration}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <TrackList title="episodes"/>
 
           {/* Partners Section */}
-          <div className="pt-2">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                Partners
-              </h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+          <div className="pt-4">
+             <SectionHeader title="partners" viewButton={true} route="/partners"/>
 
             {/* Horizontal scrollable container */}
             <PartnersSlider></PartnersSlider>
           </div>
 
           {/* Trending Section */}
-          <div className=" pt-10">
-            <div className="flex items-center justify-between ">
-              <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                Trending
-              </h3>
-              <Button
-                variant="ghost"
-                className="text-[#333333] dark:text-white text-[16px] !font-medium"
-              >
-                View More
-                <MdArrowForward className="!w-[36px] !h-[36px]" />
-              </Button>
-            </div>
+          <div className="pt-0">
+            <SectionHeader title="trending" viewButton={true} route="/podcasts"/>
             <PodcastSlider></PodcastSlider>
           </div>
 

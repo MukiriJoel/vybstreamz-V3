@@ -26,7 +26,7 @@ export default function Home() {
           <div className="p-2 md:p-4 lg:p-4 max-w-8xl mx-auto">
             {/* Partners Section */}
             <section className="">
-                <SectionHeader  viewButton={true} title="partners" route="/videos"/>
+                <SectionHeader  viewButton={true} title="partners" route="/partners"/>
               <PartnersSlider />
             </section>
 

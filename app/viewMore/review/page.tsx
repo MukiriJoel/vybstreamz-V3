@@ -26,7 +26,7 @@ export default function ViewMoreReview(){
                 <section className="pt-8 pb-6 px-2 ">
                     <ReviewTop/>
                 </section>
-                <section className="px-2">
+                <section className="">
                     <ReviewsSection/>
                 </section>
              </main>

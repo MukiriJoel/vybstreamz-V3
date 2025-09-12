@@ -144,7 +144,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
       <header className={`w-full transition-all  duration-300 ${getPositionClass()} ${
         isDarkBackground ? 'bg-transparent' : 'bg-[#F2F2F2] dark:bg-[#141414]'
       }`}>
-        <nav className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 items-center">
+        <nav className="max-w-8xl mx-auto px-2 md:px-4 lg:px-6 items-center">
           <div className="flex justify-between h-[100px]">
             {/* Logo */}
             <div className="flex items-center">

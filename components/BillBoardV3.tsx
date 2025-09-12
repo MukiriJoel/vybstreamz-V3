@@ -106,6 +106,7 @@ const BillBoardV3 = ({
     autoplayTimerRef.current = setTimeout(goToNext, delay);
 
     return () => {
+      
       if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current);
     };
   }, [activeIndex, isPaused, autoplay, delay, slidesToRender.length]);
@@ -184,7 +185,7 @@ const BillBoardV3 = ({
                 hls.destroy();
                 // Fallback to native video
                 if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-                  videoEl.src = slide.hlsUrl;
+                  (videoEl as any).src = slide.hlsUrl;
                 }
                 break;
             }

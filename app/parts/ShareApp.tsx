@@ -45,7 +45,7 @@ export default function VybStreamsPage() {
           text: 'Great things are meant to be shared. Check out this platform!',
           url: shareUrl,
         })
-      } catch (err) {
+      } catch (err:any) {
         // User cancelled the share or error occurred
         if (err.name !== 'AbortError') {
           console.error('Error sharing:', err)

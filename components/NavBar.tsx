@@ -156,6 +156,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
                   width={200} 
                   height={50}
                 />
+                
               </Link>
             </div>
 

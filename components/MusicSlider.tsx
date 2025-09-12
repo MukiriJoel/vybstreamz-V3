@@ -17,7 +17,7 @@ const MusicSlider = () => {
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
-        <div className="flex gap-3 md:gap-4 text-center min-w-max">
+        <div className="flex gap-3 md:gap-4 text-center min-w-max h-[210px] md:!h-auto">
           {[
             {
               id:1,

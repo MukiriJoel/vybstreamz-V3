@@ -54,11 +54,11 @@ export default function PartnerDetails({ id }: { id: number }) {
   if (partners) {
     const partnersArr = partners.partners;
 
-    const findById = (id: number, array: Partner[]) => {
+    const getById = (id: number, array: Partner[]) => {
       return array.find((item: Partner) => item && item.id == id);
     };
 
-    (partnerDetails as any) = findById(id, partnersArr);
+    (partnerDetails as any) = getById(id, partnersArr);
   }
 
   const Router = useRouter();
@@ -76,7 +76,7 @@ export default function PartnerDetails({ id }: { id: number }) {
       <main className="pt-12">
         {/* Hero Section */}
         {partnerDetails && (
-          <div className="px-8 pt-8 mt-10">
+          <div className="px-2 pt-8 mt-10">
             <div className="flex rounded-4xl overflow-hidden h-57vh md:h-[65vh] p-0">
               <img
                 src={partnerDetails?.image}
@@ -131,18 +131,21 @@ export default function PartnerDetails({ id }: { id: number }) {
             {/* Episodes Section */}
             {/* Partners Section */}
             <div className="mb-7">
-              <SectionHeader
+              <SectionHeader viewButton={false}
                 title="explore plans"
-                onViewMoreClick={onViewMoreClick}
+                route=""
               />
 
               {/* Horizontal scrollable container */}
-              <PlansSlider />
+              <div className="pt-2">
+                <PlansSlider/>
+              </div>
+              
             </div>
             
             {/* TABS */}
             <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-0 pt-0">
-              <nav className="flex space-x-8 overflow-x-auto scrollbar-hide">
+              <nav className="flex space-x-8 overflow-x-auto scrollbar-hide pb-4">
                 {tabs.map((tab) => (
                   <button
                     key={tab}
@@ -195,7 +198,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <ReviewTop/>
             </section>
             <section>
-                <SectionHeader title="user reviews" onViewMoreClick={onViewReviewsClick}/>
+                <SectionHeader  viewButton={true} title="user reviews" route={"/viewMore/review"}/>
                 <ReviewSlider/>
             </section>
           </div>
@@ -206,7 +209,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <ReviewTop/>
             </section>
             <section>
-                <SectionHeader title="user reviews" onViewMoreClick={onViewMoreClick}/>
+                <SectionHeader  viewButton={true} title="user reviews" route=""/>
                 <ReviewSlider/>
             </section>
             <VideoSlider />

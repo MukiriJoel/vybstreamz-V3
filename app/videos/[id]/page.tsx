@@ -4,6 +4,7 @@ import {useParams, useSearchParams} from 'next/navigation';
 import VideoPlayer from './movie-view';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import MovieView from './movie-view';
 
 const Page = () => {
     const params = useParams();
@@ -17,7 +18,7 @@ const Page = () => {
                 {/* <NavBar/> */}
             </header>
             <main className="w-full min-h-screen">
-                <VideoPlayer id={id} videoSrc={"/videos/MofayaTrailer.mp4"}/>
+                <MovieView></MovieView>
             </main>
             {/* <Footer/> */}
         </div>

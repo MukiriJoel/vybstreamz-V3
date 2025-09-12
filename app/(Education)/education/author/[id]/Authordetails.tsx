@@ -56,11 +56,11 @@ export default function AuthorDetails({id}:{id:number}) {
       const booksArr=books.books;
       
 
-      const findById=(id:number, array: Author[])=> {
+      const getById=(id:number, array: Author[])=> {
         return array.find((item: Author) =>item && item.id == id);
       }
 
-      (authorDetails as any)=findById(id,booksArr)
+      (authorDetails as any)=getById(id,booksArr)
 
     }
 

@@ -157,7 +157,7 @@ const NavBarMini = () => {
             <div className="flex items-center lg:hidden">
               <Link href={"/"}>
                 <Image
-                  src={"/logos/vybStreamz.png"}
+                  src={"/logos/vybstreamz.png"}
                   className="object-contain"
                   alt={"logo"}
                   width={200}
@@ -253,7 +253,7 @@ const NavBarMini = () => {
 
               <Avatar
                 onClick={() => onAvatarClick()}
-                className="h-[35px] w-[35px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer"
+                className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer"
               >
                 <AvatarImage
                   src="/logos/user-profile-illustration.png"
@@ -288,8 +288,8 @@ const NavBarMini = () => {
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-[#2C2C2C] ">
           <Link href={"/"} onClick={closeMobileMenu}>
             <Image
-              src={"/logos/VybeStreams.png"}
-              className="h-[26px] w-[157px] object-contain"
+              src={"/logos/vybstreamz.png"}
+              className=" object-contain"
               alt={"logo"}
               width={200}
               height={50}

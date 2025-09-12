@@ -36,7 +36,7 @@ export default function NotificationsPage() {
   const OnMarkAllAsRead = () => {};
 
   return (
-    <div className="min-h-screen w-screen lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-8">
+    <div className="min-h-screen w-[98vw] lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-8">
       {/* Header */}
 
       <div className="flex">

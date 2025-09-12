@@ -115,7 +115,7 @@ const PodcastSlider = () =>{
                   // </div>
                    <div
               key={index}
-              className="pt-8 md:py-12 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
+              className="pt-1 pb-1 md:pt-8 lg:pt-8 xl:pt-8 md:pb-4 lg:pb-4 xl:pb-4 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onHandleClick()} >

@@ -215,7 +215,7 @@ const BillBoardV3 = ({
 
     // Add video event listeners for debugging
     const handleCanPlay = () => console.log('Video can start playing');
-    const handleError = (e) => console.error('Video error:', e);
+    const handleError = (e: Event) => console.error('Video error:', e);
     const handleLoadStart = () => console.log('Video load started');
     
     videoEl.addEventListener('canplay', handleCanPlay);
@@ -242,7 +242,7 @@ const BillBoardV3 = ({
     };
   }, []);
 
-  // --- Background Renderer ---
+  // FIXED: Background renderer without video element inside
   const renderBackground = (slide: ICarousel, index: number) => {
     const isVideo = slide.backgroundType === "video";
 
@@ -252,15 +252,7 @@ const BillBoardV3 = ({
           className="absolute inset-0 overflow-hidden -top-[10vh]"
           style={{ height: "calc(100% + 10vh)" }}
         >
-          <video
-            ref={videoRef}
-            className="!absolute pt-17 !top-1/2 !left-1/2 w-[490vw] h-full object-cover !min-h-screen md:h-[56.25vw] lg:h-[56.25vw]"
-            style={{ transform: "translate(-50%, -50%)" }}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+          {/* Video element moved outside - see below */}
           <div className="absolute inset-0 bg-black/40" />
         </div>
       );
@@ -300,6 +292,10 @@ const BillBoardV3 = ({
     </button>
   );
 
+  // Check if current slide should show video
+  const currentSlide = slidesToRender[activeIndex];
+  const shouldShowVideo = currentSlide?.backgroundType === "video";
+
   return (
     <div
       className="relative w-full h-[90vh] overflow-hidden"
@@ -307,6 +303,24 @@ const BillBoardV3 = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className="relative w-full h-full">
+        {/* FIXED: Single video element rendered outside the slides mapping */}
+        {shouldShowVideo && (
+          <div
+            className="absolute inset-0 overflow-hidden -top-[10vh] z-5"
+            style={{ height: "calc(100% + 10vh)" }}
+          >
+            <video
+              ref={videoRef}
+              className="!absolute pt-17 !top-1/2 !left-1/2 w-[490vw] h-full object-cover !min-h-screen md:h-[56.25vw] lg:h-[56.25vw]"
+              style={{ transform: "translate(-50%, -50%)" }}
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+          </div>
+        )}
+
         {slidesToRender.map((slide, index) => (
           <div
             key={`slide-${slide.id}`}

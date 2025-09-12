@@ -159,7 +159,7 @@ export default function CreateAccountPage() {
                   >
                     {hasMinLength && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 8 characters</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 12 characters</span>
                 </div>
 
                 <div className="flex items-center space-x-3">

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Slider from "react-slick";
 import { SlickSettings } from "@/types/slick";
 
@@ -18,115 +18,105 @@ interface AdSliderProps {
   delay?: number;
 }
 
+const AdSlider = ({ slides = [], delay = 4000 }: AdSliderProps) => {
+  const sliderRef = useRef<Slider>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-const AdSlider = ({
-  slides = [],
-  delay = 4000,
-}:AdSliderProps) =>{
-
-    const sliderRef = useRef<Slider>(null);
-    const [activeIndex, setActiveIndex] = useState(0);
-
-     // Default slide if no slides provided
-    const defaultSlide: ICarousel = {
+  // Default slide if no slides provided
+  const defaultSlide: ICarousel = {
     id: 1,
     image: "/images/safAd.png",
-    };
+  };
 
-    slides = [
-        {
-        id: 1,
-        image: "/images/safAd.png",
-        
-        },
-        {
-        id: 2,
-        image: "/images/safAd2.png",
-        
-        },{
-          id: 3,
-          image: "/images/safAd3.png",
+  slides = [
+    {
+      id: 1,
+      image: "/images/safAd.png",
+    },
+    {
+      id: 2,
+      image: "/images/safAd2.png",
+    },
+    {
+      id: 3,
+      image: "/images/safAd3.png",
+    },
+  ];
+
+  const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
+
+  const settings: SlickSettings = {
+    dots: false,
+    fade: true,
+    infinite: true,
+    autoplay: slidesToRender.length > 1,
+    autoplaySpeed: delay,
+    pauseOnHover: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    // afterChange: (i: number) => setActiveIndex(i),
+  };
+
+  const goToSlide = (i: number) => {
+    console.log("slide", i);
+    sliderRef.current?.slickGoTo(i);
+  };
+
+  return (
+    <>
+      <Slider
+        {...settings}
+        ref={sliderRef}
+        beforeChange={(_, next) => setActiveIndex(next)}
+        className="adSlider pt-3 px-2 "
+      >
+        {slidesToRender.map((slide, index) => (
+          <div className="relative " key={slide.id}>
+            <div className="w-full aspect-video bg-gradient-to-r rounded-2xl overflow-hidden ">
+              <img
+                src={slide.image}
+                alt="Advertisement"
+                className="w-full h-full object-cover cursor-pointer shadow-lg"
+              />
+            </div>
+            <div className="flex items-center justify-center mt-1">
+              <CarouselDots
+                slides={slides}
+                goToSlide={goToSlide}
+                activeIndex={activeIndex}
+              />
+            </div>
+          </div>
+        ))}
+      </Slider>
+
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .adSlider .slick-list {
+            height: auto;
+          }
+          .adSlider .slick-track {
+            height: auto;
+          }
         }
-    ];
 
-    const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
+        @media (min-width: 768px) and (max-width: 1280px) {
+          .adSlider .slick-list {
+            height: auto;
+          }
+          .adSlider .slick-track {
+            height: auto;
+          }
+        }
 
-    const settings: SlickSettings = {
-        dots: false,
-        fade: true,
-        infinite: true,
-        autoplay: slidesToRender.length > 1,
-        autoplaySpeed: delay,
-        pauseOnHover: true,
-        speed: 1000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        // afterChange: (i: number) => setActiveIndex(i),
-    };
-
-    const goToSlide = (i: number) => {
-        console.log("slide", i);
-        sliderRef.current?.slickGoTo(i);
-    };
-
-    return(
-        <>
-            
-                <Slider  {...settings}
-                    ref={sliderRef}
-                    beforeChange={(_, next) => setActiveIndex(next)}
-                    className="adSlider pt-3"
-                    >
-                    
-                    {slidesToRender.map((slide, index) => (
-                        <div className="relative " key={slide.id}>
-                            <div className="h-70 sm:h-70 md:h-100 lg:h-120 xl:h-120 bg-gradient-to-r rounded-2xl overflow-hidden shadow-xl">
-                                {/* Image Container */}
-                                
-                                    <img
-                                    src={slide.image}
-                                    alt="Advertisement"
-                                    className="w-full h-full object-cover cursor-pointer"
-                                    />
-                                
-                            </div>
-                            <div className="flex items-center justify-center mt-1">
-                                <CarouselDots slides={slides} goToSlide={goToSlide} activeIndex={activeIndex}/>
-                            </div>
-                        </div>
-                    ))}
-                    
-                </Slider>  
-
-                <style jsx global>{`
-
-                  @media(max-width:768px){
-                    .adSlider .slick-list{
-                      height:50vh
-                    }
-                    .adSlider .slick-track{
-                        height:50vh
-                    }
-                  }
-
-                  @media(min-width:768px) and (max-width:1280px){
-                    .adSlider .slick-list{
-                      height:70vh
-                    }
-                    .adSlider .slick-track{
-                        height:70vh
-                    }
-                  }
-                
-                .dot {
-                  transition: background-color 0.2s ease-in-out;
-                }
-          
-          `}</style>
-           
-        </>
-    )
-}
+        .dot {
+          transition: background-color 0.2s ease-in-out;
+        }
+      `}</style>
+    </>
+  );
+};
 
 export default AdSlider;

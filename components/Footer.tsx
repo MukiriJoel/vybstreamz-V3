@@ -37,7 +37,7 @@ const Footer =()=>{
             
 
             <div className="flex flex-wrap items-center lg:pt-0 pt-4 sm:pt-4 md:pt-4 gap-2 gap-x-4 text-sm text-[#2C2C2C] dark:text-[#FFFFFF] items-center">
-              <a href="#" className="hover:text-gray-900 dark:text-[#FFFFFF]">
+              <a href="/profile/help" className="hover:text-gray-900 dark:text-[#FFFFFF]">
                 Help and Support
               </a>
               <a href="#" className="hover:text-gray-900 dark:text-[#FFFFFF]">

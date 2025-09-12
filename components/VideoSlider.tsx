@@ -124,7 +124,7 @@ const VideoSlider = () => {
           ].map((item, index) => (
             <div 
               key={index} 
-              className="pt-8 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
+              className="pt-1 pb-1 md:pt-8 lg:pt-8 xl:pt-8 md:pb-4 lg:pb-4 xl:pb-4 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             onClick={()=>onClickVideo(item.id)}
             >
               {/* Main Image Container */}
@@ -141,7 +141,7 @@ const VideoSlider = () => {
                 </div>
 
                 {/* Hover Overlay */}
-                <div onClick={()=>onClickVideo(item.id)} className={`absolute w-65 h-75 !md:h-72 inset-0 bg-white dark:bg-[#2C2C2C] rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
+                <div onClick={()=>onClickVideo(item.id)} className={`absolute w-65 h-72 !md:h-70 inset-0 bg-white dark:bg-[#2C2C2C] rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                           <img src={item.image} className="w-full h-[200%] object-cover"/>
                   </div>

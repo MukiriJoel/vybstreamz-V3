@@ -31,7 +31,7 @@ export default function VybStreamzPage() {
   }
 
   return (
-    <div className="min-h-screen w-screen lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-8">
+    <div className="min-h-screen w-[98vw] lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-8">
       {/* Header */}
     
       <div className="flex">
@@ -69,7 +69,7 @@ export default function VybStreamzPage() {
                         key={index}
                         onClick={() => setSelectedRating(index)}
                         className={`
-                          w-16 h-16 rounded-full flex items-center justify-center text-2xl transition-all duration-200
+                          w-9 h-9 md:w-16 md:h-16 rounded-full flex items-center justify-center text-2xl transition-all duration-200
                           ${selectedRating === index ? "ring-4 ring-opacity-50 scale-110" : "hover:scale-105"}
                         `}
                         style={{

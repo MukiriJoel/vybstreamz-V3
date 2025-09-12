@@ -230,7 +230,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
 
               {/* <Link href={isLoggedIn ? "/profile" : "/createAccount"}> */}
 
-                  <Avatar onClick={()=>onAvatarClick()} className="h-[35px] w-[35px] md:h-[60px] md:w-[60px] ml-2 md:ml-4 cursor-pointer">
+                  <Avatar onClick={()=>onAvatarClick()} className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer">
                     <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
@@ -262,6 +262,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
             <Image 
               src={"/logos/vybstreamz.png"} 
               className="h-[66px] w-[197px] pr-10 object-contain" 
+
               alt={"logo"}
               width={200} 
               height={50}

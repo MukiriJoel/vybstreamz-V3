@@ -379,7 +379,7 @@ export default function ProfileContent() {
                       {subscription.amount}
                     </p>
                   </div>
-                  <div>
+                  <div className="flex flex-col items-end">
                     <p className="text-sm text-[#696969] mb-1">Expiry Date</p>
                     <p className="text-[#2C2C2C] dark:text-[#FFFFFF]">
                       {subscription.expiryDate}
@@ -488,7 +488,7 @@ export default function ProfileContent() {
 
       {activeTab === "My Favorites" && (
         <div className="p-8 w-full">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-1">
             <div className="flex items-center justify-start">
               <h3 className="text-2xl font-bold text-black dark:text-white">
                 Video
@@ -515,7 +515,7 @@ export default function ProfileContent() {
           <VideoSlider />
 
           {/* music */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-1">
             <div className="flex items-center justify-start">
               <h3 className="text-2xl font-bold text-black dark:text-white">
                 Music

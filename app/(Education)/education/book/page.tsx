@@ -5,6 +5,7 @@ import EducationSlider from "@/components/EducationSlider";
 import { MdArrowForward } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
+import SectionHeader from "@/components/SectionHeader";
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function EducationListing() {
@@ -50,133 +51,56 @@ export default function EducationListing() {
             </nav>
           </div>
           {activeTab === "E-Book" ? (
-            <div className="p-8">
+            <div className="p-2">
               {/* top ranked Section */}
               
 
               {/* trending Section */}
-              <div className="mb-8 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Trending 
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                <SectionHeader title="trending" viewButton={true} route="/education"/>
                 <EducationSlider></EducationSlider>
               </div>
 
               {/* trending Section */}
-              <div className="mb-8 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Engaging 
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                 <SectionHeader title="engaging" viewButton={true} route="/education"/>
                 <div className="overflow-x-auto scrollbar-hide">
                   <EducationSlider></EducationSlider>
                 </div>
               </div>
 
               {/* recent Section */}
-              <div className="mb-8 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Recently Updated
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                 <SectionHeader title="recently updated" viewButton={true} route="/education"/>
                 <EducationSlider></EducationSlider>
               </div>
             </div>
           ) : (
-            <div className="p-8">
+            <div className="p-2">
               {/* top ranked Section */}
-              <div className="mb-8">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Top ranked 
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                 <SectionHeader title="top ranked" viewButton={true} route="/education"/>
 
                 <EducationSlider></EducationSlider>
               </div>
 
               {/* trending Section */}
-              <div className="mb-8 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Trending 
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                 <SectionHeader title="trending" viewButton={true} route="/education"/>
                 <EducationSlider></EducationSlider>
               </div>
 
               {/* trending Section */}
-              <div className="mb-8 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Engaging 
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                 <SectionHeader title="engaging" viewButton={true} route="/education"/>
                 <div className="overflow-x-auto scrollbar-hide">
                   <EducationSlider></EducationSlider>
                 </div>
               </div>
 
               {/* recent Section */}
-              <div className="mb-8 pt-1">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-[24px] text-[#333333] dark:text-white font-bold">
-                    Recently Updated
-                  </h3>
-                  <Button
-                    variant="ghost"
-                    className="text-[#333333] dark:text-white text-[16px] !font-medium"
-                  >
-                    View More
-                    <MdArrowForward className="!w-[36px] !h-[36px]" />
-                  </Button>
-                </div>
+              <div className="">
+                 <SectionHeader title="recently updated" viewButton={true} route="/education"/>
                 <EducationSlider></EducationSlider>
               </div>
             </div>

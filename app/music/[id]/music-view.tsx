@@ -27,8 +27,19 @@ import MusicSlider from "@/components/MusicSlider";
 import { useRouter } from "next/navigation";
 import VybzMusicPlayer from "@/components/VybzMusicPlayer";
 import SectionHeader from "@/components/SectionHeader";
+import ReviewTop from "@/components/ReviewTop";
 
-export default function MusicView() {
+interface MusicDetailsProps {
+  audioSrc: string;
+  bannerImage: string;
+  albumImage:string;
+  title:string;
+  subtitle:string;
+  albumInfo:string;
+  platformLogo:string
+}
+
+export default function MusicView({ audioSrc, bannerImage,albumImage,title,subtitle,albumInfo,platformLogo }: MusicDetailsProps) {
   const router=useRouter();
   
   const onViewMoreClick = () =>{
@@ -49,15 +60,15 @@ export default function MusicView() {
         />
         {/* Trending Section */}
         <main className="bg-[#F2F2F2] dark:bg-[#141414]">
-          <section className="px-6 pb-3 pt-8 px-2">
-            <SectionHeader title="similar videos" onViewMoreClick={onViewMoreClick}/>
+          <section className="pb-3 pt-8 px-2">
+            <SectionHeader  viewButton={true} title="similar music" route=""/>
 
             <MusicSlider />
           </section>
-          <section>
-            <RatingsComponent />
+          <section className="px-2">
+            <ReviewTop/>
           </section>
-          <section>
+          <section className="px-2">
             <ReviewsSection />
           </section>
         </main>

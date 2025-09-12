@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import PartnerHighlight from "@/components/PartnerHighlight";
 import SectionHeader from "@/components/SectionHeader";
 
-export default function viewMore(){
+export default function ViewMore(){
   const Router=useRouter();
       
        const onViewMoreClick = () =>{
@@ -37,7 +37,7 @@ export default function viewMore(){
 
             {/* Trending Section */}
             <section className="mt-6">
-              <SectionHeader title="trending" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="trending" route="/videos"/>
                
                   <VideoSlider />
                
@@ -46,26 +46,26 @@ export default function viewMore(){
 
             {/* Recommended For You Section */}
             <section className="">
-               <SectionHeader title="videos" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="videos" route="/videos"/>
               <VideoSlider />
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-               <SectionHeader title="music" onViewMoreClick={onViewMoreClick}/>
+               <SectionHeader  viewButton={true} title="music" route="/music"/>
               <MusicSlider />
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
-              <SectionHeader title="podcasts" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="podcasts" route="/podcasts"/>
               <PodcastSlider />
             </section>
 
              <section className=" py-4  ">
-              <SectionHeader title="education" onViewMoreClick={onViewMoreClick}/>
+              <SectionHeader  viewButton={true} title="education" route="/education"/>
               <EducationSlider />
             </section>
           </div>

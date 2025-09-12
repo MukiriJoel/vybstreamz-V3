@@ -66,7 +66,7 @@ const CastDisplay = () => {
 
         <Button
           variant="ghost"
-          className=" !pr-0 cursor-pointer text-white !text-sm !font-normal"
+          className=" !pr-0 cursor-pointer text-white !text-sm !font-normal hover:border-white/20 hover:text-white hover:!bg-[#2C2C2C]"
           onClick={() => onViewMoreCast()}
         >
           View More
@@ -105,7 +105,7 @@ const CastDisplay = () => {
             <div className="h-120 overflow-y-auto scrollbar-hide">
               {actorsData.map((actor, index) => (
                 <div key={index} className="flex justify-start py-2">
-                  <div className="h-17 w-17 overflow-hidden rounded-lg border border-white dark:border-[#333333]">
+                  <div className="h-17 w-17 overflow-hidden !p-0 rounded-lg border border-white dark:border-[#333333] shadow-sm">
                     <img
                       className="w-full h-full object-cover"
                       src={actor.image}

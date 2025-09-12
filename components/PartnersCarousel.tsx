@@ -124,7 +124,7 @@ const PartnersCarousel = ({
                         
                               <div className="text-left w-full">
                                      <h2 className="text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-3 mt-4">{slide.name}</h2>
-                                      <p className="text-[#2C2C2C] dark:text-[#FFFFFF] max-w-md max-h-[72px] text-[20px] tracking-normal leading-none">
+                                      <p className="text-[#2C2C2C] dark:text-[#FFFFFF] !font-normal text-[12px] tracking-normal leading-none">
                                       {slide.description}
                                       </p>
                               </div>

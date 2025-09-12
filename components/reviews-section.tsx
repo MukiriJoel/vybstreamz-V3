@@ -41,36 +41,7 @@ export default function ReviewsSection() {
   ]
 
   return (
-    <div className="">
-     
-  {/* <div className="py-4 mb-6">
-      <div className="flex items-center space-x-4 w-full">
-     
-        <div className="w-15 h-15 rounded-full overflow-hidden flex-shrink-0">
-          <img 
-            src={"/logos/user-profile-illustration.png"} 
-            className="object-cover w-full h-full"
-            alt="User profile"
-          />
-        </div>
-        
-        <div className="flex-1">
-          <Textarea
-            placeholder="Add your review"
-            className="w-[98%] bg-white dark:bg-[#2C2C2C] border-[#e5e5e5] dark:border-[#333333] placeholder:text-[#2C2C2C] dark:placeholder:text-white dark:text-[#FFFFFF] 
-              rounded-lg resize-none min-h-[60px] focus:bg-white dark:bg-[#2C2C2C] focus:border-gray-300 
-              transition-colors duration-200 items-center"
-            rows={1}
-          />
-        </div>
-        
-        
-        <Button className="cursor-pointer h-15 w-25 bg-white dark:bg-[#2C2C2C] focus:border-gray-300 border-[#e5e5e5] dark:border-[#333333] hover:bg-[#E5E5E5] dark:bg-[#333333]/90 text-white 
-          rounded-lg transition-all duration-200 flex-shrink-0">
-          <MdSend className="text-[#2C2C2C] dark:text-[#FFFFFF] w-15 h-15"/>
-        </Button>
-      </div>
-</div> */}
+    <div className="px-2">
 
     {/* Reviews List */}
       <div className="bg-[#E5E5E5] dark:bg-[#333333] rounded-lg px-6 py-8">

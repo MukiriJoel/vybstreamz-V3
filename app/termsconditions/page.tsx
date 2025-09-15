@@ -105,12 +105,17 @@ export default function TermsConditionsPage() {
             
 
             {/* Form */}
-            <div className="bg-transarent rounded-lg p-8 shadow-sm flex flex-col max-h-[70vh]">
+            <div className="bg-transparent rounded-lg p-8 shadow-sm flex flex-col max-h-[70vh]">
             <div className="flex-1 overflow-y-auto space-y-6 pr-4 bg-transparent no-scrollbar">
               <h1 className="text-2xl font-semibold dark:text-white text-[#333333] mb-6">Terms and conditions</h1>
 
+<<<<<<< HEAD
               <p className="text-[#333333] dark:text-white text-sm leading-relaxed">
                 Please read these terms and conditions ("terms and conditions", "terms") carefully before using The Vyb
+=======
+              <p className="text-[#333333] text-sm leading-relaxed">
+                Please read these terms and conditions , terms carefully before using The Vyb
+>>>>>>> 9599a767af04565218c3dec0d947c937e553e8db
                 Streamz website
               </p>
 
@@ -120,25 +125,38 @@ export default function TermsConditionsPage() {
                   <p className="text-[#333333] dark:text-white text-sm leading-relaxed">
                     By using this website, you certify that you have read and reviewed this Agreement and that you agree
                     to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are
-                    advised to stop using the website accordingly. [company name] only grants use and access of this
+                    advised to stop using the website accordingly. company name only grants use and access of this
                     website, its products, and its services to those who have accepted its terms.
                   </p>
                 </div>
 
                 <div>
+<<<<<<< HEAD
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Privacy policy</h2>
                   <p className="text-[#333333] dark:text-white text-sm leading-relaxed">
                     Before you continue using our website, we advise you to read our privacy policy [link to privacy
                     policy] regarding our user data collection. It will help you better understand our practices.
+=======
+                  <h2 className="font-semibold text-[#333333] mb-2">Privacy policy</h2>
+                  <p className="text-[#333333] text-sm leading-relaxed">
+                    Before you continue using our website, we advise you to read our privacy policy link to privacy
+                    policy regarding our user data collection. It will help you better understand our practices.
+>>>>>>> 9599a767af04565218c3dec0d947c937e553e8db
                   </p>
                 </div>
 
                 <div>
+<<<<<<< HEAD
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Age restriction</h2>
                   <p className="text-[#333333] text-sm leading-relaxed dark:text-white">
                     You must be at least 18 (eighteen) years of age before you can use this website. By using this
+=======
+                  <h2 className="font-semibold text-[#333333] mb-2">Age restriction</h2>
+                  <p className="text-[#333333] text-sm leading-relaxed">
+                    You must be at least 18 years of age before you can use this website. By using this
+>>>>>>> 9599a767af04565218c3dec0d947c937e553e8db
                     website, you warrant that you are at least 18 years of age and you may legally adhere to this
-                    Agreement. [company name] assumes no responsibility for liabilities related to age
+                    Agreement. company name assumes no responsibility for liabilities related to age
                     misrepresentation.
                   </p>
                 </div>
@@ -147,9 +165,9 @@ export default function TermsConditionsPage() {
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Intellectual property</h2>
                   <p className="text-[#333333] text-sm leading-relaxed dark:text-white">
                     You agree that all materials, products, and services provided on this website are the property of
-                    [company name], its affiliates, directors, officers, employees, agents, suppliers, or licensors
+                    company name, its affiliates, directors, officers, employees, agents, suppliers, or licensors
                     including all copyrights, trade secrets, trademarks, patents, and other intellectual property. You
-                    also agree that you will not reproduce or redistribute the [company name]'s intellectual property in
+                    also agree that you will not reproduce or redistribute the company name&apos;s intellectual property in
                     any way, including electronic, digital, or new trademark registrations.
                   </p>
                 </div>

@@ -34,7 +34,7 @@ const subscriptions = [
     description: "Renews 3 July 2025",
     icon: "/logos/spotify.png",
     amount: "KES 200",
-    expiryDate: "02/07/2026",
+    expiryDate: "",
     status: "Active",
     showAction: true,
   },
@@ -44,7 +44,7 @@ const subscriptions = [
     description: "Renews 3 July 2025",
     icon: "/logos/showmax.png",
     amount: "KES 200",
-    expiryDate: "02/07/2026",
+    expiryDate: "",
     status: "Active",
     showAction: true,
   },
@@ -124,16 +124,16 @@ export default function ProfileContent() {
       <div className="bg-white dark:bg-[#2C2C2C] dark:bg-[#2C2C2C] ml-0 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 px-12 py-6 ">
         <div
           onClick={openPopup}
-          className="w-40 h-40 rounded-full overflow-hidden flex-shrink-0"
+          className="w-20 h-20 sm:w-40 sm:h-40 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0"
         >
           <img
             src="/logos/user-profile-illustration.png"
             alt="Profile"
             className="w-full h-full object-cover"
           />
-          <div className="imgOverlay absolute w-40 h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[191px] sm:inset-y-[200px] lg:inset-y-[129px] ">
+          <div className="imgOverlay absolute w-20 h-20 sm:w-40 sm:h-40 md:w-40 md:h-40 flex justify-center bg-[#0D0D0D]/30 rounded-full inset-y-[191px] sm:inset-y-[200px] lg:inset-y-[129px] ">
             <IconButton>
-              <MdOutlineEdit className="text-white w-15 h-15" />
+              <MdOutlineEdit className="text-white w-8 h-8 sm:w-12 sm:h-12 md:w-15 md:h-15" />
             </IconButton>
           </div>
         </div>
@@ -230,7 +230,7 @@ export default function ProfileContent() {
 
       {/* Subscriptions Content */}
       {activeTab === "Subscriptions" && (
-        <div className="p-8">
+        <div className="p-4">
           <h2 className="text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">
             All Subscription Plans
           </h2>

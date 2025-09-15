@@ -37,7 +37,7 @@ export default function VybStreamzPage() {
       <div className="flex">
         
         {/* Main Content */}
-        <main className="flex-1 p-6 lg:p-8 mx-auto">
+        <main className="flex-1 p-4 lg:p-8 mx-auto">
           <div className="">
             <h1 className="text-2xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-8">Help Us Improve</h1>
 

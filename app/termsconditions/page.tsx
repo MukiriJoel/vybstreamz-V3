@@ -129,6 +129,8 @@ export default function TermsConditionsPage() {
 
                 <div>
 
+                  
+=========
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Privacy policy</h2>
                   <p className="text-[#333333] dark:text-white text-sm leading-relaxed">
                     Before you continue using our website, we advise you to read our privacy policy [link to privacy
@@ -139,6 +141,7 @@ export default function TermsConditionsPage() {
 
                 <div>
 
+=========
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Age restriction</h2>
                   <p className="text-[#333333] text-sm leading-relaxed dark:text-white">
                     You must be at least 18 (eighteen) years of age before you can use this website. By using this

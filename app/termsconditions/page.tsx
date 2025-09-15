@@ -109,13 +109,10 @@ export default function TermsConditionsPage() {
             <div className="flex-1 overflow-y-auto space-y-6 pr-4 bg-transparent no-scrollbar">
               <h1 className="text-2xl font-semibold dark:text-white text-[#333333] mb-6">Terms and conditions</h1>
 
-<<<<<<< HEAD
+
               <p className="text-[#333333] dark:text-white text-sm leading-relaxed">
                 Please read these terms and conditions ("terms and conditions", "terms") carefully before using The Vyb
-=======
-              <p className="text-[#333333] text-sm leading-relaxed">
-                Please read these terms and conditions , terms carefully before using The Vyb
->>>>>>> 9599a767af04565218c3dec0d947c937e553e8db
+
                 Streamz website
               </p>
 
@@ -131,30 +128,24 @@ export default function TermsConditionsPage() {
                 </div>
 
                 <div>
-<<<<<<< HEAD
+
+                  
+=========
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Privacy policy</h2>
                   <p className="text-[#333333] dark:text-white text-sm leading-relaxed">
                     Before you continue using our website, we advise you to read our privacy policy [link to privacy
                     policy] regarding our user data collection. It will help you better understand our practices.
-=======
-                  <h2 className="font-semibold text-[#333333] mb-2">Privacy policy</h2>
-                  <p className="text-[#333333] text-sm leading-relaxed">
-                    Before you continue using our website, we advise you to read our privacy policy link to privacy
-                    policy regarding our user data collection. It will help you better understand our practices.
->>>>>>> 9599a767af04565218c3dec0d947c937e553e8db
+
                   </p>
                 </div>
 
                 <div>
-<<<<<<< HEAD
+
+=========
                   <h2 className="font-semibold text-[#333333] mb-2 dark:text-white">Age restriction</h2>
                   <p className="text-[#333333] text-sm leading-relaxed dark:text-white">
                     You must be at least 18 (eighteen) years of age before you can use this website. By using this
-=======
-                  <h2 className="font-semibold text-[#333333] mb-2">Age restriction</h2>
-                  <p className="text-[#333333] text-sm leading-relaxed">
-                    You must be at least 18 years of age before you can use this website. By using this
->>>>>>> 9599a767af04565218c3dec0d947c937e553e8db
+
                     website, you warrant that you are at least 18 years of age and you may legally adhere to this
                     Agreement. company name assumes no responsibility for liabilities related to age
                     misrepresentation.

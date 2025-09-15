@@ -41,7 +41,7 @@ export default function NotificationsPage() {
 
       <div className="flex">
         {/* Main Content */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-[#FFFFFF] mb-8">
             My Notifications
           </h2>

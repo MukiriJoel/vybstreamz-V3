@@ -192,6 +192,7 @@ export default function CreateAccountPage() {
 
               {/* Terms Checkbox */}
               <div className="flex items-start gap-2 pt-2">
+
                 <Checkbox
                   id="terms"
                   className="mt-0.5 border-[#cccccc] dark:border-gray-600 data-[state=checked]:bg-[#c62676] data-[state=checked]:border-[#c62676] w-4 h-4 sm:w-5 sm:h-5 dark:data-[state=checked]:bg-[#c62676] dark:data-[state=checked]:border-[#c62676] transition-colors duration-200"
@@ -202,7 +203,7 @@ export default function CreateAccountPage() {
                     Terms of Use
                   </Link>{" "}
                   and{" "}
-                  <Link href="#" className="text-[#c62676] underline hover:no-underline">
+                  <Link href="/termsconditions" className="text-[#c62676] underline hover:no-underline">
                     Privacy Policy
                   </Link>
                 </label>

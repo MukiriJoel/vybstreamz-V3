@@ -67,7 +67,7 @@ export default function VybStreamsPage() {
         
 
         {/* Main Content */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4">
           <div className="bg-white dark:bg-[#2C2C2C] rounded-lg shadow-sm p-8">
             <div className="w-full">
               <h1 className="text-3xl font-bold text-[#2c2c2c] dark:text-white mb-4">Spread the Word</h1>

@@ -348,7 +348,7 @@ export default function HelpCenter() {
   }
 
   const renderCategoriesCard = () => (
-    <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-6">
+    <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-4">
       <div className="space-y-4">
         {helpCategories.map((category, index) => (
           <Button

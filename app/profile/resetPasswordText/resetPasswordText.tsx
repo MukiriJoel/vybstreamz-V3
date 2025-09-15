@@ -128,7 +128,7 @@ export default function ResetPasswordPage({ onNavigate }: ResetPasswordPageProps
             </p>
 
             <p className="text-[#333333] dark:text-gray-300 leading-relaxed">
-              Once you&quot;'ve successfully reset your password, return to the login page to access your account. If you wish
+              Once you&quot;ve successfully reset your password, return to the login page to access your account. If you wish
               to change your password at any time, navigate to your account settings after logging in. Look for the
               &quot;Change Password&quot; section. Here, you will need to enter your current password, followed by your new
               password, and then confirm the new password by entering it again. Don&quot;t forget to save your changes to

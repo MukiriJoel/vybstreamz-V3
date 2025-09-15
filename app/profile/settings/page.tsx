@@ -920,9 +920,9 @@ export default function SettingsPage() {
           <div className="space-y-3">
             <button 
               className={`
-                w-full text-left px-4 py-3 rounded-lg text-white
+                w-full text-left px-4 py-3 rounded-lg text-black
                 ${enabled 
-                  ? 'bg-[#c62676]' 
+                  ? 'bg-[#c62676] text-white' 
                   : 'bg-[#F2F2F2] dark:bg-[#333333] hover:bg-[#E5E5E5] dark:hover:bg-gray-600'
                 }
               `}

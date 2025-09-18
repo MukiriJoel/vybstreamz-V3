@@ -115,4 +115,6 @@ export const SectionHEAuth = React.memo(({loadingState}: { loadingState?: any })
             </Button>
             : null
     )
-})
+});
+
+SectionHEAuth.displayName = 'SectionHEAuth';

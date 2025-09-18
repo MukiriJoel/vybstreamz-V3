@@ -21,11 +21,13 @@ import { useConfirm } from "@/hooks/useConfirm"
 import { ModalConfirmDetails } from "@/components/ModalConfirmDetails"
 
 
-interface SignInFormInputs {
-    phone: string;
-    email?: string;
-    password: string;
-}
+// interface SignInFormInputs {
+//     phone: string;
+//     email?: string;
+//     password: string;
+// }
+
+type SignInFormInputs = yup.InferType<typeof schema>;
 
 // Updated phone regex for 9-digit Kenyan numbers (without country code)
 // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -35,7 +37,7 @@ const schema = yup.object().shape({
     phone: yup.string()
         .matches(phoneRegExp, 'Phone number must be at least 9 digits')
         .required('Phone is required'),
-    email: yup.string().email('Invalid Email').notRequired(),
+    email: yup.string().email('Invalid Email').optional(),
     password: yup.string()
         .min(8, "Password must be at least 8 characters")
         .matches(/[A-Z]/, "Password must contain at least one uppercase letter")

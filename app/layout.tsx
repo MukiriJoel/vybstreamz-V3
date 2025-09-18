@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/lib/context/ThemeContext";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/store";
+import { Toaster } from "sonner";
 
 // export const metadata: Metadata = {
 //   title: "Vybz Streams",
@@ -93,7 +94,10 @@ html {
         `}</style>
       </head>
       <body className={proximaFont.className}>
-          <Providers>{children}</Providers>              
+          <Providers>
+          {children}
+          <Toaster richColors expand visibleToasts={9} position={"bottom-center"}/>
+          </Providers>              
       </body>
     </html>
   );

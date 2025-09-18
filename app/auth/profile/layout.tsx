@@ -4,6 +4,7 @@ import Head from 'next/head';
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import NavBarMini from '@/components/NavBarMini';
+import { withAuth } from '@/lib/helpers/withAuth';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -34,4 +35,4 @@ const ProfileLayout = ({children}: AuthLayoutProps) => {
     );
 };
 
-export default ProfileLayout;
+export default withAuth(ProfileLayout) ;

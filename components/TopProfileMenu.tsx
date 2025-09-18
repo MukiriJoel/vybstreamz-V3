@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import TabPillComponent from "./TabPills";
 import { FaCircleChevronRight } from "react-icons/fa6";
 import { LogOut } from "lucide-react";
+import { logoutUser } from "@/store/thunks/authThunks";
+import { toast } from "sonner";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 
 interface TopProfileMenuProps {
   closeProfileModal: () => void;
@@ -18,13 +21,17 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
     const [activeTab, setActiveTab] = useState<any>(theme === 'dark' ? "dark" : "light");
     const { isLoggedIn, logout } = useAuth();
     const router = useRouter();
+    const dispatch=useAppDispatch();
+    const [loading, setLoading] = useState(false)
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const {user,isAuthenticated,activeProfile}=useAppSelector((state)=>state.auth);
        
+console.log("isauth",isAuthenticated)
     const onMenuClick = () => {
-        if (isLoggedIn) {
-            router.push('/profile');
+        if (isAuthenticated) {
+            router.push('/auth/profile');
         } else {
-            router.push('/createAccount');
+            router.push('/auth/createAccount');
         }
         closeProfileModal(); // Close the profile menu after navigation
     }
@@ -45,17 +52,19 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
         try {
             // Close all modals first
             setShowLogoutModal(false);
-            closeProfileModal();
-            
-            // Call logout function
-            await logout();
-            
+            setLoading(true);
+            const res = await dispatch(logoutUser({login_session_id: user?.login_session_id})).unwrap()
+            toast.success(res?.message);
+            closeProfileModal();         
             // Navigate to homepage
             router.push('/');
         } catch (error) {
+            toast.warning("Could not log you out");
             console.error('Logout error:', error);
-            // Still navigate to homepage even if logout fails
-            router.push('/');
+            // // Still navigate to homepage even if logout fails
+            // router.push('/');
+        }finally {
+            setLoading(false)
         }
     };
 
@@ -100,8 +109,8 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
                   <div className="block items-center pt-3 pl-3 ">
-                          <p className="!text-2xl !font-extrabold text-[#2C2C2C] dark:text-white leading-[100%]">{isLoggedIn ? `My Profile`:`Create Account`}</p>
-                          <p className="!text-xs mt-2 !font-light text-[#2C2C2C] uppercase dark:text-white leading-[100%]">{isLoggedIn ? `Onunga`:``}</p>
+                          <p className="!text-2xl !font-extrabold text-[#2C2C2C] dark:text-white leading-[100%]">{isAuthenticated ? `My Profile`:`Create Account`}</p>
+                          <p className="!text-xs mt-2 !font-light text-[#2C2C2C] uppercase dark:text-white leading-[100%]">{isAuthenticated ? user?.profiles[0]?.name:``}</p>
                   </div>
                  </div>
                  
@@ -122,7 +131,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
             </div>
             
            
-            {isLoggedIn ? 
+            {isAuthenticated ? 
             <div>
                <div className="hover:bg-[#C62676]/20 cursor-pointer flex gap-2 px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={()=>router.push('/profile?tab=My Favorites')}>
                     <div className="flex justify-start items-center">
@@ -142,17 +151,13 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
                       
                     </div>
               </div>
-              <div className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={isLoggedIn? ()=>handleLogout():undefined}>
+              <div className="hover:bg-[#C62676]/20 cursor-pointer flex px-1 py-3 justify-between items-center border-t border-[#e5e5e5] dark:border-[#333333]" onClick={isAuthenticated? ()=>handleLogout():undefined}>
                     <div className="flex justify-start items-center">
                         <LogOut className="h-7 w-7  text-[#2C2C2C2] dark:text-white"/>
                         <p className="text-xs leading-[120%] text-[#2C2C2C2] dark:text-white ml-3">Logout</p>
                        
                     </div>
-                    <div className="flex justify-end">
-                             <IconButton className="hover:!bg-transparent">
-                           
-                             </IconButton>
-                    </div>
+                   
               </div>
             </div>
            
@@ -165,3 +170,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
 }
 
 export default TopProfileMenu;
+
+// function dispatch(arg0: any) {
+//     throw new Error("Function not implemented.");
+// }

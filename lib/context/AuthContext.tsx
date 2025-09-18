@@ -1,5 +1,6 @@
 'use client'
 
+import { useAppSelector } from '@/hooks/redux'
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
 interface AuthContextType {
@@ -11,6 +12,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const login = () => setIsLoggedIn(true)

@@ -3,6 +3,7 @@ import React, {ReactNode} from 'react';
 import Head from 'next/head';
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import { withAuth } from '@/lib/helpers/withAuth';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -29,4 +30,4 @@ const PartnersLayout = ({children}: AuthLayoutProps) => {
     );
 };
 
-export default PartnersLayout;
+export default withAuth(PartnersLayout) ;

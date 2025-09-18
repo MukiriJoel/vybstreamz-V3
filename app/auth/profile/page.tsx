@@ -1,6 +1,6 @@
 import NavBar from "@/components/NavBar"
-import Sidebar from "../parts/sidebar"
-import ProfileContent from "../parts/profile-content"
+import ProfileContent from "@/app/parts/profile-content"
+import Sidebar from "@/app/parts/sidebar"
 import Footer from "@/components/Footer"
 
 export default function Dashboard() {

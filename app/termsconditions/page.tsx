@@ -61,7 +61,7 @@ export default function TermsConditionsPage() {
   
 
   const handleLoginPage = () => {
-    router.push("/login")
+    router.push("/auth/login")
   }
 
   const GoToHome = () =>{

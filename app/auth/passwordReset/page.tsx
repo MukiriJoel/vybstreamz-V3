@@ -250,7 +250,7 @@ export default function PasswordResetForm() {
               disabled={!allValidationsPassed && newPassword !== confirmPassword}
               className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-semibold py-4 px-6 rounded-full text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                 {loading ? <CircularProgress size={20} /> : "Update Password"}
+                 {loading ? <CircularProgress size={10} /> : "Update Password"}
             </Button>
           </form>
         </div>

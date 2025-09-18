@@ -8,9 +8,16 @@ interface AuthState{
     loading: boolean,
     isAuthenticated: boolean | null,
     error: boolean | null,
+    HEData: IHEData | null,
     token: string | null,
     
 }
+interface IHEData {
+    access_token?: string,
+    expires_on?: number,
+    msisdn: string
+}
+
 
 const initialState: AuthState = {
     user:null,
@@ -20,6 +27,7 @@ const initialState: AuthState = {
     loading:false,
     isAuthenticated:false,
     error:null,
+    HEData: null,
     token: null,
 }
 
@@ -46,6 +54,10 @@ const authSlice= createSlice({
             state.token = action.payload;
             state.isAuthenticated = !!action.payload;
         },
+        setHEData: (state, action: PayloadAction<any>) => {
+            const expires_on = Date.now() + (50 * 60 * 1000);
+            state.HEData = {...action.payload, expires_on};
+        },
         logout:(state)=>{
             state.user=null;
             state.registrationState=null;
@@ -67,6 +79,7 @@ export const{
     setActiveProfile,
     setLoading,
     setToken,
+    setHEData,
     logout,
     
 }=authSlice.actions;

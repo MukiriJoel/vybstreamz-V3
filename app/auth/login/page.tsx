@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux"
 import { Controller, useForm } from "react-hook-form"
 import { toast } from "sonner";
 import { loginUser } from "@/store/thunks/authThunks"
+import { SectionHEAuth } from "@/components/SectionHEAuth"
 
 const phoneRegExp = /^[0-9]{9}$/
 
@@ -217,15 +218,16 @@ export default function LoginForm() {
                   <Button 
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base transition-all duration-200 disabled:opacity-50"
+                    className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-medium py-4 rounded-full text-sm sm:text-base transition-all duration-200 disabled:opacity-50"
                   >
                     {loading ? "Logging in..." : "Log In"}
                   </Button>
 
                   {/* Safaricom Button */}
-                  <Button className="w-full bg-[#35a839] hover:bg-[#35a839]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base transition-all duration-200">
+                  {/* <Button className="w-full bg-[#35a839] hover:bg-[#35a839]/90 text-white font-medium py-3 rounded-full text-sm sm:text-base transition-all duration-200">
                     Continue With Safaricom
-                  </Button>
+                  </Button> */}
+                  <SectionHEAuth/>
                 
                 
 

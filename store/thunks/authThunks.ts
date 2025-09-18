@@ -8,12 +8,15 @@ import { setUser,
     setToken,
     setHEData
 } from "@/store/slices/authSlice"
-import { ILogin,IRegister } from "../types/auth";
+import { ILogin,IRegister, IUpdatePhone } from "../types/auth";
 import { formatApiError, formatApiErrorWithStatusCode } from "@/lib/helpers/formatApiError";
 import authAxiosInstance from "@/lib/api/authAxiosInstance";
-import axios from "axios";
+import axios,{AxiosError} from "axios";
 import {v4 as uuidv4} from "uuid";
 import {store} from "@/store"; 
+import { getDeviceInfo } from "@/lib/helpers/deviceInfo";
+import {signInWithPopup, signOut} from "firebase/auth"
+import {appleProvider, auth, facebookProvider, googleProvider} from "@/lib/firebase";
 
 interface IVerifyOTP {
     request_token: string,
@@ -163,6 +166,22 @@ export const resetPassword = createAsyncThunk(
     }
 );
 
+// 🔹 SET PHONE
+export const updatePhoneFirebase = createAsyncThunk(
+    "user/updatePhoneFirebase",
+    async (payload: IUpdatePhone, {dispatch, rejectWithValue}) => {
+
+        try {
+            const res = await authAxiosInstance.post("/auth/firebase/update-phone", payload);
+            // dispatch(setRegistrationState(res?.data?.data))
+            // console.log(res?.data)
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(error || "Signup failed");
+        }
+    }
+);
+
 // 🔹 GET ENCRYPTED MSISDN
 export const getEncryptedMSISDN = createAsyncThunk(
     "auth/getEncryptedMSISDN",
@@ -234,5 +253,149 @@ export const getHECustomerDetails = createAsyncThunk(
         } finally {
             dispatch(setLoading(false))
         }
+    }
+);
+
+
+// 🔹 AUTHENTICATE WITH GOOGLE
+export const signInWithGoogle = createAsyncThunk(
+    "auth/signInWithGoogle",
+    async (_, {dispatch, rejectWithValue}) => {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const idToken = await result.user.getIdToken();
+            const deviceInfo = await getDeviceInfo();
+
+            const response = await axios.post(
+                process.env.NEXT_PUBLIC_API_BASE_URL + "/auth/firebase/authenticate" as string,
+                {
+                    platform: process.env.NEXT_PUBLIC_X_PLATFORM,
+
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${idToken}`,
+                        // "Content-Type": "application/json",
+                        // "X-PLATFORM-KEY": process.env.NEXT_PUBLIC_X_API_KEY,
+                        // "X-API-KEY": process.env.NEXT_PUBLIC_X_API_KEY,
+                        // "X-PLATFORM": process.env.NEXT_PUBLIC_X_PLATFORM,
+                        "X-AUTH-PROVIDER": "firebase",
+                        ...deviceInfo
+                    },
+                }
+            );
+
+            if (response.status === 200) {
+                const userData = response.data?.data;
+                // dispatch(setToken(data?.access_token));
+                // dispatch(setUser(data));
+                dispatch(setUserProfiles(userData?.profiles));
+                dispatch(setUser(userData));
+                dispatch(setToken(userData.access_token));
+            } else {
+                throw new Error(response.data.message || "Login failed");
+            }
+
+            return response?.data;
+        } catch (error: AxiosError | any) {
+            console.log(error)
+            return rejectWithValue(formatApiError(error.response?.data) || "Error with google login");
+        }
+    }
+);
+
+
+// 🔹 AUTHENTICATE WITH FACEBOOK
+export const authenticateWithFacebook = createAsyncThunk(
+    "auth/authenticateWithFacebook",
+    async (_, {dispatch, rejectWithValue}) => {
+        try {
+            const result = await signInWithPopup(auth, facebookProvider);
+            const idToken = await result.user.getIdToken();
+            const deviceInfo = await getDeviceInfo();
+            const response = await axios.post(
+                process.env.NEXT_PUBLIC_API_BASE_URL + "/auth/firebase/authenticate" as string,
+                {
+                    platform: process.env.NEXT_PUBLIC_X_PLATFORM,
+                    ...deviceInfo
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${idToken}`,
+                        "Content-Type": "application/json",
+                        // "X-PLATFORM-KEY": process.env.NEXT_PUBLIC_X_API_KEY,
+                        "X-PLATFORM": process.env.NEXT_PUBLIC_X_PLATFORM,
+                        "X-AUTH-PROVIDER": "firebase",
+                        ...deviceInfo
+                    },
+                }
+            );
+
+            console.log(response)
+
+            if (response.status === 200) {
+                const userData = response.data;
+            } else {
+                throw new Error(response.data.message || "Login failed");
+            }
+
+            return response?.data;
+        } catch (error: AxiosError | any) {
+            console.log(error)
+            return rejectWithValue(formatApiError(error.response?.data) || "Error with google login");
+        }
+    }
+);
+
+// 🔹 AUTHENTICATE WITH APPLE
+export const authenticateWithApple = createAsyncThunk(
+    "auth/authenticateWithApple",
+    async (_, {dispatch, rejectWithValue}) => {
+        try {
+            const result = await signInWithPopup(auth, appleProvider);
+            const idToken = await result.user.getIdToken();
+            const deviceInfo = await getDeviceInfo();
+            const response = await axios.post(
+                process.env.NEXT_PUBLIC_API_BASE_URL + "/auth/firebase/authenticate" as string,
+                {
+                    platform: process.env.NEXT_PUBLIC_X_PLATFORM,
+                    ...deviceInfo
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${idToken}`,
+                        // "Content-Type": "application/json",
+                        // "X-PLATFORM-KEY": process.env.NEXT_PUBLIC_X_API_KEY,
+                        // "X-API-KEY": process.env.NEXT_PUBLIC_X_API_KEY,
+                        // "X-PLATFORM": process.env.NEXT_PUBLIC_X_PLATFORM,
+                        "X-AUTH-PROVIDER": "firebase",
+                        ...deviceInfo
+                    },
+                }
+            );
+
+            console.log(response)
+
+            if (response.status === 200) {
+                const userData = response.data;
+            } else {
+                throw new Error(response.data.message || "Login failed");
+            }
+
+            return response?.data;
+        } catch (error: AxiosError | any) {
+            console.log(error)
+            return rejectWithValue(formatApiError(error.response?.data) || "Error with google login");
+        }
+    }
+);
+
+// 🔹 LOGOUT GOOGLE
+export const logoutSocial = createAsyncThunk(
+    "auth/logout",
+    async (_, {dispatch}) => {
+        await signOut(auth);
+        dispatch(logout());
+        return null;
     }
 );

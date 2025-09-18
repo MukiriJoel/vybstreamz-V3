@@ -17,6 +17,7 @@ import { Controller, useForm } from "react-hook-form"
 import { toast } from "sonner";
 import { loginUser } from "@/store/thunks/authThunks"
 import { SectionHEAuth } from "@/components/SectionHEAuth"
+import { SectionSocialAuth } from "@/components/SectionSocialAuth"
 
 const phoneRegExp = /^[0-9]{9}$/
 
@@ -230,10 +231,10 @@ export default function LoginForm() {
                   <SectionHEAuth/>
                 
                 
-
                   {/* Social Login Icons */}
-                  <div className="flex justify-center gap-3 pt-4">
-                    <img className="w-auto h-8 sm:h-10" src="/images/Frame 4802.png" alt="" />
+                  <div className="flex justify-start gap-3 !py-0">
+                    {/* <img className="w-auto h-8 sm:h-10" src="/images/Frame 4802.png" alt="" /> */}
+                    <SectionSocialAuth loadingState={(e: any) => setLoading(e)}/>
                   </div>
 
                   {/* Sign Up Link */}

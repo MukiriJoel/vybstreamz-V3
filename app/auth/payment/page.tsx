@@ -3,8 +3,6 @@ import { Search, ShoppingCart, Bell, ArrowLeft, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import Navbar from "../parts/Navbar";
-import CountryDropdown from "@/components/CountryDropdown";
 import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { IconButton } from "@mui/material";

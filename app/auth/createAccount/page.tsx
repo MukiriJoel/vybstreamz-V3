@@ -19,6 +19,7 @@ import { IRegister } from "@/store/types/auth"
 import { signupUser } from "@/store/thunks/authThunks"
 import { useConfirm } from "@/hooks/useConfirm"
 import { ModalConfirmDetails } from "@/components/ModalConfirmDetails"
+import { SectionSocialAuth } from "@/components/SectionSocialAuth"
 
 
 // interface SignInFormInputs {
@@ -359,10 +360,12 @@ export default function CreateAccountPage() {
                 </a>
               </div>
 
-              {/* Social Login Buttons */}
-              <div className="flex justify-center gap-3 pt-4">
-                <img className="w-auto h-8 sm:h-10" src="/images/Frame 480.png" alt="" />
-              </div>
+              {/* Social Login Icons */}
+                <div className="flex justify-start gap-3 !py-0">
+                  {/* <img className="w-auto h-8 sm:h-10" src="/images/Frame 4802.png" alt="" /> */}
+                  <SectionSocialAuth loadingState={(e: any) => setLoading(e)}/>
+                </div>
+              
             </form>
           </div>
         </div>

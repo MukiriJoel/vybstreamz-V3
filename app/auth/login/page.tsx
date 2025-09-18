@@ -48,7 +48,8 @@ export default function LoginForm() {
   const returnUrl = searchParams.get("returnUrl");
   
 
-  const handleBackToCreate = () => {
+  const handleBackToCreate = (e:any) => {
+    e.preventDefault();
     router.push("/auth/createAccount")
   }
 
@@ -241,7 +242,7 @@ export default function LoginForm() {
                   <div className="text-center text-xs sm:text-sm text-[#333333] dark:text-white transition-colors duration-200">
                     {"Don't have an account "}
                     <button 
-                      onClick={handleBackToCreate}
+                      onClick={(e)=>handleBackToCreate(e)}
                       className="cursor-pointer text-[#c62676] underline hover:no-underline font-medium"
                     >
                       Sign-Up

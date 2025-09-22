@@ -21,18 +21,19 @@ authAxiosInstance.interceptors.request.use(
         const user = state.auth.user; // Fetch token from Redux Persist
         const deviceHeaders = await getDeviceInfo();
         const profileId = state.auth?.activeProfile?.id;
-        // const msisdn = state.auth?.HEData?.msisdn;
+        const msisdn = state.auth?.HEData?.msisdn;
 
         // if (token) {
         //     config.headers.Authorization = `Bearer ${token}`;
         //     config.headers["X-PROFILE-ID"] = profileId;
         // }
 
-        // if (msisdn) {
-        //     token ? config.headers.Authorization = `Bearer ${token}` : "";
-        //     config.headers["X-PROFILE-ID"] = profileId;
-        //     config.headers["X-MSISDN"] = msisdn;
-        // }
+        if (msisdn) {
+            // token ? config.headers.Authorization = `Bearer ${token}` : "";
+            config.headers["X-PROFILE-ID"] = profileId;
+            config.headers["X-MSISDN"] = msisdn;
+            config.headers["X-ENCRYPTION"] = "she"
+        }
 
         config.headers = {
             ...config.headers,

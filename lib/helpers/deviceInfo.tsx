@@ -25,7 +25,7 @@ export const getDeviceInfo = async (): Promise<Record<string, string | null>> =>
         "X-PLATFORM-KEY": process.env.NEXT_PUBLIC_X_API_KEY || null,
         // "X-API-KEY": process.env.NEXT_PUBLIC_X_API_KEY || null,
         "X-APP-VERSION": "1.0",
-        // "X-BUILD-VERSION": "1.2.1",
+        "X-BUILD-VERSION": "1.2.1",
         "X-IP-ADDRESS": device_info?.query || null,
         "X-COUNTRY": device_info?.countryCode || null,
         "X-CITY": device_info?.city || null,

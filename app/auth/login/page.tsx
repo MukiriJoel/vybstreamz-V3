@@ -194,7 +194,7 @@ export default function LoginForm() {
                                 
                                 value="+254"
                                 readOnly
-                                className="text-center border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:border-[#c62676] dark:text-white transition-colors duration-200"
+                                className="h-12 text-center border-[#cccccc] focus:border-[#c62676] focus:ring-[#c62676] dark:border-gray-600 text-sm dark:bg-[#2A2A2A] dark:text-[#FFFFFF] dark:text-white dark:placeholder-[#888888] transition-colors duration-200"
                                 />
                           
                         
@@ -209,7 +209,7 @@ export default function LoginForm() {
                                   <Input
                                     type="tel"
                                     {...field}
-                                    className={`border-[#c62676] focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:border-[#c62676] dark:text-white dark:placeholder-gray-400 transition-colors duration-200 ${
+                                    className={`h-12 focus:!border-[#c62676] focus:!ring-[#c62676] border-[#cccccc] dark:border-gray-600  text-sm dark:bg-[#2A2A2A] dark:text-white dark:placeholder-[#888888] transition-colors duration-200 ${
                             errors.username ? 'border-red-500 ring-red-500' : ''}`}
                                     placeholder="720 123 456"
                                     
@@ -236,7 +236,7 @@ export default function LoginForm() {
                           <Input
                           {...field}
                           type={showPassword ? "text" : "password"}
-                          className="pr-10 border-[#cccccc] dark:border-gray-600 focus:border-[#c62676] focus:ring-[#c62676] text-sm dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 transition-colors duration-200"
+                          className="h-12 pr-10 focus:!border-[#c62676] focus:!ring-[#c62676] border-[#cccccc] dark:border-gray-600  text-sm dark:bg-[#2A2A2A] dark:text-white dark:placeholder-[#888888] transition-colors duration-200 "
                           placeholder="Enter your password"
                           />
                       

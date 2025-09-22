@@ -166,7 +166,7 @@ export default function PasswordResetForm() {
           
           
           {/* Form Content */}
-          <div className="flex-1 flex-col items-center justify-center p-4 md:p-8 lg:pt-0">
+          <div className="flex-1 flex-col items-center justify-center mx-auto p-4 md:p-8 lg:pt-0">
             <div className="flex pt-10 items-center max-w-md w-full justify-between  gap-4">
               <button 
                 onClick={() => router.back()}
@@ -299,7 +299,7 @@ export default function PasswordResetForm() {
             <Button
               type="submit"
               disabled={!allValidationsPassed && newPassword !== confirmPassword}
-              className="w-full bg-[#c62676] hover:bg-[#c62676]/90 text-white font-semibold py-4 px-6 rounded-full text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-12 bg-[#c62676] hover:bg-[#c62676]/90 text-white font-semibold py-4 px-6 rounded-full text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
                  {loading ? <CircularProgress size={10} /> : "Update Password"}
             </Button>

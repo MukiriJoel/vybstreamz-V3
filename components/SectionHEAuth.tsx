@@ -107,7 +107,7 @@ export const SectionHEAuth = React.memo(({loadingState}: { loadingState?: any })
                 onClick={submit}
                 variant="default"
                 color="primary"
-                className="!rounded-2xl h-12 disabled:!bg-neutral-400 w-full bg-[#35a839] hover:bg-[#35a839]/90 text-white font-medium !py-4 rounded-full text-sm sm:text-base transition-all duration-200"
+                className="h-12 disabled:!bg-neutral-400 w-full bg-[#35a839] hover:bg-[#35a839]/90 text-white font-medium !py-4 rounded-full text-sm sm:text-base transition-all duration-200"
                 disabled={loading || loadingShowButton}
             >
                 <Image src={"/images/saf-logo.svg"} alt={"saf logo"} width={50} height={50}/>

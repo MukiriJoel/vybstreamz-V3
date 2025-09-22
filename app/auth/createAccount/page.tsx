@@ -219,7 +219,11 @@ export default function CreateAccountPage() {
         {/* Form Section */}
         <div className="w-full lg:w-1/2 flex flex-col ">
           {/* Header - Now inside form section */}
-          <div className="flex pt-10 items-center w-full justify-center  md:px-6 md:pt-6 lg:pt-8 gap-50">
+          
+          
+          {/* Form Content */}
+          <div className="flex-1 flex-col items-center justify-center mx-auto p-4 md:px-8 md:!py-0 lg:!py-0 xl:!py-0">
+            <div className="flex pt-10 items-center max-w-md w-full justify-between gap-4">
             <button 
               onClick={() => router.back()}
               className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
@@ -228,9 +232,6 @@ export default function CreateAccountPage() {
             </button>
             <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
           </div>
-          
-          {/* Form Content */}
-          <div className="flex-1 flex items-center justify-center p-4 md:px-8 md:!py-0 lg:!py-0 xl:!py-0">
           <div className="w-full max-w-md space-y-6">
             {/* Title Section */}
             <div className="text-center lg:text-left">

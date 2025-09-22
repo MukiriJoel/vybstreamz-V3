@@ -122,7 +122,7 @@ export default function ForgotPasswordPage() {
         {/* Image Section - Hidden on mobile and tablet, visible on desktop */}
          <div className="hidden lg:flex lg:w-1/2 items-start justify-start p-8">
           {/* <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" /> */}
-          <div className="full h-full md:scale-75 mt-[-15%]  object-contain">
+          <div className="w-full h-full md:scale-75 mt-[-15%]  object-contain">
             <AdSlider slides={imgSlides} showDots={false} isLandScape={false}/>
           </div>
         </div>

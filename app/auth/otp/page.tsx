@@ -17,6 +17,7 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { resendOTP, verifyOTP } from "@/store/thunks/authThunks";
 import { CircularProgress } from "@mui/material";
+import AdSlider from "@/components/AdSlider";
 
 const schema = yup.object().shape({
   otp: yup
@@ -214,35 +215,80 @@ export default function VerifyEmail() {
     }
   };
 
+    const imgSlides = [
+    {
+      id: 1,
+      image: "/splash/1.webp",
+    },
+     {
+      id: 2,
+      image: "/splash/2.webp",
+    },
+     {
+      id: 3,
+      image: "/splash/3.webp",
+    }, {
+      id: 4,
+      image: "/splash/4.webp",
+    }, {
+      id: 5,
+      image: "/splash/5.webp",
+    }, {
+      id: 6,
+      image: "/splash/6.webp",
+    }, {
+      id: 7,
+      image: "/splash/7.webp",
+    }, {
+      id: 8,
+      image: "/splash/8.webp",
+    }, {
+      id: 9,
+      image: "/splash/9.webp",
+    }, {
+      id: 10,
+      image: "/splash/10.webp",
+    }, {
+      id: 11,
+      image: "/splash/11.webp",
+    }, {
+      id: 12,
+      image: "/splash/12.webp",
+    },
+    {
+      id: 13,
+      image: "/splash/13.webp",
+    },
+  ];
+
   return (
-    <div className="px-8 min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
+    <div className="px-2 min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
         <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-8">
-          <img
+          {/* <img
             className="max-w-full max-h-[90vh] object-contain"
             src="/images/create.png"
             alt=""
-          />
+          /> */}
+          <div className="w-full h-full md:scale-75 !mt-[-24%]  object-contain">
+            <AdSlider slides={imgSlides} showDots={false} isLandScape={false}/>
+          </div>
         </div>
 
         {/* Form Section */}
         <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col ">
-          <div className="flex pt-10 items-center w-full justify-between md:px-6 md:pt-6 lg:pt-8 gap-50 lg:pr-60">
-            <button
+          <div className="flex pt-10 items-center max-w-md w-full justify-between  gap-4">
+            <button 
               onClick={() => router.back()}
-              className="cursor-pointer flex items-center mr-1 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+              className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
             >
-              <MdArrowBack className="!w-8 !h-8" />
+              <MdArrowBack className="!w-8 !h-8"/>
             </button>
-            <img
-              onClick={() => GoToHome()}
-              src="/logos/vybstreamz.png"
-              alt=""
-              className="cursor-pointer !h-15 !w-50"
-            />
+            <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
           </div>
+          
 
           <div className="w-full mx-auto  pt-20">
             <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">
@@ -287,7 +333,7 @@ export default function VerifyEmail() {
 
               <Button
                 type="submit"
-                className="w-[70%] h-14 bg-[#c62676] hover:bg-[#a91e63] text-white text-lg font-semibold rounded-full mb-6"
+                className="!w-sm md:w-md h-14 bg-[#c62676] hover:bg-[#a91e63] text-white text-lg font-semibold rounded-full mb-6"
                 disabled={loading}
               >
                 {loading ? <CircularProgress size={20} /> : "Verify"}
@@ -295,7 +341,7 @@ export default function VerifyEmail() {
             </form>
 
             {/* Additional Options */}
-            <div className="text-center mx-auto lg:ml-0 w-[70%] space-y-4">
+            <div className="text-center md:text-left mx-auto lg:ml-0 w-[70%] space-y-4">
               {timeLeft > 0 ? (
                 <p className="text-primary text-sm">
                   Request another code in{" "}

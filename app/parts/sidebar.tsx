@@ -141,13 +141,13 @@ export default function Sidebar() {
               <div className="flex gap-4 justify-center">
                 <button
                   onClick={handleCancelLogout}
-                  className="px-6 py-2 bg-gray-600 dark:bg-white text-white dark:text-[#2C2C2C] rounded-lg hover:bg-gray-700 transition-colors"
+                  className="cursor-pointer px-6 py-2 bg-gray-600 dark:bg-white text-white dark:text-[#2C2C2C] rounded-lg hover:bg-gray-700 transition-colors"
                 >
                   No, Go back
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="px-10 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+                  className="cursor-pointer px-10 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
                 >
                   Log Out
                 </button>

@@ -1,5 +1,5 @@
 "use client";
-import Slider from "react-slick";
+import Slider, { Settings } from "react-slick";
 import { SlickSettings } from "@/types/slick";
 
 // ✅ Required slick styles
@@ -16,9 +16,12 @@ export interface ICarousel {
 interface AdSliderProps {
   slides?: ICarousel[];
   delay?: number;
+  showDots?: boolean;
+  isLandScape?: boolean
+  
 }
 
-const AdSlider = ({ slides = [], delay = 4000 }: AdSliderProps) => {
+const AdSlider = ({ slides = [], delay = 4000,showDots=true, isLandScape=true }: AdSliderProps) => {
   const sliderRef = useRef<Slider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -28,30 +31,16 @@ const AdSlider = ({ slides = [], delay = 4000 }: AdSliderProps) => {
     image: "/images/safAd.png",
   };
 
-  slides = [
-    {
-      id: 1,
-      image: "/images/safAd.png",
-    },
-    {
-      id: 2,
-      image: "/images/safAd2.png",
-    },
-    {
-      id: 3,
-      image: "/images/safAd3.png",
-    },
-  ];
 
   const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
 
-  const settings: SlickSettings = {
+  const settings: Settings = {
     dots: false,
     fade: true,
     infinite: true,
     autoplay: slidesToRender.length > 1,
     autoplaySpeed: delay,
-    pauseOnHover: true,
+    pauseOnHover: false,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -60,7 +49,6 @@ const AdSlider = ({ slides = [], delay = 4000 }: AdSliderProps) => {
   };
 
   const goToSlide = (i: number) => {
-    console.log("slide", i);
     sliderRef.current?.slickGoTo(i);
   };
 
@@ -74,23 +62,29 @@ const AdSlider = ({ slides = [], delay = 4000 }: AdSliderProps) => {
       >
         {slidesToRender.map((slide, index) => (
           <div className="relative " key={slide.id}>
-            <div className="w-full aspect-video bg-gradient-to-r rounded-2xl overflow-hidden ">
+            <div className={`w-full ${isLandScape?`aspect-video`:`h-full w-full`}  bg-gradient-to-r ${isLandScape?`rounded-2xl`:`rounded-4xl`}  overflow-hidden `}>
               <img
                 src={slide.image}
                 alt="Advertisement"
-                className="w-full h-full object-cover cursor-pointer shadow-lg"
+                className={`w-full  h-full ${isLandScape?`object-cover`:`object-contain`} cursor-pointer shadow-lg`}
               />
             </div>
-            <div className="flex items-center justify-center mt-1">
-              <CarouselDots
-                slides={slides}
-                goToSlide={goToSlide}
-                activeIndex={activeIndex}
-              />
-            </div>
+          
           </div>
         ))}
       </Slider>
+       
+              {showDots &&(
+                 <div className="flex items-center justify-center mt-1">
+                <CarouselDots
+                slides={slidesToRender}
+                goToSlide={goToSlide}
+                activeIndex={activeIndex}
+              /> 
+                </div>
+           )}
+              
+         
 
       <style jsx global>{`
         @media (max-width: 768px) {

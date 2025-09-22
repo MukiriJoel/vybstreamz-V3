@@ -20,6 +20,7 @@ import { signupUser } from "@/store/thunks/authThunks"
 import { useConfirm } from "@/hooks/useConfirm"
 import { ModalConfirmDetails } from "@/components/ModalConfirmDetails"
 import { SectionSocialAuth } from "@/components/SectionSocialAuth"
+import AdSlider from "@/components/AdSlider"
 
 
 // interface SignInFormInputs {
@@ -156,13 +157,63 @@ export default function CreateAccountPage() {
     router.push('/')
   }
 
+  const imgSlides = [
+    {
+      id: 1,
+      image: "/splash/1.webp",
+    },
+     {
+      id: 2,
+      image: "/splash/2.webp",
+    },
+     {
+      id: 3,
+      image: "/splash/3.webp",
+    }, {
+      id: 4,
+      image: "/splash/4.webp",
+    }, {
+      id: 5,
+      image: "/splash/5.webp",
+    }, {
+      id: 6,
+      image: "/splash/6.webp",
+    }, {
+      id: 7,
+      image: "/splash/7.webp",
+    }, {
+      id: 8,
+      image: "/splash/8.webp",
+    }, {
+      id: 9,
+      image: "/splash/9.webp",
+    }, {
+      id: 10,
+      image: "/splash/10.webp",
+    }, {
+      id: 11,
+      image: "/splash/11.webp",
+    }, {
+      id: 12,
+      image: "/splash/12.webp",
+    },
+    {
+      id: 13,
+      image: "/splash/13.webp",
+    },
+  ];
+
+
   return (
     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] flex flex-col transition-colors duration-200">
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-60px)]">
         {/* Image Section - Hidden on mobile, visible on large screens */}
         <div className="hidden lg:flex lg:w-1/2 items-start justify-center p-8">
-          <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" />
+          {/* <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" /> */}
+          <div className="w-full h-full md:scale-75 mt-[-15%]  object-contain">
+            <AdSlider slides={imgSlides} showDots={false} isLandScape={false}/>
+          </div>
         </div>
    
         {/* Form Section */}
@@ -179,7 +230,7 @@ export default function CreateAccountPage() {
           </div>
           
           {/* Form Content */}
-          <div className="flex-1 flex items-center justify-center p-4 md:p-8 lg:pt-0">
+          <div className="flex-1 flex items-center justify-center p-4 md:px-8 md:!py-0 lg:!py-0 xl:!py-0">
           <div className="w-full max-w-md space-y-6">
             {/* Title Section */}
             <div className="text-center lg:text-left">

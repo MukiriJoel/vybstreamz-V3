@@ -17,17 +17,18 @@ const authAxiosInstance = axios.create({
 authAxiosInstance.interceptors.request.use(
     async (config: any) => {
         const state = store.getState();
-        // const token = state.auth.token; // Fetch token from Redux Persist
+        const token = state.auth.token; // Fetch token from Redux Persist
         const user = state.auth.user; // Fetch token from Redux Persist
         const deviceHeaders = await getDeviceInfo();
         // const profileId = state.auth?.activeProfile?.id;
         const profileId = state.auth?.userProfiles?.[0]?.id;
         const msisdn = state.auth?.HEData?.msisdn;
 
-        // if (token) {
-        //     config.headers.Authorization = `Bearer ${token}`;
-        //     config.headers["X-PROFILE-ID"] = profileId;
-        // }
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+            config.headers["X-PROFILE-ID"] = profileId;
+            config.headers["Accept"] = "application/json";
+        }
 
         if(profileId){
             config.headers["X-PROFILE-ID"] = profileId;

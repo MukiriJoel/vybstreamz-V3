@@ -24,7 +24,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
     const dispatch=useAppDispatch();
     const [loading, setLoading] = useState(false)
     const [showLogoutModal, setShowLogoutModal] = useState(false);
-    const {user,isAuthenticated,activeProfile}=useAppSelector((state)=>state.auth);
+    const {user,userProfiles,isAuthenticated,activeProfile}=useAppSelector((state)=>state.auth);
     
        
 console.log("isauth",isAuthenticated)
@@ -149,7 +149,7 @@ console.log("isauth",isAuthenticated)
                       My Profile
                     </p>
                     <p className="!text-xs mt-2 !font-light text-[#2C2C2C] uppercase dark:text-white leading-[100%]">
-                      {isAuthenticated ? user?.profiles[0]?.name:``} 
+                      {isAuthenticated ? userProfiles?.[0]?.name:``} 
                     </p>
                   </div>
                 </div>

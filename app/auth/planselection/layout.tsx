@@ -9,7 +9,7 @@ interface AuthLayoutProps {
     children: ReactNode;
 }
 
-const PartnersLayout = ({children}: AuthLayoutProps) => {
+const PlanSelectionLayout = ({children}: AuthLayoutProps) => {
     
 
     return (
@@ -30,4 +30,4 @@ const PartnersLayout = ({children}: AuthLayoutProps) => {
     );
 };
 
-export default withAuth(PartnersLayout) ;
+export default withAuth(PlanSelectionLayout) ;

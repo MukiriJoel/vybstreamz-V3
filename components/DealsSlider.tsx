@@ -7,7 +7,7 @@ const DealsSlider = () => {
   const router = useRouter();
 
 const onSubscribeClick = () =>{
-     router.push(`/payment/`);
+     router.push(`/auth/payment/`);
   }
   
   return (

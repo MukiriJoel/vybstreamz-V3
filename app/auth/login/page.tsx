@@ -19,6 +19,7 @@ import { loginUser } from "@/store/thunks/authThunks"
 import { SectionHEAuth } from "@/components/SectionHEAuth"
 import { SectionSocialAuth } from "@/components/SectionSocialAuth"
 import AdSlider from "@/components/AdSlider"
+import { usePathname } from 'next/navigation'
 
 const phoneRegExp = /^[0-9]{9}$/
 
@@ -46,6 +47,12 @@ export default function LoginForm() {
   const {control, register, handleSubmit, formState: {errors}} = useForm<ILogin>({
             resolver: yupResolver(schema),
   });
+
+  const pathname = usePathname();
+   // Get base URL
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
+
+  console.log("baseUrl",baseUrl)
   const returnUrl = searchParams.get("returnUrl");
   
 
@@ -76,7 +83,7 @@ export default function LoginForm() {
                 case 1001:
                     return;
                 default:
-                    returnUrl ? router.push(`/auth/profile?returnUrl=${returnUrl}`) : router.push("/auth/profile")
+                    returnUrl ? router.push(`${baseUrl}/${returnUrl}`) : router.push("/")
                     return;
             }
   }

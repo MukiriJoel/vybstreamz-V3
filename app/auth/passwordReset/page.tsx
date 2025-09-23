@@ -42,7 +42,7 @@ export default function PasswordResetForm() {
   });
   const dispatch = useAppDispatch();
   const {user}=useAppSelector((state)=>state.auth);
-  console.log("reg",user)
+  const sessionId=user?.login_session_id;
   const router = useRouter()
   const [newPassword, setNewPassword] = useState("")
   // const [confirmPassword, setConfirmPassword] = useState("")
@@ -76,7 +76,7 @@ export default function PasswordResetForm() {
         // Add your reset password logic here
         const payload: any = {
             ...data,
-            login_session_id: user?.login_session_id || user?.request_token
+            login_session_id: sessionId 
         }
 
         try {

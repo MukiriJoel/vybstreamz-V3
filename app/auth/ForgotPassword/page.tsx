@@ -56,7 +56,6 @@ export default function ForgotPasswordPage() {
         }
         try {
             setLoading(true);
-            // dispatch(logout());
             const res = await dispatch(requestPasswordResetToken(payload)).unwrap();
             console.log(res);
             dispatch(setRegistrationState(res?.data))

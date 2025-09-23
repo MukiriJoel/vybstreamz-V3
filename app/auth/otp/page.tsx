@@ -168,35 +168,35 @@ export default function VerifyEmail() {
     return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
-  const submitVerifyOTP = async () => {
-    if (!otp) {
-      toast.warning("Enter the OTP to proceed");
-      return;
-    }
+  // const submitVerifyOTP = async () => {
+  //   if (!otp) {
+  //     toast.warning("Enter the OTP to proceed");
+  //     return;
+  //   }
 
-    try {
-      setLoading(true);
-      const res = await dispatch(
-        verifyOTP({
-          request_token: requestToken || registrationState?.request_token,
-          code: otp,
-        })
-      ).unwrap();
-      toast.success(res?.message);
+  //   try {
+  //     setLoading(true);
+  //     const res = await dispatch(
+  //       verifyOTP({
+  //         request_token: requestToken || registrationState?.request_token,
+  //         code: otp,
+  //       })
+  //     ).unwrap();
+  //     toast.success(res?.message);
 
-      if (searchParams.get("returnUrl")?.includes("setPassword")) {
-        router.push(
-          `/auth/passwordReset?token=${res?.data?.request_token}&msg=${res?.data?.message}&exp=${res?.data?.expiry_time}`
-        );
-      } else {
-        router.push("/profiles");
-      }
-    } catch (e: any) {
-      toast.error(e || "Could not sign you", { duration: 5000 });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     if (searchParams.get("returnUrl")?.includes("setPassword")) {
+  //       router.push(
+  //         `/auth/passwordReset?token=${res?.data?.request_token}&msg=${res?.data?.message}&exp=${res?.data?.expiry_time}`
+  //       );
+  //     } else {
+  //       router.push("/profiles");
+  //     }
+  //   } catch (e: any) {
+  //     toast.error(e || "Could not sign you", { duration: 5000 });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const resendToken = async () => {
     try {

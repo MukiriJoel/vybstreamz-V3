@@ -111,7 +111,7 @@ export const SectionHEAuth = React.memo(({loadingState}: { loadingState?: any })
                 disabled={loading || loadingShowButton}
             >
                 <Image src={"/images/saf-logo.svg"} alt={"saf logo"} width={50} height={50}/>
-                 {loading ? <CircularProgress size={20} /> :"Continue With Saf"}
+                 {loading ? <CircularProgress size={20} /> :"Continue With Safaricom"}
             </Button>
             : null
     )

@@ -399,3 +399,38 @@ export const logoutSocial = createAsyncThunk(
         return null;
     }
 );
+
+
+// 🔹 REQUEST OTP
+export const requestOTP = createAsyncThunk(
+    "auth/requestOTP",
+    async (payload: { purpose?: any }, {dispatch, rejectWithValue}) => {
+        try {
+            const res = await authAxiosInstance.post("/user/request-otp", payload);
+            // dispatch(setRegistrationState(res?.data?.data))
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(formatApiError(error.response?.data) || "OTP request failed");
+        }
+    }
+);
+
+// 🔹 UPDATE ACCOUNT
+export const updateAccount = createAsyncThunk(
+    "auth/updateAccount",
+    async (payload: any, {dispatch, rejectWithValue}) => {
+        try {
+            dispatch(setLoading(true))
+            const res = await authAxiosInstance.post("/user/update-account", payload);
+            const data = res?.data?.data;
+            dispatch(setUser(data));
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(formatApiError(error.response?.data) || "Login failed");
+        } finally {
+            dispatch(setLoading(false))
+        }
+    }
+);
+
+

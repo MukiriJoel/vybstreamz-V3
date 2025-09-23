@@ -58,36 +58,95 @@ const CastDisplay = () => {
   ];
 
   return (
-    <div className="max-w-[210px] md:max-w-[320px] pb-0">
+    <div className="max-w-[230px] md:max-w-[350px] pb-0">
       <div className="flex items-center pt-2 justify-between">
         <h3 className="text-xl md:!text-xl font-bold text-white capitalize">
           cast
         </h3>
-
+      </div>
+      
+      {/* Mobile layout - names and button stacked */}
+      <div className="md:hidden">
+        <div className="flex flex-nowrap gap-1 py-2 items-center overflow-x-auto scrollbar-hide">
+          {[
+            {
+              image: "/images/dp.png",
+              title: "awinja",
+              subTitle: "producer",
+            },
+            {
+              image: "/images/dp.png",
+              title: "pascal tokodi",
+              subTitle: "producer",
+            },
+            {
+              image: "/images/dp.png",
+              title: "awinja",
+              subTitle: "producer",
+            },
+            {
+              image: "/images/dp.png",
+              title: "awinja",
+              subTitle: "producer",
+            },
+          ].map((actor, index) => (
+            <div key={index} className="flex-shrink-0">
+              <p className="!font-normal !flex-nowrap !px-0 !text-xs text-white leading-[120%] text-center whitespace-nowrap">
+                {actor.title},
+              </p>
+            </div>
+          ))}
+        </div>
         <Button
           variant="ghost"
-          className=" !pr-0 cursor-pointer text-white !text-sm !font-normal hover:border-white/20 hover:text-white hover:!bg-[#2C2C2C]"
+          className="!pr-0 cursor-pointer text-white !text-sm !font-normal hover:border-white/20 hover:text-white hover:!bg-[#2C2C2C] mt-1"
           onClick={() => onViewMoreCast()}
         >
           View More
           <MdArrowForward className="!w-8 !h-8" />
         </Button>
       </div>
-      <div className="flex gap-2 md:gap-10 py-2">
+
+      {/* Desktop layout - names and button inline */}
+      <div className="hidden md:flex flex-nowrap gap-3 py-2 items-center overflow-x-auto scrollbar-hide">
         {[
-          "/images/dp.png",
-          "/images/dp.png",
-          "/images/dp.png",
-          "/images/dp.png",
+          {
+            image: "/images/dp.png",
+            title: "awinja",
+            subTitle: "producer",
+          },
+          {
+            image: "/images/dp.png",
+            title: "pascal tokodi",
+            subTitle: "producer",
+          },
+          {
+            image: "/images/dp.png",
+            title: "awinja",
+            subTitle: "producer",
+          },
+          {
+            image: "/images/dp.png",
+            title: "awinja",
+            subTitle: "producer",
+          },
         ].map((actor, index) => (
-          <div
-            key={index}
-            className="rounded-full overflow-hidden w-12 h-12 border border-white bg-[#2C2C2C]"
-          >
-            <img className="object-cover w-full h-full" src={actor} />
+          <div key={index} className="flex-shrink-0">
+            <p className="!font-normal !flex-nowrap !px-0 !text-xs text-white leading-[120%] text-center whitespace-nowrap">
+              {actor.title},
+            </p>
           </div>
         ))}
+        <Button
+          variant="ghost"
+          className="!pr-0 cursor-pointer text-white !text-sm !font-normal hover:border-white/20 hover:text-white hover:!bg-[#2C2C2C]"
+          onClick={() => onViewMoreCast()}
+        >
+          View More
+          <MdArrowForward className="!w-8 !h-8" />
+        </Button>
       </div>
+
       {showCastModal && (
         <div className="fixed inset-0 backdrop-blur bg-black/16 flex items-center justify-center z-50">
           <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-3 w-100 overflow-hidden  mx-4">

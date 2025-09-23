@@ -70,6 +70,8 @@ export default function ForgotPasswordPage() {
         }
   };
 
+ 
+
   const imgSlides = [
     {
       id: 1,

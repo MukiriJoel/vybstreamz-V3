@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { IconButton } from "@mui/material";
+import { IconButton, Modal } from "@mui/material";
 import {
   MdArrowForward,
   MdArrowLeft,
@@ -16,6 +16,16 @@ import VideoSlider from "@/components/VideoSlider";
 import MusicSlider from "@/components/MusicSlider";
 import { useAuth } from "@/lib/context/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
+import { store } from "@/store";
+import { useAppDispatch } from "@/hooks/redux";
+import { requestOTP } from "@/store/thunks/authThunks";
+import { toast } from "sonner";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import VerifyPhone from "./OTP";
+import { CircularProgress } from "@mui/material";
+import {updateAccount} from "@/store/thunks/authThunks";
 
 const subscriptions = [
   {
@@ -50,11 +60,26 @@ const subscriptions = [
   },
 ];
 
+interface UserAccountFormInputs {
+  email?: string;
+  phone: string;
+  name: string;
+}
+
+const schema = yup.object().shape({
+  name: yup.string().required("Full name required"),
+  phone: yup.string().required("Phone is required"),
+  email: yup.string().email("Invalid email"),
+});
+
 export default function ProfileContent() {
   const [activeTab, setActiveTab] = useState("Subscriptions");
   const [showUnsubscribeModal, setShowUnsubscribeModal] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [verifyPhoneData, setVerifyPhoneData] = useState<any>();
 
   const tabs = ["Account", "My Favorites", "Subscriptions"];
 
@@ -64,13 +89,18 @@ export default function ProfileContent() {
   const closePopup = () => setIsPopupOpen(false);
 
   const searchParams = useSearchParams();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [otpData, setOtpData] = useState<any>();
+  const [isChangePhoneModalOpen, setIsChangePhoneModalOpen] = useState(false);
+
   useEffect(() => {
-    const tab = searchParams.get('tab');
+    const tab = searchParams.get("tab");
     if (tab && ["Account", "My Favorites", "Subscriptions"].includes(tab)) {
       setActiveTab(tab);
     }
   }, [searchParams]);
-
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
@@ -113,10 +143,77 @@ export default function ProfileContent() {
     router.push("/payment");
   };
 
-  const onUpdateDetails = (e:any) =>{
-    e.preventDefault()
-    router.push("/profile?tab=Account")
-  }
+  const onUpdateDetails = (e: any) => {
+    e.preventDefault();
+    router.push("/profile?tab=Account");
+  };
+
+  const state = store.getState();
+  console.log("state", state);
+  const user = state?.auth?.user;
+  const userNumber = state.auth?.user?.phone;
+
+  const onChangePhoneClick = () => {
+    submitRequestOTP();
+  };
+
+  const submitRequestOTP = async () => {
+    try {
+      setLoading(true);
+      const res = await dispatch(
+        requestOTP({ purpose: "PHONE_CHANGE" })
+      ).unwrap();
+      handleOpen();
+      setVerifyPhoneData(res?.data);
+      toast.success(res?.message);
+    } catch (e: any) {
+      console.log(e);
+      toast.error(e?.message || "Could not request OTP. Please try Again", {
+        duration: 5000,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserAccountFormInputs>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      name: user?.name,
+      email: user?.email,
+      phone: user?.phone,
+    },
+  });
+
+  const handleOTPClick = (e: any) => {
+    handleClose();
+    setOtpData(e);
+    setIsChangePhoneModalOpen(true);
+  };
+
+  const onSubmit = async (data: any) => {
+    console.log("data: ", data);
+
+    let payload: Partial<UserAccountFormInputs> = {
+      email: data?.email,
+      name: data?.name,
+    };
+
+    try {
+      setLoading(true);
+      const res = await dispatch(updateAccount(payload)).unwrap();
+      toast.success(res?.message || "User updated");
+    } catch (e: any) {
+         toast.warning(e?.message || String(e) || "Could not update user")
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="py-4 ">
@@ -415,42 +512,89 @@ export default function ProfileContent() {
       {activeTab === "Account" && (
         <div className="p-8">
           <div className="max-w-md mx-auto rounded-lg p-6">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label className="block text-base font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">
                   Full Names
                 </label>
-                <input
-                  type="text"
-                  placeholder="John Kungu"
-                  className="w-full px-4 py-3 border text-base border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                <Controller
+                  name="name"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <input
+                      type="text"
+                      {...field}
+                      placeholder="John Doe"
+                      className="w-full px-4 py-3 border text-base border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    />
+                  )}
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
 
               <div>
                 <label className="block text-base font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">
                   Email Address
                 </label>
-                <input
-                  type="email"
-                  placeholder="john.doe@example.com"
-                  className="w-full px-4 py-3 border text-base border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="email"
+                      placeholder="john.doe@example.com"
+                      className="w-full  px-4 py-3 border text-base border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#949494] dark:text-[#949494] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    />
+                  )}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               <div>
                 <label className="block text-sm font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-2">
                   Phone Number
                 </label>
-                <input
-                  type="tel"
-                  placeholder="0720 123 456"
-                  className="w-full px-4 py-3 text-base border border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#4D4D4D] dark:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
-                />
+
+                <Controller
+                  name="phone"
+                  control={control}
+                  disabled
+                  defaultValue=""
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="tel"
+                      placeholder="0720 123 456"
+                      value={userNumber}
+                      className="w-full px-4 py-3 text-base border border-gray-200 dark:border-[#2C2C2C]  rounded-lg bg-gray-50 dark:bg-[#2C2C2C] text-[#949494] dark:text-[#949494] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    />
+                  )}
+                ></Controller>
+
+                <label
+                  onClick={() => onChangePhoneClick()}
+                  className="cursor-pointer block capitalize text-base font-bold text-[#C62676] mb-1"
+                >
+                  change phone number
+                </label>
               </div>
 
               <div>
-                <div className="flex items-center justify-between py-4  rounded-lg">
+                <div
+                  className="flex cursor-pointer items-center justify-between py-4  rounded-lg"
+                  onClick={() => router.push("/auth/passwordReset")}
+                >
                   <div>
                     <label className="text-base font-bold text-[#2C2C2C] dark:text-[#FFFFFF]">
                       Password
@@ -476,12 +620,29 @@ export default function ProfileContent() {
               </div>
 
               <button
-                onClick={(e)=>onUpdateDetails(e)}
+                type="submit"
                 className="w-full bg-[#C62676] hover:bg-pink-700 cursor-pointer text-white font-medium py-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
               >
-                Update Details
+                {loading ? <CircularProgress size={20} /> : "Update Details"}
               </button>
             </form>
+
+            {/* veridfy otp modal */}
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <div className="flex items-center justify-center min-h-full">
+                <div className="w-full max-w-2xl p-8 rounded-2xl md:shadow-md bg-white">
+                  <VerifyPhone
+                    data={verifyPhoneData}
+                    emitClick={handleOTPClick}
+                  />
+                </div>
+              </div>
+            </Modal>
           </div>
         </div>
       )}

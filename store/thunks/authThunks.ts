@@ -110,7 +110,7 @@ export const logoutUser = createAsyncThunk(
     "auth/logout",
     async (payload: { login_session_id: string }, {dispatch, rejectWithValue}) => {
         try {
-            console.log(payload)
+           
             const res = await authAxiosInstance.post("/auth/logout", payload);
             // dispatch(setRegistrationState(res?.data?.data))
             // localStorage.removeItem("token"); // Remove token

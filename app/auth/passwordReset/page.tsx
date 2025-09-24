@@ -46,7 +46,7 @@ export default function PasswordResetForm() {
   const router = useRouter()
   const [newPassword, setNewPassword] = useState("")
   // const [confirmPassword, setConfirmPassword] = useState("")
-  const { isLoggedIn, login } = useAuth() // Added login function
+
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   // const handleClickShowPassword = () => setShowPassword(!showPassword);

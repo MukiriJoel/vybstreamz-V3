@@ -39,7 +39,7 @@ export default function LoginForm() {
   const [phoneNumber, setPhoneNumber] = useState("")
   const [selectedCountryCode, setSelectedCountryCode] = useState("+254")
   const router = useRouter()
-  const { isLoggedIn, login } = useAuth()
+  const { isAuthenticated, login,logout } = useAuth()
   const dispatch=useAppDispatch();
   const authState = useAppSelector((state)=>state.auth);
   const searchParams = useSearchParams();
@@ -51,8 +51,6 @@ export default function LoginForm() {
   const pathname = usePathname();
    // Get base URL
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
-
-  console.log("baseUrl",baseUrl)
   const returnUrl = searchParams.get("returnUrl");
   
 
@@ -61,10 +59,10 @@ export default function LoginForm() {
     router.push("/auth/createAccount")
   }
 
-  const handleSuccessLogin = () => {
-    login() // Set logged in state to true
-    router.push('/')
-  }
+  // const handleSuccessLogin = () => {
+  //   login() // Set logged in state to true
+  //   router.push('/')
+  // }
 
   const handleForgotPassword = (e:any) => {
     e.preventDefault()

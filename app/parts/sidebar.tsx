@@ -9,13 +9,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 const menuItems = [
-  { icon: User, label: "My Profile", active: true, link: "/profile" },
-  { icon: Settings, label: "Settings", active: false, link: "/profile/settings" },
-  { icon: Bell, label: "Notifications", active: false, link: "/profile/notifications" },
-  { icon: MessageSquare, label: "Feedback", active: false, link: "/profile/feedback" },
-  { icon: HelpCircle, label: "Help & Support", active: false, link: "/profile/help" },
-  { icon: Share, label: "Share App", active: false, link: "/profile/share" },
-  { icon: PhoneCall, label: "Contacts", active: false, link: "/profile/contacts" },
+  { icon: User, label: "My Profile", active: true, link: "/auth/profile" },
+  { icon: Settings, label: "Settings", active: false, link: "/auth/profile/settings" },
+  { icon: Bell, label: "Notifications", active: false, link: "/auth/profile/notifications" },
+  { icon: MessageSquare, label: "Feedback", active: false, link: "/auth/profile/feedback" },
+  { icon: HelpCircle, label: "Help & Support", active: false, link: "/auth/profile/help" },
+  { icon: Share, label: "Share App", active: false, link: "/auth/profile/share" },
+  { icon: PhoneCall, label: "Contacts", active: false, link: "/auth/profile/contacts" },
   { icon: LogOut, label: "Logout", active: false, link: "/logout" },
 ]
 
@@ -24,7 +24,7 @@ export default function Sidebar() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [currentPage, setCurrentPage] = useState('profile');
   const router = useRouter()
-  const { isLoggedIn, logout } = useAuth();
+  const { logout } = useAuth();
   const pathname = usePathname();
 
 

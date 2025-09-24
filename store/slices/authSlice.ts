@@ -40,6 +40,9 @@ const authSlice= createSlice({
         },
         setUser:(state,action:PayloadAction<any>)=>{
             state.user=action.payload;
+            if (action.payload) {
+                state.isAuthenticated = true;
+            }
         },
         setUserProfiles:(state,action:PayloadAction<any[]>)=>{
             state.userProfiles=action.payload;
@@ -57,6 +60,12 @@ const authSlice= createSlice({
         setHEData: (state, action: PayloadAction<any>) => {
             const expires_on = Date.now() + (50 * 60 * 1000);
             state.HEData = {...action.payload, expires_on};
+        },
+        login: (state, action: PayloadAction<{ user: any, token: string }>) => {
+            state.user = action.payload.user;
+            state.token = action.payload.token;
+            state.isAuthenticated = true;
+            state.error = null;
         },
         logout:(state)=>{
             state.user=null;

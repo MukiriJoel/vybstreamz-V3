@@ -46,7 +46,7 @@ const initialSelected = [""]
 export default function PreferencePage() {
   const [selectedGenres, setSelectedGenres] = useState<string[]>(initialSelected)
   const router = useRouter()
-  const { isLoggedIn, login } = useAuth() // Added login function
+  const {  login } = useAuth() // Added login function
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]))

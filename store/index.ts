@@ -8,19 +8,19 @@ import configReducer from "@/store/slices/configSlice"
 const themePersistConfig ={
     key:'theme',
     storage,
-    whitelist:['theme']
+   
 }
 
 const authPersistConfig ={
     key:'auth',
     storage,
-    whitelist:['auth']
+    
 }
 
 const configPersistConfig = {
     key: "configs",
     storage,
-     whitelist:['configs'],
+    
 };
 
 const persistedThemeReducer = persistReducer(themePersistConfig,themeReducer)
@@ -35,9 +35,10 @@ export const store = configureStore({
     },
     middleware:(getDefaultMiddleware)=>getDefaultMiddleware({
         serializableCheck:{
-            ignoredActions:['persist/PERSIST','persist/REHYDRATE']
+            ignoredActions: ['persist/FLUSH', 'persist/REHYDRATE', 'persist/PAUSE', 'persist/PERSIST', 'persist/PURGE', 'persist/REGISTER']
         }
-    })
+    }),
+    devTools: process.env.NODE_ENV !== "production",
 })
 
 export const persistor = persistStore(store)

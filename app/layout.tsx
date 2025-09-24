@@ -67,13 +67,13 @@ function PersistLoading() {
 // Client-side providers wrapper
 function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <AuthProvider>
-      <Provider store={store}>
-        <PersistGate loading={<PersistLoading />} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={<PersistLoading />} persistor={persistor}>
+        <AuthProvider>
           <ThemeProvider>{children}</ThemeProvider>
-        </PersistGate>
-      </Provider>
-    </AuthProvider>
+        </AuthProvider>
+      </PersistGate>
+    </Provider>
   );
 }
 

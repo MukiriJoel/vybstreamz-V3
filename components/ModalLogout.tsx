@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const ModalLogout = ()=>{
     const [showLogoutModal, setShowLogoutModal] = useState(false);
-    const { isLoggedIn, logout } = useAuth();
+    const { logout } = useAuth();
     const router=useRouter();
     
   const handleLogoutClick = (e:any) => {

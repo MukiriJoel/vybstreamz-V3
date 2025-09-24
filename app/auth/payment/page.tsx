@@ -20,24 +20,27 @@ export default function HomePage() {
     {
       id: 1,
       name: "M-PESA",
-      component: <div className="text-green-600 font-bold text-lg">M→PESA</div>,
+      component: "/images/Mpesa.webp",
     },
     {
       id: 2,
       name: "Airtime",
-      component: <div className="text-black font-bold text-lg">Airtime</div>,
+      component: "/images/Airtime.webp",
     },
     {
       id: 3,
       name: "VISA",
-      component: (
-        <div className="flex items-center gap-2">
-          <div className="text-blue-600 font-bold text-lg italic">VISA</div>
-          <div className="w-8 h-6 bg-gradient-to-r from-red-500 to-yellow-500 rounded-sm flex items-center justify-center">
-            <div className="w-6 h-4 bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 rounded-sm"></div>
-          </div>
-        </div>
-      ),
+      component: "/images/Card.webp",
+    },
+    {
+      id: 4,
+      name: "Okoa",
+      component: "/images/Okoa.webp",
+    },
+    {
+      id: 5,
+      name: "Bonga",
+      component: "/images/Bonga.webp",
     },
   ];
 
@@ -150,20 +153,30 @@ export default function HomePage() {
               </div>
 
               {/* Payment Options */}
-              <div className="flex lg:gap-5 gap-4 md:gap-4 pb-6 overflow-hidden">
-                {paymentMethods.map((method) => (
-                  <div
-                    key={method.id}
-                    className={`bg-[#E5E5E5] rounded-lg md:px-6 py-4 px-2 border-2 hover:border-pink-500 cursor-pointer ${
-                      selectedMethod === method.id
-                        ? "border-pink-500 bg-pink-50 shadow-md"
-                        : "border-gray-300"
-                    }`}
-                    onClick={() => setSelectedMethod(method.id as any)}
-                  >
-                    {method.component}
-                  </div>
-                ))}
+              <div className="mb-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-8">
+                  {paymentMethods.map((method) => (
+                    <div
+                      key={method.id}
+                      className={`
+                        rounded-lg p-2 bg-[#E5E5E5] cursor-pointer transition-all duration-200 
+                        hover:shadow-lg  
+                        ${selectedMethod === method.id
+                                    ? "border-2 border-pink-500 bg-pink-50 shadow-md"
+                                    : "border-gray-200 hover:border-pink-300"
+                                  }
+                      `}
+                      onClick={() => setSelectedMethod(method.id as any)}
+                    >
+                      <div className="flex flex-col items-center p-0">
+                        <img
+                          className="bg-transparent h-12"
+                          src={method.component}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Phone Number Input */}

@@ -19,7 +19,6 @@ interface TopProfileMenuProps {
 const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
     const { theme, setTheme } = useTheme();
     const [activeTab, setActiveTab] = useState<any>(theme === 'dark' ? "dark" : "light");
-    const { isLoggedIn, logout } = useAuth();
     const router = useRouter();
     const dispatch=useAppDispatch();
     const [loading, setLoading] = useState(false)
@@ -27,7 +26,6 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
     const {user,userProfiles,isAuthenticated,activeProfile}=useAppSelector((state)=>state.auth);
     
        
-console.log("isauth",isAuthenticated)
     const onProfileClick = () => {
         
             router.push('/auth/profile');

@@ -11,8 +11,7 @@ import Link from 'next/link'
 import { MdArrowBack } from "react-icons/md"
 
 export default function TermsConditionsPage() {
-  const { login } = useAuth()
-  const [showConfirmModal, setShowConfirmModal] = useState(false)
+   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState("")
   const [email, setEmail] = useState("")
   const router = useRouter()
@@ -44,10 +43,10 @@ export default function TermsConditionsPage() {
     return null
   }
 
-  const handleLogin = () => {
-    login()
-    router.push('/profile')
-  }
+  // const handleLogin = () => {
+  //   login()
+  //   router.push('/profile')
+  // }
 
   const handleCreateAccount = () => {
     setShowConfirmModal(true)

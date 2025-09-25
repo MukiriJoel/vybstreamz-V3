@@ -238,7 +238,7 @@ const NavBarMini = () => {
 
               <IconButton onClick={handleShoppingBagClick}>
                 <MdOutlineShoppingBag
-                  className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`}
+                  className={`h-[24px] w-[24px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`}
                 />
               </IconButton>
 
@@ -246,7 +246,7 @@ const NavBarMini = () => {
                 <IconButton onClick={() => goToNotifications()}>
                   <span className="absolute -top-[2px] -right-[2px] h-3 w-3 bg-red-500 rounded-full z-10"></span>
                   <MdOutlineNotifications
-                    className={`h-[32px] w-[32px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`}
+                    className={`h-[24px] w-[24px] md:h-[36px] md:w-[36px] ${iconColor} transition-colors duration-300`}
                   />
                 </IconButton>
               </div>

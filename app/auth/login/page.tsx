@@ -152,7 +152,7 @@ export default function LoginForm() {
         {/* Image Section - Hidden on mobile, visible on large screens */}
         <div className="hidden lg:flex h-[100vh] lg:w-1/2 items-start justify-start p-8">
           {/* <img className="max-w-full max-h-[90vh] object-contain" src="/images/create.png" alt="" /> */}
-          <div className="w-full h-full md:scale-65 mt-[-15.9%]  object-contain">
+          <div className="w-full h-full lg:scale-65 mt-[-15.9%] my-auto  object-contain">
             <AdSlider slides={imgSlides} showDots={false} isLandScape={false}/>
           </div>
         </div>

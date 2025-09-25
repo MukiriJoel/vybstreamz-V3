@@ -414,13 +414,18 @@ export default function VybzMusicPlayer({
               <div className="flex-1 min-w-[150px] flex flex-col justify-end">
                 {/* Main Album Info */}
                 <div className="mb-0">
-                  <h1 className="text-[28px] font-extrabold text-white capitalize leading-tight">
+                  <h1 className="text-[20px] md:text-[28px] font-extrabold text-white capitalize leading-tight">
                     {title}
                   </h1>
-                  <p className="text-white text-[22px] mt-2 !font-normal leading-tight capitalize">
+                  <p className="text-white text-[16px] md:text-[22px] mt-2 !font-normal leading-tight capitalize">
                     {subtitle}
                   </p>
-                  <p className="text-white text-[12px] mt-2">{albumInfo}</p>
+                  <p className="text-white text-[10px] md:text-[12px] mt-2">{albumInfo}</p>
+
+                  <p className="text-white text-[12px] mt-1 line-clamp-3  max-w-md leading-relaxed">
+                    {description}
+                  </p>
+              
                 </div>
 
                 {/* Stream On and Controls Row */}

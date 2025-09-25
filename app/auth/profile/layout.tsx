@@ -27,7 +27,7 @@ const ProfileLayout = ({children}: AuthLayoutProps) => {
                 {children}
                   
             </main>
-            <div className='w-screen lg:w-[calc(95vw-256px)] mx-auto bg-[#F2F2F2] dark:bg-[#141414] flex-1 lg:ml-64 pt-5 lg:pt-19.5"'>
+            <div className='w-screen lg:w-[calc(98vw-256px)] mx-auto bg-[#F2F2F2] dark:bg-[#141414] flex-1 lg:ml-64 pt-5 lg:pt-19.5"'>
                <Footer/>
             </div>
     

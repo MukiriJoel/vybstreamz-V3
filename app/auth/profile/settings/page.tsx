@@ -338,7 +338,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen w-[98vw] lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414] pt-8 overflow-hidden">
+    <div className="min-h-screen w-[98vw] lg:w-[calc(98vw-256px)] bg-[#F2F2F2] dark:bg-[#141414] pt-8 overflow-hidden">
       <div className="flex">       
         {/* Main Content */}
         <div className="flex-1 p-6">

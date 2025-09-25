@@ -2,7 +2,7 @@ import { MdHeadphones } from "react-icons/md";
 
 export default function ContactPage(){
 return(
-     <div className="min-h-screen w-[98vw] lg:w-[calc(95vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-12">
+     <div className="min-h-screen w-[98vw] lg:w-[calc(98vw-256px)] bg-[#F2F2F2] dark:bg-[#141414]  pt-12">
       {/* Header */}
     
       <div className="flex">

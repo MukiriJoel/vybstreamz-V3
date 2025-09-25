@@ -89,7 +89,7 @@ export default function ResetPasswordPage({ onNavigate }: ResetPasswordPageProps
   ]
 
   return (
-    <main className="w-[98vw] lg:w-[calc(95vw-256px)] px-6 pt-8 md:p-8 mx-0 md:mx-0">
+    <main className="w-[98vw] lg:w-[calc(98vw-256px)] px-6 pt-8 md:p-8 mx-0 md:mx-0">
           <div className="max-w-6xl mx-auto pt-8">
             {/* Search Bar - Always visible */}
             <div className="mb-8">

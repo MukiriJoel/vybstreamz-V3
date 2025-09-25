@@ -38,7 +38,7 @@ export const getDeviceInfo = async (): Promise<Record<string, string | null>> =>
         "X-INTERNET-CONNECTION-TYPE": navigator?.connection?.effectiveType || null,
         "X-INTERNET-SERVICE-PROVIDER": device_info?.isp || null,
         "X-LOGIN-SESSION-ID": user?.login_session_id,
-        "X-SOURCE-SYSTEM":"e-hub"
+        "X-SOURCE-SYSTEM":"vyb-streamz"
     };
 };
 

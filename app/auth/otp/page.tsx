@@ -341,7 +341,7 @@ export default function VerifyEmail() {
             </form>
 
             {/* Additional Options */}
-            <div className="text-center md:text-left mx-auto lg:ml-0 w-[70%] space-y-4">
+            <div className="text-center md:text-center lg:text-left mx-auto lg:ml-0 w-[70%] space-y-4">
               {timeLeft > 0 ? (
                 <p className="text-primary text-sm">
                   Request another code in{" "}

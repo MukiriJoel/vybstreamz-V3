@@ -76,7 +76,7 @@ export default function PartnerDetails({ id }: { id: number }) {
       <main className="pt-12">
         {/* Hero Section */}
         {partnerDetails && (
-          <div className="px-2 pt-8 mt-10">
+          <div className="px-2 md:px-4 lg:px-6 xl:px-6 pt-8 mt-10">
             <div className="flex rounded-4xl overflow-hidden h-57vh md:h-[65vh] p-0">
               <img
                 src={partnerDetails?.image}

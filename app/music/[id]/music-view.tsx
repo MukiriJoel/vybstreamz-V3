@@ -61,7 +61,7 @@ export default function MusicView({ audioSrc, bannerImage,albumImage,title,subti
           platformLogo="/logos/bazeLg.png"
         />
         {/* Trending Section */}
-        <main className="bg-[#F2F2F2] dark:bg-[#141414]">
+        <main className="bg-[#F2F2F2] dark:bg-[#141414] py-2 px-2 md:px-4 lg:px-6 xl:px-6">
           <div className="p-2 md:p-4 lg:p-4">
               <TrackList title="tracklist"/>
           </div>

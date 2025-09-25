@@ -73,7 +73,7 @@ const schema = yup.object().shape({
 });
 
 export default function ProfileContent() {
-  const [activeTab, setActiveTab] = useState("Subscriptions");
+  const [activeTab, setActiveTab] = useState("Account");
   const [showUnsubscribeModal, setShowUnsubscribeModal] = useState(false);
   const {  logout } = useAuth();
   const [loading, setLoading] = useState(false);

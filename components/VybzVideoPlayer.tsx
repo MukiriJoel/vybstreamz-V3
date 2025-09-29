@@ -28,11 +28,18 @@ import ReviewsSection from "@/components/reviews-section";
 import SectionHeader from "@/components/SectionHeader";
 import CastDisplay from "./CastDisplay";
 
+
 interface VybzVideoPlayerProps {
   videoSrc?: string;
+  hasCast?:boolean;
+  bannerImage?: string;
+   title?: string;
+    description?: string;
+     platformLogo?: string;
+     metadata?: string;
 }
 
-export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
+export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,description,platformLogo,metadata }: VybzVideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [showContent, setShowContent] = useState(true); // For hiding/showing trailers and description
@@ -356,21 +363,22 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
         onMouseMove={handleMouseMove}
       >
         {/* Video element */}
-        <video
-          ref={videoRef}
-          className={`object-contain ${
-            isFullscreen ? "w-screen h-screen" : "w-full h-full"
-          }`}
-          onClick={handleVideoClick}
-          onEnded={handleVideoEnded}
-          onTimeUpdate={handleTimeUpdate}
-          onLoadedMetadata={handleLoadedMetadata}
-          playsInline
-          muted={false} // Start unmuted for autoplay
-        >
-          <source src={videoSrc} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+       <video
+            ref={videoRef}
+            data-testid="video-player" // ✅ added for tests
+            className={`object-contain ${
+              isFullscreen ? "w-screen h-screen" : "w-full h-full"
+            }`}
+            onClick={handleVideoClick}
+            onEnded={handleVideoEnded}
+            onTimeUpdate={handleTimeUpdate}
+            onLoadedMetadata={handleLoadedMetadata}
+            playsInline
+            muted={false}
+          >
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
@@ -379,7 +387,7 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
         {showPosterOverlay && !isPlaying && (
           <div className="absolute inset-0 transition-opacity duration-500">
             <img
-              src="/images/mofaya.png"
+              src={bannerImage}
               alt="Movie Poster"
               className="w-full h-full object-cover"
             />
@@ -389,7 +397,7 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
 
         {/* Video Title & Description */}
         <div
-          className={`absolute pt-2 mb-25  md:w-full top-[19%] sm:top-[22%] md:top-[30%] lg:!top-[30%] ml-4 md:ml-16 transition-opacity duration-300 ${
+          className={`absolute pt-2 mb-25  md:w-full top-[19%] sm:top-[22%] md:top-[30%] lg:!top-[30%] ml-4 md:ml-8 transition-opacity duration-300 ${
             showContent
               ? isFullscreen
                 ? "opacity-100 top-[33%] md:!top-[43%] lg:!top-[43%]" // Different positioning when fullscreen
@@ -399,26 +407,28 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
         >
           <div className="flex-1 pb-5 md:pb-1 w-[50%]">
             <h1 className="text-[28px] font-extrabold text-white capitalize">
-              Mofaya
+              {title}
             </h1>
             <p className="text-white text-[14px] font-semibold mt-2">
-              Movie | 16 Yrs+
+              {metadata}
             </p>
-            <p className="text-white text-[12px] !line-clamp-3 max-w-md pt-1">
-              A young woman moves in with her boyfriend for a fresh start—only
-              to get pulled into a dangerous world of secrets, crime, and
-              betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where
-              every choice sparks more fire.
+            <p className="text-white !line-clamp-3 text-[12px] max-w-md pt-1">
+              {description}
             </p>
           </div>
           {/* cast */}
-           <CastDisplay/>
+          {hasCast ?
+            <CastDisplay/>
+            :
+            <div className="py-9"></div>
+          }
+          
           <div className="flex pt-1 items-center pr-10 cursor-pointer">
             <p className="text-white text-lg uppercase tracking-wide">
               stream on:
             </p>
 
-            <img src={"/logos/bazeLg.png"} className="w-[45px] h-[45px] ml-2" />
+            <img src={platformLogo} className="w-[45px] h-[45px] ml-2" />
           </div>
 
           <div className=" gap-4 justify-between flex-wrap pt-4 mb-6 md:pb-1 md:mb-0">
@@ -480,19 +490,20 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
               onMouseLeave={hideVolume}
             >
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsMuted(!isMuted)}
-                className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
-              >
-                {isMuted || volume === 0 ? (
-                  <VolumeX className="h-5 w-5 text-white" />
-                ) : volume < 0.5 ? (
-                  <Volume1 className="h-5 w-5 text-white" />
-                ) : (
-                  <Volume2 className="h-5 w-5 text-white" />
-                )}
-              </Button>
+                  aria-label="Volume" // ✅ added for tests
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsMuted(!isMuted)}
+                  className="cursor-pointer w-10 h-10 rounded-full bg-[#2C2C2C] hover:!bg-[#333333]"
+                >
+                  {isMuted || volume === 0 ? (
+                    <VolumeX className="h-5 w-5 text-white" />
+                  ) : volume < 0.5 ? (
+                    <Volume1 className="h-5 w-5 text-white" />
+                  ) : (
+                    <Volume2 className="h-5 w-5 text-white" />
+                  )}
+                </Button>
               {showVolumeSlider && (
                 <div
                   className={`transition-all duration-200 ${
@@ -520,17 +531,18 @@ export default function VybzVideoPlayer({ videoSrc }: VybzVideoPlayerProps) {
             <div className="flex items-center space-x-4 ml-4">
               {/* Play/Pause Button */}
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={handlePlayPause}
-                className="cursor-pointer w-12 h-12 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] "
-              >
-                {isPlaying ? (
-                  <Pause className="h-6 w-6 text-white" />
-                ) : (
-                  <Play className="h-6 w-6 text-white ml-1" />
-                )}
-              </Button>
+                  aria-label={isPlaying ? "Pause" : "Play"} // ✅ added for tests
+                  variant="ghost"
+                  size="icon"
+                  onClick={handlePlayPause}
+                  className="cursor-pointer w-12 h-12 rounded-full bg-[#2C2C2C] hover:!bg-[#333333]"
+                >
+                  {isPlaying ? (
+                    <Pause className="h-6 w-6 text-white" />
+                  ) : (
+                    <Play className="h-6 w-6 text-white ml-1" />
+                  )}
+                </Button>
 
               {/* Skip Button */}
               <Button

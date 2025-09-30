@@ -108,7 +108,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation'
 import { useAuth } from "@/lib/context/AuthContext"
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { toast } from "sonner"
@@ -180,7 +180,7 @@ export default function PreferencePage() {
     formState: { errors },
   } = useForm<GenreFormData >({
     //@ts-ignore
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as any,
     defaultValues: {
       selectedGenres: [],
     },
@@ -203,7 +203,7 @@ export default function PreferencePage() {
       }
     }
     getGenresList();
-  },[]);
+  },[dispatch]);
 
   const toggleGenre = (genre: string) => {
     const currentGenres = selectedGenres || []
@@ -214,7 +214,7 @@ export default function PreferencePage() {
     }
   }
 
-  const onSubmit = async (data: GenreFormData ) => {
+  const onSubmit:SubmitHandler<GenreFormData>  = async (data) => {
     console.log("Selected genres:", data.selectedGenres)
     if(!data.selectedGenres || data.selectedGenres.length === 0){
       toast.warning("preferences are empty");
@@ -241,7 +241,7 @@ export default function PreferencePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-2 py-12 sm:px-6 lg:px-4 lg:pt-40">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-2 py-12 sm:px-6 lg:px-4 lg:pt-20">
       <div className="mx-auto max-w-4xl">
         {/* Header Section */}
         <div className="text-center mb-12">

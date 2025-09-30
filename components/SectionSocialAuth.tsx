@@ -170,7 +170,7 @@ export const SectionSocialAuth = ({ loadingState }: { loadingState?: any }) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-start gap-4">
-        {showButton ? (
+        {/* {showButton ? (
           <IconButton
             className="p-4 !bg-[#35a839] !rounded-lg h-12 w-12"
             loading={loading}
@@ -184,7 +184,7 @@ export const SectionSocialAuth = ({ loadingState }: { loadingState?: any }) => {
               height={35}
             />
           </IconButton>
-        ) : null}
+        ) : null} */}
 
         <IconButton
           className="p-4 !bg-[#999999] dark:!bg-[#666666] !rounded-lg"

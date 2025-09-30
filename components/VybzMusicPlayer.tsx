@@ -372,6 +372,7 @@ export default function VybzMusicPlayer({
         {/* Hidden audio element */}
         <audio
           ref={audioRef}
+          data-testid="music-player"
           onEnded={handleAudioEnded}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
@@ -395,15 +396,15 @@ export default function VybzMusicPlayer({
 
         {/* Left Side Content - Album Info */}
         <div
-          className={`absolute w-full left-4 pr-4 md:left-16 top-[54%] transform -translate-y-1/2 flex items-center space-x-6 transition-opacity duration-300 ${
+          className={`absolute w-full left-2 pr-4 md:left-8 top-[77%] md:top-[65%] transform -translate-y-1/2 flex items-center space-x-6 transition-opacity duration-300 ${
             showContent ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Album Details */}
           <div className="relative z-10 w-full h-full flex flex-col justify-end">
-            <div className="flex flex-wrap items-end gap-6 mb-20 md:mb-8">
+            <div className="flex flex-wrap items-end gap-6 mb-5 md:mb-8">
               {/* Album Cover */}
-              <div className="flex-shrink-0 flex items-center w-35 h-50 overflow-hidden">
+              <div className="flex-shrink-0 flex items-center mb-4 w-34 h-46 md:w-35 md:h-50 overflow-hidden">
                 <img
                   src={albumImage}
                   alt="DISKO Cover"
@@ -422,6 +423,8 @@ export default function VybzMusicPlayer({
                   </p>
                   <p className="text-white text-[10px] md:text-[12px] mt-2">{albumInfo}</p>
 
+                  {/* Description - New Addition */}
+                
                   <p className="text-white text-[12px] mt-1 line-clamp-3  max-w-md leading-relaxed">
                     {description}
                   </p>
@@ -435,17 +438,13 @@ export default function VybzMusicPlayer({
                     <p className="text-white text-[14px] uppercase tracking-wide mr-3">
                       stream on:
                     </p>
-                    <img
-                      src={platformLogo}
-                      className="w-[45px] h-[45px]"
-                      alt={title}
-                    />
+                    <img src={platformLogo} className="w-[35px] h-[35px] md:w-[45px] md:h-[45px]" alt={title} />
                   </div>
                 </div>
               </div>
             </div>
             {/* Action Buttons */}
-            <div className="flex gap-4 pt-5 md:pt-1 pb-13 md:pb-4 lg:pb-4 mx-auto md:mx-0">
+            <div className="flex gap-4 pt-8 md:pt-1 pb-4 md:pb-4 lg:pb-15 mx-auto md:mx-0">
               <Button
                 onClick={() => onSubscribeClick()}
                 className="bg-[#C62676] text-xs hover:bg-[#e91e63]/90 text-white px-8 h-10 rounded-full font-semibold w-40 cursor-pointer"
@@ -466,12 +465,12 @@ export default function VybzMusicPlayer({
 
         {/* Right Side - Switch to Video Button */}
         <div
-          className={`absolute right-4 md:right-16 top-1/2 transition-opacity duration-300 ${
+          className={`absolute right-4 md:right-16 top-[67%] transition-opacity duration-300 ${
             showContent ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Right Side Controls */}
-          <div className="flex flex-col flex-wrap items-end gap-4 mt-[60px] md:mt-0 lg:mt-0">
+          <div className="flex flex-col flex-wrap items-end gap-4 mt-[95px] md:mt-0 lg:mt-0">
             {/* Audio/Video Controls */}
             <div className="flex items-center gap-3">
               <Button className="bg-[#2C2C2C] hover:!bg-[#333333] dark:bg-[#2C2C2C] text-white px-4 py-2 rounded-[5px] text-xs  border border-white/10 cursor-pointer">
@@ -481,7 +480,7 @@ export default function VybzMusicPlayer({
               <Button
                 variant="ghost"
                 size="icon"
-                className="cursor-pointer text-white border-2 border-white rounded-full cursor-pointer w-10 h-10"
+                className="cursor-pointer text-white border-2 border-white rounded-full w-10 h-10"
               >
                 <HiOutlineSpeakerXMark />
               </Button>
@@ -621,7 +620,7 @@ export default function VybzMusicPlayer({
           variant="ghost"
           size="icon"
           onClick={handlePlayPause}
-          className={`cursor-pointer absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] transition-all duration-300 ${
+          className={`cursor-pointer bottom-8 md:bottom-16   absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11 h-11 lg:w-16 lg:h-16 rounded-full bg-[#2C2C2C]  hover:!bg-[#333333] transition-all duration-300 ${
             (isHovered && showControls) || !isPlaying
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"

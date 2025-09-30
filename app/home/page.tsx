@@ -18,12 +18,18 @@ import SectionHeader from "@/components/SectionHeader";
 import BillboardV2 from "@/components/BillBoardV2";
 import BillBoardV3 from "@/components/BillBoardV3";
 import PartnerBanner from "@/components/PartnerBanner";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "@/hooks/redux";
+import { getCatalog, getTopBarContent } from "@/store/thunks/catalogThunks";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function Home() {
    const Router=useRouter();
-    
+     const dispatch = useAppDispatch();
+    const [loading, setLoading] = useState(false);
+    const [topBarContent, setTopBarContent] = useState<any>(null);
+    const [catalog, setCatalog] = useState<any>(null);
 
      const onViewMoreClick = () =>{
       Router.push(`/partners`)
@@ -44,6 +50,37 @@ export default function Home() {
       image: "/images/safAd3.png",
     },
   ];
+
+  useEffect(()=>{
+    const fetchTopBar = async () =>{
+      try{
+        setLoading(true);
+        const res = await dispatch(getTopBarContent()).unwrap();
+         console.log(res);
+         setTopBarContent(res?.data)
+      }catch (error) {
+        console.error('Failed to fetch genres', error);
+      } finally {
+          setLoading(false);
+      }
+    }
+
+    const fetchCatalog = async () =>{
+      try{
+         setLoading(true);
+          const res = await dispatch(getCatalog()).unwrap();
+          console.log(res);
+          setCatalog(res?.data)
+      }catch(error) {
+        console.error('Failed to fetch genres', error);
+      }finally {
+          setLoading(false);
+      }
+    }
+
+    fetchTopBar();
+    fetchCatalog();
+  },[])
 
 
   return (

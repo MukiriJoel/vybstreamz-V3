@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "@/lib/context/ThemeContext";
 import TopProfileMenu from "./TopProfileMenu";
 import { FaTimes } from "react-icons/fa";
+import { useAppSelector } from "@/hooks/redux";
 
 const NavBarMini = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,6 +27,8 @@ const NavBarMini = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
   const router = useRouter();
+  const {userProfiles}=useAppSelector((state)=>state.auth);
+  const avatar=userProfiles?.[0]?.avatar;
 
   const navItems = [
     {
@@ -88,7 +91,7 @@ const NavBarMini = () => {
   };
 
   const handleShoppingBagClick = () => {
-    router.push("/payment");
+    router.push('/auth/profile?tab=Subscriptions')
   };
 
   // Dynamic background detection
@@ -256,7 +259,7 @@ const NavBarMini = () => {
                 className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer"
               >
                 <AvatarImage
-                  src="/logos/user-profile-illustration.png"
+                  src={avatar}
                   className="object-cover"
                 />
                 <AvatarFallback>U</AvatarFallback>

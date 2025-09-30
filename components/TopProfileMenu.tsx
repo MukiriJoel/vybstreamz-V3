@@ -24,7 +24,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
     const [loading, setLoading] = useState(false)
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const {user,userProfiles,isAuthenticated,activeProfile}=useAppSelector((state)=>state.auth);
-    
+    const avatar=userProfiles?.[0]?.avatar
        
     const onProfileClick = () => {
         
@@ -139,7 +139,7 @@ const TopProfileMenu = ({closeProfileModal}: TopProfileMenuProps) => {
                  <div onClick={()=>onProfileClick()} className="hover:bg-[#C62676]/20 cursor-pointer flex py-2 px-0 justify-between items-center">
                 <div className="flex justify-start">
                   <Avatar className="h-[65px] w-[65px] md:h-[65px] md:w-[65px] cursor-pointer">
-                    <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
+                    <AvatarImage src={avatar} className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
                   <div className="block items-center pt-3 pl-3">

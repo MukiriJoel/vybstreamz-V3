@@ -15,6 +15,7 @@ import { useAuth } from "@/lib/context/AuthContext";
 
 import { useTheme } from "@/lib/context/ThemeContext";
 import TopProfileMenu from "./TopProfileMenu";
+import { useAppSelector } from "@/hooks/redux";
 
 const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,7 +25,9 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const pathname = usePathname();
   const router=useRouter();
+  const {userProfiles}=useAppSelector((state)=>state.auth);
 
+  const avatar=userProfiles?.[0]?.avatar
   const navItems = [
     {
       name: "videos",
@@ -53,7 +56,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   ]
 
   const goToNotifications = () =>{
-    router.push("/profile/notifications")
+    router.push("/auth/profile/notifications")
   }
 
    const toggleSearchBar = useCallback(() => {
@@ -71,7 +74,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
     }
 
     const handleShoppingBagClick = () => {
-        router.push('/payment')
+        router.push('/auth/profile?tab=Subscriptions')
     }
 
     const onAvatarClick = () =>{
@@ -232,7 +235,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
               {/* <Link href={isLoggedIn ? "/profile" : "/createAccount"}> */}
 
                   <Avatar onClick={()=>onAvatarClick()} className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer">
-                    <AvatarImage src="/logos/user-profile-illustration.png" className="object-cover" />
+                    <AvatarImage src={avatar} className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
               {/* </Link> */}

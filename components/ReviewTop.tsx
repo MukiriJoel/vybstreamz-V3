@@ -2,8 +2,11 @@ import { MdSend } from "react-icons/md";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import RatingDisplay from "./RatingDisplay";
+import { useAppSelector } from "@/hooks/redux";
 
 const ReviewTop = () => {
+   const {userProfiles}=useAppSelector((state)=>state.auth);
+    const avatar=userProfiles?.[0]?.avatar;
   return (
     <div className="flex w-full flex-col lg:flex-row lg:flex-wrap justify-between gap-4">
       <div className="block w-full lg:w-auto">
@@ -18,7 +21,7 @@ const ReviewTop = () => {
   {/* User Avatar */}
   <div className="w-12 h-12 items-center sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0">
     <img
-      src={"/images/dp.png"}
+      src={avatar}
       className="object-cover w-full h-full"
       alt="User profile"
     />

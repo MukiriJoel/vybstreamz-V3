@@ -41,7 +41,7 @@ export default function ReviewsSection() {
   ]
 
   return (
-    <div className="px-2">
+    <div className="">
 
     {/* Reviews List */}
       <div className="bg-[#E5E5E5] dark:bg-[#333333] rounded-lg px-6 py-8">

@@ -17,7 +17,7 @@ import MusicSlider from "@/components/MusicSlider";
 import { useAuth } from "@/lib/context/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { store } from "@/store";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { requestOTP } from "@/store/thunks/authThunks";
 import { toast } from "sonner";
 import { Controller, useForm } from "react-hook-form";
@@ -74,12 +74,14 @@ const schema = yup.object().shape({
 
 export default function ProfileContent() {
   const [activeTab, setActiveTab] = useState("Account");
+
   const [showUnsubscribeModal, setShowUnsubscribeModal] = useState(false);
   const {  logout } = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [verifyPhoneData, setVerifyPhoneData] = useState<any>();
+  
 
   const tabs = ["Account", "My Favorites", "Subscriptions"];
 
@@ -152,6 +154,7 @@ export default function ProfileContent() {
   console.log("state", state);
   const user = state?.auth?.user;
   const userNumber = state.auth?.user?.phone;
+  const avatar =state?.auth?.userProfiles?.[0]?.avatar;
 
   const onChangePhoneClick = () => {
     submitRequestOTP();
@@ -224,7 +227,7 @@ export default function ProfileContent() {
           className="w-20 h-20 sm:w-40 sm:h-40 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0"
         >
           <img
-            src="/logos/user-profile-illustration.png"
+            src={avatar}
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -341,9 +344,9 @@ export default function ProfileContent() {
                   <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Amount
                   </th>
-                  <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
+                  {/* <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Expiry Date
-                  </th>
+                  </th> */}
                   <th className="text-left py-4 px-4 font-normal text-[#2C2C2C] dark:text-[#FFFFFF]">
                     Status
                   </th>
@@ -381,9 +384,9 @@ export default function ProfileContent() {
                     <td className="py-6 px-4 text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF] font-normal">
                       {subscription.amount}
                     </td>
-                    <td className="py-6 px-4 text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF]">
+                    {/* <td className="py-6 px-4 text-[#2C2C2C] group-hover:text-white dark:text-[#FFFFFF]">
                       {subscription.expiryDate}
-                    </td>
+                    </td> */}
                     <td className="py-6 px-4">
                       <span className="inline-flex items-center">
                         <span className="w-2 h-2 bg-[#06a54c] group-hover:bg-[#2ee17c] rounded-full mr-2"></span>
@@ -476,12 +479,12 @@ export default function ProfileContent() {
                       {subscription.amount}
                     </p>
                   </div>
-                  <div className="flex flex-col items-end">
+                  {/* <div className="flex flex-col items-end">
                     <p className="text-sm text-[#696969] mb-1">Expiry Date</p>
                     <p className="text-[#2C2C2C] dark:text-[#FFFFFF]">
                       {subscription.expiryDate}
                     </p>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="flex items-center justify-between">

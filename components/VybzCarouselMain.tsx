@@ -15,19 +15,46 @@ import VybzCarouselPodCast from "./VybzCarouselPodcast";
 import CarouselDots from "./CarouselDots";
 import { useRouter } from "next/navigation";
 
-export interface ICarousel {
+export interface ICarouselItem{
   id: number;
   title: string;
-  description?: string;
-  category?: string;
-  ageRating?: string;
-  streamingPlatform?: string;
-  platformLogo?: string;
-  backgroundImage?: string;
+  provider:string;
+  releaseDates:string;
+  trending:boolean;
+  cspid:string;
+  contentCategory:string;
+  comments:string;
+  contentDetails:{
+    contentLength:string,
+    contentType:string,
+    providerContentUrl:string,
+    images:[{
+      url:string,
+      title:string
+    }],
+    thumbnails:[{
+      url:string,
+      width:string,
+      height:string
+    }],
+    genres:string[],
+    audioLanguages:string[],
+    subTitles:string[],
+    artists:string[],
+    trailers:string[],
+    casts:string[],
+    samplePaths:string[] 
+  };
+  contentRating:{
+    kfcbRating:string,    
+  };
+  contentWarning:[];
+  description?: string;  
 }
 
+
 interface VybzCarouselMainProps {
-  slides?: ICarousel[];
+  slides?: ICarouselItem[];
   delay?: number;
   transitionSpeed?: number;
 }
@@ -50,56 +77,56 @@ const VybzCarouselMain = ({
   };
 
   // Default slide if no slides provided
-  const defaultSlide: ICarousel = {
-    id: 1,
-    title: "Squid Game 3",
-    description:
-      "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-    category: "Game",
-    ageRating: "16 Yrs +",
-    streamingPlatform: "Netflix",
-    platformLogo: "/logos/netflix.png",
-    backgroundImage: "/images/netflixGames.png",
+  const defaultSlide = {
+    // id: 1,
+    // title: "Squid Game 3",
+    // description:
+    //   "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
+    // category: "Game",
+    // ageRating: "16 Yrs +",
+    // streamingPlatform: "Netflix",
+    // platformLogo: "/logos/netflix.png",
+    // backgroundImage: "/images/netflixGames.png",
   };
 
-  slides = [
-    {
-      id: 1,
-      title: "Squid Game 3",
-      description:
-        "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-      category: "Game",
-      ageRating: "16 Yrs +",
-      backgroundImage: "/images/netflixGames.png",
-      streamingPlatform: "Netflix",
-      platformLogo: "/logos/netflix.png",
-    },
-    {
-      id: 2,
-      title: "Mofaya",
-      description:
-        "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-      category: "Movie",
-      ageRating: "16 Yrs +",
-      backgroundImage: "/images/mofaya.png",
-      streamingPlatform: "Baze",
-      platformLogo: "/logos/bazeLg.png",
-    },
-    {
-      id: 3,
-      title: "Dora",
-      description:
-        "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-      category: "Movie",
-      ageRating: "16 Yrs +",
-      backgroundImage: "/images/dora.png",
-      streamingPlatform: "Baze",
-      platformLogo: "/logos/bazeLg.png",
-    },
-  ];
+  // slides = [
+  //   {
+  //     id: 1,
+  //     title: "Squid Game 3",
+  //     description:
+  //       "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
+  //     category: "Game",
+  //     ageRating: "16 Yrs +",
+  //     backgroundImage: "/images/netflixGames.png",
+  //     streamingPlatform: "Netflix",
+  //     platformLogo: "/logos/netflix.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Mofaya",
+  //     description:
+  //       "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
+  //     category: "Movie",
+  //     ageRating: "16 Yrs +",
+  //     backgroundImage: "/images/mofaya.png",
+  //     streamingPlatform: "Baze",
+  //     platformLogo: "/logos/bazeLg.png",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Dora",
+  //     description:
+  //       "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
+  //     category: "Movie",
+  //     ageRating: "16 Yrs +",
+  //     backgroundImage: "/images/dora.png",
+  //     streamingPlatform: "Baze",
+  //     platformLogo: "/logos/bazeLg.png",
+  //   },
+  // ];
 
-  const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
-
+  const slidesToRender = slides.length > 0 ? slides : [];
+console.log("carouselSlides",slides)
   const settings: SlickSettings = {
     dots: false,
     fade: true,
@@ -158,7 +185,7 @@ const VybzCarouselMain = ({
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: `url(${slide.backgroundImage})`
+                backgroundImage: `url(${slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.images?.[0]?.url})`
               }}
             >
               <div className="absolute inset-0 bg-black/50" />
@@ -200,7 +227,7 @@ const VybzCarouselMain = ({
                       )}ms`,
                     }}
                   >
-                    {slide.category} | {slide.ageRating}
+                    {slide?.contentCategory} | {slide?.contentRating?.kfcbRating}
                   </p>
                   <p
                     className={`text-white text-[12px] max-w-md pt-1 transition-all ease-out ${
@@ -219,7 +246,7 @@ const VybzCarouselMain = ({
                       )}ms`,
                     }}
                   >
-                    {slide.description}
+                    {slide?.description}
                   </p>
                 </div>
 
@@ -243,12 +270,13 @@ const VybzCarouselMain = ({
                   <p className="text-white/70 text-[14px] uppercase tracking-wide">
                     stream on:
                   </p>
-                  {slide.platformLogo && (
+                 
                     <img
-                      src={slide.platformLogo}
+                      src={slide?.contentDetails?.images?.[0]?.url}
+                      alt={slide?.contentDetails?.images?.[0]?.url}
                       className="w-[45px] h-[45px] ml-2"
                     />
-                  )}
+                  
                 </div>
               </div>
 

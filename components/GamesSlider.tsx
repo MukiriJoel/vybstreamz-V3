@@ -1,7 +1,48 @@
 import { useRouter } from "next/navigation";
 import RatingDisplay from "./RatingDisplay";
 
-const GamesSlider = () => {
+export interface IGamesItem{
+  id: number;
+  title: string;
+  provider:string;
+  releaseDates:string;
+  trending:boolean;
+  cspid:string;
+  contentCategory:string;
+  comments:string;
+  contentDetails:{
+    contentLength:string,
+    contentType:string,
+    providerContentUrl:string,
+    images:[{
+      url:string,
+      title:string
+    }],
+    thumbnails:[{
+      url:string,
+      width:string,
+      height:string
+    }],
+    genres:string[],
+    audioLanguages:string[],
+    subTitles:string[],
+    artists:string[],
+    trailers:string[],
+    casts:string[],
+    samplePaths:string[] 
+  };
+  contentRating:{
+    kfcbRating:string,    
+  };
+  contentWarning:[];
+  description?: string;  
+}
+
+interface SliderProps{
+  slides:IGamesItem[]
+}
+
+const GamesSlider = ({slides=[]}:SliderProps) => {
   const router=useRouter();
 
   const onGameClick = (id:any) =>{
@@ -12,106 +53,7 @@ const GamesSlider = () => {
     <>
       <div className="overflow-x-auto scrollbar-hide  overflow-y-hidden">
         <div className="flex gap-3 md:gap-4 text-center min-w-max h-[190px] md:!h-auto">
-          {[
-            {
-              
-              title: "Fortnite",
-              image: "/images/fortnite.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["shooter", "action", "1st person"],
-            },
-            {
-              title: "Among Us",
-              image: "/images/amongUs.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["rpg", "action"],
-            },
-            {
-              title: "Far Cry 4",
-              image: "/images/farcry.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["horror", "1st person"],
-            },
-            {
-              title: "once upon a fime",
-              image: "/images/once.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["adventure", "family"],
-            },
-            {
-              title: "super mario galaxy",
-              image: "/images/mario.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["adventure", "family"],
-            },
-            {
-              title: "Squid Game 3",
-              image: "/images/squid.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["action", "3d"],
-            },
-             {
-              title: "Fortnite",
-              image: "/images/fortnite.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["shooter", "action", "1st person"],
-            },
-            {
-              title: "Among Us",
-              image: "/images/amongUs.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["rpg", "action"],
-            },
-            {
-              title: "Far Cry 4",
-              image: "/images/farcry.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["horror", "1st person"],
-            },
-            {
-              title: "once upon a fime",
-              image: "/images/once.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["adventure", "family"],
-            },
-            {
-              title: "super mario galaxy",
-              image: "/images/mario.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["adventure", "family"],
-            },
-            {
-              title: "Squid Game 3",
-              image: "/images/squid.png",
-              partner: "/logos/vuclip.png",
-              description:
-                "The journey of a couple towards their wedding, in their planning they...",
-              genres: ["action", "3d"],
-            },
-            
-          ].map((item, index) => (
+          {slides.map((item, index) => (
             <div
               key={index}
               className="pt-3 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
@@ -119,7 +61,7 @@ const GamesSlider = () => {
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onGameClick(index)}>
                 <img
-                  src={item.image || "/placeholder.svg"}
+                  src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                 />
@@ -127,7 +69,7 @@ const GamesSlider = () => {
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
                   <img
-                    src={item.partner}
+                    src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url }
                     className="w-full h-full object-cover"
                     alt="Partner logo"
                   />
@@ -143,7 +85,7 @@ const GamesSlider = () => {
                 >
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                     <img
-                      src={item.image}
+                      src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url }
                       className="w-full h-[200%] object-cover"
                     />
                   </div>
@@ -163,7 +105,7 @@ const GamesSlider = () => {
                       </h3>
                       {/* genres */}
                       <div className="flex gap-1 ">
-                        {item.genres.map((genre, index) => (
+                        {item.contentDetails?.genres.map((genre, index) => (
                           <div
                             key={index}
                             className="py-1 px-2 rounded-lg bg-[#333333] dark:bg-[#999999] text-white !font-normal !text-[10px] capitalize"
@@ -173,7 +115,7 @@ const GamesSlider = () => {
                         ))}
                       </div>
                       <div className="py-1">
-                        <RatingDisplay rating={4} />
+                        {/* <RatingDisplay rating={4} /> */}
                       </div>
                       <p className="!text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%]">
                         {item.description}
@@ -187,7 +129,7 @@ const GamesSlider = () => {
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                             <img
-                              src={item.partner}
+                              src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
                               className="w-full h-full object-cover"
                             />
                           </div>

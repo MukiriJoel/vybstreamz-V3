@@ -16,24 +16,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState } from "react";
 import CarouselDots from "./CarouselDots";
 import { useRouter } from "next/navigation";
-
-export interface ICarousel {
-  id: number;
-  title: string;
-  subtitle: string;
-  duration?: string;
-  category?: string;
-  tracks?: string;
-  genre?: string;
-  ageRating?: string;
-  streamingPlatform?: string;
-  platformLogo?: string;
-  cover?: string;
-  backgroundImage?: string;
-}
+import { ICarouselItem } from "./VybzCarouselMain";
 
 interface VybzCarouselMusicProps {
-  slides?: ICarousel[];
+  slides?: ICarouselItem[];
   delay?: number;
 }
 
@@ -45,62 +31,53 @@ const VybzCarouselMusic = ({
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Default slide if no slides provided
-  const defaultSlide: ICarousel = {
-    id: 1,
-    title: "disko",
-    subtitle: "Kodong Klan",
-    duration: "1hr 45min",
-    category: "Album",
-    tracks: "10",
-    genre: "Hiphop",
-    streamingPlatform: "Spotify",
-    platformLogo: "/logos/spotify.png",
-    backgroundImage: "/images/albumCover.png",
+  const defaultSlide = {
+
   };
 
-  slides = [
-    {
-      id: 1,
-      title: "disko",
-      subtitle: "Kodong Klan",
-      duration: "1hr 45min",
-      category: "Album",
-      tracks: "10",
-      genre: "Hiphop",
-      streamingPlatform: "Spotify",
-      platformLogo: "/logos/spotify.png",
-      cover: "/images/albumCover.png",
-      backgroundImage: "/images/albumCover.png",
-    },
-    {
-      id: 2,
-      title: "super morio",
-      subtitle: "matata",
-      duration: "1hr 45min",
-      category: "Album",
-      tracks: "10",
-      genre: "Hiphop",
-      streamingPlatform: "Spotify",
-      platformLogo: "/logos/spotify.png",
-      cover: "/images/albumCover.png",
-      backgroundImage: "/images/matata.png",
-    },
-    {
-      id: 3,
-      title: "maisha ya stunna",
-      subtitle: "lil maina",
-      duration: "1hr 45min",
-      category: "Album",
-      tracks: "10 songs",
-      genre: "Hiphop",
-      streamingPlatform: "Spotify",
-      platformLogo: "/logos/spotify.png",
-      cover: "/images/albumCover.png",
-      backgroundImage: "/images/albumCover.png",
-    },
-  ];
+  // slides = [
+  //   {
+  //     id: 1,
+  //     title: "disko",
+  //     subtitle: "Kodong Klan",
+  //     duration: "1hr 45min",
+  //     category: "Album",
+  //     tracks: "10",
+  //     genre: "Hiphop",
+  //     streamingPlatform: "Spotify",
+  //     platformLogo: "/logos/spotify.png",
+  //     cover: "/images/albumCover.png",
+  //     backgroundImage: "/images/albumCover.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "super morio",
+  //     subtitle: "matata",
+  //     duration: "1hr 45min",
+  //     category: "Album",
+  //     tracks: "10",
+  //     genre: "Hiphop",
+  //     streamingPlatform: "Spotify",
+  //     platformLogo: "/logos/spotify.png",
+  //     cover: "/images/albumCover.png",
+  //     backgroundImage: "/images/matata.png",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "maisha ya stunna",
+  //     subtitle: "lil maina",
+  //     duration: "1hr 45min",
+  //     category: "Album",
+  //     tracks: "10 songs",
+  //     genre: "Hiphop",
+  //     streamingPlatform: "Spotify",
+  //     platformLogo: "/logos/spotify.png",
+  //     cover: "/images/albumCover.png",
+  //     backgroundImage: "/images/albumCover.png",
+  //   },
+  // ];
 
-  const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
+  const slidesToRender = slides.length > 0 ? slides : [];
 
   const settings: SlickSettings = {
     dots: false,
@@ -171,7 +148,7 @@ const VybzCarouselMusic = ({
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url(${slide.backgroundImage})`,
+                  backgroundImage: `url(${slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.images?.[0]?.url})`,
                 }}
               >
                 <div className="absolute inset-0 bg-black/50"></div>
@@ -184,8 +161,8 @@ const VybzCarouselMusic = ({
                     {/* Album Cover */}
                     <div className="flex-shrink-0 flex items-center w-35 h-50 overflow-hidden">
                       <img
-                        src={slide.cover}
-                        alt="DISKO Cover"
+                        src={slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.thumbnails?.[0]?.url}
+                        alt={slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.thumbnails?.[0]?.url}
                         className="w-full h-full rounded-lg object-cover shadow-lg"
                       />
                     </div>
@@ -198,11 +175,10 @@ const VybzCarouselMusic = ({
                           {slide.title}
                         </h1>
                         <p className="text-white text-[22px] mt-2 !font-normal leading-tight capitalize">
-                          {slide.subtitle}
+                          {slide.title}
                         </p>
                         <p className="text-white text-[12px] mt-2">
-                          {slide.category} | {slide.duration} | {slide.tracks} |{" "}
-                          {slide.genre}
+                            {slide?.contentCategory} | {slide?.contentRating?.kfcbRating}
                         </p>
                       </div>
 
@@ -214,9 +190,9 @@ const VybzCarouselMusic = ({
                             stream on:
                           </p>
                           <img
-                            src={slide.platformLogo}
+                            src={slide?.contentDetails?.images?.[0]?.url}
                             className="w-[45px] h-[45px]"
-                            alt={slide.streamingPlatform}
+                            alt={slide?.contentDetails?.images?.[0]?.url}
                           />
                         </div>
 

@@ -12,10 +12,16 @@ import * as dashjs from "dashjs";
 export interface ICarousel {
   id: number;
   title: string;
-  description?: string;
-  category?: string;
-  ageRating?: string;
-  streamingPlatform?: string;
+  provider:string;
+  releaseDates:string;
+  trending:boolean;
+  cspid:string;
+  contentCategory:string;
+  comments:string;
+  contentDetails:object;
+  contentRating:object;
+  contentWarning:[];
+  description?: string;  
   platformLogo?: string;
   backgroundImage?: string;
   backgroundVideo?: string; // old YouTube iframe URL
@@ -33,7 +39,7 @@ interface BillBoardV3Props {
 }
 
 const BillBoardV3 = ({
-  slides = [],
+  slides=[],
   delay = 8000,
   autoplay = true,
   transitionSpeed = 1000,
@@ -57,44 +63,44 @@ const BillBoardV3 = ({
 
   // Default slides with working HLS URLs
   const defaultSlides: ICarousel[] = [
-    {
-      id: 1,
-      title: "Squid Game 3",
-      description:
-        "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal.",
-      category: "Game",
-      ageRating: "16 Yrs +",
-      hlsUrl: "https://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8",
-      backgroundImage: "/images/netflixGames.png",
-      backgroundType: "video",
-      streamingPlatform: "Netflix",
-      platformLogo: "/logos/netflix.png",
-    },
-    {
-      id: 2,
-      title: "Mofaya",
-      description:
-        "A gritty drama set in modern Kenya, where every choice sparks more fire.",
-      category: "Movie",
-      ageRating: "16 Yrs +",
-      hlsUrl: "https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8",
-      backgroundImage: "/images/mofaya.png",
-      backgroundType: "video",
-      streamingPlatform: "Baze",
-      platformLogo: "/logos/bazeLg.png",
-    },
-    {
-      id: 3,
-      title: "Dora",
-      description: "A modern-day tale of discovery and danger.",
-      category: "Movie",
-      ageRating: "16 Yrs +",
-      hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-      backgroundImage: "/images/dora.png",
-      backgroundType: "video",
-      streamingPlatform: "Baze",
-      platformLogo: "/logos/bazeLg.png",
-    },
+    // {
+    //   id: 1,
+    //   title: "Squid Game 3",
+    //   description:
+    //     "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal.",
+    //   contentCategory: "Game",
+    //   ageRating: "16 Yrs +",
+    //   hlsUrl: "https://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8",
+    //   backgroundImage: "/images/netflixGames.png",
+    //   backgroundType: "video",
+    //   streamingPlatform: "Netflix",
+    //   platformLogo: "/logos/netflix.png",
+    // },
+    // {
+    //   id: 2,
+    //   title: "Mofaya",
+    //   description:
+    //     "A gritty drama set in modern Kenya, where every choice sparks more fire.",
+    //   category: "Movie",
+    //   ageRating: "16 Yrs +",
+    //   hlsUrl: "https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8",
+    //   backgroundImage: "/images/mofaya.png",
+    //   backgroundType: "video",
+    //   streamingPlatform: "Baze",
+    //   platformLogo: "/logos/bazeLg.png",
+    // },
+    // {
+    //   id: 3,
+    //   title: "Dora",
+    //   description: "A modern-day tale of discovery and danger.",
+    //   category: "Movie",
+    //   ageRating: "16 Yrs +",
+    //   hlsUrl: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
+    //   backgroundImage: "/images/dora.png",
+    //   backgroundType: "video",
+    //   streamingPlatform: "Baze",
+    //   platformLogo: "/logos/bazeLg.png",
+    // },
   ];
 
   const slidesToRender = slides.length > 0 ? slides : defaultSlides;
@@ -210,8 +216,9 @@ const BillBoardV3 = ({
         dashPlayer.initialize(videoEl, slide.dashUrl, true);
         dashRef.current = dashPlayer;
       }
-    } else if (slide.mp4Url) {
-      videoEl.src = slide.mp4Url;
+    } else if((slide?.contentDetails as any)?.contentType==="mp4") {
+      console.log("slide has mp4")
+      videoEl.src = (slide?.contentDetails as any)?.providerContentUrl+'/'+(slide?.contentDetails as any)?.trailers[0];
     }
 
     // Add video event listeners for debugging
@@ -245,7 +252,8 @@ const BillBoardV3 = ({
 
   // FIXED: Background renderer without video element inside
   const renderBackground = (slide: ICarousel, index: number) => {
-    const isVideo = slide.backgroundType === "video";
+ 
+    const isVideo = (slide?.contentDetails as any)?.contentType === "mp4";
 
     if (isVideo) {
       return (
@@ -264,7 +272,7 @@ const BillBoardV3 = ({
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
           style={{
-            backgroundImage: `url(${slide.backgroundImage})`,
+            backgroundImage: `url(${(slide?.contentDetails as any)?.providerContentUrl+(slide?.contentDetails as any)?.images?.[0]?.url})`,
             transform: index === activeIndex ? "scale(1)" : "scale(1.1)",
           }}
         />
@@ -295,7 +303,7 @@ const BillBoardV3 = ({
 
   // Check if current slide should show video
   const currentSlide = slidesToRender[activeIndex];
-  const shouldShowVideo = currentSlide?.backgroundType === "video";
+  const shouldShowVideo = (currentSlide?.contentDetails as any)?.contentType === "mp4";
 
   return (
     <div
@@ -368,7 +376,7 @@ const BillBoardV3 = ({
                       )}ms`,
                     }}
                   >
-                    {slide.category} | {slide.ageRating}
+                    {slide?.contentCategory} | {(slide?.contentRating as any)?.kfcbRating}
                   </p>
                   <p
                     className={`text-white text-[12px] max-w-md pt-1 transition-all ease-out ${
@@ -387,7 +395,7 @@ const BillBoardV3 = ({
                       )}ms`,
                     }}
                   >
-                    {slide.description}
+                    {slide?.description}
                   </p>
                 </div>
                 <div
@@ -414,7 +422,7 @@ const BillBoardV3 = ({
                     <img
                       src={slide.platformLogo}
                       className="w-[45px] h-[45px] ml-2"
-                      alt={`${slide.streamingPlatform} logo`}
+                      alt={`${slide?.provider} logo`}
                     />
                   )}
                 </div>

@@ -27,6 +27,7 @@ import { useRouter } from "next/navigation";
 import ReviewsSection from "@/components/reviews-section";
 import SectionHeader from "@/components/SectionHeader";
 import VybzVideoPlayer from "@/components/VybzVideoPlayer";
+import ReviewSlider from "@/components/ReviewSlider";
 
 export default function MovieView(){
   const Router = useRouter();
@@ -55,9 +56,10 @@ export default function MovieView(){
         <section>
           <RatingsComponent />
         </section>
-        <section>
-          <ReviewsSection />
-        </section>
+         <section>
+                <SectionHeader  viewButton={true} title="user reviews" route={"/viewMore/ContentReview"}/>
+                <ReviewSlider/>
+            </section>
       </main>
     </>
   );

@@ -1,6 +1,47 @@
 import { useRouter } from "next/navigation";
+export interface IGamesItem{
+  id: number;
+  title: string;
+  provider:string;
+  releaseDates:string;
+  trending:boolean;
+  cspid:string;
+  contentCategory:string;
+  comments:string;
+  contentDetails:{
+    contentLength:string,
+    contentType:string,
+    providerContentUrl:string,
+    images:[{
+      url:string,
+      title:string
+    }],
+    thumbnails:[{
+      url:string,
+      width:string,
+      height:string
+    }],
+    genres:string[],
+    audioLanguages:string[],
+    subTitles:string[],
+    artists:string[],
+    trailers:string[],
+    casts:string[],
+    samplePaths:string[] 
+  };
+  contentRating:{
+    kfcbRating:string,    
+  };
+  contentWarning:[];
+  description?: string;  
+}
 
-const EducationSlider = () =>{
+interface SliderProps{
+  slides:IGamesItem[]
+}
+
+
+const EducationSlider = ({slides=[]}:SliderProps) =>{
   const router =useRouter();
 
     const onHandleAuthorClick = (id:number) =>{
@@ -17,182 +58,7 @@ const EducationSlider = () =>{
         <>
             <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
                 <div className="flex gap-3 md:gap-4 text-center min-w-max">
-                {[
-                       {
-                          id: 1,
-                          title: "rich dad poor dad",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/robertSm.png",
-                        backgroundImage: "/images/robert.png"
-                        },
-                        {
-                          id: 2,
-                          title: "1000 days",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu2.png",
-                        backgroundImage: "/images/robert.png"
-                        },
-                        {
-                          id: 4,
-                          title: "life in heaven",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu1.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 5,
-                          title: "chalk circle",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu3.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 6,
-                          title: "free bird",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu4.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 7,
-                          title: "the midnight club",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu5.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 8,
-                          title: "solitaire",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu6.png",
-                        backgroundImage: "/images/robert.png"
-                        },
-                         {
-                          id: 9,
-                          title: "rich dad poor dad",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/robertSm.png",
-                        backgroundImage: "/images/robert.png"
-                        },
-                        {
-                          id: 10,
-                          title: "1000 days",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu2.png",
-                        backgroundImage: "/images/robert.png"
-                        },
-                        {
-                          id: 11,
-                          title: "life in heaven",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu1.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 12,
-                          title: "chalk circle",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu3.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 13,
-                          title: "free bird",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu4.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 14,
-                          title: "the midnight club",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu5.png",
-                        backgroundImage: "/images/robert.png"
-                        },{
-                          id: 15,
-                          title: "solitaire",
-                        subtitle: "robert kiyosaki",
-                        duration: "1hr 45min",
-                        category: "Book",
-                        tracks: "10",
-                        genre: "1 issue",
-                        streamingPlatform: "Spotify",
-                        platformLogo: "/logos/showmax.png",
-                        cover:"/images/edu6.png",
-                        backgroundImage: "/images/robert.png"
-                        }
-                ].map((item, index) => (
+                {slides.map((item, index) => (
                     
                       <div
               key={index}
@@ -201,7 +67,7 @@ const EducationSlider = () =>{
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onBookClick()}>
                 <img
-                  src={item.cover || "/placeholder.svg"}
+                  src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                 />
@@ -209,7 +75,7 @@ const EducationSlider = () =>{
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
                   <img
-                    src={item.platformLogo}
+                    src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
                     className="w-full h-full object-cover"
                     alt="Partner logo"
                   />
@@ -225,7 +91,7 @@ const EducationSlider = () =>{
                 >
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                     <img
-                      src={item.cover}
+                      src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
                       className="w-full h-[200%] object-cover"
                     />
                   </div>
@@ -258,7 +124,7 @@ const EducationSlider = () =>{
                         <RatingDisplay rating={4}/>
                       </div> */}
                       <p onClick={()=>onHandleAuthorClick(item.id)} className="capitalize !text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%]">
-                        {item.subtitle}
+                        {item.title}
                       </p>
 
                       {/* Bottom Action Buttons */}
@@ -269,7 +135,7 @@ const EducationSlider = () =>{
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                             <img
-                              src={item.platformLogo}
+                              src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
                               className="w-full h-full object-cover"
                             />
                           </div>

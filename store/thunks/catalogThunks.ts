@@ -5,7 +5,7 @@ import catalogAxiosInstance from "@/lib/api/catalogAxiosInstance";
 import {store} from "@/store"; 
 import { getDeviceInfo } from "@/lib/helpers/deviceInfo";
 import { formatApiError, formatApiErrorWithStatusCode } from "@/lib/helpers/formatApiError";
-import { setTopBarContent, setUserInterests } from "../slices/catalogSlice";
+import { setCatalog, setMusicHome, setTopBarContent, setUserInterests, setVideoHome } from "../slices/catalogSlice";
 import { objectToQueryString } from "@/lib/api/fetcher";
 import { useCatalogData } from "@/lib/hooks/useCatalogData";
 
@@ -19,8 +19,8 @@ export const  getListInterests = createAsyncThunk(
     async(_,{dispatch,rejectWithValue})=>{
         try{
             const res=await catalogAxiosInstance.get("/genres");
-            console.log("resdata",res)
-            return res?.data;
+           
+            return res?.data?.body;
         }catch(error:any){
             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
         }
@@ -44,7 +44,7 @@ export const addUserInterests=createAsyncThunk(
                 "genres":payload?.genres
             });
             console.log("resData",res)
-            dispatch(setUserInterests(res?.data?.data))
+            dispatch(setUserInterests(res?.data?.body))
             return res?.data;
         }catch(error:any){
             console.log(error);
@@ -63,7 +63,7 @@ export const updateUserInterests=createAsyncThunk(
                 "userId":payload?.userId,
                 "genres":payload?.genres
             });
-            dispatch(setUserInterests(res?.data?.data))
+            dispatch(setUserInterests(res?.data?.body))
             return res?.data;
         }catch(error:any){
             console.log(error);
@@ -77,8 +77,9 @@ export const getTopBarContent=createAsyncThunk(
     "catalog/getTopBarContent",
     async(_,{dispatch,rejectWithValue})=>{
         try{
-            const res= await catalogAxiosInstance.get(`/catalog/top-bar?maxLimit=10&content-type=`);
-            dispatch(setTopBarContent(res?.data))
+            const res= await catalogAxiosInstance.get(`/catalog/top-bar?maxLimit=3&content-type=Video`);
+            dispatch(setTopBarContent(res?.data?.body))
+            console.log("res",res)
             return res?.data
         }catch(error:any){
             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
@@ -92,6 +93,37 @@ export const getCatalog=createAsyncThunk(
     async(_,{dispatch,rejectWithValue})=>{
         try{
             const res= await catalogAxiosInstance.get(`/catalog`);
+            dispatch(setCatalog(res?.data?.body))
+            return res?.data
+        }catch(error:any){
+            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+        }
+    }
+)
+
+
+// GET VIDEO HOME
+export const getVideoHome=createAsyncThunk(
+    "catalog/getVideoHome",
+    async(_,{dispatch,rejectWithValue})=>{
+        try{
+            const res= await catalogAxiosInstance.get(`/catalog?content_type=Video`);
+            dispatch(setVideoHome(res?.data?.body))
+            return res?.data
+        }catch(error:any){
+            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+        }
+    }
+)
+
+
+// GET MUSIC HOME
+export const getMusicHome=createAsyncThunk(
+    "catalog/getMusicHome",
+    async(_,{dispatch,rejectWithValue})=>{
+        try{
+            const res= await catalogAxiosInstance.get(`/catalog?content_type=Music`);
+            dispatch(setMusicHome(res?.data?.body))
             return res?.data
         }catch(error:any){
             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))

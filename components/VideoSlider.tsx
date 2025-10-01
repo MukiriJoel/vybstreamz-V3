@@ -2,7 +2,49 @@
 import { useRouter } from "next/navigation";
 import RatingDisplay from "./RatingDisplay";
 
-const VideoSlider = () => {
+
+export interface IVideoItem{
+  id: number;
+  title: string;
+  provider:string;
+  releaseDates:string;
+  trending:boolean;
+  cspid:string;
+  contentCategory:string;
+  comments:string;
+  contentDetails:{
+    contentLength:string,
+    contentType:string,
+    providerContentUrl:string,
+    images:[{
+      url:string,
+      title:string
+    }],
+    thumbnails:[{
+      url:string,
+      width:string,
+      height:string
+    }],
+    genres:string[],
+    audioLanguages:string[],
+    subTitles:string[],
+    artists:string[],
+    trailers:string[],
+    casts:string[],
+    samplePaths:string[] 
+  };
+  contentRating:{
+    kfcbRating:string,    
+  };
+  contentWarning:[];
+  description?: string;  
+}
+
+interface SliderProps{
+  slides:IVideoItem[]
+}
+
+const VideoSlider = ({slides=[]}:SliderProps) => {
   const router=useRouter();
 
   const onClickVideo = (id:any) =>{
@@ -13,137 +55,29 @@ const VideoSlider = () => {
     <>
       <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
         <div className="flex gap-3 md:gap-4 text-center min-w-max">
-          {[
-            {
-              id:1,
-              title: "Take Me Home",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/vid4.png",
-              partner: "/logos/showmax.png",
-              genres:["drama","suspense","romance"],
-              rating:"4"
-            },
-            {
-              id:2,
-              title: "Wyfie",
-              description: "A thrilling drama that explores relationships and modern love.",
-              image: "/images/vid6.png",
-              partner: "/logos/showmax.png",
-              genres:["comedy","drama"],
-              rating:"5"
-            },
-            {
-               id:3,
-              title: "Jacob's Daughter",
-              description: "A compelling story of family, tradition, and breaking boundaries.",
-              image: "/images/vid1.png",
-              partner: "/logos/showmax.png",
-              genres:["drama","romance"],
-              rating:"3"
-            },
-            {
-               id:4,
-              title: "Awinja's Perfect Wedding",
-              description: "Comedy meets romance in this heartwarming wedding story.",
-              image: "/images/vid5.png",
-              partner: "/logos/bazeLg.png",
-              genres:["comedy","romance"],
-              rating:"5"
-            },
-            {
-               id:5,
-              title: "Hoje",
-              description: "An emotional journey through life's unexpected turns.",
-              image: "/images/vid2.png",
-              partner: "/logos/bazeLg.png",
-              genres:["action","drama","crime"],
-              rating:"2"
-            },{
-              id:6,
-              title: "Moukoko",
-              description: "Adventure and discovery in this captivating tale.",
-              image: "/images/vid3.png",
-              partner: "/logos/bazeLg.png",
-              genres:["action","drama"],
-              rating:"5"
-            },
-            {
-               id:7,
-              title: "Take Me Home",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/vid4.png",
-              partner: "/logos/showmax.png",
-              genres:["drama","suspense","romance"],
-              rating:"4"
-            },
-            {
-               id:8,
-              title: "Wyfie",
-              description: "A thrilling drama that explores relationships and modern love.",
-              image: "/images/vid6.png",
-              partner: "/logos/showmax.png",
-              genres:["comedy","drama"],
-              rating:"5"
-            },
-            {
-               id:9,
-              title: "Jacob's Daughter",
-              description: "A compelling story of family, tradition, and breaking boundaries.",
-              image: "/images/vid1.png",
-              partner: "/logos/showmax.png",
-              genres:["drama","romance"],
-              rating:"3"
-            },
-            {
-               id:10,
-              title: "Awinja's Perfect Wedding",
-              description: "Comedy meets romance in this heartwarming wedding story.",
-              image: "/images/vid5.png",
-              partner: "/logos/bazeLg.png",
-              genres:["comedy","romance"],
-              rating:"5"
-            },
-            {
-               id:11,
-              title: "Hoje",
-              description: "An emotional journey through life's unexpected turns.",
-              image: "/images/vid2.png",
-              partner: "/logos/bazeLg.png",
-              genres:["action","drama","crime"],
-              rating:"2"
-            },
-            {
-               id:12,
-              title: "Moukoko",
-              description: "Adventure and discovery in this captivating tale.",
-              image: "/images/vid3.png",
-              partner: "/logos/bazeLg.png",
-              genres:["action","drama"],
-              rating:"5"
-            }
-          ].map((item, index) => (
+          {slides.map((item, index) => (
             <div 
-              key={index} 
+              key={item.id} 
               className="pt-1 pb-1 md:pt-8 lg:pt-8 xl:pt-8 md:pb-4 lg:pb-4 xl:pb-4 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             onClick={()=>onClickVideo(item.id)}
             >
               {/* Main Image Container */}
               <div className="relative">
                 <img
-                  src={item.image || "/placeholder.svg"}
+                  src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                 />
                 
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
-                  <img src={item.partner} className="w-full h-full object-cover" alt="Partner logo" />
+                  <img src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url} className="w-full h-full object-cover" alt="Partner logo" />
                 </div>
 
                 {/* Hover Overlay */}
                 <div onClick={()=>onClickVideo(item.id)} className={`absolute w-65 h-72 !md:h-70 inset-0 bg-white dark:bg-[#2C2C2C] rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
-                          <img src={item.image} className="w-full h-[200%] object-cover"/>
+                          <img src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url} className="w-full h-[200%] object-cover"/>
                   </div>
                   {/* Content */}
                   <div className="p-3 md:p-4 h-full flex flex-col justify-between">
@@ -162,14 +96,14 @@ const VideoSlider = () => {
                       </h3>
                       {/* genres */}
                       <div className="flex gap-1 ">
-                        {item.genres.map((genre,index)=>(
+                        {item.contentDetails?.genres.map((genre:any,index:number)=>(
                             <div key={index} className="py-1 px-2 rounded-lg bg-[#333333] dark:bg-[#999999] text-white !font-normal !text-[10px] capitalize">
                                     {genre}
                             </div>
                         ))}
                       </div>
                       <div className="py-1">
-                        <RatingDisplay rating={item.rating as any}/>
+                        {/* <RatingDisplay rating={item?.rating as any}/> */}
                       </div>
                       <p className="!text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%]">
                         {item.description}
@@ -183,7 +117,7 @@ const VideoSlider = () => {
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                              <img
-                            src={item.partner}
+                            src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
                             className="w-full h-full object-cover"
                             />
                           </div>  

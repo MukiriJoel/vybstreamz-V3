@@ -1,7 +1,47 @@
 "use client"
 import { useRouter } from "next/navigation";
+export interface IMusicItem{
+  id: number;
+  title: string;
+  provider:string;
+  releaseDates:string;
+  trending:boolean;
+  cspid:string;
+  contentCategory:string;
+  comments:string;
+  contentDetails:{
+    contentLength:string,
+    contentType:string,
+    providerContentUrl:string,
+    images:[{
+      url:string,
+      title:string
+    }],
+    thumbnails:[{
+      url:string,
+      width:string,
+      height:string
+    }],
+    genres:string[],
+    audioLanguages:string[],
+    subTitles:string[],
+    artists:string[],
+    trailers:string[],
+    casts:string[],
+    samplePaths:string[] 
+  };
+  contentRating:{
+    kfcbRating:string,    
+  };
+  contentWarning:[];
+  description?: string;  
+}
 
-const MusicSlider = () => {
+interface SliderProps{
+  slides:IMusicItem[]
+}
+
+const MusicSlider = ({slides=[]}:SliderProps) => {
 
   const Router=useRouter();
 
@@ -14,116 +54,20 @@ const MusicSlider = () => {
     Router.push(`/music/${id}`)
   }
 
+  console.log("musicslides",slides)
   return (
     <>
       <div className="overflow-x-auto scrollbar-hide overflow-y-hidden">
         <div className="flex gap-3 md:gap-4 text-center min-w-max h-[210px] md:!h-auto">
-          {[
-            {
-              id:1,
-              title: "Disko",
-              subtitle: "Kodong Klan",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/kodong.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:2,
-              title: "Medicine",
-              subtitle: "Bensoul",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/bensoul.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:3,
-              title: "Sianda",
-              subtitle: "Savara",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/savara.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:4,
-              title: "Rada",
-              subtitle: "Kagwe",
-              image: "/images/kagwe.png",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:5,
-              title: "OTD",
-              subtitle: "Njerae",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/njerae.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:6,
-              title: "A Side Of Me",
-              subtitle: "Nikita Kering'",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/nikita.png",
-              partner: "/logos/spotify.png",
-            },
-              {
-              id:7,
-              title: "Disko",
-              subtitle: "Kodong Klan",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/kodong.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:8,
-              title: "Medicine",
-              subtitle: "Bensoul",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/bensoul.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:9,
-              title: "Sianda",
-              subtitle: "Savara",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/savara.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:10,
-              title: "Rada",
-              subtitle: "Kagwe",
-              image: "/images/kagwe.png",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:11,
-              title: "OTD",
-              subtitle: "Njerae",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/njerae.png",
-              partner: "/logos/spotify.png",
-            },
-            {
-              id:12,
-              title: "A Side Of Me",
-              subtitle: "Nikita Kering'",
-              description:"The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/nikita.png",
-              partner: "/logos/spotify.png",
-            },
-          ].map((item, index) => (
+          {slides.map((item, index) => (
             <div
-              key={index}
+              key={item.id}
               className="pt-3 md:py-12 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onMusicClick(item.id)}>
                 <img
-                  src={item.image || "/placeholder.svg"}
+                  src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url  || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                   onClick={()=>onMusicClick(item.id)}
@@ -132,7 +76,7 @@ const MusicSlider = () => {
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
                   <img
-                    src={item.partner}
+                    src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url }
                     className="w-full h-full object-cover"
                     alt="Partner logo"
                   />
@@ -148,7 +92,7 @@ const MusicSlider = () => {
                 >
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                     <img
-                      src={item.image}
+                      src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url }
                       className="w-full h-[200%] object-cover"
                     />
                   </div>
@@ -167,7 +111,7 @@ const MusicSlider = () => {
                         {item.title}
                       </h3>
                       <p onClick={()=>handleArtistClick(item.id as any)} className="!text-sm !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%] capitalize">
-                        {item.subtitle}
+                        {item.title}
                       </p>
                       {/* genres */}
                       {/* <div className="flex gap-1 ">
@@ -192,7 +136,7 @@ const MusicSlider = () => {
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                             <img
-                              src={item.partner}
+                              src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
                               className="w-full h-full object-cover"
                             />
                           </div>
@@ -217,7 +161,7 @@ const MusicSlider = () => {
                 {item.title}
               </p>
               <p onClick={()=>handleArtistClick(item.id as any)} className="!text-sm text-left !md:text-sm text-black dark:text-white !font-normal line-clamp-2 leading-[120%] capitalize md:max-w-32 lg:max-w-40 md:group-hover:opacity-0 transition-opacity duration-300">
-                    {item.subtitle}
+                    {item.title}
               </p>
             </div>
           ))}

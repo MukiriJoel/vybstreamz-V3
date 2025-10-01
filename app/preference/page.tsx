@@ -1,113 +1,7 @@
-// "use client"
-
-// import { useState } from "react"
-// import { useRouter } from 'next/navigation'
-// import { useAuth } from "@/lib/context/AuthContext"
-
-// const genres = [
-//   "Drama",
-//   "Comedy",
-//   "HipHop",
-//   "RnB",
-//   "Action",
-//   "Sci-Fi",
-//   "Thriller",
-//   "Romance",
-//   "Horror",
-//   "Documentary",
-//   "Fantasy",
-//   "Mystery",
-//   "Adventure",
-//   "Animation",
-//   "Biography",
-//   "Crime",
-//   "Family",
-//   "History",
-//   "Music",
-//   "Musical",
-//   "Sport",
-//   "Superhero",
-//   "War",
-//   "Western",
-//   "Romantic Comedy",
-//   "Science Fiction",
-//   "Action Comedy",
-//   "Spy",
-//   "Courtroom Drama",
-//   "Psychological Thriller",
-//   "Zombie",
-//   "Paranormal",
-//   "Musical Drama",
-//   "Historical Fiction",
-// ]
-
-// const initialSelected = [""]
-
-// export default function PreferencePage() {
-//   const [selectedGenres, setSelectedGenres] = useState<string[]>(initialSelected)
-//   const router = useRouter()
-//   const {  login } = useAuth() // Added login function
-
-//   const toggleGenre = (genre: string) => {
-//     setSelectedGenres((prev) => (prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]))
-//   }
-  
-//   const handleExplore = () => {
-//     login() // Set logged in state to true
-//     router.push('/')
-//   }
-
-//   return (
-//     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#141414] px-2 py-12 sm:px-6   lg:px-4 lg:pt-40">
-//       <div className="mx-auto max-w-4xl">
-//         {/* Header Section */}
-//         <div className="text-center mb-12">
-//           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">
-//             Help us understand your preference
-//           </h1>
-//           <p className="text-lg sm:text-xl text-[#999999]">Explore, compare, vibe – without switching apps</p>
-//         </div>
-
-//         {/* Genre Selection Buttons */}
-//         <div className="flex flex-wrap justify-center gap-3 mb-12">
-//           {genres.map((genre, index) => (
-//             <button
-//               key={`${genre}-${index}`}
-//               onClick={() => toggleGenre(genre)}
-//               className={`
-//                 cursor-pointer px-6 py-3 rounded-full text-sm sm:text-base font-medium
-//                 transition-all duration-200 ease-in-out
-//                 hover:scale-105 active:scale-95
-//                 ${
-//                   selectedGenres.includes(genre)
-//                     ? "bg-[#c62676] text-white shadow-lg"
-//                     : "bg-[#E5E5E5] dark:bg-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#d9d9d9]"
-//                 }
-//               `}
-//             >
-//               {genre}
-//             </button>
-//           ))}
-//         </div>
-
-//         {/* Ready to Explore Button */}
-//         <div className="text-center">
-//           <button 
-//             className="text-lg sm:text-xl font-medium text-[#c62676] hover:underline transition-all duration-200" 
-//             onClick={handleExplore}
-//           >
-//             I am ready to explore
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from 'next/navigation'
-import { useAuth } from "@/lib/context/AuthContext"
+
 import { SubmitHandler, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -167,10 +61,9 @@ interface GenreFormData  {
 }
 
 export default function PreferencePage() {
-   const router = useRouter();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const [genreList, setGenreList] = useState<any>(null);
+  const [genreList, setGenreList] = useState<any>(genres);
   const {user}=useAppSelector((state)=>state.auth);
   
   const {
@@ -194,8 +87,8 @@ export default function PreferencePage() {
       try{
         setLoading(true);
         const res = await dispatch(getListInterests()).unwrap();
-        console.log(res?.data)
-        setGenreList(res?.data);
+      
+        setGenreList(res);
       }catch (error) {
         console.error('Failed to fetch genres', error);
       } finally {
@@ -229,7 +122,7 @@ export default function PreferencePage() {
             genres:data.selectedGenres
           })
         ).unwrap();
-        console.log("res",res)
+        // console.log("res",res)
         toast.success(res?.message);
         // router.push("/")
     }catch(e:any){
@@ -254,7 +147,7 @@ export default function PreferencePage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Genre Selection Buttons */}
           <div className="flex flex-wrap justify-center gap-3 mb-4">
-            {genres.map((genre, index) => (
+            {genreList?.map((genre:any, index:any) => (
               <button
                 key={`${genre}-${index}`}
                 type="button"

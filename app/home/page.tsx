@@ -56,8 +56,8 @@ export default function Home() {
       try{
         setLoading(true);
         const res = await dispatch(getTopBarContent()).unwrap();
-         console.log(res);
-         setTopBarContent(res?.data)
+         console.log("topbarRes",res?.body);
+         setTopBarContent(res?.body)
       }catch (error) {
         console.error('Failed to fetch genres', error);
       } finally {
@@ -69,8 +69,8 @@ export default function Home() {
       try{
          setLoading(true);
           const res = await dispatch(getCatalog()).unwrap();
-          console.log(res);
-          setCatalog(res?.data)
+         
+          setCatalog(res?.body)
       }catch(error) {
         console.error('Failed to fetch genres', error);
       }finally {
@@ -82,13 +82,23 @@ export default function Home() {
     fetchCatalog();
   },[])
 
+ 
+const videoData = catalog?.video;
+console.log("catalog",catalog)
+
+const musicData= catalog?.music;
+
+const gameData= catalog?.games;
+
+const educationData= catalog?.education;
 
   return (
     <>
       <div className="bg-[#F2F2F2] dark:bg-[#141414]">
         {/* Hero Section */}
         <main className="">
-          <BillBoardV3/>
+          {/* {topBarContent && <BillBoardV3 slides={topBarContent} />} */}
+          <BillBoardV3 slides={topBarContent ?? []} />
           {/* <VybzCarouselMain/> */}
           <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
             {/* Partners Section */}
@@ -106,7 +116,7 @@ export default function Home() {
             {/* Trending Section */}
             <section className="">
                <SectionHeader  viewButton={true} title="watch" route='/videos'/>
-                  <VideoSlider />
+                  <VideoSlider  slides={videoData ?? []}  />
             </section>
 
             {/* Recommended For You Section */}
@@ -127,13 +137,13 @@ export default function Home() {
             {/* Recommended For You Section */}
             <section className=" ">
               <SectionHeader  viewButton={true} title="listen" route='/music'/>
-              <MusicSlider />
+              <MusicSlider  slides={musicData ?? []} />
             </section>
 
             {/* Trending Section */}
             <section className="">
                 <SectionHeader  viewButton={true} title="games" route='/games'/>
-              <GamesSlider />
+              <GamesSlider slides={gameData ?? []} />
             </section>
 
             {/*AD slider */}
@@ -146,7 +156,7 @@ export default function Home() {
             {/* Recommended For You Section */}
             <section className=" ">
                 <SectionHeader  viewButton={true} title="learn" route='education'/>
-              <EducationSlider />
+              <EducationSlider slides={educationData ?? []}  />
             </section>
             {/* Recommended For You Section */}
             <section className="  ">

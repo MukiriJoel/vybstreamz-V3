@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useMusic } from "@/hooks/useMusic";
 import { useRouter } from "next/navigation";
 import { useBooks } from "@/hooks/useBooks";
+import EducationSlider from "@/components/EducationSlider";
 
 interface Author {
   id: number;
@@ -120,7 +121,7 @@ export default function AuthorDetails({id}:{id:number}) {
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
               </Button>
             </div>
-            <MusicSlider></MusicSlider>
+            {/* <EducationSlider></EducationSlider> */}
           </div>
 
           {/* albums Section */}
@@ -136,7 +137,7 @@ export default function AuthorDetails({id}:{id:number}) {
                 <MdArrowForward className="!w-[36px] !h-[36px]" />
               </Button>
             </div>
-            <MusicSlider></MusicSlider>
+            {/* <EducationSlider></EducationSlider> */}
           </div>
         </div>
       </main>

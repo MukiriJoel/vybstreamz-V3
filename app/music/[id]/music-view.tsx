@@ -73,7 +73,7 @@ export default function MusicView({ audioSrc, bannerImage,albumImage,title,subti
               title="similar albums"
               route="/music"
             />
-            <MusicSlider />
+            {/* <MusicSlider /> */}
           </section>
           <section>
             <RatingsComponent />

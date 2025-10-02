@@ -64,7 +64,7 @@ export default function Gamedetails({ videoSrc, id }: GameDetailsProps) {
             route="/games"
           />
 
-          <GamesSlider />
+          {/* <GamesSlider /> */}
         </section>
         <section>
           <RatingsComponent />

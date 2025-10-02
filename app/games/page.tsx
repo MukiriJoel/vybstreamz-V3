@@ -52,13 +52,13 @@ export default function GamesPage() {
               title="top ranked games"
               route="/games"
             />
-            <GamesSlider></GamesSlider>
+            {/* <GamesSlider></GamesSlider> */}
           </div>
 
           {/* trending Section */}
           <div className="">
             <SectionHeader  viewButton={true} title="trending" route="/games" />
-            <GamesSlider></GamesSlider>
+            {/* <GamesSlider></GamesSlider> */}
           </div>
 
           {/* trending Section */}
@@ -68,7 +68,7 @@ export default function GamesPage() {
               route="/games"
             />
             <div className="overflow-x-auto scrollbar-hide">
-              <GamesSlider></GamesSlider>
+              {/* <GamesSlider></GamesSlider> */}
             </div>
           </div>
 
@@ -78,7 +78,7 @@ export default function GamesPage() {
               title="recently updated"
               route="/games"
             />
-            <GamesSlider></GamesSlider>
+            {/* <GamesSlider></GamesSlider> */}
           </div>
         </div>
       </main>

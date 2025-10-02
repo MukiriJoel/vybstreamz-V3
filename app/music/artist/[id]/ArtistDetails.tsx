@@ -96,13 +96,13 @@ export default function ArtistDetails({id}:{id:number}) {
           {/* top ranked Section */}
           <div className="mb-8 pt-1">
              <SectionHeader  viewButton={true} title="top ranked music" route="/music"/>
-            <MusicSlider></MusicSlider>
+            {/* <MusicSlider></MusicSlider> */}
           </div>
 
           {/* albums Section */}
           <div className="mb-8 pt-1">
              <SectionHeader  viewButton={true} title="albums" route="/music"/>
-            <MusicSlider></MusicSlider>
+            {/* <MusicSlider></MusicSlider> */}
           </div>
         </div>
       </main>

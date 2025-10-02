@@ -37,31 +37,31 @@ export default function Home() {
             {/* Trending Section */}
             <div className="">
               <SectionHeader  viewButton={true} title="recently updated" route="/education"/>
-              <EducationSlider/>
+              {/* <EducationSlider/> */}
             </div>
 
             {/* Recommended For You Section */}
             <div className="">
               <SectionHeader  viewButton={true} title="kids" route="/education"/>
-              <EducationSlider/>
+              {/* <EducationSlider/> */}
             </div>
 
             {/* Trending Section */}
             <div className="">
               <SectionHeader  viewButton={true} title="business" route="/education"/>
-              <EducationSlider/>
+              {/* <EducationSlider/> */}
             </div>
 
             {/* Recommended For You Section */}
             <div className="">
              <SectionHeader  viewButton={true} title="digital skills" route="/education"/>
-              <EducationSlider></EducationSlider>
+              {/* <EducationSlider></EducationSlider> */}
             </div>
 
             {/* Trending Section */}
             <div className="">
              <SectionHeader  viewButton={true} title="trending" route="/education"/>
-              <EducationSlider/>
+              {/* <EducationSlider/> */}
             </div>
 
            

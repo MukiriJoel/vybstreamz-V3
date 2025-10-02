@@ -166,26 +166,26 @@ export default function PartnerDetails({ id }: { id: number }) {
             </div>
             {activeTab === "Videos" && (
               <div className="p-0">
-                <VideoSlider />
-                <VideoSlider />
+                {/* <VideoSlider />
+                <VideoSlider /> */}
               </div>
             )}
             {activeTab === "Music" && (
               <div className="p-0">
-                <MusicSlider />
-                <MusicSlider />
+                {/* <MusicSlider />
+                <MusicSlider /> */}
               </div>
             )}
             {activeTab === "Games" && (
               <div className="p-0">
-                <GamesSlider />
-                <GamesSlider />
+                {/* <GamesSlider />
+                <GamesSlider /> */}
               </div>
             )}
             {activeTab === "Education" && (
               <div className="p-0">
-                <EducationSlider />
-                <EducationSlider />
+                {/* <EducationSlider />
+                <EducationSlider /> */}
               </div>
             )}
             {activeTab === "Podcast" && (
@@ -212,7 +212,7 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <SectionHeader  viewButton={true} title="user reviews" route=""/>
                 <ReviewSlider/>
             </section>
-            <VideoSlider />
+            {/* <VideoSlider /> */}
           </div>
         )}
       </main>

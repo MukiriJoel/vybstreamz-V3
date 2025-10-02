@@ -63,7 +63,7 @@ export default function EducationListing() {
                   viewButton={true}
                   route="/education"
                 />
-                <EducationSlider></EducationSlider>
+                {/* <EducationSlider></EducationSlider> */}
               </div>
               <section>
                 <RatingsComponent />
@@ -87,7 +87,7 @@ export default function EducationListing() {
                   route="/education"
                 />
 
-                <EducationSlider></EducationSlider>
+                {/* <EducationSlider></EducationSlider> */}
               </div>
               <section>
                 <RatingsComponent />

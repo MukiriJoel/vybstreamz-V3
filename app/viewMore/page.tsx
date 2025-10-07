@@ -39,7 +39,7 @@ export default function ViewMore(){
             <section className="mt-6">
               <SectionHeader  viewButton={true} title="trending" route="/videos"/>
                
-                  <VideoSlider />
+                  {/* <VideoSlider /> */}
                
          
             </section>
@@ -47,14 +47,14 @@ export default function ViewMore(){
             {/* Recommended For You Section */}
             <section className="">
                <SectionHeader  viewButton={true} title="videos" route="/videos"/>
-              <VideoSlider />
+              {/* <VideoSlider /> */}
             </section>
 
           
             {/* Recommended For You Section */}
             <section className=" py-4  ">
                <SectionHeader  viewButton={true} title="music" route="/music"/>
-              <MusicSlider />
+              {/* <MusicSlider /> */}
             </section>
 
           
@@ -66,7 +66,7 @@ export default function ViewMore(){
 
              <section className=" py-4  ">
               <SectionHeader  viewButton={true} title="education" route="/education"/>
-              <EducationSlider />
+              {/* <EducationSlider /> */}
             </section>
           </div>
         </main>

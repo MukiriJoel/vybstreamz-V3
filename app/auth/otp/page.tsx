@@ -135,7 +135,7 @@ export default function VerifyEmail() {
           `/auth/passwordReset?token=${res?.data?.request_token}&msg=${res?.data?.message}&exp=${res?.data?.expiry_time}`
         );
       } else {
-        router.push("/auth/profile");
+        router.push("/");
       }
     } catch (e: any) {
       toast.error(e || "Could not sign you in", { duration: 5000 });
@@ -279,7 +279,11 @@ export default function VerifyEmail() {
 
         {/* Form Section */}
         <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col ">
-          <div className="flex pt-10 items-center max-w-md w-full justify-between  gap-4">
+         
+          
+
+          <div className="w-full pt-12  md:pt-2 mx-auto">
+             <div className="flex items-center w-full justify-between max-w-md mx-auto md:mx-auto lg:mx-0 mb-5 md:pt-6 lg:pt-8">
             <button 
               onClick={() => router.back()}
               className="cursor-pointer flex items-center mr-2 md:mr-4 text-[#2C2C2C] dark:text-[#FFFFFF] hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
@@ -288,9 +292,6 @@ export default function VerifyEmail() {
             </button>
             <img onClick={()=>GoToHome()}  src="/logos/vybstreamz.png" alt="" className="cursor-pointer !h-15 !w-50" />
           </div>
-          
-
-          <div className="w-full mx-auto  pt-20">
             <h1 className="text-3xl font-bold text-[#2C2C2C] dark:text-[#FFFFFF] mb-4">
               Verify Phone Number
             </h1>

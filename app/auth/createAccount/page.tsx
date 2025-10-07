@@ -131,24 +131,6 @@ export default function CreateAccountPage() {
     return null
   }
 
-  const handleLogin = () => {
-    login()
-    router.push('/profile')
-  }
-
-  const handleCreateAccount = () => {
-    setShowConfirmModal(true)
-  }
-
-  const handleConfirmNext = () => {
-    setShowConfirmModal(false)
-    router.push('/otp')
-  }
-
-  const handleCancel = () => {
-    setShowConfirmModal(false)
-  }
-
   const handleLoginPage = () => {
     router.push("/auth/login")
   }

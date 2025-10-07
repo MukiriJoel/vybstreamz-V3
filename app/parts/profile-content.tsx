@@ -676,7 +676,7 @@ export default function ProfileContent() {
             </div>
           </div>
 
-          <VideoSlider />
+          {/* <VideoSlider /> */}
 
           {/* music */}
           <div className="flex items-center justify-between mb-1">

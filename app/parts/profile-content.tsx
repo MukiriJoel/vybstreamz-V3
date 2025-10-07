@@ -702,7 +702,7 @@ export default function ProfileContent() {
               </Button>
             </div>
           </div>
-          <MusicSlider />
+          {/* <MusicSlider /> */}
         </div>
       )}
     </div>

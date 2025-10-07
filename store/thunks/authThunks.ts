@@ -30,6 +30,10 @@ export interface IAccount {
     phone_code?: string,
 }
 
+interface IDeleteUser{
+    reason: string,
+}
+
 
 export const signupUser = createAsyncThunk(
     "auth/signup",
@@ -37,6 +41,22 @@ export const signupUser = createAsyncThunk(
         try{
             const res=await authAxiosInstance.post("/auth/register/", payload);
             dispatch(setRegistrationState(res?.data?.data))
+            return res?.data;
+
+        }catch(error:any){
+              return rejectWithValue(formatApiError(error.response?.data) || "Signup failed");
+        }
+    }
+)
+
+// DELETE USER ACCOUNT
+export const deleteUser = createAsyncThunk(
+    "auth/deleteUser",
+    async(payload:IDeleteUser,{dispatch,rejectWithValue})=>{
+        try{
+            const res=await authAxiosInstance.delete("/user/delete-account",{ data:payload});
+            // dispatch(setRegistrationState(res?.data?.data))
+            console.log("resDeleteaxios",res)
             return res?.data;
 
         }catch(error:any){

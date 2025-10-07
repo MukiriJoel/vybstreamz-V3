@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react"
 import { ChevronRight, Search, ShoppingCart, Bell, User, ArrowLeft } from "lucide-react"
 import { useTheme } from "@/lib/context/ThemeContext"
+import { setLoading } from "@/store/slices/authSlice"
+import { useAppDispatch } from "@/hooks/redux"
+import { deleteUser } from "@/store/thunks/authThunks"
+import { toast } from "sonner"
 
 const getThemeDisplayName = (theme: string) => {
   switch(theme) {
@@ -36,7 +40,8 @@ type SettingOption = "appTheme" | "notifications" | "autoplay" | "accountDeletio
 export default function SettingsPage() {
   const [selectedOption, setSelectedOption] = useState<SettingOption>(null)
   const [enabled, setEnabled] = useState<boolean>(false);
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
+  const dispatch = useAppDispatch();
 
   // State for all notification settings
   const [notifications, setNotifications] = useState({
@@ -159,6 +164,8 @@ export default function SettingsPage() {
     const autoPlaySwitch = (isEnabled: boolean) => {
   setEnabled(isEnabled);
 }
+
+
 
     return (
       <div className="bg-white dark:bg-[#2C2C2C] rounded-lg p-4">
@@ -327,7 +334,7 @@ export default function SettingsPage() {
               <button className="cursor-pointer px-6 py-3 w-full bg-[#333333] dark:bg-[#333333] text-white dark:text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-700 transition-colors">
                 No, Keep My Account
               </button>
-              <button className="cursor-pointer px-6 py-3 w-full bg-[#c62676] text-white rounded-lg hover:bg-pink-700 transition-colors">
+              <button onClick={()=>onDeleteClick()} className="cursor-pointer px-6 py-3 w-full bg-[#c62676] text-white rounded-lg hover:bg-pink-700 transition-colors">
                 Delete Account
               </button>
             </div>
@@ -335,6 +342,22 @@ export default function SettingsPage() {
         )}
       </div>
     )
+  }
+
+  const onDeleteClick = async()=>{
+    console.log("deleting")
+    const payload={reason:"insufficient funds"};
+    try{
+    setLoading(true);
+    const res=await dispatch(deleteUser(payload)).unwrap();
+      console.log("resdelete",res);
+      toast.success(res?.message)
+    }catch (e:any) {
+      console.log(e)
+      toast.warning(e || "Something went wrong")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

@@ -27,7 +27,7 @@ export const ModalConfirmDetails =({isOpen, onClose, data, loading}: {
               <div className="space-y-3 sm:space-y-4 text-left">
                 <div>
                   <p className="text-xs sm:text-sm font-medium text-[#2C2C2C] dark:text-white mb-1 transition-colors duration-200">Phone Number</p>
-                  <p className="text-xs sm:text-sm text-gray-900 dark:text-gray-200 transition-colors duration-200">+{data?.phone_code} {data?.phone}</p>
+                  <p className="text-xs sm:text-sm text-gray-900 dark:text-gray-200 transition-colors duration-200">{data?.phone_code} {data?.phone}</p>
                 </div>
                 
                 <div>

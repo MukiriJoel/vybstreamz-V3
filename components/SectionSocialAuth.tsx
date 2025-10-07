@@ -51,7 +51,7 @@ export const SectionSocialAuth = ({ loadingState }: { loadingState?: any }) => {
       //     return;
 
       default:
-        router.push("/auth/profile");
+        router.push("/");
         return;
     }
   };

@@ -135,7 +135,7 @@ export default function VerifyEmail() {
           `/auth/passwordReset?token=${res?.data?.request_token}&msg=${res?.data?.message}&exp=${res?.data?.expiry_time}`
         );
       } else {
-        router.push("/auth/profile");
+        router.push("/");
       }
     } catch (e: any) {
       toast.error(e || "Could not sign you in", { duration: 5000 });

@@ -43,7 +43,7 @@ export default function GamesPage() {
           {/* Partners Section */}
           <div className="">
             <SectionHeader  viewButton={true} title="partners" route="/partners" />
-            <PartnersSlider />
+            {/* <PartnersSlider /> */}
           </div>
 
           {/* top ranked Section */}

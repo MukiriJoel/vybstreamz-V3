@@ -90,7 +90,7 @@ export default function ArtistDetails({id}:{id:number}) {
              <SectionHeader  viewButton={true} title="partners" route="/partners"/>
 
             {/* Horizontal scrollable container */}
-            <PartnersSlider></PartnersSlider>
+            {/* <PartnersSlider></PartnersSlider> */}
           </div>
 
           {/* top ranked Section */}

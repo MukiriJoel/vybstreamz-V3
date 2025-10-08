@@ -121,7 +121,7 @@ const PodcastPlayer: React.FC = () => {
              <SectionHeader  viewButton={true} title="partners" route=""/>
 
             {/* Horizontal scrollable container */}
-              <PartnersSlider></PartnersSlider>
+              {/* <PartnersSlider></PartnersSlider> */}
           </div>
 
           {/* Trending Section */}

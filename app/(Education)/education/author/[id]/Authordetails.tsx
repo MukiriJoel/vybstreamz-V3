@@ -103,7 +103,7 @@ export default function AuthorDetails({id}:{id:number}) {
             </div>
 
             {/* Horizontal scrollable container */}
-            <PartnersSlider></PartnersSlider>
+            {/* <PartnersSlider></PartnersSlider> */}
           </div>
 
           {/* top ranked Section */}

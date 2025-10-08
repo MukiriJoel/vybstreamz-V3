@@ -41,7 +41,7 @@ export default function SearchPage(){
                   <MdArrowForward className="!w-[36px] !h-[36px]" />
                 </Button>
               </div>
-              <PartnersSlider />
+              {/* <PartnersSlider /> */}
             </section>
 
 

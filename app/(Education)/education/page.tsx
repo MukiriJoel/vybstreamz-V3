@@ -29,7 +29,7 @@ export default function Home() {
             {/* Partners Section */}
             <div className="">
               <SectionHeader  viewButton={true} title="partners" route="/partners"/>
-              <PartnersSlider />
+              {/* <PartnersSlider /> */}
             </div>
 
             {/* Best Deals Section */}

@@ -65,7 +65,7 @@ export default function Home() {
             {/* Partners Section */}
             <section className="">
                 <SectionHeader  viewButton={true} title="partners" route="/partners"/>
-              <PartnersSlider />
+              {/* <PartnersSlider /> */}
             </section>
 
 
@@ -73,7 +73,7 @@ export default function Home() {
             <section className="">
                 <SectionHeader  viewButton={true} title="trending" route="/videos"/>
                
-                  <VideoSlider slides={videHomeContent ?? []} />
+                  <VideoSlider title="" slides={videHomeContent.items ?? []} />
                
          
             </section>

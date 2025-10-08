@@ -81,21 +81,21 @@ export default function Home() {
             {/* Recommended For You Section */}
             <section className="">
                 <SectionHeader  viewButton={true} title="recommended for you" route="/videos"/>
-              <VideoSlider slides={videHomeContent ?? []} />
+              <VideoSlider title={videHomeContent.title} slides={videHomeContent ?? []} />
             </section>
 
 
             {/* Recommended For You Section */}
             <section className="   ">
                 <SectionHeader  viewButton={true} title="drama" route="/videos"/>
-              <VideoSlider slides={videHomeContent ?? []} />
+              <VideoSlider title={videHomeContent.title} slides={videHomeContent ?? []} />
             </section>
 
 
             {/* Recommended For You Section */}
             <section className=" ">
                 <SectionHeader  viewButton={true} title="comedy" route="/videos"/>
-              <VideoSlider slides={videHomeContent ?? []} />
+              <VideoSlider title={videHomeContent.title} slides={videHomeContent ?? []} />
             </section>
            
           </div>

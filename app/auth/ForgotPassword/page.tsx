@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
             const res = await dispatch(requestPasswordResetToken(payload)).unwrap();
             console.log(res);
             dispatch(setRegistrationState(res?.data))
-            router.push(`/auth/otp?returnUrl=setPassword`)
+            router.push(`/auth/otp?returnUrl=forgotPassword&token=${res.data.request_token}`)
             toast.success(res?.message);
         } catch (e: any) {
             console.log(e)

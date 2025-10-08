@@ -83,7 +83,7 @@ export default function PasswordResetForm() {
             setLoading(true);
             const res = await dispatch(resetPassword(payload)).unwrap();
             dispatch(setRegistrationState(res?.data));
-            router.push(`/auth/profile`);
+            router.push(`/`);
             toast.success(res?.message);
         } catch (e: any) {
            

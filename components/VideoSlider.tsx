@@ -41,10 +41,11 @@ export interface IVideoItem{
 }
 
 interface SliderProps{
-  slides:IVideoItem[]
+  slides:IVideoItem[],
+  title:string
 }
 
-const VideoSlider = ({slides=[]}:SliderProps) => {
+const VideoSlider = ({title,slides=[]}:SliderProps) => {
   const router=useRouter();
 
   const onClickVideo = (id:any) =>{
@@ -64,20 +65,20 @@ const VideoSlider = ({slides=[]}:SliderProps) => {
               {/* Main Image Container */}
               <div className="relative">
                 <img
-                  src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url || "/placeholder.svg"}
+                  src={item?.contentDetails?.images?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                 />
                 
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
-                  <img src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url} className="w-full h-full object-cover" alt="Partner logo" />
+                  <img src={item?.contentDetails?.thumbnails?.[0]?.url} className="w-full h-full object-cover" alt="Partner logo" />
                 </div>
 
                 {/* Hover Overlay */}
                 <div onClick={()=>onClickVideo(item.id)} className={`absolute w-65 h-72 !md:h-70 inset-0 bg-white dark:bg-[#2C2C2C] rounded-xl md:rounded-xl opacity-0 md:group-hover:opacity-100 transition-all duration-300 ease-in-out transform -translate-y-2 ${ index === 0 ? 'md:hover:scale-100 ml-12 md:-translate-x-12 !md:hover:origin-left' :'-translate-x-12'} md:group-hover:-translate-y-7 lg:group-hover:-translate-y-4 xl:group-hover:-translate-y-4 shadow-xl overflow-hidden`}>
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
-                          <img src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url} className="w-full h-[200%] object-cover"/>
+                          <img src={item?.contentDetails?.images?.[0]?.url} className="w-full h-[200%] object-cover"/>
                   </div>
                   {/* Content */}
                   <div className="p-3 md:p-4 h-full flex flex-col justify-between">
@@ -117,7 +118,7 @@ const VideoSlider = ({slides=[]}:SliderProps) => {
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                              <img
-                            src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
+                            src={item?.contentDetails?.images?.[0]?.url}
                             className="w-full h-full object-cover"
                             />
                           </div>  

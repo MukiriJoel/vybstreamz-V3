@@ -216,9 +216,9 @@ const BillBoardV3 = ({
         dashPlayer.initialize(videoEl, slide.dashUrl, true);
         dashRef.current = dashPlayer;
       }
-    } else if((slide?.contentDetails as any)?.contentType==="mp4") {
+    } else {
       console.log("slide has mp4")
-      videoEl.src = (slide?.contentDetails as any)?.providerContentUrl+'/'+(slide?.contentDetails as any)?.trailers[0];
+      videoEl.src = (slide?.contentDetails as any)?.providerContentUrl+'/'+(slide?.contentDetails as any)?.trailers[0].originUrl;
     }
 
     // Add video event listeners for debugging

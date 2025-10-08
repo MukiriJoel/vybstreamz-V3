@@ -88,18 +88,28 @@ export const getTopBarContent=createAsyncThunk(
 )
 
 // GET CATALOG CONTENT
-export const getCatalog=createAsyncThunk(
-    "catalog/getCatalog",
-    async(_,{dispatch,rejectWithValue})=>{
-        try{
-            const res= await catalogAxiosInstance.get(`/catalog`);
-            dispatch(setCatalog(res?.data?.body))
-            return res?.data
-        }catch(error:any){
-            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
-        }
-    }
-)
+// export const getHomePage=createAsyncThunk(
+//     "catalog/getHomePage",
+//     async(_,{dispatch,rejectWithValue})=>{
+//         try{
+//             const res= await catalogAxiosInstance.get(`/home-page`);
+//             console.log("resHome",res)
+//             dispatch(setCatalog(res?.data?.body))
+//             return res?.data
+//         }catch(error:any){
+//             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+//         }
+//     }
+// )
+
+// 🔹 GET  HOME
+export const useDataGetHome = (payload?: any) => {
+    const url = `/home-page`;
+    const {data, isLoading, isError, error} = useCatalogData<any>(url);
+    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+    return {data: data?.body || [], isLoading, isError, error};
+}
+
 
 
 // GET VIDEO HOME

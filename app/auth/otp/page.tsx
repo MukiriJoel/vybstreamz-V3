@@ -34,6 +34,7 @@ export default function VerifyEmail() {
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const requestToken = searchParams.get("token");
+  console.log("req",requestToken)
 
   const [code, setCode] = useState(["", "", "", ""]);
   const router = useRouter();
@@ -130,9 +131,9 @@ export default function VerifyEmail() {
       ).unwrap();
       toast.success(res?.message);
 
-      if (searchParams.get("returnUrl")?.includes("setPassword")) {
+      if (searchParams.get("returnUrl")?.includes("forgotPassword")) {
         router.push(
-          `/auth/passwordReset?token=${res?.data?.request_token}&msg=${res?.data?.message}&exp=${res?.data?.expiry_time}`
+          `/auth/passwordReset?token=${requestToken}`
         );
       } else {
         router.push("/");

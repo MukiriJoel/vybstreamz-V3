@@ -1,5 +1,4 @@
 "use client"
-
 import { useState } from "react"
 import { ArrowLeft, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -90,6 +89,7 @@ export default function LoginForm() {
             try {
                 setLoading(true);
                 const response = await dispatch(loginUser(data)).unwrap();
+                console.log("loginresp",response)
                 toast.success(response?.data?.message);
                 reRouteUser(response?.data);
             } catch (e: any) {

@@ -167,6 +167,7 @@ export default function ProfileContent() {
         requestOTP({ purpose: "PHONE_CHANGE" })
       ).unwrap();
       handleOpen();
+      console.log("submitreqres",res)
       setVerifyPhoneData(res?.data);
       toast.success(res?.message);
     } catch (e: any) {

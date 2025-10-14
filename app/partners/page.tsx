@@ -18,7 +18,7 @@ interface PartnerProps{
   slides:IPartnerItem[]
 }
 
-export default function PartnersPage({slides=[]}:PartnerProps) {
+export default function PartnersPage() {
   const [sliderContent, setSliderContent] = useState<any>(null);
   const [videoContent, setVideoContent] = useState<any>(null);
   const [musicContent, setMusicContent] = useState<any>(null);

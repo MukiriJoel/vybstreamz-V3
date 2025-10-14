@@ -126,7 +126,7 @@ export default function PreferencePage() {
         toast.success(res?.message);
         // router.push("/")
     }catch(e:any){
-      toast.error(e || "Could not add interests", { duration: 5000 });
+      toast.error(e?.message || "Could not add interests", { duration: 5000 });
     }finally{
       setLoading(false)
     }

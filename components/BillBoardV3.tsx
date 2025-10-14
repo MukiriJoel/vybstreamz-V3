@@ -218,7 +218,7 @@ const BillBoardV3 = ({
       }
     } else {
       console.log("slide has mp4")
-      videoEl.src = (slide?.contentDetails as any)?.providerContentUrl+'/'+(slide?.contentDetails as any)?.trailers[0].originUrl;
+      videoEl.src = (slide?.contentDetails as any)?.trailers[0].originUrl;
     }
 
     // Add video event listeners for debugging
@@ -254,7 +254,7 @@ const BillBoardV3 = ({
   const renderBackground = (slide: ICarousel, index: number) => {
  
     const isVideo = (slide?.contentDetails as any)?.contentType === "mp4";
-
+console.log("isvideo")
     if (isVideo) {
       return (
         <div
@@ -272,7 +272,7 @@ const BillBoardV3 = ({
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
           style={{
-            backgroundImage: `url(${(slide?.contentDetails as any)?.providerContentUrl+(slide?.contentDetails as any)?.images?.[0]?.url})`,
+            backgroundImage: `url(${(slide?.contentDetails as any)?.images?.[0]?.url})`,
             transform: index === activeIndex ? "scale(1)" : "scale(1.1)",
           }}
         />

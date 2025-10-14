@@ -6,6 +6,7 @@ export interface IMusicItem{
   provider:string;
   releaseDates:string;
   trending:boolean;
+  logoUrl:string;
   cspid:string;
   contentCategory:string;
   comments:string;
@@ -67,8 +68,8 @@ const MusicSlider = ({slides=[]}:SliderProps) => {
               {/* Main Image Container */}
               <div className="relative" onClick={()=>onMusicClick(item.id)}>
                 <img
-                  src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url  || "/placeholder.svg"}
-                  alt={item.title}
+                  src={item?.contentDetails?.images?.[0]?.url  || "/placeholder.svg"}
+                  alt={item?.contentDetails?.images?.[0]?.title }
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                   onClick={()=>onMusicClick(item.id)}
                 />
@@ -76,7 +77,7 @@ const MusicSlider = ({slides=[]}:SliderProps) => {
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
                   <img
-                    src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url }
+                    src={item?.logoUrl }
                     className="w-full h-full object-cover"
                     alt="Partner logo"
                   />
@@ -92,7 +93,7 @@ const MusicSlider = ({slides=[]}:SliderProps) => {
                 >
                   <div className="!p-0 h-2/5 overflow-hidden border-0">
                     <img
-                      src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url }
+                      src={item?.contentDetails?.images?.[0]?.url }
                       className="w-full h-[200%] object-cover"
                     />
                   </div>
@@ -136,7 +137,7 @@ const MusicSlider = ({slides=[]}:SliderProps) => {
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                             <img
-                              src={item?.contentDetails?.providerContentUrl+'/'+item?.contentDetails?.images?.[0]?.url}
+                              src={item?.logoUrl}
                               className="w-full h-full object-cover"
                             />
                           </div>

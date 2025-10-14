@@ -10,6 +10,7 @@ export interface IVideoItem{
   releaseDates:string;
   trending:boolean;
   cspid:string;
+  logoUrl:string;
   contentCategory:string;
   comments:string;
   contentDetails:{
@@ -65,14 +66,14 @@ const VideoSlider = ({title,slides=[]}:SliderProps) => {
               {/* Main Image Container */}
               <div className="relative">
                 <img
-                  src={item?.contentDetails?.images?.[0]?.url || "/placeholder.svg"}
+                  src={item?.contentDetails?.thumbnails?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
                   className="w-24 h-36 sm:w-28 sm:h-40 md:w-32 md:h-48 lg:w-40 lg:h-60 rounded-lg md:rounded-xl object-cover mb-2 transition-all duration-300"
                 />
                 
                 {/* Partner Logo */}
                 <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
-                  <img src={item?.contentDetails?.thumbnails?.[0]?.url} className="w-full h-full object-cover" alt="Partner logo" />
+                  <img src={item?.logoUrl} className="w-full h-full object-cover" alt="Partner logo" />
                 </div>
 
                 {/* Hover Overlay */}
@@ -118,7 +119,7 @@ const VideoSlider = ({title,slides=[]}:SliderProps) => {
                           </p>
                           <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
                              <img
-                            src={item?.contentDetails?.images?.[0]?.url}
+                            src={item?.logoUrl}
                             className="w-full h-full object-cover"
                             />
                           </div>  

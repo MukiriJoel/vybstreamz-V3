@@ -34,7 +34,7 @@ export default function VerifyEmail() {
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const requestToken = searchParams.get("token");
-  console.log("req",requestToken)
+  // console.log("req",requestToken)
 
   const [code, setCode] = useState(["", "", "", ""]);
   const router = useRouter();
@@ -203,7 +203,7 @@ export default function VerifyEmail() {
     try {
       setLoading(true);
       const res = await dispatch(
-        resendOTP(registrationState?.request_token)
+        resendOTP(requestToken)
       ).unwrap();
       toast.success(res?.message);
     } catch (e: any) {

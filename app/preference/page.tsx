@@ -47,17 +47,17 @@ const genres = [
   "Historical Fiction",
 ]
 
-// Validation schema
+// Validation schema - now validates numbers (indices)
 const schema = yup.object().shape({
   selectedGenres: yup
     .array()
-    .of(yup.string())
+    .of(yup.number())
     .min(1, "Please select at least one genre")
     .required("Please select at least one genre"),
 })
 
 interface GenreFormData  {
-  selectedGenres: string[]
+  selectedGenres: number[]  // Changed to number[] for indices
 }
 
 export default function PreferencePage() {
@@ -98,17 +98,18 @@ export default function PreferencePage() {
     getGenresList();
   },[dispatch]);
 
-  const toggleGenre = (genre: string) => {
+  // Modified to work with indices
+  const toggleGenre = (index: number) => {
     const currentGenres = selectedGenres || []
-    if (currentGenres.includes(genre)) {
-      setValue("selectedGenres", currentGenres.filter((g) => g !== genre))
+    if (currentGenres.includes(index)) {
+      setValue("selectedGenres", currentGenres.filter((i) => i !== index))
     } else {
-      setValue("selectedGenres", [...currentGenres, genre])
+      setValue("selectedGenres", [...currentGenres, index])
     }
   }
 
   const onSubmit:SubmitHandler<GenreFormData>  = async (data) => {
-    console.log("Selected genres:", data.selectedGenres)
+    console.log("Selected genre indices:", data.selectedGenres)
     if(!data.selectedGenres || data.selectedGenres.length === 0){
       toast.warning("preferences are empty");
       return;
@@ -119,7 +120,7 @@ export default function PreferencePage() {
         const res = await dispatch(
           addUserInterests({
             userId:user.id,
-            genres:data.selectedGenres
+            genres:data.selectedGenres  // Now sending indices instead of genre names
           })
         ).unwrap();
         // console.log("res",res)
@@ -151,13 +152,13 @@ export default function PreferencePage() {
               <button
                 key={`${genre}-${index}`}
                 type="button"
-                onClick={() => toggleGenre(genre)}
+                onClick={() => toggleGenre(index)}  // Pass index instead of genre
                 className={`
                   cursor-pointer px-6 py-3 rounded-full text-sm sm:text-base font-medium
                   transition-all duration-200 ease-in-out
                   hover:scale-105 active:scale-95
                   ${
-                    selectedGenres?.includes(genre)
+                    selectedGenres?.includes(index)  // Check if index is selected
                       ? "bg-[#c62676] text-white shadow-lg"
                       : "bg-[#E5E5E5] dark:bg-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#d9d9d9]"
                   }

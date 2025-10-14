@@ -7,6 +7,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useAuth } from "@/lib/context/AuthContext"
 import Link from "next/link";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux"
+import { logoutUser } from "@/store/thunks/authThunks"
 
 const menuItems = [
   { icon: User, label: "My Profile", active: true, link: "/auth/profile" },
@@ -26,6 +28,8 @@ export default function Sidebar() {
   const router = useRouter()
   const { logout } = useAuth();
   const pathname = usePathname();
+  const dispatch=useAppDispatch();
+  const {user}=useAppSelector((state)=>state.auth);
 
 
   const handleLogoutClick = (e:any) => {
@@ -33,9 +37,10 @@ export default function Sidebar() {
     setShowLogoutModal(true);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setShowLogoutModal(false);
     logout();
+    const res = await dispatch(logoutUser({login_session_id: user?.login_session_id})).unwrap()
     router.push('/');
   };
 

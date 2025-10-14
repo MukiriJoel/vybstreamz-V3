@@ -5,12 +5,22 @@ import catalogAxiosInstance from "@/lib/api/catalogAxiosInstance";
 import {store} from "@/store"; 
 import { getDeviceInfo } from "@/lib/helpers/deviceInfo";
 import { formatApiError, formatApiErrorWithStatusCode } from "@/lib/helpers/formatApiError";
-import { setCatalog, setMusicHome, setTopBarContent, setUserInterests, setVideoHome } from "../slices/catalogSlice";
+import { setCatalog, setMusicHome, setPartners, setTopBarContent, setUserInterests, setVideoHome } from "../slices/catalogSlice";
 import { objectToQueryString } from "@/lib/api/fetcher";
 import { useCatalogData } from "@/lib/hooks/useCatalogData";
 
 interface DefaultCatalogParams{
     genre_id?:string
+}
+
+interface OptionalParams {
+    id?: any;
+    // sort?: string;
+    // search?: string;
+    // category?: string;
+    // language?: string;
+    // items_limit?: any;
+    // add other optional params as needed
 }
 
 // GET GENRES
@@ -88,27 +98,27 @@ export const getTopBarContent=createAsyncThunk(
 )
 
 // GET CATALOG CONTENT
-// export const getHomePage=createAsyncThunk(
-//     "catalog/getHomePage",
-//     async(_,{dispatch,rejectWithValue})=>{
-//         try{
-//             const res= await catalogAxiosInstance.get(`/home-page`);
-//             console.log("resHome",res)
-//             dispatch(setCatalog(res?.data?.body))
-//             return res?.data
-//         }catch(error:any){
-//             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
-//         }
-//     }
-// )
+export const getHomePage=createAsyncThunk(
+    "catalog/getHomePage",
+    async(_,{dispatch,rejectWithValue})=>{
+        try{
+            const res= await catalogAxiosInstance.get(`/home-page`);
+            console.log("resHome",res)
+            dispatch(setCatalog(res?.data?.body))
+            return res?.data
+        }catch(error:any){
+            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+        }
+    }
+)
 
 // 🔹 GET  HOME
-export const useDataGetHome = (payload?: any) => {
-    const url = `/home-page`;
-    const {data, isLoading, isError, error} = useCatalogData<any>(url);
-    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
-    return {data: data?.body || [], isLoading, isError, error};
-}
+// export const useDataGetHome = (payload?: any) => {
+//     const url = `/home-page`;
+//     const {data, isLoading, isError, error} = useCatalogData<any>(url);
+//     // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+//     return {data: data?.body || [], isLoading, isError, error};
+// }
 
 
 
@@ -140,3 +150,33 @@ export const getMusicHome=createAsyncThunk(
         }
     }
 )
+
+// GET PARTNERS
+export const getPartners=createAsyncThunk(
+    "catalog/getPartners",
+    async(_,{dispatch,rejectWithValue})=>{
+        try{
+            const res= await catalogAxiosInstance.get(`/partners`);
+            
+            dispatch(setPartners(res?.data?.body))
+            return res?.data
+        }catch(error:any){
+            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+        }
+    }
+)
+
+// 🔹 GET PARTNER BY ID
+export const getPartnerById = createAsyncThunk(
+    "catalog/getPartnerById",
+    async (id: OptionalParams, {dispatch, rejectWithValue}) => {
+
+        try {
+            const res = await catalogAxiosInstance.get(`/partner-details?cspid=${id}`);
+            // dispatch(setTVChannels(res?.data?.data))
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(formatApiError(error.response?.data) || "Fetching failed");
+        }
+    }
+);

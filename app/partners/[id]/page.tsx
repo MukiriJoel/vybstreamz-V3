@@ -9,6 +9,7 @@ const Page = () => {
     const params = useParams();
     const searchParams = useSearchParams();
     // const id: any = searchParams.get('id');
+   
     const id: any = params.id;
 
     return (

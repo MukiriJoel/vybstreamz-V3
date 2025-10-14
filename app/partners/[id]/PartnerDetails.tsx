@@ -11,9 +11,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { HiOutlineSpeakerXMark } from "react-icons/hi2";
 import { MdArrowForward, MdOutlineVideocam } from "react-icons/md";
 import VybzCarouselMusic from "@/components/VybzCarouselMusic";
-import PartnersSlider from "@/components/PartnersSlider";
+import PartnersSlider, { IPartnerItem } from "@/components/PartnersSlider";
 import MusicSlider from "@/components/MusicSlider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMusic } from "@/hooks/useMusic";
 import { usePartners } from "@/hooks/usePartners";
 import PlansSlider from "@/components/PlansSlider";
@@ -25,41 +25,65 @@ import SectionHeader from "@/components/SectionHeader";
 import { useRouter } from "next/navigation";
 import ReviewSlider from "@/components/ReviewSlider";
 import ReviewTop from "@/components/ReviewTop";
+import { useAppDispatch } from "@/hooks/redux";
+import { getPartnerById } from "@/store/thunks/catalogThunks";
 
-interface Partner {
-  id: number;
-  name: string;
-  description: string;
-  logo: string;
-  image: string;
+interface IPartnerDetailsProps{
+  id:any
 }
 
-const defaultPartner: Partner = {
-  id: 0,
-  name: "Unknown Partner",
-  logo: "/logos/bazeLg.png",
-  description: "No description available",
-  image: "/default-image.png",
-};
+// const defaultPartner: IPartnerDetailsProps = {
+//   partner:"Partner" ,
+//   category: "Unknown Partner",
+//   cspId: "/logos/bazeLg.png",
+//   onAggregator: "No description available",
+//   active: "/default-image.png",
+//   callbackUrl:"",
+// logoUrl:"",
+// contentUrl:"",
+// highlighted:""
+// banner:""
+// };
 
-export default function PartnerDetails({ id }: { id: number }) {
+export default function PartnerDetails({ id }: IPartnerDetailsProps) {
+   console.log("searchpar",id)
   const [activeTab, setActiveTab] = useState("Videos");
   const [isSubscribed, setIsSubscribed] = useState(true);
+  const [loading, setLoading] = useState(false);
   const tabs = ["Videos", "Music", "Games", "Education", "Podcast"];
+  const [partnerDetails, setPartnerDetails] = useState<any>();
+  const dispatch = useAppDispatch();
 
-  const partners = usePartners();
+  // const partners = usePartners();
 
-  let partnerDetails: Partner = defaultPartner;
+  // let partnerDetails: Partner = defaultPartner;
 
-  if (partners) {
-    const partnersArr = partners.partners;
+  // if (partners) {
+  //   const partnersArr = partners.partners;
 
-    const getById = (id: number, array: Partner[]) => {
-      return array.find((item: Partner) => item && item.id == id);
-    };
+  //   const getById = (id: number, array: Partner[]) => {
+  //     return array.find((item: Partner) => item && item.id == id);
+  //   };
 
-    (partnerDetails as any) = getById(id, partnersArr);
+  //   (partnerDetails as any) = getById(id, partnersArr);
+  // }
+
+  const fetchPartnersById = async () =>{
+        try{
+           setLoading(true);
+            const res = await dispatch(getPartnerById(id)).unwrap();
+            setPartnerDetails(res?.body?.[0]?.items?.[0])
+           console.log("partnerdet",res?.body?.[0]?.items?.[0])
+        }catch(error) {
+          console.error('Failed to fetch genres', error);
+        }finally {
+            setLoading(false);
+        }
   }
+
+  useEffect(() => {
+    fetchPartnersById();
+    }, []);
 
   const Router = useRouter();
   const onViewMoreClick = () => {
@@ -79,25 +103,26 @@ export default function PartnerDetails({ id }: { id: number }) {
           <div className="px-2 md:px-4 lg:px-6 xl:px-6 pt-8 mt-10">
             <div className="flex rounded-4xl overflow-hidden h-57vh md:h-[65vh] p-0">
               <img
-                src={partnerDetails?.image}
+                src={partnerDetails?.contentUrl}
                 className="w-full h-full object-cover"
-                alt=""
+                alt={partnerDetails?.productId}
               />
             </div>
             {isSubscribed ? (
               <div className="flex mt-10 items-center">
                 <div className="w-16 h-16 rounded-2xl shadow-lg flex justify-center overflow-hidden">
                   <img
-                    src={partnerDetails?.logo}
+                    src={partnerDetails?.contentUrl}
                     className="object-cover w-full h-full"
+                    alt={partnerDetails?.productId}
                   />
                 </div>
                 <div className="flex-1 min-w-0">
                     <h2 className="ml-8 text-3xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
-                    {partnerDetails?.name}
+                    {partnerDetails?.productId}
                     </h2>
                     <p className="text-xs pt-1 ml-8 !font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">
-                    {partnerDetails?.description}
+                    {partnerDetails?.productName}
                     </p>
                 </div>
                
@@ -108,12 +133,13 @@ export default function PartnerDetails({ id }: { id: number }) {
                 <div className="flex mt-10 items-center">
                   <div className="w-14 h-14 rounded-2xl shadow-lg flex justify-center overflow-hidden">
                     <img
-                      src={partnerDetails?.logo}
+                      src={partnerDetails?.contentUrl}
                       className="object-cover w-full h-full"
+                      alt={partnerDetails?.productId}
                     />
                   </div>
                   <h2 className="ml-8 text-2xl md:text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] leading-[100%] ">
-                    {partnerDetails?.name}
+                    {partnerDetails?.productName}
                   </h2>
                 </div>
                 <div className="flex items-center mt-10">

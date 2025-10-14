@@ -7,16 +7,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef, useState } from "react";
 import CarouselDots from "./CarouselDots";
+import { IPartnerItem } from "./PartnersSlider";
+import { getPreviouslyCachedImageOrNull } from "next/dist/server/image-optimizer";
 
-export interface ICarousel {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-}
 
 interface PartnersCarouselProps {
-  slides?: ICarousel[];
+  slides?: IPartnerItem[];
   delay?: number;
 }
 
@@ -30,51 +26,19 @@ const PartnersCarousel = ({
     const [activeIndex, setActiveIndex] = useState(0);
 
      // Default slide if no slides provided
-    const defaultSlide: ICarousel = {
-    id: 1,
-    name: "Baze",
-    description: "The journey of a couple towards their wedding, in their planning they...",
-    image: "/images/bazePoster.png",
+    const defaultSlide: IPartnerItem = {
+    partner: "default",
+    category: "Education",
+    cspId: 7126,
+    onAggregator: true,
+    active:true,
+    callbackUrl:"https://webhook.site/1abda4d9-24dc-488d-9e10-710ba6d94718",
+    logoUrl:"https://d2xbsd6elv8h3x.cloudfront.net/provider/inua/images/inua_logo.png",
+    contentUrl:"https://app.inua.io/",
+    highlighted:false,
+    banner:null
     };
 
-    slides = [
-            {
-              id:1,
-              name: "Baze",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/bazePoster.png",
-            },
-            {
-              id:2,
-              name: "Hulu",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/bazePoster.png",
-            },
-            {
-              id:3,
-              name: "Netflix",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/netflixGames.png",
-            },
-            {
-              id:4,
-              name: "StarTimes",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/netflixGames.png",
-            },
-            {
-              id:5,
-              name: "YouTube",
-              description: "The journey of a couple towards their wedding, in their planning they...",
-              image: "/images/netflixGames.png",
-            },
-            {
-              id:6,
-              name: "GoTv",
-              description: "Your account gives you access to live Gotv content and community",
-              image: "/images/netflixGames.png",
-            },
-          ];
 
     const slidesToRender = slides.length > 0 ? slides : [defaultSlide];
 
@@ -107,14 +71,14 @@ const PartnersCarousel = ({
                     >
                     
                     {slidesToRender.map((slide, index) => (
-                        <div className="relative pb-6" key={slide.id}>
+                        <div className="relative pb-6" key={slide?.cspId}>
                             <div className="bg-[#F2F2F2] dark:bg-[#141414] h-60 sm:h-45 md:h-100 lg:h-120 xl:h-120 rounded-4xl overflow-hidden">
                                 {/* Image Container */}
                                 
                                     <img
-                                    src={slide.image}
+                                    src={slide?.logoUrl}
                                     alt="Advertisement"
-                                    className="w-full h-full rounded-4xl object-cover"
+                                    className="w-full h-full rounded-4xl object-contain"
                                     />
                                 
                             </div>
@@ -123,9 +87,9 @@ const PartnersCarousel = ({
                             </div>
                         
                               <div className="text-left w-full">
-                                     <h2 className="text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-3 mt-4">{slide.name}</h2>
+                                     <h2 className="text-4xl font-semibold text-[#2C2C2C] dark:text-[#FFFFFF] mb-3 mt-4">{slide?.partner}</h2>
                                       <p className="text-[#2C2C2C] dark:text-[#FFFFFF] !font-normal text-[12px] tracking-normal leading-none">
-                                      {slide.description}
+                                      {slide?.callbackUrl}
                                       </p>
                               </div>
                               

@@ -20,7 +20,7 @@ import BillBoardV3 from "@/components/BillBoardV3";
 import PartnerBanner from "@/components/PartnerBanner";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/hooks/redux";
-import { getTopBarContent, useDataGetHome } from "@/store/thunks/catalogThunks";
+import { getHomePage, getTopBarContent } from "@/store/thunks/catalogThunks";
 import HomePageLoading from "./loading";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -28,7 +28,8 @@ import HomePageLoading from "./loading";
 export default function Home() {
   const Router = useRouter();
   const dispatch = useAppDispatch();
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [homeContent, setHomeContent] = useState<any>(null);
   const [sliderContent, setSliderContent] = useState<any>(null);
   const [videoContent, setVideoContent] = useState<any>(null);
   const [musicContent, setMusicContent] = useState<any>(null);
@@ -55,12 +56,27 @@ export default function Home() {
     },
   ];
 
-    const { data: homeContent, isLoading: loading, isError } = useDataGetHome();
-    console.log("homeContent", homeContent);
+    // const { data: homeContent, isLoading: loading, isError } = useDataGetHome();
+    // console.log("homeContent", homeContent);
+const fetchHomePage = async () =>{
+      try{
+         setLoading(true);
+          const res = await dispatch(getHomePage()).unwrap();
 
-    
+          setHomeContent(res?.body)
+      }catch(error) {
+        console.error('Failed to fetch genres', error);
+      }finally {
+          setLoading(false);
+      }
+}
     
   useEffect(() => {
+  fetchHomePage();
+  }, []);
+
+  useEffect(() => {
+     if (!homeContent) return; 
     // const fetchTopBar = async () =>{
     //   try{
     //     setLoading(true);
@@ -74,62 +90,51 @@ export default function Home() {
     //   }
     // }
 
-    // const fetchHomePage = async () =>{
-    //   try{
-    //      setLoading(true);
-    //       const res = await dispatch(getHomePage()).unwrap();
-
-    //       setCatalog(res?.body)
-    //   }catch(error) {
-    //     console.error('Failed to fetch genres', error);
-    //   }finally {
-    //       setLoading(false);
-    //   }
-    // }
+    
 
     // fetchTopBar();
     // fetchHomePage();
-    const sliders = homeContent.find(
+    const sliders = homeContent?.find(
       (content: any) => content.slug === "slider"
     );
     setSliderContent(sliders)
     console.log("sliders", sliderContent);
 
-    const partners = homeContent.find(
+    const partners = homeContent?.find(
       (content: any) => content.slug === "partners"
     );
     setPartnersContent(partners)
     console.log("partners", partnersContent);
 
-    const deals = homeContent.find(
+    const deals = homeContent?.find(
       (content: any) => content.slug === "best_deals"
     );
     setDealsContent(deals);
     console.log("deals", dealsContent);
 
-    const music = homeContent.find((content: any) => content.slug === "listen");
+    const music = homeContent?.find((content: any) => content.slug === "listen");
 
     setMusicContent(music);
     console.log("music", musicContent);
 
-    const videos = homeContent.find((content: any) => content.slug === "watch");
+    const videos = homeContent?.find((content: any) => content.slug === "watch");
 
     setVideoContent(videos);
     console.log("videos", videoContent);
 
-    const education = homeContent.find(
+    const education = homeContent?.find(
       (content: any) => content.slug === "learn"
     );
 
     setEduContent(education);
     console.log("education", eduContent);
 
-    const games = homeContent.find((content: any) => content.slug === "games");
+    const games = homeContent?.find((content: any) => content.slug === "games");
 
     setGamesContent(games);
     console.log("games", gamesContent);
 
-    const partnerHighlight = homeContent.find(
+    const partnerHighlight = homeContent?.find(
       (content: any) => content.slug === "partner-highlight"
     );
 

@@ -23,6 +23,7 @@ const PartnersSlider =({slides=[]}:PartnerProps)=>{
    const Router=useRouter();
   
     const onHandleClick=(partner:any)=>{
+      console.log("cspid",partner.cspId)
       Router.push(`/partners/${partner.cspId}`)
     }
     

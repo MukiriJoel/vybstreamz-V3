@@ -209,7 +209,7 @@ function PartnerSection({ title, partners }: PartnerSectionProps) {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h4 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
+                <h4 className="text-xl font-semibold text-gray-900 dark:text-[#FFFFFF] mb-2">
                   {partner?.partner}
                 </h4>
                 <p className="md:text-base lg:text-base text-xs !font-normal text-[#2C2C2C] dark:text-[#FFFFFF] line-clamp-3">

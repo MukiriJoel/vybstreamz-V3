@@ -212,7 +212,7 @@ const fetchHomePage = async () =>{
             {/* Trending Section */}
             <section className="">
               <SectionHeader viewButton={true} title={gamesContent?.title} route="/games" />
-              <GamesSlider slides={gamesContent?.items ?? []} />
+              {/* <GamesSlider slides={gamesContent?.items ?? []} /> */}
             </section>
 
             {/*AD slider */}

@@ -40,7 +40,8 @@ export interface IGamesItem{
 }
 
 interface SliderProps{
-  slides:IGamesItem[]
+  slides:IGamesItem[],
+  title:string
 }
 
 const GamesSlider = ({slides=[]}:SliderProps) => {

@@ -53,23 +53,23 @@ export default function Home() {
     setSliderContent(sliders);
     console.log("sliders", sliderContent);
 
-    const action = videoHomeContent?.find(
-      (content: any) => content.slug === "action"
-    );
-    setActionContent(action);
-    console.log("action", actionContent);
+    // const action = videoHomeContent?.find(
+    //   (content: any) => content.slug === "action"
+    // );
+    // setActionContent(action);
+    // console.log("action", actionContent);
 
-    const kids = videoHomeContent?.find(
-      (content: any) => content.slug === "kids-animation"
-    );
-    setKidsContent(kids);
-    console.log("kids", kidsContent);
+    // const kids = videoHomeContent?.find(
+    //   (content: any) => content.slug === "kids-animation"
+    // );
+    // setKidsContent(kids);
+    // console.log("kids", kidsContent);
 
-    const partners = videoHomeContent?.find(
-      (content: any) => content.slug === "partners"
-    );
-    setPartnersContent(partners);
-    console.log("partners", PartnersContent);
+    // const partners = videoHomeContent?.find(
+    //   (content: any) => content.slug === "partners"
+    // );
+    // setPartnersContent(partners);
+    // console.log("partners", PartnersContent);
   }, [videoHomeContent]);
 
   return (

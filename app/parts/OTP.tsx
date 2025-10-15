@@ -2,13 +2,15 @@
 import {Controller, useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {Button, IconButton, Input} from '@mui/material';
+import {Button, CircularProgress, IconButton, Input} from '@mui/material';
 import React, {useEffect, useState} from 'react';
 import {MdArrowBack} from "react-icons/md";
 import {useRouter} from "next/navigation";
 import { formatTime } from '@/lib/helpers/formatTime';
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "@/store";
+import { resendOTP } from '@/store/thunks/authThunks';
+import { toast } from 'sonner';
 
 const schema = yup.object().shape({
     otp: yup.string().length(4, 'OTP must be exactly 4 digits').required('OTP is required'),
@@ -19,6 +21,7 @@ interface OTPFormInputs {
 }
 
 const VerifyPhone = (props: { data?: any, emitClick?: any }) => {
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const {control, handleSubmit, setValue, watch} = useForm<OTPFormInputs>({
@@ -36,6 +39,23 @@ const VerifyPhone = (props: { data?: any, emitClick?: any }) => {
         }
 
         props?.emitClick(payload);
+    };
+
+     const resendToken = async () => {
+        try {
+          setLoading(true);
+          const res = await dispatch(
+            resendOTP(props?.data?.request_token)
+          ).unwrap();
+          toast.success(res?.message);
+        } catch (e: any) {
+          console.log(e);
+          toast.error(e?.message || "Could not resend OTP. Please try Again", {
+            duration: 5000,
+          });
+        } finally {
+          setLoading(false);
+        }
     };
 
     const handleChange = (e: any, index: number) => {
@@ -126,8 +146,30 @@ const VerifyPhone = (props: { data?: any, emitClick?: any }) => {
                     Verify
                 </Button>
             </form>
-            <p className="text-primary text-sm">Request another code in <span
+            {timeLeft>0 ? (
+                <p className="text-primary text-sm">Request another code in <span
                 className="font-semibold">{formatTime(timeLeft)}</span></p>
+            ):(
+
+                <div>
+                                  <button
+                                    className="text-[#2C2C2C] dark:text-[#FFFFFF] underline cursor-pointer"
+                                    onClick={resendToken}
+                                    disabled={loading}
+                                  >
+                                    {loading ? <CircularProgress size={20} /> : "Resend Code"}
+                                  </button>
+                
+                                  <p className="text-[#2C2C2C] dark:text-[#FFFFFF]">
+                                    {loading ? (
+                                      <CircularProgress size={20} />
+                                    ) : (
+                                      ""
+                                    )}
+                                  </p>
+                                </div>
+            ) }
+           
         </div>
     );
 };

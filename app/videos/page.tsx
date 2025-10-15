@@ -14,8 +14,12 @@ import { getTopBarContent, getVideoHome } from "@/store/thunks/catalogThunks";
 
 export default function Home() {
     const dispatch = useAppDispatch();
-  const [videHomeContent, setVideHomeContent] = useState<any>();
+  const [videoHomeContent, setVideVideoHomeContent] = useState<any>();
   const [topBarContent, setTopBarContent] = useState<any>(null);
+  const [sliderContent, setSliderContent] = useState<any>(null);
+  const [actionContent, setActionContent] = useState<any>(null);
+  const [kidsContent, setKidsContent] = useState<any>(null);
+  const [PartnersContent, setPartnersContent] = useState<any>(null);
     const [loading, setLoading] = useState(false);
   const Router=useRouter();
     
@@ -24,13 +28,12 @@ export default function Home() {
       Router.push(`/viewMore/`)
     }
 
-      useEffect(()=>{
-        const fetchVideoHome = async () =>{
+      const fetchVideoHome = async () =>{
           try{
             setLoading(true);
             const res = await dispatch(getVideoHome()).unwrap();
           console.log("videohomeres",res)
-            setVideHomeContent(res?.body?.video);
+            setVideVideoHomeContent(res?.body);
           }catch (error) {
             console.error('Failed to fetch genres', error);
           } finally {
@@ -38,67 +41,96 @@ export default function Home() {
           }
         }
 
-      const fetchTopBar = async () =>{
-        try{
-          setLoading(true);
-          const res = await dispatch(getTopBarContent()).unwrap();
-            console.log("topbarRes",res?.body);
-            setTopBarContent(res?.body)
-        }catch (error) {
-          console.error('Failed to fetch genres', error);
-        } finally {
-            setLoading(false);
-        }
-      }
 
-        fetchTopBar();
-        fetchVideoHome();
-      },[dispatch]);
+      useEffect(()=>{
+         fetchVideoHome();
+      },[]);
+
+
+    useEffect(() => {
+     if (!videoHomeContent) return; 
+   
+    const sliders = videoHomeContent?.find(
+      (content: any) => content.slug === "slider"
+    );
+    setSliderContent(sliders)
+    console.log("sliders", sliderContent);
+
+    const action = videoHomeContent?.find(
+      (content: any) => content.slug === "action"
+    );
+    setActionContent(action)
+    console.log("action", actionContent);
+
+    const kids = videoHomeContent?.find(
+      (content: any) => content.slug === "kids-animation"
+    );
+    setKidsContent(kids);
+    console.log("kids", kidsContent);
+
+    const partners = videoHomeContent?.find(
+      (content: any) => content.slug === "partners"
+    );
+    setPartnersContent(partners);
+    console.log("partners", PartnersContent);
+
+    
+
+  }, [videoHomeContent]);
     
   return (
     <>
       <div className="bg-[#F2F2F2] dark:bg-[#141414]">
         {/* Hero Section */}
         <main className="">
-          <VybzCarouselMain slides={topBarContent ?? []}/>
-          <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
-            {/* Partners Section */}
+          <VybzCarouselMain slides={sliderContent?.items ?? []}/>
+          {/* <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
+
             <section className="">
-                <SectionHeader  viewButton={true} title="partners" route="/partners"/>
-              {/* <PartnersSlider /> */}
+                <SectionHeader  viewButton={true} title={PartnersContent?.title} route="/partners"/>
+              <PartnersSlider slides={PartnersContent?.items ?? []}/>
             </section>
 
 
-            {/* Trending Section */}
+            
             <section className="">
-                <SectionHeader  viewButton={true} title="trending" route="/videos"/>
+                <SectionHeader  viewButton={true} title={actionContent?.title}  route="/videos"/>
                
-                  <VideoSlider title="" slides={videHomeContent.items ?? []} />
+                  <VideoSlider title={actionContent?.title} slides={actionContent?.items ?? []} />
                
          
             </section>
 
-            {/* Recommended For You Section */}
-            <section className="">
-                <SectionHeader  viewButton={true} title="recommended for you" route="/videos"/>
-              <VideoSlider title={videHomeContent.title} slides={videHomeContent ?? []} />
-            </section>
-
-
-            {/* Recommended For You Section */}
-            <section className="   ">
-                <SectionHeader  viewButton={true} title="drama" route="/videos"/>
-              <VideoSlider title={videHomeContent.title} slides={videHomeContent ?? []} />
-            </section>
-
-
-            {/* Recommended For You Section */}
-            <section className=" ">
-                <SectionHeader  viewButton={true} title="comedy" route="/videos"/>
-              <VideoSlider title={videHomeContent.title} slides={videHomeContent ?? []} />
-            </section>
            
-          </div>
+            <section className="">
+                <SectionHeader  viewButton={true} title={kidsContent?.title}  route="/videos"/>
+              <VideoSlider title={kidsContent?.title} slides={kidsContent?.items ?? []} />
+            </section>
+
+           
+          </div> */}
+          <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
+  {videoHomeContent?.map((section:any) => {
+    // Skip sections with no items
+    if (section.slug === 'slider' || !section.items || section.items.length === 0) return null;
+
+    return (
+      <section key={section.slug} className="">
+        <SectionHeader 
+          viewButton={true} 
+          title={section.title} 
+          route={section.slug === 'partners' ? '/partners' : '/videos'}
+        />
+        
+        {section.slug === 'partners' ? (
+          <PartnersSlider slides={section.items} />
+        ) : (
+          <VideoSlider title={section.title} slides={section.items} />
+        )}
+      </section>
+    );
+  })}
+</div>
         </main>
       </div>
     </>

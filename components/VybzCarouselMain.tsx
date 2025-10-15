@@ -22,6 +22,7 @@ export interface ICarouselItem{
   releaseDates:string;
   trending:boolean;
   cspid:string;
+  logoUrl:string;
   contentCategory:string;
   comments:string;
   contentDetails:{
@@ -185,7 +186,7 @@ console.log("carouselSlides",slides)
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: `url(${slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.images?.[0]?.url})`
+                backgroundImage: `url(${slide?.contentDetails?.images?.[0]?.url})`
               }}
             >
               <div className="absolute inset-0 bg-black/50" />
@@ -270,12 +271,14 @@ console.log("carouselSlides",slides)
                   <p className="text-white/70 text-[14px] uppercase tracking-wide">
                     stream on:
                   </p>
-                 
-                    <img
-                      src={slide?.contentDetails?.images?.[0]?.url}
-                      alt={slide?.contentDetails?.images?.[0]?.url}
-                      className="w-[45px] h-[45px] ml-2"
+                 <div className="w-[45px] h-[45px] ml-2 bg-white rounded-md p-1 flex justify-center overflow-hidden">
+<img
+                      src={slide?.logoUrl}
+                      alt={slide?.logoUrl}
+                      className="w-full h-full object-contain"
                     />
+                 </div >
+                    
                   
                 </div>
               </div>

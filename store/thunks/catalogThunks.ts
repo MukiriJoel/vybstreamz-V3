@@ -127,7 +127,7 @@ export const getVideoHome=createAsyncThunk(
     "catalog/getVideoHome",
     async(_,{dispatch,rejectWithValue})=>{
         try{
-            const res= await catalogAxiosInstance.get(`/catalog?content_type=Video`);
+            const res= await catalogAxiosInstance.get(`/content-page?category=Video`);
             dispatch(setVideoHome(res?.data?.body))
             return res?.data
         }catch(error:any){

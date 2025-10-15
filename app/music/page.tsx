@@ -21,9 +21,9 @@ import { useAppDispatch } from "@/hooks/redux";
 
 
 export default function MusicPage() {
-      const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const [MusicHomeContent, setMusicHomeContent] = useState<any>();
-    const [topBarContent, setTopBarContent] = useState<any>(null);
+    const [sliderContent, setSliderContent] = useState<any>(null);
       const [loading, setLoading] = useState(false);
   const Router=useRouter();
       
@@ -31,67 +31,75 @@ export default function MusicPage() {
     Router.push(`/viewMore/`)
   }
 
-  useEffect(()=>{
-          const fetchMusicHome = async () =>{
-            try{
-              setLoading(true);
-              const res = await dispatch(getMusicHome()).unwrap();
-            console.log("musichomeres",res)
-              setMusicHomeContent(res?.body?.music);
-            }catch (error) {
-              console.error('Failed to fetch genres', error);
-            } finally {
-                setLoading(false);
-            }
-          }
+  const fetchMusicHome = async () =>{
+    try{
+      setLoading(true);
+      const res = await dispatch(getMusicHome()).unwrap();
+    console.log("musichomeres",res)
+      setMusicHomeContent(res?.body);
+    }catch (error) {
+      console.error('Failed to fetch genres', error);
+    } finally {
+        setLoading(false);
+    }
+  }
   
-        const fetchTopBar = async () =>{
-          try{
-            setLoading(true);
-            const res = await dispatch(getTopBarContent()).unwrap();
-              console.log("topbarRes",res?.body);
-              setTopBarContent(res?.body)
-          }catch (error) {
-            console.error('Failed to fetch genres', error);
-          } finally {
-              setLoading(false);
-          }
-        }
-  
-          fetchTopBar();
-          fetchMusicHome();
-        },[dispatch]);
+  useEffect(()=>{      
+    fetchMusicHome();
+  },[]);
+
+  useEffect(() => {
+    if (!MusicHomeContent) return;
+       const sliders = MusicHomeContent?.find(
+      (content: any) => content.slug === "slider"
+    );
+    setSliderContent(sliders);
+    console.log("sliders", sliderContent);
+
+  },[MusicHomeContent])
 
   return (
     <div className="bg-[#F2F2F2] dark:bg-[#141414]">
       {/* Main Content */}
       <main className="">
         {/* Podcast Player Section */}
-        <VybzCarouselMusic slides={topBarContent ?? []}/>
+        <VybzCarouselMusic slides={sliderContent?.items ?? []}/>
 
-        <div className="p-2 md:p-4 lg:p-6 xl:p-6  max-w-8xl mx-auto">
+         <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
+    {MusicHomeContent?.filter((section:any) => section.slug !== 'slider' && section.items?.length > 0)
+    .sort((a:any, b:any) => {
+      // Partners always first
+      if (a.slug === 'partners') return -1;
+      if (b.slug === 'partners') return 1;
+      return 0; // Keep original order for others
+    }).map((section: any) => {
+                      // Skip sections with no items
+                      if (
+                        section.slug === "slider" ||
+                        !section.items ||
+                        section.items.length === 0
+                      )
+                        return null;
         
-
-          {/* Partners Section */}
-          <div className="">
-            <SectionHeader  viewButton={true} title="partners" route="/partners"/>
-
-            {/* Horizontal scrollable container */}
-            {/* <PartnersSlider></PartnersSlider> */}
-          </div>
-
-          {/* top ranked Section */}
-          <div className="">
-              <SectionHeader  viewButton={true} title="top ranked music" route="/music"/>
-            <MusicSlider slides={MusicHomeContent ?? []}></MusicSlider>
-          </div>
-
-          {/* albums Section */}
-          <div className="">
-              <SectionHeader  viewButton={true} title="albums" route="/music"/>
-            <MusicSlider slides={MusicHomeContent ?? []}></MusicSlider>
-          </div>
-        </div>
+                      return (
+                        <section key={section.slug} className="">
+                          <SectionHeader
+                            viewButton={true}
+                            title={section.title}
+                            route={
+                              section.slug === "partners" ? "/partners" : "/music"
+                            }
+                          />
+        
+                          {section.slug === "partners" ? (
+                            <PartnersSlider slides={section.items} />
+                          ) : (
+                            <MusicSlider slides={section.items} />
+                          )}
+                        </section>
+                      );
+                    })}
+                  </div>
       </main>
     </div>
   );

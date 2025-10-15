@@ -79,55 +79,10 @@ const VybzCarouselMain = ({
 
   // Default slide if no slides provided
   const defaultSlide = {
-    // id: 1,
-    // title: "Squid Game 3",
-    // description:
-    //   "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-    // category: "Game",
-    // ageRating: "16 Yrs +",
-    // streamingPlatform: "Netflix",
-    // platformLogo: "/logos/netflix.png",
-    // backgroundImage: "/images/netflixGames.png",
   };
 
-  // slides = [
-  //   {
-  //     id: 1,
-  //     title: "Squid Game 3",
-  //     description:
-  //       "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-  //     category: "Game",
-  //     ageRating: "16 Yrs +",
-  //     backgroundImage: "/images/netflixGames.png",
-  //     streamingPlatform: "Netflix",
-  //     platformLogo: "/logos/netflix.png",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Mofaya",
-  //     description:
-  //       "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-  //     category: "Movie",
-  //     ageRating: "16 Yrs +",
-  //     backgroundImage: "/images/mofaya.png",
-  //     streamingPlatform: "Baze",
-  //     platformLogo: "/logos/bazeLg.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Dora",
-  //     description:
-  //       "A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where every choice sparks more fire.",
-  //     category: "Movie",
-  //     ageRating: "16 Yrs +",
-  //     backgroundImage: "/images/dora.png",
-  //     streamingPlatform: "Baze",
-  //     platformLogo: "/logos/bazeLg.png",
-  //   },
-  // ];
-
   const slidesToRender = slides.length > 0 ? slides : [];
-console.log("carouselSlides",slides)
+  console.log("carouselSlides",slides)
   const settings: SlickSettings = {
     dots: false,
     fade: true,
@@ -272,7 +227,7 @@ console.log("carouselSlides",slides)
                     stream on:
                   </p>
                  <div className="w-[45px] h-[45px] ml-2 bg-white rounded-md p-1 flex justify-center overflow-hidden">
-<img
+                    <img  
                       src={slide?.logoUrl}
                       alt={slide?.logoUrl}
                       className="w-full h-full object-contain"

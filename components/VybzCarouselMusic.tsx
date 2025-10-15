@@ -35,47 +35,6 @@ const VybzCarouselMusic = ({
 
   };
 
-  // slides = [
-  //   {
-  //     id: 1,
-  //     title: "disko",
-  //     subtitle: "Kodong Klan",
-  //     duration: "1hr 45min",
-  //     category: "Album",
-  //     tracks: "10",
-  //     genre: "Hiphop",
-  //     streamingPlatform: "Spotify",
-  //     platformLogo: "/logos/spotify.png",
-  //     cover: "/images/albumCover.png",
-  //     backgroundImage: "/images/albumCover.png",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "super morio",
-  //     subtitle: "matata",
-  //     duration: "1hr 45min",
-  //     category: "Album",
-  //     tracks: "10",
-  //     genre: "Hiphop",
-  //     streamingPlatform: "Spotify",
-  //     platformLogo: "/logos/spotify.png",
-  //     cover: "/images/albumCover.png",
-  //     backgroundImage: "/images/matata.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "maisha ya stunna",
-  //     subtitle: "lil maina",
-  //     duration: "1hr 45min",
-  //     category: "Album",
-  //     tracks: "10 songs",
-  //     genre: "Hiphop",
-  //     streamingPlatform: "Spotify",
-  //     platformLogo: "/logos/spotify.png",
-  //     cover: "/images/albumCover.png",
-  //     backgroundImage: "/images/albumCover.png",
-  //   },
-  // ];
 
   const slidesToRender = slides.length > 0 ? slides : [];
 
@@ -148,7 +107,7 @@ const VybzCarouselMusic = ({
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url(${slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.images?.[0]?.url})`,
+                  backgroundImage: `url(${slide?.contentDetails?.images?.[0]?.url})`,
                 }}
               >
                 <div className="absolute inset-0 bg-black/50"></div>
@@ -161,8 +120,8 @@ const VybzCarouselMusic = ({
                     {/* Album Cover */}
                     <div className="flex-shrink-0 flex items-center w-35 h-50 overflow-hidden">
                       <img
-                        src={slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.thumbnails?.[0]?.url}
-                        alt={slide?.contentDetails?.providerContentUrl+slide?.contentDetails?.thumbnails?.[0]?.url}
+                        src={slide?.contentDetails?.images?.[0]?.url}
+                        alt={slide?.contentDetails?.images?.[0]?.url}
                         className="w-full h-full rounded-lg object-cover shadow-lg"
                       />
                     </div>
@@ -189,11 +148,13 @@ const VybzCarouselMusic = ({
                           <p className="text-white text-[14px] uppercase tracking-wide mr-3">
                             stream on:
                           </p>
-                          <img
-                            src={slide?.contentDetails?.images?.[0]?.url}
-                            className="w-[45px] h-[45px]"
-                            alt={slide?.contentDetails?.images?.[0]?.url}
-                          />
+                          <div className="w-[45px] h-[45px] ml-2 bg-white rounded-md p-1 flex justify-center overflow-hidden">
+                              <img  
+                                src={slide?.logoUrl}
+                                alt={slide?.logoUrl}
+                                className="w-full h-full object-contain"
+                              />
+                          </div >
                         </div>
 
                         {/* <div className="flex flex-col flex-wrap items-end gap-4">

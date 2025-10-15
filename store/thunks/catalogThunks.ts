@@ -142,7 +142,7 @@ export const getMusicHome=createAsyncThunk(
     "catalog/getMusicHome",
     async(_,{dispatch,rejectWithValue})=>{
         try{
-            const res= await catalogAxiosInstance.get(`/catalog?content_type=Music`);
+            const res= await catalogAxiosInstance.get(`/content-page?category=Music`);
             dispatch(setMusicHome(res?.data?.body))
             return res?.data
         }catch(error:any){

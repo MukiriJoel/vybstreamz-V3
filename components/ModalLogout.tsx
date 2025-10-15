@@ -31,7 +31,7 @@ const ModalLogout = ()=>{
                 You are about to log out !
               </h3>
               <p className="text-[#2C2C2C] dark:text-[#FFFFFF] mb-6">
-                Are you sure you want to log out from Vybz Streams? You will have to log back in to access your account
+                Are you sure you want to log out from VybStreamz? You will have to log back in to access your account
               </p>
               
               <div className="flex gap-4 justify-center">

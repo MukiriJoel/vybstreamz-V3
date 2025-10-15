@@ -41,7 +41,7 @@ const schema = yup.object().shape({
         .required('Phone is required'),
     email: yup.string().email('Invalid Email').optional(),
     password: yup.string()
-        .min(8, "Password must be at least 8 characters")
+        .min(12, "Password must be at least 12 characters")
         .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
         .matches(/\d/, "Password must contain at least one number")
         .matches(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character (@, $, !, %, *, ?, &)")
@@ -73,7 +73,7 @@ export default function CreateAccountPage() {
   const password = watch('password')
   
   // Password validation checks - use the watched password value
-  const hasMinLength = password?.length >= 8
+  const hasMinLength = password?.length >= 12
   const hasCapitalLetter = /[A-Z]/.test(password || '')
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password || '')
   const hasNumber = /\d/.test(password || '')
@@ -323,7 +323,7 @@ export default function CreateAccountPage() {
                   >
                     {hasMinLength && <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />}
                   </div>
-                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 8 characters</span>
+                  <span className="text-xs sm:text-sm text-[#2c2c2c] dark:text-white transition-colors duration-200">At least 12 characters</span>
                 </div>
 
                 <div className="flex items-center space-x-3">

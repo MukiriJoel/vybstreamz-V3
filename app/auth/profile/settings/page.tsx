@@ -100,7 +100,7 @@ export default function SettingsPage() {
             "bg-[#c62676] text-white":"bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
-          <div>
+          <div className="text-left">
             <div className="font-medium">App Theme</div>
             <div className="text-sm dark:text-white">{getThemeDisplayName(theme)}</div>
           </div>
@@ -113,7 +113,7 @@ export default function SettingsPage() {
             "bg-[#c62676] text-white":"bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
-          <div>
+          <div className="text-left">
             <div className="font-medium">Notifications</div>
             <div className="text-sm dark:text-white">On</div>
           </div>
@@ -126,7 +126,7 @@ export default function SettingsPage() {
             "bg-[#c62676] text-white":"bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
-          <div>
+          <div  className="text-left">
             <div className="font-medium">Autoplay</div>
             <div className="text-sm dark:text-white">Enabled</div>
           </div>
@@ -141,7 +141,7 @@ export default function SettingsPage() {
               : "bg-[#F2F2F2] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#E5E5E5] dark:bg-[#333333] dark:hover:bg-gray-600"
           }`}
         >
-          <div>
+          <div className="text-left">
             <div className="font-medium">Account Deletion</div>
           </div>
           <ChevronRight className="w-5 h-5" />

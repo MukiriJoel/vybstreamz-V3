@@ -41,7 +41,7 @@ export default function VybStreamsPage() {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Check out Vyb Streams',
+          title: 'Check out VybStreamz',
           text: 'Great things are meant to be shared. Check out this platform!',
           url: shareUrl,
         })

@@ -164,7 +164,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8 text-[12px]">
+            <div className="hidden md:flex items-center space-x-8 text-[14px]">
               {navItems.map((item, i) => (
                 <Link 
                   key={i} 

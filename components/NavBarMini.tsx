@@ -170,7 +170,7 @@ const NavBarMini = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex lg:pr-20 items-center space-x-8 text-[12px]">
+            <div className="hidden md:flex lg:pr-20 items-center space-x-8 text-[14px]">
               {navItems.map((item, i) => (
                 <Link
                   key={i}

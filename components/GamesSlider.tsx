@@ -68,10 +68,10 @@ const GamesSlider = ({slides=[]}:SliderProps) => {
                 />
 
                 {/* Partner Logo */}
-                <div className="rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
+                <div className="bg-white rounded-full items-center flex justify-center w-6 h-6 md:h-8 md:w-8 lg:h-10 lg:w-10 overflow-hidden border-2 border-[#FFFFFF] absolute top-29 left-1 sm:top-32 md:top-38 lg:top-48 lg:left-2">
                   <img
                     src={item?.logoUrl }
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     alt="Partner logo"
                   />
                 </div>
@@ -128,7 +128,7 @@ const GamesSlider = ({slides=[]}:SliderProps) => {
                           <p className="text-[12px] text-[#333333] dark:text-white uppercase leading-[120%] font-semibold">
                             stream on:
                           </p>
-                          <div className="w-[32px] h-[32px] ml-2 shadow-sm rounded-lg overflow-hidden">
+                          <div className="w-[32px] h-[32px] ml-2 shadow-sm dark:border dark:border-white/10 dark:shadow-[0_1px_3px_0_rgba(255,255,255,0.1)]  rounded-lg overflow-hidden">
                             <img
                               src={item?.logoUrl}
                               className="w-full h-full object-cover"

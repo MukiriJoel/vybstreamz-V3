@@ -38,7 +38,8 @@ export interface IGamesItem{
 }
 
 interface SliderProps{
-  slides:IGamesItem[]
+  slides:IGamesItem[],
+   
 }
 
 

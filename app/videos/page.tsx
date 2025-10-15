@@ -53,23 +53,7 @@ export default function Home() {
     setSliderContent(sliders);
     console.log("sliders", sliderContent);
 
-    // const action = videoHomeContent?.find(
-    //   (content: any) => content.slug === "action"
-    // );
-    // setActionContent(action);
-    // console.log("action", actionContent);
 
-    // const kids = videoHomeContent?.find(
-    //   (content: any) => content.slug === "kids-animation"
-    // );
-    // setKidsContent(kids);
-    // console.log("kids", kidsContent);
-
-    // const partners = videoHomeContent?.find(
-    //   (content: any) => content.slug === "partners"
-    // );
-    // setPartnersContent(partners);
-    // console.log("partners", PartnersContent);
   }, [videoHomeContent]);
 
   return (
@@ -78,31 +62,6 @@ export default function Home() {
         {/* Hero Section */}
         <main className="">
           <VybzCarouselMain slides={sliderContent?.items ?? []} />
-          {/* <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
-
-            <section className="">
-                <SectionHeader  viewButton={true} title={PartnersContent?.title} route="/partners"/>
-              <PartnersSlider slides={PartnersContent?.items ?? []}/>
-            </section>
-
-
-            
-            <section className="">
-                <SectionHeader  viewButton={true} title={actionContent?.title}  route="/videos"/>
-               
-                  <VideoSlider title={actionContent?.title} slides={actionContent?.items ?? []} />
-               
-         
-            </section>
-
-           
-            <section className="">
-                <SectionHeader  viewButton={true} title={kidsContent?.title}  route="/videos"/>
-              <VideoSlider title={kidsContent?.title} slides={kidsContent?.items ?? []} />
-            </section>
-
-           
-          </div> */}
           <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
             {videoHomeContent?.map((section: any) => {
               // Skip sections with no items

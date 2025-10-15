@@ -158,7 +158,21 @@ export const getGamesHome=createAsyncThunk(
     async(_,{dispatch,rejectWithValue})=>{
         try{
             const res= await catalogAxiosInstance.get(`/content-page?category=Games`);
-            dispatch(setMusicHome(res?.data?.body))
+            // dispatch(setMusicHome(res?.data?.body))
+            return res?.data
+        }catch(error:any){
+            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+        }
+    }
+)
+
+// GET GAMES HOME
+export const getEduHome=createAsyncThunk(
+    "catalog/getEduHome",
+    async(_,{dispatch,rejectWithValue})=>{
+        try{
+            const res= await catalogAxiosInstance.get(`/content-page?category=Education`);
+            // dispatch(setGamesHome(res?.data?.body))
             return res?.data
         }catch(error:any){
             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))

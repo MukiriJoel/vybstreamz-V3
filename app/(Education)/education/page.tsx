@@ -6,16 +6,52 @@ import { MdArrowForward } from "react-icons/md";
 import EducationSlider from "@/components/EducationSlider";
 import { useRouter } from "next/navigation";
 import SectionHeader from "@/components/SectionHeader";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "@/hooks/redux";
+import { getEduHome } from "@/store/thunks/catalogThunks";
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function Home() {
   const contentTabs = ["E-Book", "Audio Book"];
   const Router=useRouter();
+  const [sliderContent, setSliderContent] = useState<any>(null);
+  const [gamesHomeContent, setGamesHomeContent] = useState<any>();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
   
   const onViewMoreClick = () =>{
    
     Router.push(`/viewMore/`)
   }
+
+  const fetchEduHome = async () => {
+      try {
+        setLoading(true);
+        const res = await dispatch(getEduHome()).unwrap();
+        console.log("gameshomeres", res);
+        setGamesHomeContent(res?.body);
+      } catch (error) {
+        console.error("Failed to fetch genres", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    useEffect(() => {
+      fetchEduHome();
+    }, []);
+  
+    useEffect(() => {
+      if (!gamesHomeContent) return;
+  
+      const sliders = gamesHomeContent?.find(
+        (content: any) => content.slug === "slider"
+      );
+      setSliderContent(sliders);
+      console.log("sliders", sliderContent);
+  
+  
+    }, [gamesHomeContent]);
 
   return (
     <>
@@ -23,48 +59,36 @@ export default function Home() {
         {/* Main Content */}
         <main className="">
           {/* Hero Section */}
-          <VybzCarouselMain />
+          <VybzCarouselMain slides={sliderContent?.items ?? []}/>
 
           <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
-            {/* Partners Section */}
-            <div className="">
-              <SectionHeader  viewButton={true} title="partners" route="/partners"/>
-              {/* <PartnersSlider /> */}
-            </div>
+            {gamesHomeContent?.map((section: any) => {
+              // Skip sections with no items
+              if (
+                section.slug === "slider" ||
+                !section.items ||
+                section.items.length === 0
+              )
+                return null;
 
-            {/* Best Deals Section */}
+              return (
+                <section key={section.slug} className="">
+                  <SectionHeader
+                    viewButton={true}
+                    title={section.title}
+                    route={
+                      section.slug === "partners" ? "/partners" : "/education"
+                    }
+                  />
 
-            {/* Trending Section */}
-            <div className="">
-              <SectionHeader  viewButton={true} title="recently updated" route="/education"/>
-              {/* <EducationSlider/> */}
-            </div>
-
-            {/* Recommended For You Section */}
-            <div className="">
-              <SectionHeader  viewButton={true} title="kids" route="/education"/>
-              {/* <EducationSlider/> */}
-            </div>
-
-            {/* Trending Section */}
-            <div className="">
-              <SectionHeader  viewButton={true} title="business" route="/education"/>
-              {/* <EducationSlider/> */}
-            </div>
-
-            {/* Recommended For You Section */}
-            <div className="">
-             <SectionHeader  viewButton={true} title="digital skills" route="/education"/>
-              {/* <EducationSlider></EducationSlider> */}
-            </div>
-
-            {/* Trending Section */}
-            <div className="">
-             <SectionHeader  viewButton={true} title="trending" route="/education"/>
-              {/* <EducationSlider/> */}
-            </div>
-
-           
+                  {section.slug === "partners" ? (
+                    <PartnersSlider slides={section.items} />
+                  ) : (
+                    <EducationSlider slides={section.items} />
+                  )}
+                </section>
+              );
+            })}
           </div>
         </main>
       </div>

@@ -6,7 +6,8 @@ import { setUser,
     setLoading,
     logout,
     setToken,
-    setHEData
+    setHEData,
+    setProfilePhoto
 } from "@/store/slices/authSlice"
 import { ILogin,IRegister, IUpdatePhone } from "../types/auth";
 import { formatApiError, formatApiErrorWithStatusCode } from "@/lib/helpers/formatApiError";
@@ -33,6 +34,17 @@ export interface IAccount {
 interface IDeleteUser{
     reason: string,
 }
+
+interface IFileUpload{
+    lastModified: string,
+    name: string,
+    size:number,
+    type:string,
+    webkitRelativePath:string
+}
+
+const fileUploadUrl=process.env.NEXT_PUBLIC_FILE_UPLOAD_URL;
+
 
 
 export const signupUser = createAsyncThunk(
@@ -65,6 +77,22 @@ export const deleteUser = createAsyncThunk(
     }
 )
 
+// UPDATE USER PHONE
+export const updateUserPhone = createAsyncThunk(
+    "auth/updateUserPhone",
+    async(payload:IUpdatePhone,{dispatch,rejectWithValue})=>{
+        try{
+            const res=await authAxiosInstance.post("/user/update-phone",{ data:payload});
+            // dispatch(setRegistrationState(res?.data?.data))
+            console.log("updateaxios",res?.data)
+            return res?.data;
+
+        }catch(error:any){
+              return rejectWithValue(formatApiError(error.response?.data) || "Update failed");
+        }
+    }
+)
+
 // 🔹 VERIFY OTP
 export const verifyOTP = createAsyncThunk<any, IVerifyOTP>(
     "auth/verifyOTP",
@@ -75,6 +103,23 @@ export const verifyOTP = createAsyncThunk<any, IVerifyOTP>(
             dispatch(setToken(res?.data?.data?.access_token));
             dispatch(setUser(res?.data?.data));
             dispatch(setUserProfiles(res?.data?.data?.profiles));
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(formatApiError(error.response?.data) || "OTP request failed");
+        }
+    }
+);
+
+// 🔹 VERIFY OTP 2
+export const verifyOTP2 = createAsyncThunk<any, IVerifyOTP>(
+    "auth/verifyOTP2",
+    async (payload: IVerifyOTP, {dispatch, rejectWithValue}) => {
+        try {
+            dispatch(setToken(""));
+            const res = await authAxiosInstance.post("/auth/verify-otp", payload);
+            // dispatch(setToken(res?.data?.data?.access_token));
+            dispatch(setUser(res?.data?.data));
+            // dispatch(setUserProfiles(res?.data?.data?.profiles));
             return res?.data;
         } catch (error: any) {
             return rejectWithValue(formatApiError(error.response?.data) || "OTP request failed");
@@ -453,4 +498,19 @@ export const updateAccount = createAsyncThunk(
     }
 );
 
-
+// 🔹 FILE UPLOAD
+export const fileUpload = createAsyncThunk(
+    "auth/fileUpload",
+    async (payload: IFileUpload, {dispatch, rejectWithValue}) => {
+        try {
+            const res = await authAxiosInstance.post(`${fileUploadUrl}`, payload);
+            // dispatch(setToken(res?.data?.data?.access_token));
+            console.log("photoUpload",res)
+            dispatch(setProfilePhoto(res?.data));
+            // dispatch(setUserProfiles(res?.data?.data?.profiles));
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(formatApiError(error.response?.data) || "OTP request failed");
+        }
+    }
+);

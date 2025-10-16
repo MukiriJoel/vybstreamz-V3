@@ -6,56 +6,77 @@ import PartnersSlider from "@/components/PartnersSlider";
 import VideoSlider from "@/components/VideoSlider";
 import { useRouter } from "next/navigation";
 import SectionHeader from "@/components/SectionHeader";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "@/hooks/redux";
-import { getTopBarContent, getVideoHome } from "@/store/thunks/catalogThunks";
+import { getTopBarContent, useDataGetVideo } from "@/store/thunks/catalogThunks";
+import HomePageLoading from "../home/loading";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const [videoHomeContent, setVideVideoHomeContent] = useState<any>();
+  // const [videoHomeContent, setVideVideoHomeContent] = useState<any>();
   const [topBarContent, setTopBarContent] = useState<any>(null);
-  const [sliderContent, setSliderContent] = useState<any>(null);
+  // const [sliderContent, setSliderContent] = useState<any>(null);
   const [actionContent, setActionContent] = useState<any>(null);
   const [kidsContent, setKidsContent] = useState<any>(null);
   const [PartnersContent, setPartnersContent] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const Router = useRouter();
 
   const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
   };
 
-  const fetchVideoHome = async () => {
-    try {
-      setLoading(true);
-      const res = await dispatch(getVideoHome()).unwrap();
-      console.log("videohomeres", res);
-      setVideVideoHomeContent(res?.body);
-    } catch (error) {
-      console.error("Failed to fetch genres", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchVideoHome = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await dispatch(getVideoHome()).unwrap();
+  //     console.log("videohomeres", res);
+  //     setVideVideoHomeContent(res?.body);
+  //   } catch (error) {
+  //     console.error("Failed to fetch genres", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchVideoHome();
-  }, []);
+  // useEffect(() => {
+  //   fetchVideoHome();
+  // }, []);
 
-  useEffect(() => {
-    if (!videoHomeContent) return;
+  // useEffect(() => {
+  //   if (!videoHomeContent) return;
 
-    const sliders = videoHomeContent?.find(
-      (content: any) => content.slug === "slider"
-    );
-    setSliderContent(sliders);
+  //   const sliders = videoHomeContent?.find(
+  //     (content: any) => content.slug === "slider"
+  //   );
+  //   setSliderContent(sliders);
+  //   console.log("sliders", sliderContent);
+
+
+  // }, [videoHomeContent]);
+
+  const { data: videoHomeContent, isLoading: loading, isError } = useDataGetVideo();
+  // const sliders = videoHomeContent?.find(
+  //     (content: any) => content.slug === "slider"
+  //   );
+
+    const getContentBySlug= useCallback((slug:string)=>{
+       return videoHomeContent?.find((content: any) => content.slug === slug);
+    },[videoHomeContent]);
+
+    const sliderContent = getContentBySlug("slider");
+
+    // setSliderContent(sliders);
     console.log("sliders", sliderContent);
 
-
-  }, [videoHomeContent]);
-
+     if (loading) {
+            return (
+                <div className=""><HomePageLoading/></div>
+            )
+      }
+      
   return (
     <>
       <div className="bg-[#F2F2F2] dark:bg-[#141414]">

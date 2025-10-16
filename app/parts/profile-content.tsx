@@ -18,7 +18,7 @@ import { useAuth } from "@/lib/context/AuthContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { store } from "@/store";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { requestOTP } from "@/store/thunks/authThunks";
+import { fileUpload, requestOTP } from "@/store/thunks/authThunks";
 import { toast } from "sonner";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -117,13 +117,32 @@ export default function ProfileContent() {
     e.preventDefault();
   };
 
-  const handleDrop = (e: any) => {
+  const handleDrop = async(e: any) => {
     e.preventDefault();
     const files = e.dataTransfer.files;
     if (files.length > 0) {
-      console.log("File dropped:", files[0].name);
+      console.log("File dropped:", files[0]);
       // Handle dropped file here
-      closePopup();
+      // closePopup();
+      if(files[0].size>2000000){
+         toast.error("file size exceeds 2MB");
+         return;
+      }
+        try {
+            setLoading(true);
+            const res = await dispatch(
+              fileUpload(files[0])
+            ).unwrap();
+            toast.success(res?.message);
+          } catch (e: any) {
+            console.log(e);
+            toast.error(e?.message || "Could not resend OTP. Please try Again", {
+              duration: 5000,
+            });
+          } finally {
+            setLoading(false);
+          }
+
     }
   };
 
@@ -305,7 +324,7 @@ export default function ProfileContent() {
               </div>
 
               {/* Upload Text */}
-              <h3 className="text-lg font-medium text-pink-500 mb-2">
+              <h3 className="text-lg font-medium text-[#c62676] mb-2">
                 Drag and drop your image here
               </h3>
               <p className="text-[#2C2C2C] mb-6">
@@ -320,7 +339,7 @@ export default function ProfileContent() {
                   onChange={handleFileUpload}
                   className="hidden"
                 />
-                <span className="inline-block w-full bg-pink-500 hover:bg-pink-600 text-white font-medium py-3 px-6 rounded-lg cursor-pointer transition-colors">
+                <span className="inline-block w-full bg-[#c62676] hover:bg-pink-600 text-white font-medium py-3 px-6 rounded-lg cursor-pointer transition-colors">
                   Upload
                 </span>
               </label>

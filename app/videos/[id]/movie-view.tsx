@@ -29,7 +29,11 @@ import SectionHeader from "@/components/SectionHeader";
 import VybzVideoPlayer from "@/components/VybzVideoPlayer";
 import ReviewSlider from "@/components/ReviewSlider";
 
-export default function MovieView(){
+interface MovieDetailsProps {
+  id:any;
+}
+
+export default function MovieView({id}:MovieDetailsProps){
   const Router = useRouter();
 
   const onViewMoreClick = () => {

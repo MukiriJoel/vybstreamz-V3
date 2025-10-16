@@ -18,9 +18,9 @@ import SectionHeader from "@/components/SectionHeader";
 import BillboardV2 from "@/components/BillBoardV2";
 import BillBoardV3 from "@/components/BillBoardV3";
 import PartnerBanner from "@/components/PartnerBanner";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "@/hooks/redux";
-import { getHomePage, getTopBarContent } from "@/store/thunks/catalogThunks";
+import { getHomePage, getTopBarContent, useDataGetHome } from "@/store/thunks/catalogThunks";
 import HomePageLoading from "./loading";
 
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -28,18 +28,18 @@ import HomePageLoading from "./loading";
 export default function Home() {
   const Router = useRouter();
   const dispatch = useAppDispatch();
-  const [loading, setLoading] = useState(false);
-  const [homeContent, setHomeContent] = useState<any>(null);
-  const [sliderContent, setSliderContent] = useState<any>(null);
-  const [videoContent, setVideoContent] = useState<any>(null);
-  const [musicContent, setMusicContent] = useState<any>(null);
-  const [gamesContent, setGamesContent] = useState<any>(null);
-  const [eduContent, setEduContent] = useState<any>(null);
-  const [dealsContent, setDealsContent] = useState<any>(null);
-  const [partnerHighlightContent, setPartnerHighlightContent] =
-    useState<any>(null);
-  const [partnersContent, setPartnersContent] =
-    useState<any>(null);
+  // const [loading, setLoading] = useState(false);
+  // const [homeContent, setHomeContent] = useState<any>(null);
+  // const [sliderContent, setSliderContent] = useState<any>(null);
+  // const [videoContent, setVideoContent] = useState<any>(null);
+  // const [musicContent, setMusicContent] = useState<any>(null);
+  // const [gamesContent, setGamesContent] = useState<any>(null);
+  // const [eduContent, setEduContent] = useState<any>(null);
+  // const [dealsContent, setDealsContent] = useState<any>(null);
+  // const [partnerHighlightContent, setPartnerHighlightContent] =
+  //   useState<any>(null);
+  // const [partnersContent, setPartnersContent] =
+  //   useState<any>(null);
 
   const adSlides = [
     {
@@ -56,93 +56,89 @@ export default function Home() {
     },
   ];
 
-    // const { data: homeContent, isLoading: loading, isError } = useDataGetHome();
-    // console.log("homeContent", homeContent);
-const fetchHomePage = async () =>{
-      try{
-         setLoading(true);
-          const res = await dispatch(getHomePage()).unwrap();
+  const { data: homeContent, isLoading: loading, isError } = useDataGetHome();
+  console.log("homeContent", homeContent);
 
-          setHomeContent(res?.body)
-      }catch(error) {
-        console.error('Failed to fetch genres', error);
-      }finally {
-          setLoading(false);
-      }
-}
-    
-  useEffect(() => {
-  fetchHomePage();
-  }, []);
-
-  useEffect(() => {
-     if (!homeContent) return; 
-    // const fetchTopBar = async () =>{
-    //   try{
-    //     setLoading(true);
-    //     const res = await dispatch(getTopBarContent()).unwrap();
-    //      console.log("topbarRes",res?.body);
-    //      setTopBarContent(res?.body)
-    //   }catch (error) {
-    //     console.error('Failed to fetch genres', error);
-    //   } finally {
-    //       setLoading(false);
-    //   }
-    // }
+  // useEffect(() => {
+  //    if (!homeContent) return; 
+  //   // const fetchTopBar = async () =>{
+  //   //   try{
+  //   //     setLoading(true);
+  //   //     const res = await dispatch(getTopBarContent()).unwrap();
+  //   //      console.log("topbarRes",res?.body);
+  //   //      setTopBarContent(res?.body)
+  //   //   }catch (error) {
+  //   //     console.error('Failed to fetch genres', error);
+  //   //   } finally {
+  //   //       setLoading(false);
+  //   //   }
+  //   // }
 
     
 
-    // fetchTopBar();
-    // fetchHomePage();
-    const sliders = homeContent?.find(
-      (content: any) => content.slug === "slider"
-    );
-    setSliderContent(sliders)
-    console.log("sliders", sliderContent);
+  //   // fetchTopBar();
+  //   // fetchHomePage();
+  //   const sliders = homeContent?.find(
+  //     (content: any) => content.slug === "slider"
+  //   );
+  //   setSliderContent(sliders)
+  //   console.log("sliders", sliderContent);
 
-    const partners = homeContent?.find(
-      (content: any) => content.slug === "partners"
-    );
-    setPartnersContent(partners)
-    console.log("partners", partnersContent);
+  //   const partners = homeContent?.find(
+  //     (content: any) => content.slug === "partners"
+  //   );
+  //   setPartnersContent(partners)
+  //   console.log("partners", partnersContent);
 
-    const deals = homeContent?.find(
-      (content: any) => content.slug === "best_deals"
-    );
-    setDealsContent(deals);
-    console.log("deals", dealsContent);
+  //   const deals = homeContent?.find(
+  //     (content: any) => content.slug === "best_deals"
+  //   );
+  //   setDealsContent(deals);
+  //   console.log("deals", dealsContent);
 
-    const music = homeContent?.find((content: any) => content.slug === "listen");
+  //   const music = homeContent?.find((content: any) => content.slug === "listen");
 
-    setMusicContent(music);
-    console.log("music", musicContent);
+  //   setMusicContent(music);
+  //   console.log("music", musicContent);
 
-    const videos = homeContent?.find((content: any) => content.slug === "watch");
+  //   const videos = homeContent?.find((content: any) => content.slug === "watch");
 
-    setVideoContent(videos);
-    console.log("videos", videoContent);
+  //   setVideoContent(videos);
+  //   console.log("videos", videoContent);
 
-    const education = homeContent?.find(
-      (content: any) => content.slug === "learn"
-    );
+  //   const education = homeContent?.find(
+  //     (content: any) => content.slug === "learn"
+  //   );
 
-    setEduContent(education);
-    console.log("education", eduContent);
+  //   setEduContent(education);
+  //   console.log("education", eduContent);
 
-    const games = homeContent?.find((content: any) => content.slug === "games");
+  //   const games = homeContent?.find((content: any) => content.slug === "games");
 
-    setGamesContent(games);
-    console.log("games", gamesContent);
+  //   setGamesContent(games);
+  //   console.log("games", gamesContent);
 
-    const partnerHighlight = homeContent?.find(
-      (content: any) => content.slug === "partner-highlight"
-    );
+  //   const partnerHighlight = homeContent?.find(
+  //     (content: any) => content.slug === "partner-highlight"
+  //   );
 
-    setPartnerHighlightContent(partnerHighlight);
-    console.log("partnerHigh", partnerHighlightContent);
+  //   setPartnerHighlightContent(partnerHighlight);
+  //   console.log("partnerHigh", partnerHighlightContent);
 
-  }, [homeContent]);
+  // }, []);
 
+const getContentBySlug = useCallback((slug: string) => {
+  return homeContent?.find((content: any) => content.slug === slug);
+}, [homeContent]);
+
+const sliderContent = getContentBySlug("slider");
+const videoContent = getContentBySlug("watch");
+const partnersContent = getContentBySlug("partners");
+const dealsContent = getContentBySlug("best_deals");  
+const partnerHighlightContent = getContentBySlug("partner-highlight");
+const musicContent = getContentBySlug("listen");
+const eduContent = getContentBySlug("learn");
+const gamesContent = getContentBySlug("games");
 
    if (loading) {
         return (

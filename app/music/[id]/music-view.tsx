@@ -33,6 +33,7 @@ import PartnersSlider from "@/components/PartnersSlider";
 import ReviewSlider from "@/components/ReviewSlider";
 
 interface MusicDetailsProps {
+  id:any;
   audioSrc: string;
   bannerImage: string;
   albumImage:string;
@@ -42,7 +43,7 @@ interface MusicDetailsProps {
   platformLogo:string
 }
 
-export default function MusicView({ audioSrc, bannerImage,albumImage,title,subtitle,albumInfo,platformLogo }: MusicDetailsProps) {
+export default function MusicView({ audioSrc, bannerImage,albumImage,title,subtitle,albumInfo,platformLogo,id }: MusicDetailsProps) {
   const router=useRouter();
   
   const onViewMoreClick = () =>{

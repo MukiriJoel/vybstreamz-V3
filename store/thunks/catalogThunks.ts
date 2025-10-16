@@ -113,28 +113,34 @@ export const getHomePage=createAsyncThunk(
 )
 
 // 🔹 GET  HOME
-// export const useDataGetHome = (payload?: any) => {
-//     const url = `/home-page`;
-//     const {data, isLoading, isError, error} = useCatalogData<any>(url);
-//     // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
-//     return {data: data?.body || [], isLoading, isError, error};
-// }
+export const useDataGetHome = (payload?: any) => {
+    const url = `/home-page`;
+    const {data, isLoading, isError, error} = useCatalogData<any>(url);
+    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+    return {data: data?.body || [], isLoading, isError, error};
+}
 
 
 
 // GET VIDEO HOME
-export const getVideoHome=createAsyncThunk(
-    "catalog/getVideoHome",
-    async(_,{dispatch,rejectWithValue})=>{
-        try{
-            const res= await catalogAxiosInstance.get(`/content-page?category=Video`);
-            dispatch(setVideoHome(res?.data?.body))
-            return res?.data
-        }catch(error:any){
-            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
-        }
-    }
-)
+// export const getVideoHome=createAsyncThunk(
+//     "catalog/getVideoHome",
+//     async(_,{dispatch,rejectWithValue})=>{
+//         try{
+//             const res= await catalogAxiosInstance.get(`/content-page?category=Video`);
+//             dispatch(setVideoHome(res?.data?.body))
+//             return res?.data
+//         }catch(error:any){
+//             return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+//         }
+//     }
+// )
+export const useDataGetVideo = (payload?: any) => {
+    const url = `/content-page?category=Video`;
+    const {data, isLoading, isError, error} = useCatalogData<any>(url);
+    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+    return {data: data?.body || [], isLoading, isError, error};
+}
 
 
 // GET MUSIC HOME

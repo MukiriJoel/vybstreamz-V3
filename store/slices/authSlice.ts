@@ -10,6 +10,7 @@ interface AuthState{
     error: boolean | null,
     HEData: IHEData | null,
     token: string | null,
+    profilePhoto:string | null
     
 }
 interface IHEData {
@@ -29,6 +30,7 @@ const initialState: AuthState = {
     error:null,
     HEData: null,
     token: null,
+    profilePhoto:null
 }
 
 const authSlice= createSlice({
@@ -76,6 +78,9 @@ const authSlice= createSlice({
             state.loading=false;
             state.error=null;
             state.token = null;
+        },
+        setProfilePhoto:(state,action:PayloadAction<any>)=>{
+            state.profilePhoto = action.payload;
         }
 
     }
@@ -90,6 +95,7 @@ export const{
     setToken,
     setHEData,
     logout,
+    setProfilePhoto
     
 }=authSlice.actions;
 export default authSlice.reducer;

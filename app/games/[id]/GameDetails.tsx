@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/slider";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import {
   Search,
@@ -29,32 +29,95 @@ import GamesSlider from "@/components/GamesSlider";
 import SectionHeader from "@/components/SectionHeader";
 import VybzVideoPlayer from "@/components/VybzVideoPlayer";
 import ReviewSlider from "@/components/ReviewSlider";
+import { useDataGetGames } from "@/store/thunks/catalogThunks";
+import HomePageLoading from "@/app/home/loading";
 
 interface GameDetailsProps {
-  videoSrc: string;
-  id: any; // Consider using string | number instead of any
+    urlParams:string;
 }
 
-export default function Gamedetails({ videoSrc, id }: GameDetailsProps) {
+export default function Gamedetails({ urlParams }: GameDetailsProps) {
   const Router = useRouter();
 
   const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
   };
+
+  const [gameItem, setGameItem] = useState<any>(null);
+  const [genre, setGenre] = useState<any>(null);
+  const [gameId, setGameId] = useState<any>(null);
+    
+  useEffect(() => {
+    if (!urlParams) return;
+    
+    const decoded = decodeURIComponent(urlParams as string); // "id=1&genre=action"
+ 
+    // Get genre
+    const lastItem = decoded.split('&').pop(); // "genre=action"
+    const slug = lastItem?.split('=')[1];
+   
+    setGenre(slug);
+   
+    // Get id
+    const firstItem = decoded.split('&')[0]; // "id=1"
+    const idValue = firstItem.split('=')[1];
+
+    setGameId(idValue);
+  }, [urlParams]);
+
+    const {
+        data: gamesHomeContent,
+        isLoading: loading,
+        isError,
+      } = useDataGetGames();
+      
+    const getContentBySlugId = useCallback(
+    (slug: string, itemId?: number) => {
+       
+      const content = gamesHomeContent?.find((content: any) => content.slug === slug);
+      console.log("cont",content)
+      if (!content) return undefined;
+      
+      // If itemId is provided, find the specific item
+      if (itemId !== undefined) {
+        // Convert itemId to a number for comparison
+        const numericId = Number(itemId);
+        console.log("numer", numericId);
+        const item = content.items?.find((item: any) => item.id === numericId);
+       
+        return item;
+      }
+      
+      // Otherwise return the entire content object
+      return content;
+    },
+    [gamesHomeContent]
+  );
+
+  useEffect(() => {
+    if (genre && gameId && gamesHomeContent) {
+       
+      const game = getContentBySlugId(genre, gameId);
+    
+      setGameItem(game); // Store in state
+    }
+  }, [genre, gameId, gamesHomeContent, getContentBySlugId]);
+
+   console.log("current game:", gameItem);
+
+  if (loading) {
+    return (
+      <div className="">
+        <HomePageLoading />
+      </div>
+    );
+  }
+
   return (
     <>
-      {/* <VybzVideoPlayer
-        title="squid games"
-        metadata="Game | 16 Yrs+"
-        description="A young woman moves in with her boyfriend for a fresh start—only
-              to get pulled into a dangerous world of secrets, crime, and
-              betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where
-              every choice sparks more fire."
-        hasCast={false}
-        videoSrc={videoSrc}
-        platformLogo="/logos/bazeLg.png"
-        bannerImage="/images/sqLg.png"
-      /> */}
+      <VybzVideoPlayer
+        videoItem={gameItem}
+      />
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] pt-4 dark:bg-[#141414] px-2 md:px-4 lg:px-6 xl:px-6">
         <section className="pb-3 pt-8">

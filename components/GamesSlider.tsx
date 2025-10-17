@@ -41,14 +41,16 @@ export interface IGamesItem{
 
 interface SliderProps{
   slides:IGamesItem[],
-  title:string
+  title:string,
+  slug:string
 }
 
-const GamesSlider = ({slides=[]}:SliderProps) => {
+const GamesSlider = ({title,slug,slides=[]}:SliderProps) => {
   const router=useRouter();
 
   const onGameClick = (id:any) =>{
-    router.push(`/games/${id}`)
+    console.log("gameid",id)
+    router.push(`/games/id=${id}&genre=${slug}`)
   }
 
   return (
@@ -61,7 +63,7 @@ const GamesSlider = ({slides=[]}:SliderProps) => {
               className="pt-3 md:py-11 lg:py-8 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
-              <div className="relative" onClick={()=>onGameClick(index)}>
+              <div className="relative" onClick={()=>onGameClick(item?.id)}>
                 <img
                   src={item?.contentDetails?.thumbnails?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
@@ -136,7 +138,7 @@ const GamesSlider = ({slides=[]}:SliderProps) => {
                             />
                           </div>
                         </div>
-                        <button onClick={()=>onGameClick(index)}  className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
+                        <button onClick={()=>onGameClick(item?.id)}  className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
                           <svg
                             className="w-5 h-5 fill-current"
                             viewBox="0 0 24 24"

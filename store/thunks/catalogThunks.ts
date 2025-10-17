@@ -135,6 +135,8 @@ export const useDataGetHome = (payload?: any) => {
 //         }
 //     }
 // )
+
+//GET VIDEOS HOME
 export const useDataGetVideo = (payload?: any) => {
     const url = `/content-page?category=video`;
     const {data, isLoading, isError, error} = useCatalogData<any>(url);
@@ -142,12 +144,22 @@ export const useDataGetVideo = (payload?: any) => {
     return {data: data?.body || [], isLoading, isError, error};
 }
 
+//GET MUSIC HOME
 export const useDataGetMusic = (payload?: any) => {
     const url = `/content-page?category=music`;
     const {data, isLoading, isError, error} = useCatalogData<any>(url);
     // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
     return {data: data?.body || [], isLoading, isError, error};
 }
+
+//GET GAMES HOME
+export const useDataGetGames = (payload?: any) => {
+    const url = `/content-page?category=games`;
+    const {data, isLoading, isError, error} = useCatalogData<any>(url);
+    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+    return {data: data?.body || [], isLoading, isError, error};
+}
+
 
 
 

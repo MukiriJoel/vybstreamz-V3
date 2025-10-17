@@ -25,46 +25,73 @@ import VybzCarouselMain from "@/components/VybzCarouselMain";
 import SectionHeader from "@/components/SectionHeader";
 import { useRouter } from "next/navigation";
 import PartnersSlider from "@/components/PartnersSlider";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "@/hooks/redux";
-import { getGamesHome } from "@/store/thunks/catalogThunks";
+import { getGamesHome, useDataGetGames } from "@/store/thunks/catalogThunks";
+import HomePageLoading from "../home/loading";
 
 export default function GamesPage() {
   const Router = useRouter();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const [GamesHomeContent, setGamesHomeContent] = useState<any>();
-  const [sliderContent, setSliderContent] = useState<any>(null);
+  // const [GamesHomeContent, setGamesHomeContent] = useState<any>();
+  // const [sliderContent, setSliderContent] = useState<any>(null);
 
   const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
   };
 
-  const fetchGamesHome = async () => {
-      try {
-        setLoading(true);
-        const res = await dispatch(getGamesHome()).unwrap();
-        console.log("musichomeres", res);
-        setGamesHomeContent(res?.body);
-      } catch (error) {
-        console.error("Failed to fetch genres", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // const fetchGamesHome = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const res = await dispatch(getGamesHome()).unwrap();
+  //       console.log("musichomeres", res);
+  //       setGamesHomeContent(res?.body);
+  //     } catch (error) {
+  //       console.error("Failed to fetch genres", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
   
-    useEffect(() => {
-      fetchGamesHome();
-    }, []);
+  //   useEffect(() => {
+  //     fetchGamesHome();
+  //   }, []);
   
-    useEffect(() => {
-      if (!GamesHomeContent) return;
-      const sliders = GamesHomeContent?.find(
-        (content: any) => content.slug === "slider"
+  //   useEffect(() => {
+  //     if (!GamesHomeContent) return;
+  //     const sliders = GamesHomeContent?.find(
+  //       (content: any) => content.slug === "slider"
+  //     );
+  //     setSliderContent(sliders);
+  //     console.log("sliders", sliderContent);
+  //   }, [GamesHomeContent]);
+
+  const {
+      data: GamesHomeContent,
+      isLoading: loading,
+      isError,
+    } = useDataGetGames();
+
+   const getContentBySlug = useCallback(
+      (slug: string) => {
+        return GamesHomeContent?.find((content: any) => content.slug === slug);
+      },
+      [GamesHomeContent]
+    );
+  
+    const sliderContent = getContentBySlug("slider");
+  
+    // setSliderContent(sliders);
+    console.log("sliders", sliderContent);
+  
+    if (loading) {
+      return (
+        <div className="">
+          <HomePageLoading />
+        </div>
       );
-      setSliderContent(sliders);
-      console.log("sliders", sliderContent);
-    }, [GamesHomeContent]);
+    }
   
 
   return (
@@ -74,7 +101,17 @@ export default function GamesPage() {
         <VybzCarouselMain slides={sliderContent?.items ?? []}/>
 
       <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">
-            {GamesHomeContent?.map((section: any) => {
+            { GamesHomeContent?.filter(
+                (section: any) =>
+                  section.slug !== "slider" && section.items?.length > 0
+              )
+              .sort((a: any, b: any) => {
+                // Partners always first
+                if (a.slug === "partners") return -1;
+                if (b.slug === "partners") return 1;
+                return 0; // Keep original order for others
+              })
+              .map((section: any) => {
               // Skip sections with no items
               if (
                 section.slug === "slider" ||
@@ -96,7 +133,7 @@ export default function GamesPage() {
                   {section.slug === "partners" ? (
                     <PartnersSlider slides={section.items} />
                   ) : (
-                    <GamesSlider title={section.title} slides={section.items} />
+                    <GamesSlider title={section.title} slug={section.slug} slides={section.items} />
                   )}
                 </section>
               );

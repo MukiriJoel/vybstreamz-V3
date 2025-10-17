@@ -28,7 +28,7 @@ interface ResetPasswordFormInputs {
 
 const schema = yup.object().shape({
     new_password: yup.string()
-            .min(8, "Password must be at least 8 characters")
+            .min(12, "Password must be at least 12 characters")
             .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
             .matches(/\d/, "Password must contain at least one number")
             .matches(/[!@#$%^&*(),.?":{}|<>]/, "Password must contain at least one special character (@, $, !, %, *, ?, &)")
@@ -53,7 +53,7 @@ export default function PasswordResetForm() {
 
   const confirmPassword = watch('confirm_password')
   // Password validation checks
-  const hasMinLength = confirmPassword?.length >= 8
+  const hasMinLength = confirmPassword?.length >= 12
   const hasCapitalLetter = /[A-Z]/.test(confirmPassword)
   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(confirmPassword)
   const hasNumber = /\d/.test(confirmPassword)
@@ -265,7 +265,7 @@ export default function PasswordResetForm() {
                 >
                   {hasMinLength && <Check className="w-3 h-3 text-white" />}
                 </div>
-                <span className="text-sm text-[#2c2c2c] dark:text-[#CCCCCC]">At least 8 characters</span>
+                <span className="text-sm text-[#2c2c2c] dark:text-[#CCCCCC]">At least 12 characters</span>
               </div>
 
               <div className="flex items-center space-x-3">

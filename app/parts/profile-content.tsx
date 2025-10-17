@@ -104,12 +104,26 @@ export default function ProfileContent() {
     }
   }, [searchParams]);
 
-  const handleFileUpload = (event: any) => {
+  const handleFileUpload = async(event: any) => {
     const file = event.target.files[0];
     if (file) {
       console.log("File selected:", file.name);
       // Handle file upload logic here
-      closePopup();
+       try {
+            setLoading(true);
+            const res = await dispatch(
+              fileUpload(file)
+            ).unwrap();
+            toast.success(res?.message);
+          } catch (e: any) {
+            console.log(e);
+            toast.error(e?.message || "Could not resend OTP. Please try Again", {
+              duration: 5000,
+            });
+          } finally {
+            setLoading(false);
+          }
+      // closePopup();
     }
   };
 

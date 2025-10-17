@@ -115,10 +115,9 @@ export const verifyOTP2 = createAsyncThunk<any, IVerifyOTP>(
     "auth/verifyOTP2",
     async (payload: IVerifyOTP, {dispatch, rejectWithValue}) => {
         try {
-            dispatch(setToken(""));
             const res = await authAxiosInstance.post("/auth/verify-otp", payload);
             // dispatch(setToken(res?.data?.data?.access_token));
-            dispatch(setUser(res?.data?.data));
+            // dispatch(setUser(res?.data?.data));
             // dispatch(setUserProfiles(res?.data?.data?.profiles));
             return res?.data;
         } catch (error: any) {

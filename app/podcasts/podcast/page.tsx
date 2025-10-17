@@ -62,7 +62,7 @@ const PodcastPlayer: React.FC = () => {
       {/* Header */}
       <main className="">
         {/* Hero Section */}
-        <VybzMusicPlayer
+        {/* <VybzMusicPlayer
           audioSrc="/audio/podcast.mp3"
           bannerImage="/images/sandwich2.jpg"
           albumImage="/images/sandwich.jpeg"
@@ -71,7 +71,7 @@ const PodcastPlayer: React.FC = () => {
           albumInfo="Album | 1hr 45min | 10 episodes"
           description="A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous world of secrets, crime, and betrayal."
           platformLogo="/logos/spotify.png"
-        />
+        /> */}
 
         {/* Partners Section */}
         <div className="p-2 md:p-4 lg:p-6 xl:p-6 max-w-8xl mx-auto">

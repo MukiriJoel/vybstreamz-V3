@@ -20,7 +20,7 @@ export default function EducationListing() {
         {/* Main Content */}
         <main className="">
           {/* <VybzCarouselEducation tabs={tabs} activeTab={activeTab} /> */}
-          <VybzMusicPlayer
+          {/* <VybzMusicPlayer
             audioSrc="/audio/podcast.mp3"
             bannerImage="/images/robert.png"
             albumImage="/images/robertSm.png"
@@ -29,7 +29,7 @@ export default function EducationListing() {
             title="rich dad poor dad"
             subtitle="robert kiyosaki"
             description="A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous web of secrets, crime, and betrayal. Set in modern Kenya, Mo Faya is a gritty drama where every choice sparks more fire."
-          />
+          /> */}
           {/* Content Navigation */}
           {/* TABS */}
           <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-8 pt-8  ">

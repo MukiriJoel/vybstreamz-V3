@@ -142,6 +142,14 @@ export const useDataGetVideo = (payload?: any) => {
     return {data: data?.body || [], isLoading, isError, error};
 }
 
+export const useDataGetMusic = (payload?: any) => {
+    const url = `/content-page?category=music`;
+    const {data, isLoading, isError, error} = useCatalogData<any>(url);
+    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+    return {data: data?.body || [], isLoading, isError, error};
+}
+
+
 
 // GET MUSIC HOME
 export const getMusicHome=createAsyncThunk(

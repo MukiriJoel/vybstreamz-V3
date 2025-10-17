@@ -15,46 +15,45 @@ import PartnersSlider from "@/components/PartnersSlider";
 import MusicSlider from "@/components/MusicSlider";
 import SectionHeader from "@/components/SectionHeader";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { getMusicHome, getTopBarContent } from "@/store/thunks/catalogThunks";
+import { useCallback, useEffect, useState } from "react";
+import { getMusicHome, getTopBarContent, useDataGetMusic } from "@/store/thunks/catalogThunks";
 import { useAppDispatch } from "@/hooks/redux";
+import HomePageLoading from "../home/loading";
 
 export default function MusicPage() {
   const dispatch = useAppDispatch();
-  const [MusicHomeContent, setMusicHomeContent] = useState<any>();
-  const [sliderContent, setSliderContent] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  // const [MusicHomeContent, setMusicHomeContent] = useState<any>();
+  // const [sliderContent, setSliderContent] = useState<any>(null);
+  // const [loading, setLoading] = useState(false);
   const Router = useRouter();
 
   const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
   };
 
-  const fetchMusicHome = async () => {
-    try {
-      setLoading(true);
-      const res = await dispatch(getMusicHome()).unwrap();
-      console.log("musichomeres", res);
-      setMusicHomeContent(res?.body);
-    } catch (error) {
-      console.error("Failed to fetch genres", error);
-    } finally {
-      setLoading(false);
+    const {
+      data: MusicHomeContent,
+      isLoading: loading,
+      isError,
+    } = useDataGetMusic();
+
+     const getContentBySlug = useCallback(
+        (slug: string) => {
+          return MusicHomeContent?.find((content: any) => content.slug === slug);
+        },
+        [MusicHomeContent]
+      );
+
+        const sliderContent = getContentBySlug("slider");
+     
+
+   if (loading) {
+      return (
+        <div className="">
+          <HomePageLoading />
+        </div>
+      );
     }
-  };
-
-  useEffect(() => {
-    fetchMusicHome();
-  }, []);
-
-  useEffect(() => {
-    if (!MusicHomeContent) return;
-    const sliders = MusicHomeContent?.find(
-      (content: any) => content.slug === "slider"
-    );
-    setSliderContent(sliders);
-    console.log("sliders", sliderContent);
-  }, [MusicHomeContent]);
 
   return (
     <div className="bg-[#F2F2F2] dark:bg-[#141414]">
@@ -94,7 +93,7 @@ export default function MusicPage() {
                   {section.slug === "partners" ? (
                     <PartnersSlider slides={section.items} />
                   ) : (
-                    <MusicSlider slides={section.items} />
+                    <MusicSlider title={section.title} slug={section.slug} slides={section.items} />
                   )}
                 </section>
               );
@@ -104,3 +103,5 @@ export default function MusicPage() {
     </div>
   );
 }
+
+

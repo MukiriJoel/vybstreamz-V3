@@ -61,7 +61,7 @@ export default function VybzVideoPlayer({ videoItem }: VybzVideoPlayerProps) {
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
-  const [loadingWatchList, setLoadingBookmark] = useState(false);
+  const [loadingBookmark, setLoadingBookmark] = useState(false);
   const videoSrc=videoItem?.contentDetails?.trailers?.[0]?.originUrl;
   // const videoSrc="/videos/MofayaTrailer.mp4"
   // console.log("vidsrc",videoSrc)

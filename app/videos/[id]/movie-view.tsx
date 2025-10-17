@@ -41,12 +41,7 @@ export default function MovieView({urlParams}:MovieDetailsProps){
   const [videoItem, setVideoItem] = useState<any>(null);
   const [genre, setGenre] = useState<any>(null);
   const [vid, setVid] = useState<any>(null);
-  // const params = useParams();
-  //  console.log("params",params.id)
-  //  const urlParams=params.id;
-  // const slug = params.genre;
-  // const [loading, setLoading] = useState(false);
-  
+    
     useEffect(() => {
     if (!urlParams) return;
     
@@ -55,13 +50,13 @@ export default function MovieView({urlParams}:MovieDetailsProps){
     // Get genre
     const lastItem = decoded.split('&').pop(); // "genre=action"
     const slug = lastItem?.split('=')[1];
-    console.log("slugval",slug);
+    
     setGenre(slug);
    
     // Get id
     const firstItem = decoded.split('&')[0]; // "id=1"
     const idValue = firstItem.split('=')[1];
-    console.log("idval",idValue);
+
     setVid(idValue);
   }, [urlParams]);
 

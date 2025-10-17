@@ -59,74 +59,6 @@ export default function Home() {
   const { data: homeContent, isLoading: loading, isError } = useDataGetHome();
   console.log("homeContent", homeContent);
 
-  // useEffect(() => {
-  //    if (!homeContent) return; 
-  //   // const fetchTopBar = async () =>{
-  //   //   try{
-  //   //     setLoading(true);
-  //   //     const res = await dispatch(getTopBarContent()).unwrap();
-  //   //      console.log("topbarRes",res?.body);
-  //   //      setTopBarContent(res?.body)
-  //   //   }catch (error) {
-  //   //     console.error('Failed to fetch genres', error);
-  //   //   } finally {
-  //   //       setLoading(false);
-  //   //   }
-  //   // }
-
-    
-
-  //   // fetchTopBar();
-  //   // fetchHomePage();
-  //   const sliders = homeContent?.find(
-  //     (content: any) => content.slug === "slider"
-  //   );
-  //   setSliderContent(sliders)
-  //   console.log("sliders", sliderContent);
-
-  //   const partners = homeContent?.find(
-  //     (content: any) => content.slug === "partners"
-  //   );
-  //   setPartnersContent(partners)
-  //   console.log("partners", partnersContent);
-
-  //   const deals = homeContent?.find(
-  //     (content: any) => content.slug === "best_deals"
-  //   );
-  //   setDealsContent(deals);
-  //   console.log("deals", dealsContent);
-
-  //   const music = homeContent?.find((content: any) => content.slug === "listen");
-
-  //   setMusicContent(music);
-  //   console.log("music", musicContent);
-
-  //   const videos = homeContent?.find((content: any) => content.slug === "watch");
-
-  //   setVideoContent(videos);
-  //   console.log("videos", videoContent);
-
-  //   const education = homeContent?.find(
-  //     (content: any) => content.slug === "learn"
-  //   );
-
-  //   setEduContent(education);
-  //   console.log("education", eduContent);
-
-  //   const games = homeContent?.find((content: any) => content.slug === "games");
-
-  //   setGamesContent(games);
-  //   console.log("games", gamesContent);
-
-  //   const partnerHighlight = homeContent?.find(
-  //     (content: any) => content.slug === "partner-highlight"
-  //   );
-
-  //   setPartnerHighlightContent(partnerHighlight);
-  //   console.log("partnerHigh", partnerHighlightContent);
-
-  // }, []);
-
 const getContentBySlug = useCallback((slug: string) => {
   return homeContent?.find((content: any) => content.slug === slug);
 }, [homeContent]);
@@ -203,7 +135,7 @@ const gamesContent = getContentBySlug("games");
             {/* Recommended For You Section */}
             <section className=" ">
               <SectionHeader viewButton={true} title={musicContent?.title} route="/music" />
-              <MusicSlider slides={musicContent?.items ?? []} />
+              <MusicSlider title={musicContent?.title} slug={musicContent?.slug} slides={musicContent?.items ?? []} />
             </section>
 
             {/* Trending Section */}

@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/slider";
 import { useState, useEffect, useRef } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { FaCheck, FaChevronDown } from "react-icons/fa";
 import {
   Search,
   ShoppingBag,
@@ -26,27 +26,17 @@ import ReviewsSection from "@/components/reviews-section";
 import MusicSlider from "@/components/MusicSlider";
 import { useRouter } from "next/navigation";
 import { HiOutlineSpeakerXMark } from "react-icons/hi2";
+import { IVideoItem } from "./VideoSlider";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { addBookmark } from "@/store/thunks/catalogThunks";
+import { toast } from "sonner";
 
 export interface VybzMusicPlayerProps {
-  audioSrc: string;
-  albumImage?: string;
-  bannerImage?: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  albumInfo?: string;
-  platformLogo?: string;
+   musicItem?: IVideoItem;
 }
 
 export default function VybzMusicPlayer({
-  audioSrc,
-  bannerImage,
-  albumImage,
-  title,
-  subtitle,
-  albumInfo,
-  description,
-  platformLogo,
+musicItem
 }: VybzMusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
@@ -70,6 +60,31 @@ export default function VybzMusicPlayer({
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [loadingBookmark, setLoadingBookmark] = useState(false);
+  const audioSrc=musicItem?.contentDetails?.trailers?.[0]?.originUrl;
+
+
+  const {user}=useAppSelector((state)=>state.auth);
+  const dispatch=useAppDispatch();
+
+  const bookmarkPayload={
+    userId:user?.id,
+    contentId:musicItem?.id
+  }
+
+  const PostToBookmark = async () => {
+      setLoadingBookmark(true);
+      try {
+          const res=await dispatch(addBookmark(bookmarkPayload)).unwrap();
+          toast.success(res?.message)
+      } catch (e:any) {
+            toast.error(e?.message , {duration: 5000});
+      } finally {
+          setLoadingBookmark(false);
+      }
+    
+    }
+
   // Hide controls after 3 seconds when playing or when mouse is stationary
   useEffect(() => {
     const hideControlsTimer = () => {
@@ -384,7 +399,7 @@ export default function VybzMusicPlayer({
 
         {/* Banner Image (Background) */}
         <img
-          src={bannerImage}
+          src={musicItem?.contentDetails?.images?.[0]?.url}
           alt="Album/Podcast Banner"
           className={`object-cover ${
             isFullscreen ? "w-screen h-screen" : "w-full h-full"
@@ -406,7 +421,7 @@ export default function VybzMusicPlayer({
               {/* Album Cover */}
               <div className="flex-shrink-0 flex items-center mb-4 w-34 h-46 md:w-35 md:h-50 overflow-hidden">
                 <img
-                  src={albumImage}
+                  src={musicItem?.contentDetails?.images?.[0]?.url}
                   alt="DISKO Cover"
                   className="w-full h-full rounded-lg object-cover shadow-lg"
                 />
@@ -416,17 +431,17 @@ export default function VybzMusicPlayer({
                 {/* Main Album Info */}
                 <div className="mb-0">
                   <h1 className="text-[20px] md:text-[28px] font-extrabold text-white capitalize leading-tight">
-                    {title}
+                    {musicItem?.title}
                   </h1>
                   <p className="text-white text-[16px] md:text-[22px] mt-2 !font-normal leading-tight capitalize">
-                    {subtitle}
+                    {musicItem?.title}
                   </p>
-                  <p className="text-white text-[10px] md:text-[12px] mt-2">{albumInfo}</p>
+                  <p className="text-white text-[10px] md:text-[12px] mt-2">{musicItem?.contentRating?.kfcbRating}</p>
 
                   {/* Description - New Addition */}
                 
                   <p className="text-white text-[12px] mt-1 line-clamp-3  max-w-md leading-relaxed">
-                    {description}
+                    {musicItem?.description}
                   </p>
               
                 </div>
@@ -438,7 +453,7 @@ export default function VybzMusicPlayer({
                     <p className="text-white text-[14px] uppercase tracking-wide mr-3">
                       stream on:
                     </p>
-                    <img src={platformLogo} className="w-[35px] h-[35px] md:w-[45px] md:h-[45px]" alt={title} />
+                    <img src={musicItem?.logoUrl} className="w-[35px] h-[35px] md:w-[45px] md:h-[45px]" alt={musicItem?.logoUrl} />
                   </div>
                 </div>
               </div>
@@ -453,11 +468,12 @@ export default function VybzMusicPlayer({
               </Button>
               <Button
                 variant="outline"
-                className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full  w-40 cursor-pointer"
-                onClick={()=>onSaveClick()} 
+                className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C]  w-40 cursor-pointer"
+                onClick={musicItem?.bookmarked===false? () => PostToBookmark():undefined}
               >
-                <Bookmark className="h-4 w-4 mr-2" />
-                Save
+                {musicItem && musicItem?.bookmarked===false? <Bookmark className="h-4 w-4 mr-2" />:<FaCheck className="h-4 w-4 mr-2"/>}
+                {musicItem && musicItem?.bookmarked===false? `Save` :`Saved`}
+                
               </Button>
             </div>
           </div>

@@ -39,10 +39,12 @@ export interface IMusicItem{
 }
 
 interface SliderProps{
-  slides:IMusicItem[]
+  slides:IMusicItem[],
+  title:string,
+  slug:string
 }
 
-const MusicSlider = ({slides=[]}:SliderProps) => {
+const MusicSlider = ({title,slug,slides=[]}:SliderProps) => {
 
   const Router=useRouter();
 
@@ -52,7 +54,7 @@ const MusicSlider = ({slides=[]}:SliderProps) => {
   }
   
   const onMusicClick = (id:any) =>{
-    Router.push(`/music/${id}`)
+    Router.push(`/music/id=${id}&slug=${slug}`)
   }
 
   console.log("musicslides",slides)

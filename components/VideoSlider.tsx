@@ -30,7 +30,13 @@ export interface IVideoItem{
     audioLanguages:string[],
     subTitles:string[],
     artists:string[],
-    trailers:string[],
+    trailers:[{
+      originUrl?:string,
+      dashPlaylist?:string,
+      dashUrl?:string,
+      thumbNails?:string,
+      thumbNailsUrls?:string
+    }],
     casts:string[],
     samplePaths:string[] 
   };
@@ -38,19 +44,22 @@ export interface IVideoItem{
     kfcbRating:string,    
   };
   contentWarning:[];
-  description?: string;  
+  description?: string;
+  bookmarked:boolean;  
 }
 
 interface SliderProps{
   slides:IVideoItem[],
-  title:string
+  title:string,
+  slug:string
 }
 
-const VideoSlider = ({title,slides=[]}:SliderProps) => {
+const VideoSlider = ({title,slug,slides=[]}:SliderProps) => {
+  console.log("slug",slug)
   const router=useRouter();
 
   const onClickVideo = (id:any) =>{
-    router.push(`/videos/${id}`)
+    router.push(`/videos/id=${id}&genre=${slug}`)
   }
 
   return (
@@ -124,7 +133,7 @@ const VideoSlider = ({title,slides=[]}:SliderProps) => {
                             />
                           </div>  
                         </div>
-                      <button onClick={()=>onClickVideo(item.id)} className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
+                      <button onClick={()=>onClickVideo(item?.id)} className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
                         <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>

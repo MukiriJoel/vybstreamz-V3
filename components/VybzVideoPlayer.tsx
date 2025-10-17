@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/slider";
-import { useState, useEffect, useRef } from "react";
-import { FaChevronDown } from "react-icons/fa";
+import { useState, useEffect, useRef, use } from "react";
+import { FaCheck, FaChevronDown } from "react-icons/fa";
 import {
   Search,
   ShoppingBag,
@@ -21,25 +21,24 @@ import {
   Bookmark,
 } from "lucide-react";
 import RatingsComponent from "@/components/ratings-section";
-import VideoSlider from "@/components/VideoSlider";
+import VideoSlider, { IVideoItem } from "@/components/VideoSlider";
 import { MdArrowForward, MdClose, MdPlayArrow } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import ReviewsSection from "@/components/reviews-section";
 import SectionHeader from "@/components/SectionHeader";
 import CastDisplay from "./CastDisplay";
+import { store } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { addBookmark } from "@/store/thunks/catalogThunks";
+import { toast } from "sonner";
 
 
 interface VybzVideoPlayerProps {
-  videoSrc?: string;
-  hasCast?:boolean;
-  bannerImage?: string;
-   title?: string;
-    description?: string;
-     platformLogo?: string;
-     metadata?: string;
+  videoItem?: IVideoItem;
+  
 }
 
-export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,description,platformLogo,metadata }: VybzVideoPlayerProps) {
+export default function VybzVideoPlayer({ videoItem }: VybzVideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [showContent, setShowContent] = useState(true); // For hiding/showing trailers and description
@@ -62,13 +61,42 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [loadingWatchList, setLoadingBookmark] = useState(false);
+  const videoSrc=videoItem?.contentDetails?.trailers?.[0]?.originUrl;
+  // const videoSrc="/videos/MofayaTrailer.mp4"
+
+  const {user}=useAppSelector((state)=>state.auth);
+  const dispatch=useAppDispatch();
+
+  const bookmarkPayload={
+    userId:user.id,
+    contentId:videoItem?.id
+  }
+
+  const PostToBookmark = async () => {
+        setLoadingBookmark(true);
+        try {
+            const res=await dispatch(addBookmark(bookmarkPayload)).unwrap();
+            toast.success(res?.message)
+        } catch (e:any) {
+             toast.error(e?.message , {duration: 5000});
+        } finally {
+            setLoadingBookmark(false);
+        }
+    
+    }
 
   // Autoplay effect - runs once when component mounts
   useEffect(() => {
     const handleAutoplay = async () => {
       if (videoRef.current && videoSrc) {
         try {
+             console.log("Autoplaying :", videoSrc);
+             // Mute video to allow autoplay
+        // videoRef.current.muted = true;
+          videoRef.current.load();
           await videoRef.current.play();
+        
           setIsPlaying(true);
         } catch (error) {
           // Autoplay failed (probably due to browser policy)
@@ -217,6 +245,7 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
 
   const handlePlayPause = () => {
     if (videoRef.current) {
+      
       if (isPlaying) {
         videoRef.current.pause();
         setIsPlaying(false);
@@ -374,7 +403,7 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
             onTimeUpdate={handleTimeUpdate}
             onLoadedMetadata={handleLoadedMetadata}
             playsInline
-            muted={false}
+            muted={true}
           >
             <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
@@ -387,7 +416,7 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
         {showPosterOverlay && !isPlaying && (
           <div className="absolute inset-0 transition-opacity duration-500">
             <img
-              src={bannerImage}
+              src={videoItem?.contentDetails?.thumbnails?.[0]?.url}
               alt="Movie Poster"
               className="w-full h-full object-cover"
             />
@@ -407,18 +436,18 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
         >
           <div className="flex-1 pb-5 md:pb-1 w-[50%]">
             <h1 className="text-[28px] font-extrabold text-white capitalize">
-              {title}
+              {videoItem?.title}
             </h1>
             <p className="text-white text-[14px] font-semibold mt-2">
-              {metadata}
+              {videoItem?.contentRating?.kfcbRating}
             </p>
             <p className="text-white !line-clamp-3 text-[12px] max-w-md pt-1">
-              {description}
+              {videoItem?.description}
             </p>
           </div>
           {/* cast */}
-          {hasCast ?
-            <CastDisplay/>
+          {videoItem?.contentDetails?.casts?.length !== 0 ?
+            <CastDisplay cast={videoItem?.contentDetails?.casts ?? []}/>
             :
             <div className="py-9"></div>
           }
@@ -428,7 +457,14 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
               stream on:
             </p>
 
-            <img src={platformLogo} className="w-[45px] h-[45px] ml-2" />
+              <div className="w-[45px] h-[45px] ml-2 bg-white rounded-md p-1 flex justify-center overflow-hidden">
+                    <img  
+                      src={videoItem?.logoUrl}
+                      alt={videoItem?.logoUrl}
+                      className="w-full h-full object-contain"
+                    />
+              </div >
+                    
           </div>
 
           <div className=" gap-4 justify-between flex-wrap pt-4 mb-6 md:pb-1 md:mb-0">
@@ -439,10 +475,11 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
               <Button
                 variant="outline"
                 className="border-white/20 text-xs text-white !bg-[#2C2C2C] hover:!bg-[#333333] hover:text-white px-6 h-10 rounded-full bg-[#2C2C2C]  w-40 cursor-pointer"
-                onClick={() => onSaveClick()}
+                onClick={videoItem?.bookmarked===false? () => PostToBookmark():undefined}
               >
-                <Bookmark className="h-4 w-4 mr-2" />
-                Save
+               {videoItem && videoItem?.bookmarked===false? <Bookmark className="h-4 w-4 mr-2" />:<FaCheck className="h-4 w-4 mr-2"/>}
+                {videoItem && videoItem?.bookmarked===false? `Save` :`Saved`}
+                
               </Button>
             </div>
           </div>
@@ -617,21 +654,21 @@ export default function VybzVideoPlayer({ videoSrc,hasCast,bannerImage,title,des
         : "opacity-0 pointer-events-none"
     }`}
         >
-          {[1, 2, 3].map((trailer) => (
-            <div key={trailer} className="flex flex-col items-center">
+          {videoItem?.contentDetails?.trailers.map((trailer,index) => (
+            <div key={index} className="flex flex-col items-center">
               <div className="text-white text-center text-xs sm:text-sm md:text-base mb-1">
-                Trailer {trailer}
+                Trailer {index+1}
               </div>
               <div
                 onClick={() => handleTrailerClick(trailer)}
-                className="w-24 h-18 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-40 lg:h-28 
-          bg-[url('/images/mofaya.png')] bg-cover bg-center 
+                className={`w-24 h-18 sm:w-40 sm:h-24 md:w-32 md:h-24 lg:w-40 lg:h-28 
+          bg-[url(${videoItem?.contentDetails?.images?.[index]?.url})] bg-cover bg-center 
           rounded-lg sm:rounded-xl 
           border-2 sm:border-3 lg:border-4 border-white 
           flex items-center justify-center 
           cursor-pointer hover:border-[#C62676] 
           transition-colors duration-200
-          group"
+          group`}
               >
                 <div
                   className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 

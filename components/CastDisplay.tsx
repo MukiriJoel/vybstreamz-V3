@@ -2,60 +2,64 @@ import { MdArrowForward, MdClose } from "react-icons/md";
 import { Button } from "./ui/button";
 import { useState } from "react";
 
-const CastDisplay = () => {
+interface CastProps{
+cast:any | null
+}
+
+const CastDisplay = ({cast}:CastProps) => {
   const [showCastModal, setShowCastModal] = useState(false);
 
   const onViewMoreCast = () => {
     setShowCastModal(true);
   };
 
-  const actorsData = [
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-    {
-      image: "/images/dp.png",
-      title: "awinja",
-      subTitle: "producer",
-    },
-  ];
+  // const actorsData = [
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  //   {
+  //     image: "/images/dp.png",
+  //     title: "awinja",
+  //     subTitle: "producer",
+  //   },
+  // ];
 
   return (
     <div className="max-w-[230px] md:max-w-[350px] pb-0">
@@ -68,31 +72,10 @@ const CastDisplay = () => {
       {/* Mobile layout - names and button stacked */}
       <div className="md:hidden">
         <div className="flex flex-nowrap gap-1 py-2 items-center overflow-x-auto scrollbar-hide">
-          {[
-            {
-              image: "/images/dp.png",
-              title: "awinja",
-              subTitle: "producer",
-            },
-            {
-              image: "/images/dp.png",
-              title: "pascal tokodi",
-              subTitle: "producer",
-            },
-            {
-              image: "/images/dp.png",
-              title: "awinja",
-              subTitle: "producer",
-            },
-            {
-              image: "/images/dp.png",
-              title: "awinja",
-              subTitle: "producer",
-            },
-          ].map((actor, index) => (
+          {cast.map((actor:any, index:number) => (
             <div key={index} className="flex-shrink-0">
               <p className="!font-normal !flex-nowrap !px-0 !text-xs text-white leading-[120%] text-center whitespace-nowrap">
-                {actor.title},
+                {(actor as any)?.title},
               </p>
             </div>
           ))}
@@ -109,28 +92,7 @@ const CastDisplay = () => {
 
       {/* Desktop layout - names and button inline */}
       <div className="hidden md:flex flex-nowrap gap-3 py-2 items-center overflow-x-auto scrollbar-hide">
-        {[
-          {
-            image: "/images/dp.png",
-            title: "awinja",
-            subTitle: "producer",
-          },
-          {
-            image: "/images/dp.png",
-            title: "pascal tokodi",
-            subTitle: "producer",
-          },
-          {
-            image: "/images/dp.png",
-            title: "awinja",
-            subTitle: "producer",
-          },
-          {
-            image: "/images/dp.png",
-            title: "awinja",
-            subTitle: "producer",
-          },
-        ].map((actor, index) => (
+        {cast.map((actor:any, index:number) => (
           <div key={index} className="flex-shrink-0">
             <p className="!font-normal !flex-nowrap !px-0 !text-xs text-white leading-[120%] text-center whitespace-nowrap">
               {actor.title},
@@ -162,21 +124,21 @@ const CastDisplay = () => {
             {/* // Move data outside component for better performance */}
 
             <div className="h-120 overflow-y-auto scrollbar-hide">
-              {actorsData.map((actor, index) => (
+              {cast.map((actor:any, index:number) => (
                 <div key={index} className="flex justify-start py-2">
                   <div className="h-17 w-17 overflow-hidden !p-0 rounded-lg border border-white dark:border-[#333333] shadow-sm">
                     <img
                       className="w-full h-full object-cover"
-                      src={actor.image}
-                      alt={`${actor.title} - ${actor.subTitle}`}
+                      src={(actor as any)?.image}
+                      alt={`${(actor as any)?.title} - ${(actor as any)?.subTitle}`}
                     />
                   </div>
                   <div className="items-center flex flex-col justify-center ml-5">
                     <p className="text-md font-extrabold leading-[100%] capitalize text-center">
-                      {actor.title}
+                      {(actor as any)?.title}
                     </p>
                     <p className="mt-3 text-xs font-normal leading-[120%] capitalize text-center">
-                      {actor.subTitle}
+                      {(actor as any)?.subTitle}
                     </p>
                   </div>
                 </div>

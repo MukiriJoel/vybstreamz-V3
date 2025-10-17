@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/slider";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef,useCallback } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import {
   Search,
@@ -23,34 +23,104 @@ import {
 import RatingsComponent from "@/components/ratings-section";
 import VideoSlider from "@/components/VideoSlider";
 import { MdArrowForward, MdPlayArrow } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import ReviewsSection from "@/components/reviews-section";
 import SectionHeader from "@/components/SectionHeader";
 import VybzVideoPlayer from "@/components/VybzVideoPlayer";
 import ReviewSlider from "@/components/ReviewSlider";
+import { useDataGetVideo } from "@/store/thunks/catalogThunks";
+import HomePageLoading from "@/app/home/loading";
 
 interface MovieDetailsProps {
-  id:any;
+  urlParams:string;
 }
 
-export default function MovieView({id}:MovieDetailsProps){
+export default function MovieView({urlParams}:MovieDetailsProps){
+      
   const Router = useRouter();
+  const [videoItem, setVideoItem] = useState<any>(null);
+  const [genre, setGenre] = useState<any>(null);
+  const [vid, setVid] = useState<any>(null);
+  // const params = useParams();
+  //  console.log("params",params.id)
+  //  const urlParams=params.id;
+  // const slug = params.genre;
+  // const [loading, setLoading] = useState(false);
+  
+    useEffect(() => {
+    if (!urlParams) return;
+    
+    const decoded = decodeURIComponent(urlParams as string); // "id=1&genre=action"
+ 
+    // Get genre
+    const lastItem = decoded.split('&').pop(); // "genre=action"
+    const slug = lastItem?.split('=')[1];
+    console.log("slugval",slug);
+    setGenre(slug);
+   
+    // Get id
+    const firstItem = decoded.split('&')[0]; // "id=1"
+    const idValue = firstItem.split('=')[1];
+    console.log("idval",idValue);
+    setVid(idValue);
+  }, [urlParams]);
 
+  
   const onViewMoreClick = () => {
     Router.push(`/viewMore/`);
   };
+
+  const {
+      data: videoHomeContent,
+      isLoading: loading,
+      isError,
+    } = useDataGetVideo();
+    
+  const getContentBySlugId = useCallback(
+  (slug: string, itemId?: number) => {
+     
+    const content = videoHomeContent?.find((content: any) => content.slug === slug);
+    console.log("cont",content)
+    if (!content) return undefined;
+    
+    // If itemId is provided, find the specific item
+    if (itemId !== undefined) {
+      // Convert itemId to a number for comparison
+      const numericId = Number(itemId);
+      const item = content.items?.find((item: any) => item.id === numericId);
+      console.log("item", item);
+      return item;
+    }
+    
+    // Otherwise return the entire content object
+    return content;
+  },
+  [videoHomeContent]
+);
+
+useEffect(() => {
+    if (genre && vid && videoHomeContent) {
+      const video = getContentBySlugId(genre, vid);
+      console.log("slugvid", video);
+      setVideoItem(video); // Store in state
+    }
+  }, [genre, vid, videoHomeContent, getContentBySlugId]);
+
+   console.log("current videoItem:", videoItem);
+       
+  
+    if (loading) {
+      return (
+        <div className="">
+          <HomePageLoading />
+        </div>
+      );
+    }
+    
   return (
     <>
-      <VybzVideoPlayer 
-      title="mofaya"
-      hasCast={true} 
-      videoSrc = "/videos/MofayaTrailer.mp4"
-      description="A young woman moves in with her boyfriend for a fresh start—only
-              to get pulled into a dangerous world of secrets, crime, and
-              betrayal. Set in modern Kenya, Mo-Faya is a gritty drama where
-              every choice sparks more fire."
-      platformLogo="/logos/bazeLg.png"
-      bannerImage="/images/mofaya.png"/>
+      <VybzVideoPlayer videoItem={videoItem}
+      />
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] dark:bg-[#141414] px-2 md:px-4 lg:px-6">
         <section className="pb-3 pt-8 ">

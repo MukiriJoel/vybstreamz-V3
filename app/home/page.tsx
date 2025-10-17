@@ -179,6 +179,7 @@ const gamesContent = getContentBySlug("games");
             <section className="">
               <SectionHeader viewButton={true} title={videoContent?.title} route="/videos" />
               <VideoSlider
+              slug={videoContent?.slug}
                 title={videoContent?.title}
                 slides={videoContent?.items ?? []}
               />

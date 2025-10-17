@@ -6,7 +6,8 @@ interface EventsState{
     catalog:any[] | null,
     videoHome:any[] | null,
     musicHome:any[] | null,
-    partners:any[] | null
+    partners:any[] | null,
+    bookmark:any | null
 }
 
 const initialState:EventsState = {
@@ -15,7 +16,8 @@ const initialState:EventsState = {
     catalog:[],
     videoHome:[],
     musicHome:[],
-    partners:[]
+    partners:[],
+    bookmark:[]
 }
 
 const catalogSlice = createSlice({
@@ -39,6 +41,9 @@ const catalogSlice = createSlice({
         },
         setPartners:(state,action: PayloadAction<any>)=>{
              state.partners=action.payload
+        },
+        setBookmark:(state,action: PayloadAction<any>)=>{
+             state.bookmark=action.payload
         }
     }
 })
@@ -49,7 +54,8 @@ export const {
     setCatalog,
     setVideoHome,
     setMusicHome,
-    setPartners
+    setPartners,
+    setBookmark
 }=catalogSlice.actions;
 
 export default catalogSlice.reducer;

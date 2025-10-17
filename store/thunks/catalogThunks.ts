@@ -5,7 +5,7 @@ import catalogAxiosInstance from "@/lib/api/catalogAxiosInstance";
 import {store} from "@/store"; 
 import { getDeviceInfo } from "@/lib/helpers/deviceInfo";
 import { formatApiError, formatApiErrorWithStatusCode } from "@/lib/helpers/formatApiError";
-import { setCatalog, setMusicHome, setPartners, setTopBarContent, setUserInterests, setVideoHome } from "../slices/catalogSlice";
+import { setBookmark, setCatalog, setMusicHome, setPartners, setTopBarContent, setUserInterests, setVideoHome } from "../slices/catalogSlice";
 import { objectToQueryString } from "@/lib/api/fetcher";
 import { useCatalogData } from "@/lib/hooks/useCatalogData";
 
@@ -136,7 +136,7 @@ export const useDataGetHome = (payload?: any) => {
 //     }
 // )
 export const useDataGetVideo = (payload?: any) => {
-    const url = `/content-page?category=Video`;
+    const url = `/content-page?category=video`;
     const {data, isLoading, isError, error} = useCatalogData<any>(url);
     // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
     return {data: data?.body || [], isLoading, isError, error};
@@ -213,6 +213,21 @@ export const getPartnerById = createAsyncThunk(
             return res?.data;
         } catch (error: any) {
             return rejectWithValue(formatApiError(error.response?.data) || "Fetching failed");
+        }
+    }
+);
+
+// 🔹 ADD BOOKMARK
+export const addBookmark = createAsyncThunk(
+    "catalog/addBookmark",
+    async (payload: {userId:any,contentId:any}, {dispatch, rejectWithValue}) => {
+        try {
+            const res = await catalogAxiosInstance.post(`/catalog/bookmarks`, {...payload});
+            console.log("bookmarkres",res)
+            dispatch(setBookmark(res?.data?.data));
+            return res?.data;
+        } catch (error: any) {
+            return rejectWithValue(formatApiError(error.response?.data) || "Add to watchlist failed");
         }
     }
 );

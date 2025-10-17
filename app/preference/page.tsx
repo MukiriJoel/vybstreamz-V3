@@ -99,12 +99,12 @@ export default function PreferencePage() {
   },[dispatch]);
 
   // Modified to work with indices
-  const toggleGenre = (index: number) => {
+  const toggleGenre = (index: number,id:number) => {
     const currentGenres = selectedGenres || []
     if (currentGenres.includes(index)) {
-      setValue("selectedGenres", currentGenres.filter((i) => i !== index))
+      setValue("selectedGenres", currentGenres.filter((i) => i !== id))
     } else {
-      setValue("selectedGenres", [...currentGenres, index])
+      setValue("selectedGenres", [...currentGenres, id])
     }
   }
 
@@ -150,21 +150,22 @@ export default function PreferencePage() {
           <div className="flex flex-wrap justify-center gap-3 mb-4">
             {genreList?.map((genre:any, index:any) => (
               <button
-                key={`${genre}-${index}`}
+                key={`${genre}-${genre?.id}`}
                 type="button"
-                onClick={() => toggleGenre(index)}  // Pass index instead of genre
+                onClick={() => toggleGenre(index,genre?.id)}  // Pass index instead of genre
                 className={`
                   cursor-pointer px-6 py-3 rounded-full text-sm sm:text-base font-medium
                   transition-all duration-200 ease-in-out
                   hover:scale-105 active:scale-95
                   ${
-                    selectedGenres?.includes(index)  // Check if index is selected
+                    selectedGenres?.includes(genre?.id)  // Check if index is selected
                       ? "bg-[#c62676] text-white shadow-lg"
                       : "bg-[#E5E5E5] dark:bg-[#333333] text-[#2C2C2C] dark:text-[#FFFFFF] hover:bg-[#d9d9d9]"
                   }
                 `}
               >
-                {genre}
+                {genre.name}
+                {genre.id}
               </button>
             ))}
           </div>

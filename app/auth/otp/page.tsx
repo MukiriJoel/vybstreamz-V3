@@ -205,6 +205,8 @@ export default function VerifyEmail() {
       const res = await dispatch(
         resendOTP(requestToken)
       ).unwrap();
+      console.log("newToken",res?.request_token)
+      replaceToken(res?.data?.request_token)
       toast.success(res?.message);
     } catch (e: any) {
       console.log(e);
@@ -215,6 +217,19 @@ export default function VerifyEmail() {
       setLoading(false);
     }
   };
+
+ 
+  
+  const replaceToken = (newToken:any) => {
+    // Get current params
+    const params = new URLSearchParams(searchParams.toString())
+    
+    // Update the token
+    params.set('token', newToken)
+    
+    // Replace the URL
+    router.replace(`${params.toString()}`)
+  }
 
     const imgSlides = [
     {

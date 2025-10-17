@@ -35,12 +35,9 @@ interface IDeleteUser{
     reason: string,
 }
 
-interface IFileUpload{
-    lastModified: string,
-    name: string,
-    size:number,
-    type:string,
-    webkitRelativePath:string
+export interface IFileUpload {
+    file: File;
+    // Add other fields if needed
 }
 
 const fileUploadUrl=process.env.NEXT_PUBLIC_FILE_UPLOAD_URL;
@@ -498,18 +495,25 @@ export const updateAccount = createAsyncThunk(
 );
 
 // 🔹 FILE UPLOAD
+// 🔹 FILE UPLOAD
 export const fileUpload = createAsyncThunk(
     "auth/fileUpload",
     async (payload: IFileUpload, {dispatch, rejectWithValue}) => {
         try {
-            const res = await authAxiosInstance.post(`${fileUploadUrl}`, payload);
-            // dispatch(setToken(res?.data?.data?.access_token));
-            console.log("photoUpload",res)
-            dispatch(setProfilePhoto(res?.data));
-            // dispatch(setUserProfiles(res?.data?.data?.profiles));
+            const formData = new FormData();
+            formData.append("file", payload.file);
+            console.log("formdata",payload.file)
+            
+            // If you have other fields in IFileUpload, append them too
+            // formData.append("otherField", payload.otherField);
+            
+            const res = await authAxiosInstance.post(`${fileUploadUrl}`, formData);
+            
+            console.log("photoUpload", res);
+            dispatch(setProfilePhoto(res?.data?.data?.profile_photo_url));
             return res?.data;
         } catch (error: any) {
-            return rejectWithValue(formatApiError(error.response?.data) || "OTP request failed");
+            return rejectWithValue(formatApiError(error.response?.data) || "File upload failed");
         }
     }
 );

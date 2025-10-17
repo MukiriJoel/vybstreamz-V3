@@ -26,6 +26,7 @@ import * as yup from "yup";
 import VerifyPhone from "./OTP";
 import { CircularProgress } from "@mui/material";
 import {updateAccount} from "@/store/thunks/authThunks";
+import { getBookmarks } from "@/store/thunks/catalogThunks";
 
 const subscriptions = [
   {
@@ -81,7 +82,8 @@ export default function ProfileContent() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [verifyPhoneData, setVerifyPhoneData] = useState<any>();
-  
+  const [bookmarks, setBookmarks] = useState<any>(null);
+   const {profilePhoto}=useAppSelector((state)=>state.auth);
 
   const tabs = ["Account", "My Favorites", "Subscriptions"];
 
@@ -106,18 +108,19 @@ export default function ProfileContent() {
 
   const handleFileUpload = async(event: any) => {
     const file = event.target.files[0];
+    // const files = event.dataTransfer.files;
     if (file) {
-      console.log("File selected:", file.name);
+      console.log("File selected:", file);
       // Handle file upload logic here
        try {
             setLoading(true);
             const res = await dispatch(
-              fileUpload(file)
+              fileUpload({ file: file })
             ).unwrap();
             toast.success(res?.message);
           } catch (e: any) {
-            console.log(e);
-            toast.error(e?.message || "Could not resend OTP. Please try Again", {
+            console.log("error",e);
+            toast.error(e, {
               duration: 5000,
             });
           } finally {
@@ -145,12 +148,12 @@ export default function ProfileContent() {
         try {
             setLoading(true);
             const res = await dispatch(
-              fileUpload(files[0])
+              fileUpload({ file: files[0] })
             ).unwrap();
             toast.success(res?.message);
           } catch (e: any) {
-            console.log(e);
-            toast.error(e?.message || "Could not resend OTP. Please try Again", {
+            console.log("error",e);
+            toast.error(e, {
               duration: 5000,
             });
           } finally {
@@ -252,6 +255,25 @@ export default function ProfileContent() {
     }
   };
 
+  const fetchBookmarks = async ()=>{
+    try{
+      setLoading(true);
+      const res= await dispatch(getBookmarks(user?.id)).unwrap();
+      console.log("bookmarks",res)
+      setBookmarks(res?.body)
+    }catch(error){
+      console.error('Failed to fetch bookmarks', error);
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchBookmarks();
+  }, []);
+
+  
+
   return (
     <div className="py-4 ">
       {/* Profile Header */}
@@ -261,7 +283,7 @@ export default function ProfileContent() {
           className="w-20 h-20 sm:w-40 sm:h-40 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0"
         >
           <img
-            src={avatar}
+            src={(profilePhoto as any)?(profilePhoto as any):avatar}
             alt="Profile"
             className="w-full h-full object-cover"
           />

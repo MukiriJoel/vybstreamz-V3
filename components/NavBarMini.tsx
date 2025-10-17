@@ -27,7 +27,7 @@ const NavBarMini = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
   const router = useRouter();
-  const {userProfiles}=useAppSelector((state)=>state.auth);
+  const {userProfiles,profilePhoto}=useAppSelector((state)=>state.auth);
   const avatar=userProfiles?.[0]?.avatar;
 
   const navItems = [
@@ -259,7 +259,7 @@ const NavBarMini = () => {
                 className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer"
               >
                 <AvatarImage
-                  src={avatar}
+                  src={(profilePhoto as any)?(profilePhoto as any):avatar}
                   className="object-cover"
                 />
                 <AvatarFallback>U</AvatarFallback>

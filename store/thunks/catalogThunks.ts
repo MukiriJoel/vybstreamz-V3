@@ -231,3 +231,16 @@ export const addBookmark = createAsyncThunk(
         }
     }
 );
+
+// GET GENRES
+export const getBookmarks = createAsyncThunk(
+    "catalog/getBookmarks",
+    async(payload:{userId:any},{dispatch,rejectWithValue})=>{
+        try{
+            const res=await catalogAxiosInstance.get(`/catalog/bookmarks?userId=${payload.userId}`);
+            return res?.data?.body;
+        }catch(error:any){
+            return rejectWithValue(formatApiError(error.response?.data || "Fetching failed"))
+        }
+    }
+)

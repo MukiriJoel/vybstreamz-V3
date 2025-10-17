@@ -19,7 +19,7 @@ export const getDeviceInfo = async (): Promise<Record<string, string | null>> =>
     // }
 
     return {
-        "Content-Type": "application/json",
+        
         "X-PLATFORM": process.env.NEXT_PUBLIC_X_PLATFORM || null,
         "X-DEVICE-ID": getDeviceID(),
         "X-PLATFORM-KEY": process.env.NEXT_PUBLIC_X_API_KEY || null,

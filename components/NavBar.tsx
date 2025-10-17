@@ -25,7 +25,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const pathname = usePathname();
   const router=useRouter();
-  const {userProfiles}=useAppSelector((state)=>state.auth);
+  const {userProfiles,profilePhoto}=useAppSelector((state)=>state.auth);
 
   const avatar=userProfiles?.[0]?.avatar
   const navItems = [
@@ -235,7 +235,7 @@ const NavBar = ({position = 'fixed' , isSticky = false, color = 'transparent'}) 
               {/* <Link href={isLoggedIn ? "/profile" : "/createAccount"}> */}
 
                   <Avatar onClick={()=>onAvatarClick()} className="h-[35px] w-[35px] md:h-[45px] md:w-[45px] ml-2 md:ml-4 cursor-pointer">
-                    <AvatarImage src={avatar} className="object-cover" />
+                    <AvatarImage src={(profilePhoto as any)?(profilePhoto as any):avatar} className="object-cover" />
                     <AvatarFallback>U</AvatarFallback>
                   </Avatar>
               {/* </Link> */}

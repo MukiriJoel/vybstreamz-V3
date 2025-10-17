@@ -28,6 +28,13 @@ authAxiosInstance.interceptors.request.use(
             config.headers.Authorization = `Bearer ${token}`;
             config.headers["X-PROFILE-ID"] = profileId;
             config.headers["Accept"] = "application/json";
+            // 🔹 Only set Accept FormData requests
+            if (config.data instanceof FormData) {
+                console.log("isformdata")
+            //      delete config.headers["Content-Type"];
+            // delete config.headers["content-type"];
+            // delete config.headers.common["Content-Type"];
+             }
         }
 
         if(profileId){
@@ -41,10 +48,17 @@ authAxiosInstance.interceptors.request.use(
             config.headers["X-ENCRYPTION"] = "she"
         }
 
+        if (!(config.data instanceof FormData)) {
+            config.headers["Content-Type"] = "application/json";
+        }
+
+
         config.headers = {
             ...config.headers,
             ...deviceHeaders
         }
+
+       
 
         return config;
     },

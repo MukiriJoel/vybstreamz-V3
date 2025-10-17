@@ -43,7 +43,7 @@ export default function Gamedetails({ videoSrc, id }: GameDetailsProps) {
   };
   return (
     <>
-      <VybzVideoPlayer
+      {/* <VybzVideoPlayer
         title="squid games"
         metadata="Game | 16 Yrs+"
         description="A young woman moves in with her boyfriend for a fresh start—only
@@ -54,7 +54,7 @@ export default function Gamedetails({ videoSrc, id }: GameDetailsProps) {
         videoSrc={videoSrc}
         platformLogo="/logos/bazeLg.png"
         bannerImage="/images/sqLg.png"
-      />
+      /> */}
       {/* Trending Section */}
       <main className="bg-[#F2F2F2] pt-4 dark:bg-[#141414] px-2 md:px-4 lg:px-6 xl:px-6">
         <section className="pb-3 pt-8">

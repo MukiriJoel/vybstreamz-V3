@@ -64,12 +64,13 @@ export default function VybzVideoPlayer({ videoItem }: VybzVideoPlayerProps) {
   const [loadingWatchList, setLoadingBookmark] = useState(false);
   const videoSrc=videoItem?.contentDetails?.trailers?.[0]?.originUrl;
   // const videoSrc="/videos/MofayaTrailer.mp4"
+  // console.log("vidsrc",videoSrc)
 
   const {user}=useAppSelector((state)=>state.auth);
   const dispatch=useAppDispatch();
 
   const bookmarkPayload={
-    userId:user.id,
+    userId:user?.id,
     contentId:videoItem?.id
   }
 

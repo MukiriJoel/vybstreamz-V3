@@ -41,6 +41,7 @@ export interface IFileUpload {
 }
 
 const fileUploadUrl=process.env.NEXT_PUBLIC_FILE_UPLOAD_URL;
+console.log("fileuploadUrl",fileUploadUrl)
 
 
 

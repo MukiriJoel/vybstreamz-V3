@@ -160,6 +160,14 @@ export const useDataGetGames = (payload?: any) => {
     return {data: data?.body || [], isLoading, isError, error};
 }
 
+//GET EDUCATION HOME
+export const useDataGetEducation = (payload?: any) => {
+    const url = `/content-page?category=education`;
+    const {data, isLoading, isError, error} = useCatalogData<any>(url);
+    // const res = await catalogAxiosInstance.get(`/music/home`, {params: payload});
+    return {data: data?.body || [], isLoading, isError, error};
+}
+
 
 
 

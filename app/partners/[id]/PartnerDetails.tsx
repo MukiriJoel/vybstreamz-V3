@@ -13,7 +13,7 @@ import { MdArrowForward, MdOutlineVideocam } from "react-icons/md";
 import VybzCarouselMusic from "@/components/VybzCarouselMusic";
 import PartnersSlider, { IPartnerItem } from "@/components/PartnersSlider";
 import MusicSlider from "@/components/MusicSlider";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useMusic } from "@/hooks/useMusic";
 import { usePartners } from "@/hooks/usePartners";
 import PlansSlider from "@/components/PlansSlider";
@@ -26,7 +26,7 @@ import { useRouter } from "next/navigation";
 import ReviewSlider from "@/components/ReviewSlider";
 import ReviewTop from "@/components/ReviewTop";
 import { useAppDispatch } from "@/hooks/redux";
-import { getPartnerById } from "@/store/thunks/catalogThunks";
+import { getPartnerById, useDataGetHome } from "@/store/thunks/catalogThunks";
 
 interface IPartnerDetailsProps{
   id:any
@@ -93,6 +93,13 @@ export default function PartnerDetails({ id }: IPartnerDetailsProps) {
   const onViewReviewsClick = () =>{
     Router.push('/viewMore/review')
   }
+
+  const { data: homeContent, isLoading: loadingState, isError } = useDataGetHome();
+    console.log("homeContent", homeContent);
+  
+  const getContentBySlug = useCallback((slug: string) => {
+    return homeContent?.find((content: any) => content.slug === slug);
+  }, [homeContent]);
 
   return (
     <div className="bg-[#F2F2F2] dark:bg-[#141414]">

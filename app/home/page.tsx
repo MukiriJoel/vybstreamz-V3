@@ -161,7 +161,7 @@ const gamesContent = getContentBySlug("games");
                 title={eduContent?.title}
                 route="education"
               />
-              <EducationSlider slides={eduContent?.items ?? []} />
+              <EducationSlider title={eduContent?.title} slug={eduContent?.slug} slides={eduContent?.items ?? []} />
             </section>
             {/* Recommended For You Section */}
             <section className="  ">

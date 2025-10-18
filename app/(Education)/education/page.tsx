@@ -84,7 +84,7 @@ export default function Home() {
                   {section.slug === "partners" ? (
                     <PartnersSlider slides={section.items} />
                   ) : (
-                    <EducationSlider slides={section.items} />
+                    <EducationSlider title={section.title} slug={section.slug} slides={section.items} />
                   )}
                 </section>
               );

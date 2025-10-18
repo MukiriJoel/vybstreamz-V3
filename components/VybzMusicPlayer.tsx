@@ -453,7 +453,13 @@ musicItem
                     <p className="text-white text-[14px] uppercase tracking-wide mr-3">
                       stream on:
                     </p>
-                    <img src={musicItem?.logoUrl} className="w-[35px] h-[35px] md:w-[45px] md:h-[45px]" alt={musicItem?.logoUrl} />
+                    <div className="w-[45px] h-[45px] ml-2 bg-white rounded-md p-1 flex justify-center overflow-hidden">
+                    <img  
+                      src={musicItem?.logoUrl}
+                      alt={musicItem?.logoUrl}
+                      className="w-full h-full object-contain"
+                    />
+                 </div >
                   </div>
                 </div>
               </div>

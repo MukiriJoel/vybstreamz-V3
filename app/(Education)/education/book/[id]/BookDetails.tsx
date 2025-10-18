@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import VybzCarouselEducation from "@/components/VybzCarouselEducation";
 import EducationSlider from "@/components/EducationSlider";
 import { MdArrowForward } from "react-icons/md";
@@ -8,11 +8,85 @@ import VybzMusicPlayer from "@/components/VybzMusicPlayer";
 import SectionHeader from "@/components/SectionHeader";
 import ReviewSlider from "@/components/ReviewSlider";
 import RatingsComponent from "@/components/ratings-section";
+import { useDataGetEducation } from "@/store/thunks/catalogThunks";
+import HomePageLoading from "@/app/home/loading";
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-export default function EducationListing() {
+interface BookDetailsProps{
+urlParams:string;
+}
+
+export default function BookDetails({urlParams}:BookDetailsProps) {
   const [activeTab, setActiveTab] = useState("E-Book");
   const tabs = ["E-Book", "Audio Book"];
+
+  const [EduItem, setEduItem] = useState<any>(null);
+  const [genre, setGenre] = useState<any>(null);
+  const [eduId, setEduId] = useState<any>(null);
+  
+  useEffect(() => {
+      if (!urlParams) return;
+      
+      const decoded = decodeURIComponent(urlParams as string); // "id=1&genre=action"
+   
+      // Get genre
+      const lastItem = decoded.split('&').pop(); // "genre=action"
+      const slug = lastItem?.split('=')[1];
+      
+      setGenre(slug);
+     
+      // Get id
+      const firstItem = decoded.split('&')[0]; // "id=1"
+      const idValue = firstItem.split('=')[1];
+  
+      setEduId(idValue);
+  }, [urlParams]);
+
+  const {
+        data: eduHomeContent,
+        isLoading: loading,
+        isError,
+      } = useDataGetEducation();
+      
+    const getContentBySlugId = useCallback(
+    (slug: string, itemId?: number) => {
+       
+      const content = eduHomeContent?.find((content: any) => content.slug === slug);
+      console.log("cont",content)
+      if (!content) return undefined;
+      
+      // If itemId is provided, find the specific item
+      if (itemId !== undefined) {
+        // Convert itemId to a number for comparison
+        const numericId = Number(itemId);
+        const item = content.items?.find((item: any) => item.id === numericId);
+        console.log("item", item);
+        return item;
+      }
+      
+      // Otherwise return the entire content object
+      return content;
+    },
+    [eduHomeContent]
+  );
+
+  useEffect(() => {
+    if (genre && eduId && eduHomeContent) {
+      const edu = getContentBySlugId(genre, eduId);
+      console.log("slugedu", edu);
+      setEduItem(edu); // Store in state
+    }
+  }, [genre, eduId, eduHomeContent, getContentBySlugId]);
+
+   console.log("current videoItem:", EduItem);
+
+  if (loading) {
+    return (
+      <div className="">
+        <HomePageLoading />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -20,16 +94,9 @@ export default function EducationListing() {
         {/* Main Content */}
         <main className="">
           {/* <VybzCarouselEducation tabs={tabs} activeTab={activeTab} /> */}
-          {/* <VybzMusicPlayer
-            audioSrc="/audio/podcast.mp3"
-            bannerImage="/images/robert.png"
-            albumImage="/images/robertSm.png"
-            albumInfo=" 1 Book | 1Hr 40Min | 1 Issue"
-            platformLogo="/logos/bazeLg.png"
-            title="rich dad poor dad"
-            subtitle="robert kiyosaki"
-            description="A young woman moves in with her boyfriend for a fresh start—only to get pulled into a dangerous web of secrets, crime, and betrayal. Set in modern Kenya, Mo Faya is a gritty drama where every choice sparks more fire."
-          /> */}
+          <VybzMusicPlayer
+            musicItem={EduItem}
+          />
           {/* Content Navigation */}
           {/* TABS */}
           <div className="bg-[#F2F2F2] dark:bg-[#141414] mb-8 pt-8  ">

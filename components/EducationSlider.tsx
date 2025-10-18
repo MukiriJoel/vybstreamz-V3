@@ -39,11 +39,12 @@ export interface IGamesItem{
 
 interface SliderProps{
   slides:IGamesItem[],
-   
+  title:string,
+  slug:string
 }
 
 
-const EducationSlider = ({slides=[]}:SliderProps) =>{
+const EducationSlider = ({title,slug,slides=[]}:SliderProps) =>{
   const router =useRouter();
 
     const onHandleAuthorClick = (id:number) =>{
@@ -52,8 +53,8 @@ const EducationSlider = ({slides=[]}:SliderProps) =>{
       
     }
 
-    const onBookClick = () =>{
-      router.push(`/education/book`)
+    const onBookClick = (id:any) =>{
+      router.push(`/education/book/id=${id}&slug=${slug}`)
     }
 
     return(
@@ -67,7 +68,7 @@ const EducationSlider = ({slides=[]}:SliderProps) =>{
               className="pt-1 pb-1 md:pt-8 lg:pt-8 xl:pt-8 md:pb-4 lg:pb-4 xl:pb-4 group text-center flex-shrink-0 relative cursor-pointer transition-all duration-300 ease-in-out md:hover:scale-110 hover:z-10"
             >
               {/* Main Image Container */}
-              <div className="relative" onClick={()=>onBookClick()}>
+              <div className="relative" onClick={()=>onBookClick(item?.id)}>
                 <img
                   src={item?.contentDetails?.thumbnails?.[0]?.url || "/placeholder.svg"}
                   alt={item.title}
@@ -144,7 +145,7 @@ const EducationSlider = ({slides=[]}:SliderProps) =>{
                             />
                           </div>
                         </div>
-                        <button onClick={()=>onBookClick()} className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
+                        <button onClick={()=>onBookClick(item?.id)} className="cursor-pointer bg-[#C62676] hover:bg-pink-600 text-white text-xs md:text-sm px-5 py-2 rounded-full transition-colors duration-200 flex items-center gap-1">
                           <svg
                             className="w-5 h-5 fill-current"
                             viewBox="0 0 24 24"
